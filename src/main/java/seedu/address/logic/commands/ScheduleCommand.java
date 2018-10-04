@@ -22,8 +22,9 @@ public class ScheduleCommand extends Command{
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
+        requireNonNull(model);
+        requireNonNull(history);
         File file = new File(FILEPATH);
-
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
 

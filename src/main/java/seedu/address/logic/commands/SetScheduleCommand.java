@@ -27,7 +27,7 @@ public class SetScheduleCommand extends Command{
     @Override
     public CommandResult execute(Model model, CommandHistory history){
         requireNonNull(model);
-
+        requireNonNull(history);
         try {
             PrintWriter writer = new PrintWriter(FILEPATH, "UTF-8");
             writer.println(scheduleDescriptor);
