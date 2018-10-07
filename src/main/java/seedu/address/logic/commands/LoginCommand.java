@@ -29,6 +29,7 @@ public class LoginCommand extends Command {
 
     public static final String INVALID_LOGIN_CREDENTIALS = "Login failed. Incorrect NRIC and/or password.";
     public static final String LOGIN_SUCCESS = "Login successful. You are logged in as: %s";
+    public static final String ALREADY_LOGGED_IN = "You are already logged in. Logout first before logging in again.";
 
     private Nric loginNric;
     private Password loginPassword;
@@ -44,6 +45,9 @@ public class LoginCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        if (SessionManager.isLoggedIn()) {
+            throw new CommandException(ALREADY_LOGGED_IN);
+        }
         if (!isLoginCredentialsValid(model)) {
             throw new CommandException(INVALID_LOGIN_CREDENTIALS);
         } else {

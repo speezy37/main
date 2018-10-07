@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -23,6 +24,8 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD);
+                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD, PREFIX_PRIORITYLEVEL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_DEPARTMENT, PREFIX_PASSWORD) || !argMultimap.getPreamble().isEmpty()) {
@@ -54,7 +57,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
 
-        Person person = new Person(name, nric, password, phone, email, department, address, tagList);
+        /**
+         * Assign the lowest priority level as default if the prefix is missing.
+         */
+        PriorityLevel priorityLevel;
+        if (!arePrefixesPresent(argMultimap, PREFIX_PRIORITYLEVEL)) {
+            priorityLevel = new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode());
+        } else {
+            priorityLevel = ParserUtil.parsePriorityLevel(
+                    argMultimap.getValue(PREFIX_PRIORITYLEVEL).get());
+        }
+
+        Person person = new Person(name, nric, password, phone, email, department, priorityLevel, address, tagList);
 
         return new AddCommand(person);
     }

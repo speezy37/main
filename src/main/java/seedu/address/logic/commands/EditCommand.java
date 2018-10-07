@@ -105,7 +105,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, personToEdit.getNric(),
                 personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
-                          updatedAddress, updatedTags);
+                personToEdit.getPriorityLevel(), updatedAddress, updatedTags);
     }
 
     @Override
@@ -148,7 +148,6 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setDepartment(toCopy.department);
@@ -247,6 +246,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getDepartment().equals(e.getDepartment())
+
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

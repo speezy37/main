@@ -13,6 +13,7 @@ public class SessionManager {
 
     /**
      * Stores the NRIC of the successfully verified login into the session
+     * PRE-CONDITION: NRIC must be valid.
      * @param logInWithThisNric
      */
     public static void loginToSession(Nric logInWithThisNric) {
@@ -25,6 +26,7 @@ public class SessionManager {
     }
 
     public static Nric getLoggedInSessionNric() {
+        requireNonNull(loggedInNric);
         return loggedInNric;
     }
 
