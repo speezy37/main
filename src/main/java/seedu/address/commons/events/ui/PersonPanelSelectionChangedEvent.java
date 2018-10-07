@@ -1,6 +1,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
+import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 
 /**
@@ -9,10 +10,15 @@ import seedu.address.model.person.Person;
 public class PersonPanelSelectionChangedEvent extends BaseEvent {
 
 
-    private final Person newSelection;
+    private Person newSelection;
+    private Leave newSelection1;
 
     public PersonPanelSelectionChangedEvent(Person newSelection) {
         this.newSelection = newSelection;
+    }
+
+    public PersonPanelSelectionChangedEvent(Leave newSelection) {
+        this.newSelection1 = newSelection;
     }
 
     @Override

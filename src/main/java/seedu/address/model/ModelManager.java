@@ -143,7 +143,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateLeaveListChanged();
     }*/
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Person/Leave List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -155,9 +155,20 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public ObservableList<Leave> getFilteredLeaveList() {
+        return FXCollections.unmodifiableObservableList(filteredLeave);
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredLeaveList(Predicate<Leave> predicate) {
+        requireNonNull(predicate);
+        filteredLeave.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
