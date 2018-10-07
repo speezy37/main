@@ -12,16 +12,16 @@ public class ListLeaveCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all leaves";
 
-    public ReadOnlyLeaveList list;
+    //public ReadOnlyLeaveList list;
 
-    public String nric;
+    //public String nric;
 
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredLeaveList(Model.PREDICATE_SHOW_ALL_LEAVES);
-        list.getRequestList();
+        //list.getRequestList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

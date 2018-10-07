@@ -55,8 +55,8 @@
                 <Tab fx:id="addressBookTab" text="People">
                   <StackPane fx:id="personListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
                 </Tab>
-                <Tab fx:id="eventBookTab" text="Leaves">
-                  <StackPane fx:id="eventListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
+                <Tab fx:id="leaveBookTab" text="Leaves">
+                  <StackPane fx:id="leaveListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
                 </Tab>
               </tabs>
             </TabPane>
