@@ -189,7 +189,6 @@ public class AddCommandTest {
         public void commitLeaveList() {
             throw new AssertionError("This method should not be called.");
         }
-        
     }
 
     /**
