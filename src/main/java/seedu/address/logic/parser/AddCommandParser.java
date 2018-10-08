@@ -64,8 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_PRIORITYLEVEL)) {
             priorityLevel = new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode());
         } else {
-            priorityLevel = ParserUtil.parsePriorityLevel(
-                    argMultimap.getValue(PREFIX_PRIORITYLEVEL).get());
+            priorityLevel = ParserUtil.parsePriorityLevel(argMultimap.getValue(PREFIX_PRIORITYLEVEL).get());
         }
 
         Person person = new Person(name, nric, password, phone, email, department, priorityLevel, address, tagList);

@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -74,6 +75,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        if (!SessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -170,13 +175,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setNric(Nric nric) {
+        /*public void setNric(Nric nric) {
             this.nric = nric;
         }
 
         public void setPassword(Password password) {
             this.password = password;
-        }
+        }*/
 
         public void setPhone(Phone phone) {
             this.phone = phone;

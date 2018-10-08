@@ -224,7 +224,14 @@ public class ParserUtil {
      */
     public static PriorityLevel parsePriorityLevel(String priorityLevel) throws ParseException {
         requireNonNull(priorityLevel);
-        int priorityLevelCode = Integer.valueOf(priorityLevel.trim());
+
+        int priorityLevelCode;
+        try {
+            priorityLevelCode = Integer.valueOf(priorityLevel.trim());
+        } catch (NumberFormatException e) {
+            throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+        }
+
         if (!PriorityLevelEnum.isValidPriorityLevel(priorityLevelCode)) {
             throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
         }
