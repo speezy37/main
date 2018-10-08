@@ -206,6 +206,12 @@ public class AddLeaveCommandTest {
         }
 
         @Override
+        public void addLeave(Leave leave) {
+            requireNonNull(leave);
+            leavesAdded.add(leave);
+        }
+
+        @Override
         public void commitLeaveList() {
             // called by {@code AddLeaveCommand#execute()}
         }
