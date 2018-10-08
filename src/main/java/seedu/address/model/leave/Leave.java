@@ -13,6 +13,7 @@ public class Leave {
     private final Date date;
     private final EmployeeId employeeId;
     private final Approval approval;
+    public static boolean isLogin = false;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +35,14 @@ public class Leave {
 
     public Approval getApproval() {
         return approval;
+    }
+
+    public static void setIsLogin(boolean isLogin) {
+        Leave.isLogin = isLogin;
+    }
+
+    public Boolean getIsLogin(){
+        return isLogin;
     }
 
     @Override

@@ -29,12 +29,14 @@ public interface Model {
      */
     boolean hasPerson(Person person);
     boolean hasLeave(Leave leave);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
     //void deleteLeave(Leave target);
+
 
     /**
      * Adds the given person.

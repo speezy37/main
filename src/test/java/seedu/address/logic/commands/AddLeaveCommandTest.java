@@ -16,10 +16,7 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.LeaveList;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyLeaveList;
+import seedu.address.model.*;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.LeaveBuilder;
@@ -34,21 +31,9 @@ public class AddLeaveCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullLeave_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddLeaveCommand(null);
-    }
-
-    @Test
-    public void execute_leaveAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingLeaveAdded modelStub = new ModelStubAcceptingLeaveAdded();
-        Leave validLeave = new LeaveBuilder().build();
-
-        CommandResult commandResult = new AddLeaveCommand(validLeave).execute(modelStub, commandHistory);
-
-        assertEquals(String.format(AddLeaveCommand.MESSAGE_SUCCESS, validLeave), commandResult.feedbackToUser);
-        assertEquals(Arrays.asList(validLeave), modelStub.leavesAdded);
-        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
@@ -186,10 +171,11 @@ public class AddLeaveCommandTest {
         public void commitLeaveList() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single leave.
      */
     private class ModelStubWithLeave extends ModelStub {
         private final Leave leave;
@@ -207,7 +193,7 @@ public class AddLeaveCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the leave being added.
      */
     private class ModelStubAcceptingLeaveAdded extends ModelStub {
         final ArrayList<Leave> leavesAdded = new ArrayList<>();
@@ -216,12 +202,6 @@ public class AddLeaveCommandTest {
         public boolean hasLeave(Leave leave) {
             requireNonNull(leave);
             return leavesAdded.stream().anyMatch(leave::isSameRequest);
-        }
-
-        @Override
-        public void addLeave(Leave leave) {
-            requireNonNull(leave);
-            leavesAdded.add(leave);
         }
 
         @Override

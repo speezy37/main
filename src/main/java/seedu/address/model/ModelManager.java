@@ -98,7 +98,6 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedLeaveList.hasRequest(leave);
     }
 
-
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
