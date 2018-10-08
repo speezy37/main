@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.person.Nric;
 
 /**
