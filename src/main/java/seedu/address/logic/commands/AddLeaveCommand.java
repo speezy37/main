@@ -37,7 +37,7 @@ public class AddLeaveCommand extends Command {
         if (model.hasLeave(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
         } else if (!SessionManager.isLoggedIn()) {
-                throw new CommandException(STATUS_NOT_LOGGED_IN);
+            throw new CommandException(STATUS_NOT_LOGGED_IN);
         }
 
         model.addLeave(toAdd);
