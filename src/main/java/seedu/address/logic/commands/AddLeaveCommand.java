@@ -42,6 +42,5 @@ public class AddLeaveCommand extends Command {
         model.addLeave(toAdd);
         model.commitLeaveList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-
     }
 }
