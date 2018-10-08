@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddLeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.SessionManager;
 import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
@@ -26,16 +27,16 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
      */
     public AddLeaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_DATE, PREFIX_APPROVAL);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_DATE, PREFIX_APPROVAL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
-        EmployeeId employeeId = ParserUtil.parseEmployeeId(argMultimap.getValue(PREFIX_NRIC).get());
+        EmployeeId employeeId = ParserUtil.parseEmployeeId(SessionManager.getLoggedInEmployeeNric());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Approval status = ParserUtil.parseApproval(argMultimap.getValue(PREFIX_APPROVAL).get());
+        Approval status = ParserUtil.parseApproval("PENDING");
 
         Leave leave = new Leave (employeeId, date, status);
 

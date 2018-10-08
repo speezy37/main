@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.person.Nric;
 
 /**
@@ -10,6 +11,8 @@ import seedu.address.model.person.Nric;
  */
 public class SessionManager {
     private static Nric loggedInNric = null;
+    private static String employeeNric = null;
+
 
     /**
      * Stores the NRIC of the successfully verified login into the session
@@ -26,6 +29,10 @@ public class SessionManager {
 
     public static Nric getLoggedInSessionNric() {
         return loggedInNric;
+    }
+    public static String getLoggedInEmployeeNric() {
+        employeeNric = loggedInNric.nric;
+        return employeeNric;
     }
 
     /**
