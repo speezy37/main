@@ -15,6 +15,9 @@ import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.LeavePanelSelectionChangedEvent;
 import seedu.address.model.leave.Leave;
 
+/**
+ * Panel containing the list of leaves.
+ */
 public class LeaveListPanel extends UiPart<Region> {
     private static final String FXML = "LeaveListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
@@ -28,8 +31,8 @@ public class LeaveListPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
-    private void setConnections(ObservableList<Leave> LeaveList) {
-        leaveListView.setItems(LeaveList);
+    private void setConnections(ObservableList<Leave> leaveList) {
+        leaveListView.setItems(leaveList);
         leaveListView.setCellFactory(listView -> new LeaveListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }

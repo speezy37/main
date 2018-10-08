@@ -35,7 +35,7 @@ public class LeaveCard extends UiPart<Region> {
 
     public LeaveCard(Leave leave, int displayedIndex) {
         super(FXML);
-        this.leave= leave;
+        this.leave = leave;
         id.setText(displayedIndex + ". ");
         nric.setText(leave.getEmployeeId().nric);
         date.setText(leave.getDate().date);
