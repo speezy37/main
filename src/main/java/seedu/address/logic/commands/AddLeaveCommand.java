@@ -39,7 +39,6 @@ public class AddLeaveCommand extends Command {
         } else if (!SessionManager.isLoggedIn()) {
             throw new CommandException(STATUS_NOT_LOGGED_IN);
         }
-        
         model.addLeave(toAdd);
         model.commitLeaveList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
