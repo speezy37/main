@@ -6,8 +6,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * List schedule of a person in the address book to the user.
@@ -26,16 +29,29 @@ public class ScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
+        requireNonNull(model);
+        requireNonNull(history);
+
+        StringBuilder builder = new StringBuilder();
+        for(int i=0; i<model.getAddressBook().getPersonList().size(); i++){
+            builder.append(i+1)
+                    .append(": ")
+                    .append(model.getAddressBook().getPersonList().get(i).getSchedule().value)
+                    .append("\n");
+        }
+        return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + "\n" +
+                builder.toString());
+        /*
         File file = new File(FILE_PATH);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
 
             String st = br.readLine();
-            requireNonNull(model);
             return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + "\n" + st);
         } catch (Exception e) {
             return new CommandResult(MESSAGE_SCHEDULE_FAIL);
         }
+        */
     }
 }
