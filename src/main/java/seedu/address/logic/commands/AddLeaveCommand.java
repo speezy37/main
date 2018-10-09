@@ -24,7 +24,7 @@ public class AddLeaveCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Leave application requested.";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This request already exist in the database.";
     public static final String STATUS_NOT_LOGGED_IN = "Not login yet.";
-    public static boolean isLogin = true;
+    private static boolean isLogin = true;
 
     private final Leave toAdd;
 
