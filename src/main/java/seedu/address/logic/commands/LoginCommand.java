@@ -53,7 +53,7 @@ public class LoginCommand extends Command {
         if (!isLoginCredentialsValid(model)) {
             throw new CommandException(INVALID_LOGIN_CREDENTIALS);
         } else {
-            SessionManager.loginToSession(nricToBeLoggedIn);
+            SessionManager.loginToSession(model, nricToBeLoggedIn);
             return new CommandResult(String.format(LOGIN_SUCCESS, personToBeLoggedIn.getNric()));
         }
     }

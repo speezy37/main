@@ -18,20 +18,23 @@ public class SessionManager {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
     private static Nric loggedInNric = null;
+    private static PriorityLevel loggedInPriorityLevel = null;
 
     /**
      * Stores the {@code Nric} of the successfully logged in person into the session.
      * PRE-CONDITION: Nric must be valid.
      * @param logInWithThisNric
      */
-    public static void loginToSession(Nric logInWithThisNric) {
+    public static void loginToSession(Model model, Nric logInWithThisNric) {
         requireNonNull(logInWithThisNric);
         loggedInNric = logInWithThisNric;
+        loggedInPriorityLevel = getLoggedInPersonDetails(model).getPriorityLevel();
     }
 
 
     public static void logOutSession() {
         loggedInNric = null;
+        loggedInPriorityLevel = null;
     }
 
     /**
@@ -72,12 +75,20 @@ public class SessionManager {
      * Returns true if current session has at least the required priority level for the operation.
      * @throws CommandException if user's not logged in.
      */
-    public static boolean hasSufficientPriorityLevelForThisSession(Model model, PriorityLevelEnum minimumPriorityLevel)
-            throws CommandException {
+    public static boolean hasSufficientPriorityLevelForThisSession(
+            PriorityLevelEnum minimumPriorityLevel) throws CommandException {
         if (!isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
         }
-        Person personToCheck = getLoggedInPersonDetails(model);
-        return PriorityLevel.isPriorityLevelAtLeastOf(personToCheck, minimumPriorityLevel);
+        return PriorityLevel.isPriorityLevelAtLeastOf(loggedInPriorityLevel, minimumPriorityLevel);
+    }
+
+    /**
+     * For test use only. Logs in with a defined priority level, which may be necessary for operations
+     * requiring admin rights.
+     */
+    protected static void forceLoginWith(String nric, int priorityLevel) {
+        loggedInNric = new Nric(nric);
+        loggedInPriorityLevel = new PriorityLevel(priorityLevel);
     }
 }

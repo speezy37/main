@@ -74,7 +74,7 @@ public class AddCommand extends Command {
         /**
          * Throws exception if user does not have the required access level.
          */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(model, PriorityLevelEnum.ADMINISTRATOR)) {
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }

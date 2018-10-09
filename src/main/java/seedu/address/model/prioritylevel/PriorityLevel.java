@@ -36,8 +36,9 @@ public class PriorityLevel {
     /**
      * Returns if the priority level of the person meets the min level of {@code minimumPriorityLevel}
      */
-    public static boolean isPriorityLevelAtLeastOf (Person personToCheck, PriorityLevelEnum minimumPriorityLevel) {
-        if (personToCheck.getPriorityLevel().priorityLevelCode <= minimumPriorityLevel.getPriorityLevelCode()) {
+    public static boolean isPriorityLevelAtLeastOf (PriorityLevel currPriorityLevel,
+                                                    PriorityLevelEnum minimumPriorityLevel) {
+        if (currPriorityLevel.priorityLevelCode <= minimumPriorityLevel.getPriorityLevelCode()) {
             return true;
         } else {
             return false;

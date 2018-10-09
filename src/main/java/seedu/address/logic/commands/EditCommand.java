@@ -30,6 +30,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -142,6 +143,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Department department;
+        private PriorityLevel priorityLevel;
         private Address address;
         private Set<Tag> tags;
 
@@ -175,13 +177,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        /*public void setNric(Nric nric) {
+        public void setNric(Nric nric) {
             this.nric = nric;
         }
 
         public void setPassword(Password password) {
             this.password = password;
-        }*/
+        }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
@@ -205,6 +207,10 @@ public class EditCommand extends Command {
 
         public Optional<Department> getDepartment() {
             return Optional.ofNullable(department);
+        }
+
+        public void setPriorityLevel(PriorityLevel priorityLevel) {
+            this.priorityLevel = priorityLevel;
         }
 
         public void setAddress(Address address) {
