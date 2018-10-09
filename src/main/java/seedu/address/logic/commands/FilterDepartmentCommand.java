@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
-
-import java.util.logging.Filter;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all persons in address book whose department contains any of the argument keywords.
@@ -20,8 +18,9 @@ public class FilterDepartmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose department contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "The keyword 'management' will not be accepted as it will list out all of the departments.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " junior management";
+            + "Example: " + COMMAND_WORD + " junior";
 
     private final DepartmentContainsKeywordsPredicate predicate;
 
