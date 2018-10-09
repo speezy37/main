@@ -18,6 +18,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +42,8 @@ public class XmlAdaptedPerson {
     private String department;
     @XmlElement(required = true)
     private String address;
+    @XmlElement
+    private String schedule;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -55,7 +58,7 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String nric, String password, String phone, String email,
-                            String department, String address, List<XmlAdaptedTag> tagged) {
+                            String department, String address, List<XmlAdaptedTag> tagged, String schedule) {
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -66,6 +69,7 @@ public class XmlAdaptedPerson {
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
+        this.schedule = schedule;
     }
 
     /**
@@ -84,6 +88,7 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
+        schedule = source.getSchedule().value;
     }
 
     /**
@@ -156,8 +161,9 @@ public class XmlAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Schedule modelSchedule = new Schedule(schedule);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelAddress, modelTags);
+                modelAddress, modelTags, modelSchedule);
     }
 
     @Override
@@ -178,6 +184,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(email, otherPerson.email)
                 && Objects.equals(department, otherPerson.department)
                 && Objects.equals(address, otherPerson.address)
-                && tagged.equals(otherPerson.tagged);
+                && tagged.equals(otherPerson.tagged)
+                && Objects.equals(schedule, otherPerson.schedule);
     }
 }
