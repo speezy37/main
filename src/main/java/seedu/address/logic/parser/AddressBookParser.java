@@ -74,9 +74,9 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-            case FilterDepartmentCommand.COMMAND_WORD:
-            case FilterDepartmentCommand.COMMAND_ALIAS:
-                return new FilterDepartmentCommandParser().parse(arguments);
+        case FilterDepartmentCommand.COMMAND_WORD:
+        case FilterDepartmentCommand.COMMAND_ALIAS:
+            return new FilterDepartmentCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
