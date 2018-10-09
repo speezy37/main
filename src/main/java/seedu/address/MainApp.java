@@ -2,7 +2,9 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -27,6 +29,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLeaveList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;

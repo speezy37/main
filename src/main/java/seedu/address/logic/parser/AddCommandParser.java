@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -23,6 +24,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,10 +40,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD);
+                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD, PREFIX_SCHEDULE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_DEPARTMENT, PREFIX_PASSWORD) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_DEPARTMENT, PREFIX_PASSWORD, PREFIX_SCHEDULE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -53,8 +55,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
+        Schedule schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
 
-        Person person = new Person(name, nric, password, phone, email, department, address, tagList);
+        Person person = new Person(name, nric, password, phone, email, department, address, tagList, schedule);
+
+        System.out.print(person.toString());
 
         return new AddCommand(person);
     }

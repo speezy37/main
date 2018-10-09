@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -214,5 +215,14 @@ public class ParserUtil {
             throw new ParseException(Password.MESSAGE_PASSWORD_CONSTRAINTS);
         }
         return new Password(trimmedPassword);
+    }
+
+    public static Schedule parseSchedule(String schedule) throws ParseException {
+        requireNonNull(schedule);
+        String trimmedSchedule = schedule.trim();
+        if (!Schedule.isValidSchdule(schedule)) {
+            throw new ParseException(Schedule.MESSAGE_SCHEDULE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedSchedule);
     }
 }
