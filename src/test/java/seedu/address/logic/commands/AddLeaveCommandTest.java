@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -35,6 +37,18 @@ public class AddLeaveCommandTest {
     public void constructor_nullLeave_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddLeaveCommand(null);
+    }
+
+    @Test
+    public void execute_leaveAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingLeaveAdded modelStub = new ModelStubAcceptingLeaveAdded();
+        Leave validLeave = new LeaveBuilder().build();
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
+        addLeaveCommand.setIsLogin(false);
+        CommandResult commandResult = addLeaveCommand.execute(modelStub, commandHistory);
+        assertEquals(String.format(AddLeaveCommand.MESSAGE_SUCCESS, validLeave), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validLeave), modelStub.leavesAdded);
+        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test

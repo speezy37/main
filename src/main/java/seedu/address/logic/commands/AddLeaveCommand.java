@@ -24,6 +24,7 @@ public class AddLeaveCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Leave application requested.";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This request already exist in the database.";
     public static final String STATUS_NOT_LOGGED_IN = "Not login yet.";
+    public static boolean isLogin = true;
 
     private final Leave toAdd;
 
@@ -32,12 +33,16 @@ public class AddLeaveCommand extends Command {
         toAdd = leave;
     }
 
+    public void setIsLogin(boolean isLogin) {
+        this.isLogin = isLogin;
+    }
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (model.hasLeave(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
-        } else if (!SessionManager.isLoggedIn()) {
+        if (isLogin && !SessionManager.isLoggedIn()) {
             throw new CommandException(STATUS_NOT_LOGGED_IN);
+        } else if (model.hasLeave(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
         } else {
             model.addLeave(toAdd);
             model.commitLeaveList();
