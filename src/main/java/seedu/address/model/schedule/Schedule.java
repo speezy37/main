@@ -2,7 +2,6 @@ package seedu.address.model.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import seedu.address.model.person.Name;
 
 public class Schedule {
     public static final String MESSAGE_SCHEDULE_CONSTRAINTS =
@@ -23,14 +22,14 @@ public class Schedule {
      */
     public Schedule(String schedule) {
         requireNonNull(schedule);
-        checkArgument(isValidSchdule(schedule), MESSAGE_SCHEDULE_CONSTRAINTS);
+        checkArgument(isValidSchedule(schedule), MESSAGE_SCHEDULE_CONSTRAINTS);
         value = schedule;
     }
 
     /**
      * Returns true if a given string is a valid schedule.
      */
-    public static boolean isValidSchdule(String test) {
+    public static boolean isValidSchedule(String test) {
         return test.matches(SCHEDULE_VALIDATION_REGEX);
     }
 

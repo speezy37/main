@@ -220,7 +220,7 @@ public class ParserUtil {
     public static Schedule parseSchedule(String schedule) throws ParseException {
         requireNonNull(schedule);
         String trimmedSchedule = schedule.trim();
-        if (!Schedule.isValidSchdule(schedule)) {
+        if (!Schedule.isValidSchedule(schedule)) {
             throw new ParseException(Schedule.MESSAGE_SCHEDULE_CONSTRAINTS);
         }
         return new Schedule(trimmedSchedule);

@@ -43,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD, PREFIX_SCHEDULE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_DEPARTMENT, PREFIX_PASSWORD, PREFIX_SCHEDULE) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_DEPARTMENT, PREFIX_PASSWORD) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -55,7 +55,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
-        Schedule schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
+
+        Schedule schedule = new Schedule("No schedule");
+        if(argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
+            schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
+        }
 
         Person person = new Person(name, nric, password, phone, email, department, address, tagList, schedule);
 
