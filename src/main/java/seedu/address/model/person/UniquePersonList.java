@@ -139,8 +139,8 @@ public class UniquePersonList implements Iterable<Person> {
             comparator = departmentComparator;
             break;
 
-            default:
-                throw new AssertionError("Invalid field parameter entered...\n");
+        default:
+            throw new AssertionError("Invalid field parameter entered...\n");
         }
 
         switch (order) {
@@ -152,8 +152,8 @@ public class UniquePersonList implements Iterable<Person> {
             Collections.sort(internalList, Collections.reverseOrder(comparator));
             break;
 
-            default:
-                throw new AssertionError("Invalid order parameter entered...\n");
+        default:
+            throw new AssertionError("Invalid order parameter entered...\n");
         }
     }
 
