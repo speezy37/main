@@ -35,7 +35,7 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-    //void deleteLeave(Leave target);
+    void deleteLeave(Leave target);
 
 
     /**

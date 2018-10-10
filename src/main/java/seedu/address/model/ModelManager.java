@@ -50,6 +50,10 @@ public class ModelManager extends ComponentManager implements Model {
         this(addressBook, new LeaveList(), userPrefs);
     }
 
+    public ModelManager(ReadOnlyLeaveList leaveList, UserPrefs userPrefs) {
+        this(new AddressBook(), leaveList, userPrefs);
+    }
+
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
         versionedAddressBook.resetData(newData);
@@ -104,12 +108,11 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
-    /*
     @Override
     public void deleteLeave(Leave target) {
         versionedLeaveList.removeRequest(target);
         indicateLeaveListChanged();
-    }*/
+    }
 
     @Override
     public void addPerson(Person person) {

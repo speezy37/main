@@ -78,5 +78,19 @@ public class Leave {
                 && otherPerson.getApproval().equals(getApproval());
     }
 
+    /**
+     * Returns the appended string of the person's PUBLIC particulars (i.e.: Without password).
+     */
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getEmployeeId())
+                .append(" Date of Application: ")
+                .append(getDate())
+                .append(" Approval: ")
+                .append(getApproval());
+        return builder.toString();
+    }
+
 
 }

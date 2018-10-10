@@ -75,7 +75,7 @@ public class LeaveList implements ReadOnlyLeaveList {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with {@code editedLeave}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
@@ -86,7 +86,7 @@ public class LeaveList implements ReadOnlyLeaveList {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code Leave List}.
      * {@code key} must exist in the address book.
      */
     public void removeRequest(Leave key) {
