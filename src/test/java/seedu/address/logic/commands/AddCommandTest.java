@@ -58,7 +58,7 @@ public class AddCommandTest {
 
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,PriorityLevelEnum.ADMINISTRATOR));
+        thrown.expectMessage(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL, PriorityLevelEnum.ADMINISTRATOR));
         addCommand.execute(modelStub, commandHistory);
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
     }

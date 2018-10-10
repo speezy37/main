@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import org.junit.Test;
+
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.testutil.Assert;
 
