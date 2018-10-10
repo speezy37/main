@@ -44,7 +44,7 @@ public class Person {
         this.department = department;
         this.address = address;
         this.tags.addAll(tags);
-        this.schedule = new Schedule("No Schedule");
+        this.schedule = new Schedule("");
     }
 
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,

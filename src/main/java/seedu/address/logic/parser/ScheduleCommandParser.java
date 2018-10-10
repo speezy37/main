@@ -10,8 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SCHEDULE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         Index index;
 

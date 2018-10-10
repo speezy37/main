@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.PrintWriter;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.Model;
 
 /**
@@ -21,27 +23,23 @@ public class SetScheduleCommand extends Command {
     public static final String MESSAGE_SCHEDULE_FAIL = "Person not found in address book.";
 
     private static final String FILE_PATH = "data\\schedule.txt";
-    private final String scheduleDescriptor;
+    private final Index index;
+    private final EditPersonDescriptor editPersonDescriptor;
 
-    public SetScheduleCommand(String scheduleDescriptor) {
-        requireNonNull(scheduleDescriptor);
+    public SetScheduleCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(index);
+        requireNonNull(editPersonDescriptor);
 
-        this.scheduleDescriptor = scheduleDescriptor;
+        this.index = index;
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         requireNonNull(history);
-        try {
-            PrintWriter writer = new PrintWriter(FILE_PATH, "UTF-8");
-            writer.println(scheduleDescriptor);
-            writer.close();
 
-            return new CommandResult(MESSAGE_SCHEDULE_SUCCESS);
-        } catch (Exception e) {
-            return new CommandResult(MESSAGE_SCHEDULE_FAIL);
-        }
+        return new CommandResult(MESSAGE_SCHEDULE_SUCCESS);
     }
 
 }

@@ -1,7 +1,10 @@
 package seedu.address.model.schedule;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 public class Schedule {
     public static final String MESSAGE_SCHEDULE_CONSTRAINTS =
@@ -15,24 +18,88 @@ public class Schedule {
 
     public final String value;
 
-    /**
-     * Constructs a {@code Schedule}.
-     *
-     * @param schedule A valid schedule.
-     */
+    private TimeStart timeStart;
+    private TimeEnd timeEnd;
+    private Venue venue;
+
+
     public Schedule(String schedule) {
         requireNonNull(schedule);
         checkArgument(isValidSchedule(schedule), MESSAGE_SCHEDULE_CONSTRAINTS);
         value = schedule;
     }
 
+    /*
+    public Schedule() {
+
+    }
+
+    public Schedule(TimeStart timeStart, TimeEnd timeEnd, Venue venue) {
+        requireAllNonNull(timeStart, timeEnd, venue);
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+        this.venue = venue;
+    }
+
+    public TimeStart getTimeStart() {
+        return timeStart;
+    }
+
+    public TimeEnd getTimeEnd() {
+        return timeEnd;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+    */
+
     /**
      * Returns true if a given string is a valid schedule.
      */
+
+    /*
     public static boolean isValidSchedule(String test) {
         return test.matches(SCHEDULE_VALIDATION_REGEX);
     }
 
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Schedule: { START: ")
+                .append(getTimeStart())
+                .append(", End: ")
+                .append(getTimeEnd())
+                .append(", Venue: ")
+                .append(getVenue());
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Schedule)) {
+            return false;
+        }
+
+        Schedule otherSchedule = (Schedule) other;
+        return otherSchedule.getTimeStart().equals(getTimeStart())
+                && otherSchedule.getTimeEnd().equals(getTimeEnd())
+                && otherSchedule.getVenue().equals(getVenue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeStart, timeEnd, venue);
+    }*/
+
+    public static boolean isValidSchedule(String test) {
+        return test.matches(SCHEDULE_VALIDATION_REGEX);
+    }
 
     @Override
     public String toString() {
