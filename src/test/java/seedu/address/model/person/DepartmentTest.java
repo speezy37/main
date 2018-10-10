@@ -30,12 +30,12 @@ public class DepartmentTest {
         assertFalse(Department.isValidDepartment(" ")); // spaces only
         assertFalse(Department.isValidDepartment("^")); // only non-alphanumeric characters
         assertFalse(Department.isValidDepartment("junior*")); // contains non-alphanumeric characters
+        assertFalse(Department.isValidDepartment("Junior")); // does not end with Management
+        assertFalse(Department.isValidDepartment("Jun1or Management")); // contains alphanumeric characters
 
         // valid department name
-        assertTrue(Department.isValidDepartment("junior management")); // alphabets only
-        assertTrue(Department.isValidDepartment("12345")); // numbers only
-        assertTrue(Department.isValidDepartment("1st junior")); // alphanumeric characters
+        assertTrue(Department.isValidDepartment("junior Management")); // alphabets only
         assertTrue(Department.isValidDepartment("Junior Management")); // with capital letters
-        assertTrue(Department.isValidDepartment("2nd Junior Management")); // long names
+        assertTrue(Department.isValidDepartment("First Junior Management")); // long names
     }
 }
