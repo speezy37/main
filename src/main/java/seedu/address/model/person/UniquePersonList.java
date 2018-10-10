@@ -3,12 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.NoEmployeeException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -100,6 +103,58 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Sorts employees by name or department in ascending or descending order.
+     * @return
+     */
+    public void sortBy(String field, String order) throws NoEmployeeException {
+        if (internalList.size() < 1) {
+            throw new NoEmployeeException();
+        }
+
+        Comparator<Person> comparator = null;
+
+        Comparator<Person> nameComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return p1.getName().fullName.compareTo(p2.getName().fullName);
+            }
+        };
+
+        Comparator<Person> departmentComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return p1.getDepartment().fullDepartment.compareTo(p2.getDepartment().fullDepartment);
+            }
+        };
+
+        switch (field) {
+            case "name":
+                comparator = nameComparator;
+                break;
+
+            case "department":
+                comparator = departmentComparator;
+                break;
+
+            default:
+                throw new AssertionError("Invalid field parameter entered...\n");
+        }
+
+        switch (order) {
+            case "asc":
+                Collections.sort(internalList, comparator);
+                break;
+
+            case "desc":
+                Collections.sort(internalList, Collections.reverseOrder(comparator));
+                break;
+
+            default:
+                throw new AssertionError("Invalid order parameter entered...\n");
+        }
     }
 
     @Override
