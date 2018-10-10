@@ -20,8 +20,9 @@ public class FilterDepartmentCommandParser implements Parser<FilterDepartmentCom
      */
     public FilterDepartmentCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        trimmedArgs = trimmedArgs.replaceAll("(?i)management", "");
-        if (trimmedArgs.isEmpty()) {
+        trimmedArgs = trimmedArgs.toLowerCase();
+        //trimmedArgs = trimmedArgs.replaceAll("(?i)management", "");
+        if (trimmedArgs.isEmpty() || trimmedArgs.contains("management")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
         }
