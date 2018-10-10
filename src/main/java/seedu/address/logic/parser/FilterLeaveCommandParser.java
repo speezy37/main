@@ -11,7 +11,7 @@ import seedu.address.model.leave.NricContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FilterLeaveCommand object
  */
-public class FilterLeaveCommandParser {
+public class FilterLeaveCommandParser implements Parser<FilterLeaveCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
