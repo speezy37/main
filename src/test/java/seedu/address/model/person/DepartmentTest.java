@@ -32,7 +32,6 @@ public class DepartmentTest {
         assertFalse(Department.isValidDepartment("junior*")); // contains non-alphanumeric characters
         assertFalse(Department.isValidDepartment("Junior")); // does not end with Management
         assertFalse(Department.isValidDepartment("Jun1or Management")); // contains alphanumeric characters
-        assertFalse(Department.isValidDepartment("Management Management")); // contains 2 Management
 
         // valid department name
         assertTrue(Department.isValidDepartment("junior Management")); // alphabets only
