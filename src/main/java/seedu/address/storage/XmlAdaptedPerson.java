@@ -193,6 +193,6 @@ public class XmlAdaptedPerson {
                 && Objects.equals(department, otherPerson.department)
                 && Objects.equals(address, otherPerson.address)
                 && tagged.equals(otherPerson.tagged)
-                && Objects.equals(schedule, otherPerson.schedule);
+                && schedule.equals(otherPerson.schedule);
     }
 }

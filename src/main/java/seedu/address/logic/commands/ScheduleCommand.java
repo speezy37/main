@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -22,12 +23,13 @@ public class ScheduleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Listed Schedule:";
-    public static final String MESSAGE_SCHEDULE_FAIL = "Person not found in address book.";
+    public static final String MESSAGE_SCHEDULE_FAIL = "Schedule Command Failed.";
 
     private final Index index;
 
     public ScheduleCommand(Index index){
         requireNonNull(index);
+
         this.index = index;
     }
 
@@ -35,14 +37,14 @@ public class ScheduleCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Person> filteredPersonList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= filteredPersonList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        String schedule = filteredPersonList.get(index.getZeroBased()).getSchedule().toString();
+        String schedule = lastShownList.get(index.getZeroBased()).getSchedule().toString();
 
-        return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + "\n" + schedule);
+        return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + " " + schedule);
     }
 }

@@ -49,7 +49,7 @@ public class Person {
 
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
                   Address address, Set<Tag> tags, Set<Schedule> schedule) {
-        requireAllNonNull(name, nric, password, phone, email, department, address, tags);
+        requireAllNonNull(name, nric, password, phone, email, department, address, tags, schedule);
         this.name = name;
         this.nric = nric;
         this.password = password;

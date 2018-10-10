@@ -11,7 +11,7 @@ public class Venue {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VENUE_VALIDATION_REGEX = "\\d{4,}";
+    public static final String VENUE_VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     public final String value;
 

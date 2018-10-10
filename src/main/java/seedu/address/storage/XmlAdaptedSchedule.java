@@ -2,13 +2,22 @@ package seedu.address.storage;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.TimeEnd;
+import seedu.address.model.schedule.TimeStart;
+import seedu.address.model.schedule.Venue;
 
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "schedule")
 public class XmlAdaptedSchedule {
 
-    @XmlValue
-    private String schedule;
+    @XmlElement
+    private String venue;
+    @XmlElement
+    private String startTime;
+    @XmlElement
+    private String endTime;
 
     /**
      * Constructs an XmlAdaptedTag.
@@ -17,19 +26,23 @@ public class XmlAdaptedSchedule {
     public XmlAdaptedSchedule() {}
 
     /**
-     * Constructs a {@code XmlAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code XmlAdaptedSchedule} with the given {@code schedule}.
      */
-    public XmlAdaptedSchedule(String schedule) {
-        this.schedule = schedule;
+    public XmlAdaptedSchedule(String schedule, String endTime, String startTime) {
+        this.venue = schedule;
+        this.endTime = endTime;
+        this.startTime = startTime;
     }
 
     /**
-     * Converts a given Tag into this class for JAXB use.
+     * Converts a given Schedule into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created
      */
     public XmlAdaptedSchedule(Schedule source) {
-        schedule = source.value;
+        venue = source.getVenue().value;
+        endTime = source.getTimeEnd().value;
+        startTime = source.getTimeStart().value;
     }
 
     /**
@@ -38,10 +51,11 @@ public class XmlAdaptedSchedule {
      * @throws seedu.address.commons.exceptions.IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Schedule toModelType() throws IllegalValueException {
-        if (!Schedule.isValidSchedule(schedule)) {
-            throw new IllegalValueException(Schedule.MESSAGE_SCHEDULE_CONSTRAINTS);
-        }
-        return new Schedule(schedule);
+        TimeStart timeStart = new TimeStart(this.startTime);
+        TimeEnd timeEnd = new TimeEnd(this.endTime);
+        Venue venue = new Venue(this.venue);
+
+        return new Schedule(timeStart, timeEnd, venue);
     }
 
     @Override
@@ -54,6 +68,6 @@ public class XmlAdaptedSchedule {
             return false;
         }
 
-        return schedule.equals(((XmlAdaptedSchedule) other).schedule);
+        return venue.equals(((XmlAdaptedSchedule) other).venue);
     }
 }

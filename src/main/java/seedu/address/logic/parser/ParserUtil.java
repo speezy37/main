@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.leave.Approval;
@@ -20,6 +21,9 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.TimeEnd;
+import seedu.address.model.schedule.TimeStart;
+import seedu.address.model.schedule.Venue;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -217,20 +221,23 @@ public class ParserUtil {
         return new Password(trimmedPassword);
     }
 
-    public static Schedule parseSchedule(String schedule) throws ParseException {
-        requireNonNull(schedule);
-        String trimmedSchedule = schedule.trim();
-        if (!Schedule.isValidSchedule(trimmedSchedule)) {
-            throw new ParseException(Tag.MESSAGE_TAG_CONSTRAINTS);
-        }
-        return new Schedule(trimmedSchedule);
+    public static Schedule parseSchedule(String timeStart, String timeEnd, String venue) throws ParseException {
+        requireAllNonNull(timeStart, timeEnd, venue);
+        String trimmedTimeStart = timeStart.trim();
+        TimeStart start = new TimeStart(trimmedTimeStart);
+        String trimmedTimeEnd = timeEnd.trim();
+        TimeEnd end = new TimeEnd(trimmedTimeEnd);
+        String trimmedVenue = venue.trim();
+        Venue place = new Venue(trimmedVenue);
+
+        return new Schedule(start, end, place);
     }
 
     public static Set<Schedule> parseSchedules(Collection<String> schedules) throws ParseException {
         requireNonNull(schedules);
         final Set<Schedule> scheduleSet = new HashSet<>();
         for(String schedule : schedules){
-            scheduleSet.add(parseSchedule(schedule));
+            scheduleSet.add(parseSchedule(schedule, schedule, schedule));
         }
         return scheduleSet;
     }

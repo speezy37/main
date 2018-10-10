@@ -17,6 +17,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("date/");
     public static final Prefix PREFIX_APPROVAL = new Prefix("s/");
     public static final Prefix PREFIX_SCHEDULE = new Prefix("sch/");
-
     public static final Prefix PREFIX_PASSWORD = new Prefix("pwd/");
+    public static final Prefix PREFIX_TIME_START = new Prefix("ts/");
+    public static final Prefix PREFIX_TIME_END = new Prefix("te/");
+    public static final Prefix PREFIX_VENUE = new Prefix("v/");
 }
