@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import javax.xml.bind.annotation.XmlElement;
+
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "schedule")
+/**
+ * JAXB-friendly version of the Schedule.
+ */
 public class XmlAdaptedSchedule {
 
     @XmlElement
@@ -48,9 +48,8 @@ public class XmlAdaptedSchedule {
     /**
      * Converts this jaxb-friendly adapted tag object into the model's Tag object.
      *
-     * @throws seedu.address.commons.exceptions.IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Schedule toModelType() throws IllegalValueException {
+    public Schedule toModelType() {
         TimeStart timeStart = new TimeStart(this.startTime);
         TimeEnd timeEnd = new TimeEnd(this.endTime);
         Venue venue = new Venue(this.venue);

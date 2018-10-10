@@ -88,13 +88,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> schedule} into a {@code Set<Schedule>} if {@code schedule} is non-empty.
+     * If {@code schedule} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Schedule>} containing zero tags.
+     */
     private Optional<Set<Schedule>> parseSchedulesForEdit(Collection<String> schedule) throws ParseException {
         assert schedule != null;
 
         if (schedule.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> scheduleSet = schedule.size() == 1 && schedule.contains("") ? Collections.emptySet() : schedule;
+        Collection<String> scheduleSet = schedule.size() == 1 && schedule.contains("")
+                ? Collections.emptySet() : schedule;
         return Optional.of(ParserUtil.parseSchedules(scheduleSet));
     }
 

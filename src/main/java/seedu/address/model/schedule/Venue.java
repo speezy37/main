@@ -3,12 +3,15 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Venue of a Schedule in address book.
+ */
 public class Venue {
     public static final String MESSAGE_VENUE_CONSTRAINTS =
             "End Time should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the venue must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VENUE_VALIDATION_REGEX = "[\\p{Alnum}]*";
@@ -18,7 +21,7 @@ public class Venue {
     /**
      * Constructs a {@code Name}.
      *
-     * @param venue A valid department name.
+     * @param venue A valid venue.
      */
     public Venue(String venue) {
         requireNonNull(venue);
@@ -27,7 +30,7 @@ public class Venue {
     }
 
     /**
-     * Returns true if a given string is a valid department name.
+     * Returns true if a given string is a venue.
      */
     public static boolean isValidTimeEnd(String test) {
         return test.matches(VENUE_VALIDATION_REGEX);

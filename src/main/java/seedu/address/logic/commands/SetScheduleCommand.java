@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
 
@@ -48,7 +47,7 @@ public class SetScheduleCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException{
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -65,6 +64,9 @@ public class SetScheduleCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS, editedPerson));
     }
 
+    /**
+     * Creates an edited Person Object with given edit person descriptor
+     */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
@@ -80,5 +82,4 @@ public class SetScheduleCommand extends Command {
                 personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
                 updatedAddress, updatedTags, updatedSchedule);
     }
-
 }

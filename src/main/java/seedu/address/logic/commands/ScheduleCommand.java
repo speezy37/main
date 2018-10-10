@@ -2,15 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
-import java.util.List;
 
 /**
  * List schedule of a person in the address book to the user.
@@ -27,7 +26,7 @@ public class ScheduleCommand extends Command {
 
     private final Index index;
 
-    public ScheduleCommand(Index index){
+    public ScheduleCommand(Index index) {
         requireNonNull(index);
 
         this.index = index;

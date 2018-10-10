@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.leave.Approval;
@@ -221,7 +221,12 @@ public class ParserUtil {
         return new Password(trimmedPassword);
     }
 
-    public static Schedule parseSchedule(String timeStart, String timeEnd, String venue) throws ParseException {
+    /**
+     * Parses a {@code String timeStart}, {@code String timeEnd}, {@code String venue} into a {@code Schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Schedule parseSchedule(String timeStart, String timeEnd, String venue) {
         requireAllNonNull(timeStart, timeEnd, venue);
         String trimmedTimeStart = timeStart.trim();
         TimeStart start = new TimeStart(trimmedTimeStart);
@@ -233,10 +238,13 @@ public class ParserUtil {
         return new Schedule(start, end, place);
     }
 
+    /**
+     * Parses {@code Collection<String> schedules} into a {@code Set<Schedule>}.
+     */
     public static Set<Schedule> parseSchedules(Collection<String> schedules) throws ParseException {
         requireNonNull(schedules);
         final Set<Schedule> scheduleSet = new HashSet<>();
-        for(String schedule : schedules){
+        for (String schedule : schedules) {
             scheduleSet.add(parseSchedule(schedule, schedule, schedule));
         }
         return scheduleSet;
