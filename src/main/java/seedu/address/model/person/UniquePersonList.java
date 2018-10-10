@@ -131,26 +131,26 @@ public class UniquePersonList implements Iterable<Person> {
         };
 
         switch (field) {
-            case "name":
-                comparator = nameComparator;
-                break;
+        case "name":
+            comparator = nameComparator;
+            break;
 
-            case "department":
-                comparator = departmentComparator;
-                break;
+        case "department":
+            comparator = departmentComparator;
+            break;
 
             default:
                 throw new AssertionError("Invalid field parameter entered...\n");
         }
 
         switch (order) {
-            case "asc":
-                Collections.sort(internalList, comparator);
-                break;
+        case "asc":
+            Collections.sort(internalList, comparator);
+            break;
 
-            case "desc":
-                Collections.sort(internalList, Collections.reverseOrder(comparator));
-                break;
+        case "desc":
+            Collections.sort(internalList, Collections.reverseOrder(comparator));
+            break;
 
             default:
                 throw new AssertionError("Invalid order parameter entered...\n");

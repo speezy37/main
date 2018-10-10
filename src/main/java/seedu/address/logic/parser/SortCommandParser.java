@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -7,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -31,15 +32,15 @@ public class SortCommandParser implements Parser<SortCommand> {
             argKeywords[i] = argKeywords[i].toLowerCase();
         }
 
-        if(argKeywords.length != 2) {
+        if (argKeywords.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        if(!ACCEPTED_FIELDS.contains(argKeywords[0])) {
+        if (!ACCEPTED_FIELDS.contains(argKeywords[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        if(!ACCEPTED_ORDERS.contains(argKeywords[1])) {
+        if (!ACCEPTED_ORDERS.contains(argKeywords[1])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 

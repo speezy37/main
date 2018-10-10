@@ -106,8 +106,8 @@ public class AddressBookParser {
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveParser().parse(arguments);
 
-            case SortCommand.COMMAND_WORD:
-                return new SortCommandParser().parse(arguments);
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case LoginCommand.COMMAND_WORD:
             return new LoginCommandParser().parse(arguments);
