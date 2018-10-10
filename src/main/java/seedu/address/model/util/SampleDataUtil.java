@@ -24,17 +24,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Nric("S9658471G"), new Password("NeuEr2018"), new Phone("87438807"),
+            new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Department("Top Management"),
-                new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
+                new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Nric("S9645580I"), new Password("NeuEr2018"), new Phone("99272758"),
+                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password")),
+            new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Department("Senior Management"),
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Nric("S1587485E"), new Password("NeuEr2018"),
+                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password")),
+            new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
                 new Phone("93210283"), new Email("charlotte@example.com"), new Department("Middle Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
