@@ -78,7 +78,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PASSWORD_DESC = " " + PREFIX_PASSWORD + "A1e"; // Too short
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect prefix
-    public static final String INVALID_PRIORITYLEVEL_DESC = " " + PREFIX_PRIORITYLEVEL + "9999.52";  //Not an integer
+    public static final String INVALID_PRIORITYLEVEL_DESC = " " + PREFIX_PRIORITYLEVEL + "9999.52"; //Not an integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

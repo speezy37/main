@@ -6,7 +6,7 @@ import seedu.address.model.SessionManager;
 /**
  * Enables short-circuit login using with a NRIC number, to facilitate in operations that require admin rights.
  */
-public class SessionHelper extends SessionManager{
+public class SessionHelper extends SessionManager {
 
     /**
      * Force login with a NRIC with highest priority level, to enable operations
