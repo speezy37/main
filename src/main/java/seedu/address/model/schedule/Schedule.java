@@ -22,7 +22,6 @@ public class Schedule {
     private TimeEnd timeEnd;
     private Venue venue;
 
-
     public Schedule(String schedule) {
         requireNonNull(schedule);
         checkArgument(isValidSchedule(schedule), MESSAGE_SCHEDULE_CONSTRAINTS);
@@ -31,7 +30,6 @@ public class Schedule {
 
     /*
     public Schedule() {
-
     }
 
     public Schedule(TimeStart timeStart, TimeEnd timeEnd, Venue venue) {
@@ -62,7 +60,6 @@ public class Schedule {
     public static boolean isValidSchedule(String test) {
         return test.matches(SCHEDULE_VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

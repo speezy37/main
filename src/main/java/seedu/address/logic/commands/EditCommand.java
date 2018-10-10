@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
+        Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, personToEdit.getNric(),
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Department department;
         private Address address;
-        private Schedule schedule;
+        private Set<Schedule> schedules;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -156,14 +156,14 @@ public class EditCommand extends Command {
             setDepartment(toCopy.department);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setSchedule(toCopy.schedule);
+            setSchedule(toCopy.schedules);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, department, address, tags, schedule);
+            return CollectionUtil.isAnyNonNull(name, phone, email, department, address, tags, schedules);
         }
 
         public void setName(Name name) {
@@ -214,13 +214,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSchedule(Schedule schedule) {
-            this.schedule = schedule;
+        public void setSchedule(Set<Schedule> schedules) {
+            this.schedules = (schedules != null) ? new HashSet<>(schedules) : null;
         }
 
-        public Optional<Schedule> getSchedule() {
-            return Optional.ofNullable(schedule);
+        public Optional<Set<Schedule>> getSchedule() {
+            return (schedules != null) ? Optional.of(Collections.unmodifiableSet(schedules)) : Optional.empty();
         }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.

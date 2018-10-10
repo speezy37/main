@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,11 +63,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
-            editPersonDescriptor.setSchedule(ParserUtil
-                    .parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get()));
-        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseSchedulesForEdit(argMultimap.getAllValues(PREFIX_SCHEDULE)).ifPresent(editPersonDescriptor::setSchedule);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -88,6 +86,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    private Optional<Set<Schedule>> parseSchedulesForEdit(Collection<String> schedule) throws ParseException {
+        assert schedule != null;
+
+        if (schedule.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> scheduleSet = schedule.size() == 1 && schedule.contains("") ? Collections.emptySet() : schedule;
+        return Optional.of(ParserUtil.parseSchedules(scheduleSet));
     }
 
 }

@@ -39,10 +39,6 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
-            editPersonDescriptor.setSchedule(ParserUtil
-                    .parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get()));
-        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

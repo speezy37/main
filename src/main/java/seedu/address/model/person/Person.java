@@ -27,7 +27,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Schedule schedule;
+    private final Set<Schedule> schedule = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -44,11 +44,11 @@ public class Person {
         this.department = department;
         this.address = address;
         this.tags.addAll(tags);
-        this.schedule = new Schedule("");
+        //this.schedule = new Schedule("");
     }
 
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  Address address, Set<Tag> tags, Schedule schedule) {
+                  Address address, Set<Tag> tags, Set<Schedule> schedule) {
         requireAllNonNull(name, nric, password, phone, email, department, address, tags);
         this.name = name;
         this.nric = nric;
@@ -58,7 +58,7 @@ public class Person {
         this.department = department;
         this.address = address;
         this.tags.addAll(tags);
-        this.schedule = schedule;
+        this.schedule.addAll(schedule);
     }
 
     public Name getName() {
@@ -97,8 +97,8 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public Set<Schedule> getSchedule() {
+        return Collections.unmodifiableSet(schedule);
     }
     /**
      * Returns true if both persons have the same NRIC number, which is a unique identifier.

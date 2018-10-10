@@ -220,9 +220,18 @@ public class ParserUtil {
     public static Schedule parseSchedule(String schedule) throws ParseException {
         requireNonNull(schedule);
         String trimmedSchedule = schedule.trim();
-        if (!Schedule.isValidSchedule(schedule)) {
-            throw new ParseException(Schedule.MESSAGE_SCHEDULE_CONSTRAINTS);
+        if (!Schedule.isValidSchedule(trimmedSchedule)) {
+            throw new ParseException(Tag.MESSAGE_TAG_CONSTRAINTS);
         }
         return new Schedule(trimmedSchedule);
+    }
+
+    public static Set<Schedule> parseSchedules(Collection<String> schedules) throws ParseException {
+        requireNonNull(schedules);
+        final Set<Schedule> scheduleSet = new HashSet<>();
+        for(String schedule : schedules){
+            scheduleSet.add(parseSchedule(schedule));
+        }
+        return scheduleSet;
     }
 }

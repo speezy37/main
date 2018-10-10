@@ -55,11 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
-
-        Schedule schedule = new Schedule("No schedule");
-        if(argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
-            schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
-        }
+        Set<Schedule> schedule = ParserUtil.parseSchedules(argMultimap.getAllValues(PREFIX_SCHEDULE));
 
         Person person = new Person(name, nric, password, phone, email, department, address, tagList, schedule);
 

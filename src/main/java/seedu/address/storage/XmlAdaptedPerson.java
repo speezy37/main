@@ -42,9 +42,9 @@ public class XmlAdaptedPerson {
     private String department;
     @XmlElement(required = true)
     private String address;
-    @XmlElement
-    private String schedule;
 
+    @XmlElement
+    private List<XmlAdaptedSchedule> schedule = new ArrayList<>();
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String nric, String password, String phone, String email,
-                            String department, String address, List<XmlAdaptedTag> tagged, String schedule) {
+                            String department, String address, List<XmlAdaptedTag> tagged, List<XmlAdaptedSchedule> schedule) {
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -69,7 +69,9 @@ public class XmlAdaptedPerson {
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
-        this.schedule = schedule;
+        if (schedule != null) {
+            this.schedule = new ArrayList<>(schedule);
+        }
     }
 
     /**
@@ -88,7 +90,9 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
-        schedule = source.getSchedule().value;
+        schedule = source.getSchedule().stream()
+                .map(XmlAdaptedSchedule::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -100,6 +104,10 @@ public class XmlAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<Schedule> personSchedules = new ArrayList<>();
+        for (XmlAdaptedSchedule schedule : schedule) {
+            personSchedules.add(schedule.toModelType());
         }
 
         if (name == null) {
@@ -161,7 +169,7 @@ public class XmlAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Schedule modelSchedule = new Schedule(schedule);
+        final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
                 modelAddress, modelTags, modelSchedule);
     }
