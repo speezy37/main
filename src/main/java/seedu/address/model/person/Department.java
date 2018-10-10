@@ -36,7 +36,7 @@ public class Department {
      * Returns true if a given string is a valid department name.
      */
     public static boolean isValidDepartment(String test) {
-        return (test.matches(DEPARTMENT_VALIDATION_REGEX) && !test.equals("Management Management"));
+        return (test.matches(DEPARTMENT_VALIDATION_REGEX));
     }
 
 
