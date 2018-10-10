@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Department {
 
     public static final String MESSAGE_DEPARTMENT_CONSTRAINTS =
-            "Department names should only contain alphabetic characters and spaces, and it should not be blank";
+            "Department names should only contain alphabetic characters and spaces, and it should not be blank\n"
+            + "Department names should start with a name, and ends with 'Management'";
 
     /*
      * The first character of the address must not be a whitespace,
