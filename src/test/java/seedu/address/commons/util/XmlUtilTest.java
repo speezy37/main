@@ -16,7 +16,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.TimeEnd;
+import seedu.address.model.schedule.TimeStart;
+import seedu.address.model.schedule.Venue;
 import seedu.address.storage.XmlAdaptedPerson;
+import seedu.address.storage.XmlAdaptedSchedule;
 import seedu.address.storage.XmlAdaptedTag;
 import seedu.address.storage.XmlSerializableAddressBook;
 import seedu.address.testutil.AddressBookBuilder;
@@ -43,8 +48,11 @@ public class XmlUtilTest {
     private static final String VALID_EMAIL = "hans@example";
     private static final String VALID_DEPARTMENT = "Junior Management";
     private static final String VALID_ADDRESS = "4th street";
-    private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("friends"));
-    private static final String VALID_SCHEDULE = "Counter 1";
+    private static final List<XmlAdaptedTag> VALID_TAGS =
+            Collections.singletonList(new XmlAdaptedTag("friends"));
+    private static final List<XmlAdaptedSchedule> VALID_SCHEDULE =
+            Collections.singletonList(new XmlAdaptedSchedule("1100",
+                    "1500", "Level2"));
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

@@ -28,10 +28,10 @@ public class XmlAdaptedSchedule {
     /**
      * Constructs a {@code XmlAdaptedSchedule} with the given {@code schedule}.
      */
-    public XmlAdaptedSchedule(String schedule, String endTime, String startTime) {
-        this.venue = schedule;
-        this.endTime = endTime;
+    public XmlAdaptedSchedule(String startTime, String endTime, String venue) {
         this.startTime = startTime;
+        this.endTime = endTime;
+        this.venue = venue;
     }
 
     /**
