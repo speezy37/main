@@ -30,12 +30,14 @@ public class ListLeaveCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListLeaveCommand(), model, commandHistory, ListLeaveCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListLeaveCommand(), model, commandHistory, ListLeaveCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showLeaveAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListLeaveCommand(), model, commandHistory, ListLeaveCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListLeaveCommand(), model, commandHistory, ListLeaveCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 }
