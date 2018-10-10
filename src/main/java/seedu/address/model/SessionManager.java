@@ -32,6 +32,9 @@ public class SessionManager {
     }
 
 
+    /**
+     * Logs out of the current session.
+     */
     public static void logOutSession() {
         loggedInNric = null;
         loggedInPriorityLevel = null;
