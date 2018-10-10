@@ -16,10 +16,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.TimeEnd;
-import seedu.address.model.schedule.TimeStart;
-import seedu.address.model.schedule.Venue;
 import seedu.address.storage.XmlAdaptedPerson;
 import seedu.address.storage.XmlAdaptedSchedule;
 import seedu.address.storage.XmlAdaptedTag;
