@@ -217,7 +217,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSchedule_AllNull_throwsNullPointerException() throws Exception {
+    public void parseSchedule_nullValues_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
         ParserUtil.parseSchedule(null, null, null);
     }
