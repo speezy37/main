@@ -226,13 +226,25 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static Schedule parseSchedule(String timeStart, String timeEnd, String venue) {
+    public static Schedule parseSchedule(String timeStart, String timeEnd, String venue) throws ParseException{
         requireAllNonNull(timeStart, timeEnd, venue);
+
         String trimmedTimeStart = timeStart.trim();
+        if(!TimeStart.isValidTimeStart(timeStart)) {
+            throw new ParseException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
+        }
         TimeStart start = new TimeStart(trimmedTimeStart);
+
         String trimmedTimeEnd = timeEnd.trim();
+        if(!TimeEnd.isValidTimeEnd(timeEnd)) {
+            throw new ParseException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
+        }
         TimeEnd end = new TimeEnd(trimmedTimeEnd);
+
         String trimmedVenue = venue.trim();
+        if(!Venue.isValidVenue(venue)) {
+            throw new ParseException(Venue.MESSAGE_VENUE_CONSTRAINTS);
+        }
         Venue place = new Venue(trimmedVenue);
 
         return new Schedule(start, end, place);

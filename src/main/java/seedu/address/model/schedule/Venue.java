@@ -25,17 +25,16 @@ public class Venue {
      */
     public Venue(String venue) {
         requireNonNull(venue);
-        checkArgument(isValidTimeEnd(venue), MESSAGE_VENUE_CONSTRAINTS);
+        checkArgument(isValidVenue(venue), MESSAGE_VENUE_CONSTRAINTS);
         value = venue;
     }
 
     /**
      * Returns true if a given string is a venue.
      */
-    public static boolean isValidTimeEnd(String test) {
+    public static boolean isValidVenue(String test) {
         return test.matches(VENUE_VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

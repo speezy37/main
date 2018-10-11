@@ -25,14 +25,14 @@ public class TimeStart {
      */
     public TimeStart(String timeStart) {
         requireNonNull(timeStart);
-        checkArgument(isValidTimeEnd(timeStart), MESSAGE_TIME_START_CONSTRAINTS);
+        checkArgument(isValidTimeStart(timeStart), MESSAGE_TIME_START_CONSTRAINTS);
         value = timeStart;
     }
 
     /**
      * Returns true if a given string is a valid time.
      */
-    public static boolean isValidTimeEnd(String test) {
+    public static boolean isValidTimeStart(String test) {
         return test.matches(TIME_START_VALIDATION_REGEX);
     }
 

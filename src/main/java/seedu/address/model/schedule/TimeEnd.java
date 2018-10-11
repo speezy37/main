@@ -14,7 +14,7 @@ public class TimeEnd {
      * The first character of the end time must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String TIME_END_VALIDATION_REGEX = "\\d{4,}";
+    public static final String TIME_END_VALIDATION_REGEX = "\\d{4}";
 
     public final String value;
 
