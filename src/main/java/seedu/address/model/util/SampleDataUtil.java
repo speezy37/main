@@ -14,7 +14,6 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
