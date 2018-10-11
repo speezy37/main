@@ -33,7 +33,11 @@ public class TimeEnd {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTimeEnd(String test) {
-        return test.matches(TIME_END_VALIDATION_REGEX);
+        if(test.matches(TIME_END_VALIDATION_REGEX)) {
+            int testInteger = Integer.parseInt(test);
+            return (testInteger < 2400) && ((testInteger % 100) < 60);
+        }
+        return false;
     }
 
 

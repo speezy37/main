@@ -33,7 +33,11 @@ public class TimeStart {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTimeStart(String test) {
-        return test.matches(TIME_START_VALIDATION_REGEX);
+        if(test.matches(TIME_START_VALIDATION_REGEX)) {
+            int testInteger = Integer.parseInt(test);
+            return (testInteger < 2400) && ((testInteger % 100) < 60);
+        }
+        return false;
     }
 
     @Override
