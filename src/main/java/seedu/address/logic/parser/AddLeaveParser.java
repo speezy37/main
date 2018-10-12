@@ -27,13 +27,18 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
     public AddLeaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_DATE);
+        String employeeNric = "S1111111E";
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
-        EmployeeId employeeId = ParserUtil.parseEmployeeId(SessionManager.getLoggedInEmployeeNric());
+        if(SessionManager.isLoggedIn()){
+            employeeNric = SessionManager.getLoggedInEmployeeNric();
+        }
+
+        EmployeeId employeeId = ParserUtil.parseEmployeeId(employeeNric);
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Approval status = ParserUtil.parseApproval("PENDING");
 

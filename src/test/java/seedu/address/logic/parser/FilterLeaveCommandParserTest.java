@@ -22,14 +22,14 @@ public class FilterLeaveCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFilterLeaveCommand() {
         // no leading and trailing whitespaces
         FilterLeaveCommand expectedFindCommand =
-                new FilterLeaveCommand(new NricContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FilterLeaveCommand(new NricContainsKeywordsPredicate(Arrays.asList("S1212121A", "S1313131A")));
+        assertParseSuccess(parser, "S1212121A S1313131A", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n S1212121A \n \t S1313131A  \t", expectedFindCommand);
     }
 
 }

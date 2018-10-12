@@ -52,6 +52,10 @@ public class Date {
             return false;
         }
 
+        if (year < 2018){
+            return false;
+        }
+
         return true;
     }
 
