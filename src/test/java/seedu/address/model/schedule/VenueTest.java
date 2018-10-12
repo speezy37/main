@@ -30,8 +30,8 @@ public class VenueTest {
         assertFalse(Venue.isValidVenue(" ")); // spaces only
 
         // valid venue
-        assertTrue(Venue.isValidVenue("Blk 456, Den Road, #01-355"));
+        assertTrue(Venue.isValidVenue("Level 2"));
         assertTrue(Venue.isValidVenue("-")); // one character
-        assertTrue(Venue.isValidVenue("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Venue.isValidVenue("YIH")); // long venue
     }
 }
