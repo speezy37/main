@@ -22,7 +22,7 @@ public class SortCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //invalid field entered
-        assertParseFailure(parser, "invalid" + "asc",
+        assertParseFailure(parser, "invalid" + " " + "asc",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //invalid sort order entered
@@ -30,7 +30,7 @@ public class SortCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //no field entered
-        assertParseFailure(parser, "",
+        assertParseFailure(parser, "asc",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //no order entered
