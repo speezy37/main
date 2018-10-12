@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -74,6 +76,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        if (!SessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -105,7 +111,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, personToEdit.getNric(),
                 personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
-                          updatedAddress, updatedTags);
+                personToEdit.getPriorityLevel(), updatedAddress, updatedTags);
     }
 
     @Override
@@ -137,6 +143,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Department department;
+        private PriorityLevel priorityLevel;
         private Address address;
         private Set<Tag> tags;
 
@@ -148,7 +155,6 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setDepartment(toCopy.department);
@@ -203,6 +209,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(department);
         }
 
+        public void setPriorityLevel(PriorityLevel priorityLevel) {
+            this.priorityLevel = priorityLevel;
+        }
+
         public void setAddress(Address address) {
             this.address = address;
         }
@@ -247,6 +257,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getDepartment().equals(e.getDepartment())
+
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
