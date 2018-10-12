@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.schedule.Schedule;
+
 /**
  * A utility class containing a list of {@code Schedule} objects to be used in tests.
  */
-import seedu.address.model.schedule.Schedule;
-
 public class TypicalSchedules {
     public static final Schedule CLEANING = new ScheduleBuilder().withTimeStart("0900")
             .withTimeEnd("1000").withVenue("Toilet").build();
