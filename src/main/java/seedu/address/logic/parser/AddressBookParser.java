@@ -25,6 +25,7 @@ import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SetPriorityLevelCommand;
 import seedu.address.logic.commands.SetScheduleCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -120,6 +121,9 @@ public class AddressBookParser {
 
         case CheckCommand.COMMAND_WORD:
             return new CheckCommand();
+
+        case SetPriorityLevelCommand.COMMAND_WORD:
+            return new SetPriorityLevelCommandParser().parse(arguments);
 
 
         default:

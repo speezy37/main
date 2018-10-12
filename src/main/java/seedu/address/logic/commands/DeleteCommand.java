@@ -9,7 +9,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,6 +28,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    private static final String MESSAGE_CANNOT_DELETE_YOURSELF = "You can't delete yourself!";
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -34,6 +39,20 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        /**
+         * Throws exception if user is not logged in.
+         */
+        if (!SessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+        /**
+         * Throws exception if user does not have the required access level.
+         */
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -41,6 +60,11 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (personToDelete == SessionManager.getLoggedInPersonDetails(model)) {
+            throw new CommandException(MESSAGE_CANNOT_DELETE_YOURSELF);
+        }
+
         model.deletePerson(personToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));

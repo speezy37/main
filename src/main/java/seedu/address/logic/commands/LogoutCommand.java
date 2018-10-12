@@ -5,6 +5,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.SessionManager;
 
+//@@author jylee-git
 /**
  * Logs the user out of the application.
  */
