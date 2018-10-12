@@ -11,7 +11,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 /**
- * Stores the NRIC of the user who's logged in to the applicaion.
+ * Stores the {@Code Nric} and {@code PriorityLevel} of the user who's logged in to the application.
  * Also manages the logging in and out of the current session.
  */
 public class SessionManager {
