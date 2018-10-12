@@ -15,6 +15,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 
+//@@author jylee-git
 /**
  * Enables the use of application by logging in using the specified personnel's NRIC and password.
  */

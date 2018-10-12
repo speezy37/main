@@ -6,6 +6,7 @@ import static seedu.address.model.prioritylevel.PriorityLevelEnum.IT_UNIT;
 
 import seedu.address.model.person.Person;
 
+//@@author jylee-git
 /**
  * Represents the priority level access given to the person.
  * The lower the number, the higher the priority.

@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
+//@@author jylee-git
 /**
  * Stores the {@Code Nric} and {@code PriorityLevel} of the user who's logged in to the application.
  * Also manages the logging in and out of the current session.

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author jylee-git
 /**
  * Represents the unique identity of a person in the address book.
  */

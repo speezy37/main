@@ -2,7 +2,7 @@ package systemtests;
 
 import seedu.address.model.SessionManager;
 
-
+//@@author jylee-git
 /**
  * Enables short-circuit login using with a NRIC number, to facilitate in operations that require admin rights.
  */

@@ -5,6 +5,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.SessionManager;
 
+//@@author jylee-git
 /**
  * Returns the log in status to the user.
  * Also returns the current logged in NRIC if the app's logged in.
