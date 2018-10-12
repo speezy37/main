@@ -16,6 +16,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
@@ -27,8 +28,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
+import systemtests.SessionHelper;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -36,13 +39,18 @@ import seedu.address.testutil.PersonBuilder;
 public class EditCommandTest {
 
     private static final Person ALICEFOREDIT = new PersonBuilder().withName("Alice Pauline")
-            .withNric("T2457888E").withPassword("ASd654")
+            .withNric("T2457888E").withPassword("ASd654").withPriorityLevel(0)
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@gmail.com")
             .withPhone("85355255")
             .withTags("friends").build();
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
+    @Before
+    public void setUp() {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+    }
 
     /**
      * PRE-CONDITION: NRIC of the person to edit MUST be the same.

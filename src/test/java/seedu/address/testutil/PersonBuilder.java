@@ -11,6 +11,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "S1458574G";
     public static final String DEFAULT_PASSWORD = "PQWOei23";
+    public static final int DEFAULT_PRIORITYLEVEL = 3;
 
     private Name name;
     private Nric nric;
@@ -33,6 +35,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Department department;
+    private PriorityLevel priorityLevel;
     private Address address;
     private Set<Tag> tags;
 
@@ -43,6 +46,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         department = new Department(DEFAULT_DEPARTMENT);
+        priorityLevel = new PriorityLevel(DEFAULT_PRIORITYLEVEL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -57,6 +61,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         department = personToCopy.getDepartment();
+        priorityLevel = personToCopy.getPriorityLevel();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -110,6 +115,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Department} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriorityLevel(int plvl) {
+        this.priorityLevel = new PriorityLevel(plvl);
+        return this;
+    }
+
+    /**
      * Sets the {@code EmployeeId} of the {@code Person} that we are building.
      */
     public PersonBuilder withNric(String nric) {
@@ -126,7 +139,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, password, phone, email, department, address, tags);
+        return new Person(name, nric, password, phone, email, department, priorityLevel, address, tags);
     }
 
 }
