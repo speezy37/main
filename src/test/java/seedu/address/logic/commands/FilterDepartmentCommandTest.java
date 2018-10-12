@@ -37,24 +37,24 @@ public class FilterDepartmentCommandTest {
         DepartmentContainsKeywordsPredicate secondPredicate =
                 new DepartmentContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FilterDepartmentCommand findFirstCommand = new FilterDepartmentCommand(firstPredicate);
-        FilterDepartmentCommand findSecondCommand = new FilterDepartmentCommand(secondPredicate);
+        FilterDepartmentCommand filterDepartmentFirstCommand = new FilterDepartmentCommand(firstPredicate);
+        FilterDepartmentCommand filterDepartmentSecondCommand = new FilterDepartmentCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(filterDepartmentFirstCommand.equals(filterDepartmentFirstCommand));
 
         // same values -> returns true
-        FilterDepartmentCommand findFirstCommandCopy = new FilterDepartmentCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FilterDepartmentCommand filterDepartmentFirstCommandCopy = new FilterDepartmentCommand(firstPredicate);
+        assertTrue(filterDepartmentFirstCommand.equals(filterDepartmentFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(filterDepartmentFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(filterDepartmentFirstCommand.equals(null));
 
         // different department -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(filterDepartmentFirstCommand.equals(filterDepartmentSecondCommand));
     }
 
     @Test
