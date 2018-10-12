@@ -20,6 +20,7 @@ import seedu.address.testutil.PersonBuilder;
 
 import systemtests.SessionHelper;
 
+//@@author jylee-git
 public class LoginCommandTest {
 
     private static final Nric CORRECT_NRIC = new Nric("S0000001A");
@@ -44,6 +45,7 @@ public class LoginCommandTest {
         SessionHelper.logoutOfSession();
     }
 
+    //Lambda function solution adopted from https://howtodoinjava.com/junit5/expected-exception-example/
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
         Assertions.assertThrows(NullPointerException.class, () -> {
