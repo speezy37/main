@@ -16,12 +16,6 @@ public class ScheduleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Schedule schedule = new ScheduleBuilder().build();
-        thrown.expect(UnsupportedOperationException.class);
-    }
-
-    @Test
     public void equals() {
         // same values -> return true
         Schedule cleaningCopy = new ScheduleBuilder(CLEANING).build();
