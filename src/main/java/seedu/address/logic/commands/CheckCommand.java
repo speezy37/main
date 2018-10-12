@@ -1,15 +1,16 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Mode;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 
-
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 
 /**
  * Check in or out to work.
@@ -28,14 +29,14 @@ public class CheckCommand extends Command {
             + PREFIX_PASSWORD + "HEllo12 "
             + PREFIX_MODE + "in ";
 
-    public static final String MESSAGE_SUCCESS = "Successfully checked in/out";
-    public static final String MESSAGE_ARGUMENTS = "NRIC: %1$s, Password: %2$s, Status: %3$s";
+    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s";
+    public static final String MESSAGE_ARGUMENTS = "NRIC: %1$s, Password: %2$s, Mode: %3$s";
 
     private final String nric;
     private final String password;
-    private final String mode;
+    private final Mode mode;
 
-    public CheckCommand(String nric, String password, String mode) {
+    public CheckCommand(String nric, String password, Mode mode) {
         requireAllNonNull(nric, password, mode);
         this.nric = nric;
         this.password = password;

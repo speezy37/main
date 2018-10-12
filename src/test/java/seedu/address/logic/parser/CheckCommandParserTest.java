@@ -1,15 +1,17 @@
 package seedu.address.logic.parser;
 
+import org.junit.Test;
+import seedu.address.logic.commands.CheckCommand;
+import seedu.address.model.person.Mode;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_AMY;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import org.junit.Test;
-
-import seedu.address.logic.commands.CheckCommand;
 
 public class CheckCommandParserTest {
     private CheckCommandParser parser = new CheckCommandParser();
@@ -20,13 +22,13 @@ public class CheckCommandParserTest {
         // have mode
         String userInput = PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE + nonEmptyMode;
-        CheckCommand expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, nonEmptyMode);
+        CheckCommand expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(nonEmptyMode));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no mode
         userInput = PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE;
-        expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, "");
+        expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

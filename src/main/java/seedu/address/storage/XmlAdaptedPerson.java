@@ -1,18 +1,10 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.xml.bind.annotation.XmlElement;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -21,6 +13,14 @@ import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
+
+import javax.xml.bind.annotation.XmlElement;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * JAXB-friendly version of the Person.
@@ -45,6 +45,8 @@ public class XmlAdaptedPerson {
     private int priorityLevel;
     @XmlElement(required = true)
     private String address;
+    @XmlElement(required = true)
+    private String mode;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -87,6 +89,7 @@ public class XmlAdaptedPerson {
         department = source.getDepartment().fullDepartment;
         priorityLevel = source.getPriorityLevel().priorityLevelCode;
         address = source.getAddress().value;
+        mode = source.getMode().value;
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -166,9 +169,14 @@ public class XmlAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (mode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mode.class.getSimpleName()));
+        }
+        final Mode modelMode = new Mode(mode);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelPriorityLevel, modelAddress, modelTags);
+                modelPriorityLevel, modelAddress, modelMode, modelTags);
     }
 
     @Override

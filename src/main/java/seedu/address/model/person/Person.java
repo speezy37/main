@@ -1,15 +1,15 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.password.Password;
-import seedu.address.model.prioritylevel.PriorityLevel;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person in the address book.
@@ -28,13 +28,14 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Mode mode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  PriorityLevel priorityLevel, Address address, Set<Tag> tags) {
+                  PriorityLevel priorityLevel, Address address, Mode mode, Set<Tag> tags) {
         requireAllNonNull(name, nric, password, phone, email, department, priorityLevel, address, tags);
         this.name = name;
         this.nric = nric;
@@ -44,6 +45,7 @@ public class Person {
         this.department = department;
         this.priorityLevel = priorityLevel;
         this.address = address;
+        this.mode = mode;
         this.tags.addAll(tags);
     }
 
@@ -74,6 +76,8 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Mode getMode() { return mode; }
 
     public PriorityLevel getPriorityLevel() {
         return priorityLevel;
