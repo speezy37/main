@@ -71,7 +71,7 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ic/NRIC pwd/PASSWORD [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS ic/NRIC pwd/PASSWORD [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
@@ -81,8 +81,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ic/NRIC pwd/PASSWORD [plvl/
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ic/T0249855I pwd/9EwciT plvl/1`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal ic/S1875858E pwd/Fed528F`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Legal Services ic/T0249855I
+pwd/9EwciT plvl/1`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Rehabilitation Management
+t/criminal
+ic/S1875858E pwd/Fed528F`
 
 === Listing all persons : `list`
 
