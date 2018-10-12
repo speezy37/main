@@ -34,7 +34,7 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
-        if(SessionManager.isLoggedIn()){
+        if (SessionManager.isLoggedIn()) {
             employeeNric = SessionManager.getLoggedInEmployeeNric();
         }
 

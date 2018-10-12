@@ -52,7 +52,7 @@ public class Date {
             return false;
         }
 
-        if (year < 2018){
+        if (year < 2018) {
             return false;
         }
 
