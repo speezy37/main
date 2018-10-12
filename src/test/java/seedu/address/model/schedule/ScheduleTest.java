@@ -3,10 +3,6 @@ package seedu.address.model.schedule;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static seedu.address.testutil.TypicalSchedules.CLEANING;
-
-import org.junit.Assert;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static seedu.address.testutil.TypicalSchedules.OFFICE;
 
 import org.junit.Rule;
