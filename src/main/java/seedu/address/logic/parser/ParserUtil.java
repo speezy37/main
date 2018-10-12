@@ -19,6 +19,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -214,5 +216,25 @@ public class ParserUtil {
             throw new ParseException(Password.MESSAGE_PASSWORD_CONSTRAINTS);
         }
         return new Password(trimmedPassword);
+    }
+
+    /**
+     * Parses a {@code String priorityLevel} into a {@code PriorityLevel}.
+     * @throws ParseException is the priorityLevel does not fall between the valid levels.
+     */
+    public static PriorityLevel parsePriorityLevel(String priorityLevel) throws ParseException {
+        requireNonNull(priorityLevel);
+
+        int priorityLevelCode;
+        try {
+            priorityLevelCode = Integer.valueOf(priorityLevel.trim());
+        } catch (NumberFormatException e) {
+            throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+        }
+
+        if (!PriorityLevelEnum.isValidPriorityLevel(priorityLevelCode)) {
+            throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+        }
+        return new PriorityLevel(priorityLevelCode);
     }
 }
