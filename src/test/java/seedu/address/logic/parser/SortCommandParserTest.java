@@ -31,8 +31,8 @@ public class SortCommandParserTest {
 
         //no field entered
         assertParseFailure(parser, "asc",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE))
-        ;
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        
         //no order entered
         assertParseFailure(parser, "name",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
