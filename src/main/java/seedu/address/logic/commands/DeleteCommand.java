@@ -11,8 +11,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.leave.Leave;
-import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.SessionManager;
+import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -30,8 +30,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static String nric;
-    public static DeleteLeaveCommand command;
+    private static String nric;
 
     private static final String MESSAGE_CANNOT_DELETE_YOURSELF = "You can't delete yourself!";
 
@@ -69,7 +68,7 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         nric = personToDelete.getNric().nric;
         keyword = new NricContainsKeywordsPredicate(Arrays.asList(nric));
-      
+
         if (personToDelete == SessionManager.getLoggedInPersonDetails(model)) {
             throw new CommandException(MESSAGE_CANNOT_DELETE_YOURSELF);
         }

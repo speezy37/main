@@ -31,7 +31,6 @@ import seedu.address.logic.commands.SetPriorityLevelCommand;
 import seedu.address.logic.commands.SetScheduleCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.SessionManager;
 
 /**
  * Parses user input.
