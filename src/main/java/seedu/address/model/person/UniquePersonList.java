@@ -120,7 +120,7 @@ public class UniquePersonList implements Iterable<Person> {
         /**
          * Used to sort by name
          */
-        class sortByName implements Comparator<Person>  {
+        Comparator<Person> nameComparator = new Comparator<Person>() {
             @Override
             public int compare(Person p1, Person p2) {
                 return p1.getName().fullName.compareTo(p2.getName().fullName);
@@ -130,7 +130,7 @@ public class UniquePersonList implements Iterable<Person> {
         /**
          * Used to sort by department
          */
-        class sortByDepartment implements Comparator<Person> {
+        Comparator<Person> departmentComparator = new Comparator<Person>() {
             @Override
             public int compare(Person p1, Person p2) {
                 return p1.getDepartment().fullDepartment.compareTo(p2.getDepartment().fullDepartment);
@@ -139,11 +139,11 @@ public class UniquePersonList implements Iterable<Person> {
 
         switch (field) {
         case "name":
-            comparator = new sortByName();
+            comparator = nameComparator;
             break;
 
         case "department":
-            comparator = new sortByDepartment();
+            comparator = departmentComparator;
             break;
 
         default:
