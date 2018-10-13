@@ -118,6 +118,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author Woonhian
     /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
