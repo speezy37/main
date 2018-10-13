@@ -66,7 +66,7 @@ Format: `help`
 
 [NOTE]
 ====
-* Refer to Appendix A for the list of prefixes and its' constraints.
+* Refer to <<Appendix A: List of prefixes in the application, Appendix A>> for the list of prefixes and its' constraints.
 * This operation requires administrator priviledge to perform.
 ====
 
@@ -103,39 +103,20 @@ Format : `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person's tags by typing `t/` without specifying any tags after it.
-
-.List of parameters
-|===
-|Parameter name |Format |Example
-
-| Name
-| n/NAME
-| n/Lewis
-
-| Phone number
-| p/PHONE
-| p/96549950
-
-| Email address
-| e/EMAIL
-| e/lewis@hotmail.com
-
-| Address
-| a/ADDRESS
-| a/Blk 26, Tiong Bahru Rd #19-22, s(190026)
-
-| Tag(s) (OPTIONAL)
-| [t/TAG]...
-| t/friends t/OweMoney
-|===
+* You are able to edit the following fields for this command: -
+** Name: n/NAME
+** Address: a/ADDRESS
+** Phone: p/PHONE_NUMBER
+** Department: d/DEPARTMENT
+** Tag(s): t/TAG1 t/TAG2 ...
 ****
 
 Examples:
 
-* `edit n/John Doe ic/s1234567h pass/NeUeR2018 ep/91234567 ee/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit n/John Doe2 ic/s1234567h pass/NeUeR2018 en/John Doe` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 2 p/91234567 e/johndoe@example.com` +
+Set the second person listed in the address book to the aforementioned email and phone number, and also clears tags if any. +
+* `edit 3 t/friend t/lecturer n/John Doe` +
+Changes the name of the third person in the address book to by John Doe; clears all tag and sets the two aforementioned tags. +
 
 === Locating persons by name: `find`
 
@@ -337,7 +318,11 @@ Example: `applyoff n/John Doe ic/s123457h pass/NeUeR2018 date/080818` +
 Apply off day for John Doe on the 8th of August 2018 (DDMMYY).
 ====
 
-=== [SUPERUSER] Approve/Reject off request: `request`
+=== Approve/Reject off request: `request`
+[NOTE]
+====
+This operation requires a priority level of MANAGER to execute.
+====
 Approve or reject off day request applied by employees.
 Format: request [ic/NRIC] [mode/APPROVE/REJECT (INDEX)]
 ****
@@ -410,7 +395,8 @@ _{explain how the user can enable/disable data encryption}_
 •	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
 •	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
 •	*Edit particulars*: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
-•	*Add employee*: `add n/NAME ic/s1234567h p/PHONE NUMBER e/EMAIL a/ADDRESS ic/NRIC pwd/PASSWORD d/DEPARTMENT
+•	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
+•	*Add employee*: `add n/NAME p/PHONE NUMBER e/EMAIL a/ADDRESS ic/NRIC pwd/PASSWORD d/DEPARTMENT
 [plvl/PRIORITY_LEVEL] [t/TAGS]...`
 //•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
@@ -418,7 +404,7 @@ _{explain how the user can enable/disable data encryption}_
 •	*Sort address book contacts*: `sort`
 •	*Deleting employee*: `delete INDEX [MORE_INDEX]`
 •	*Change priority level of employee*: `setplvl ic/NRIC plvl//LEVEL`
-•	*Restrict access to BankAB*: `restrict`
+//•	*Restrict access to BankAB*: `restrict`
 
 == Appendix A: List of prefixes in the application
 .List of prefixes
