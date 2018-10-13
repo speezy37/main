@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.SortCommand.MESSAGE_SUCCESS;
+import static seedu.address.testutil.TypicalPersons.getEmptyAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Rule;
@@ -19,7 +21,14 @@ public class SortCommandTest {
     public ExpectedException error = ExpectedException.none();
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model emptyModel = new ModelManager(getEmptyAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
+    @Test
+    public void noEmployees() {
+        SortCommand command = prepareCommand("name", "asc");
+        assertCommandFailure(command, emptyModel, commandHistory, SortCommand.MESSAGE_EMPTY_BOOK);
+    }
 
     @Test
     public void emptySortField_throwsNullPointerEx() {
@@ -34,28 +43,28 @@ public class SortCommandTest {
     }
 
     @Test
-    public void sortByName_success() throws Exception {
+    public void sortByName_success() {
         SortCommand command = prepareCommand("name", "asc");
         String expected = String.format(MESSAGE_SUCCESS, "name", "asc");
         assertCommandSuccess(command, model, commandHistory, expected, model);
     }
 
     @Test
-    public void sortByNameDesc_success() throws Exception {
+    public void sortByNameDesc_success() {
         SortCommand command = prepareCommand("name", "desc");
         String expected = String.format(MESSAGE_SUCCESS, "name", "desc");
         assertCommandSuccess(command, model, commandHistory, expected, model);
     }
 
     @Test
-    public void sortByDepartment_success() throws Exception {
+    public void sortByDepartment_success() {
         SortCommand command = prepareCommand("department", "asc");
         String expected = String.format(MESSAGE_SUCCESS, "department", "asc");
         assertCommandSuccess(command, model, commandHistory, expected, model);
     }
 
     @Test
-    public void sortByDepartmentDesc_success() throws Exception {
+    public void sortByDepartmentDesc_success() {
         SortCommand command = prepareCommand("department", "desc");
         String expected = String.format(MESSAGE_SUCCESS, "department", "desc");
         assertCommandSuccess(command, model, commandHistory, expected, model);
