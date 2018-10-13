@@ -7,6 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 
+//@@author Woonhian
 /**
  * Finds and lists all persons in address book whose department contains any of the argument keywords.
  * Keyword matching is case insensitive.
