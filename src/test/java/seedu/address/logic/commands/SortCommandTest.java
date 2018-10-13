@@ -8,9 +8,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -40,6 +43,20 @@ public class SortCommandTest {
     public void emptySortOrder_throwsNullPointerEx() {
         error.expect(NullPointerException.class);
         new SortCommand(null, "asc");
+    }
+
+    @Test
+    public void execute_wrongField_throwsAssertionError() {
+        Assertions.assertThrows(AssertionError.class, () -> {
+            new SortCommand("invalid","asc").execute(model, commandHistory);
+        }, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void execute_wrongOrder_throwsAssertionError() {
+        Assertions.assertThrows(AssertionError.class, () -> {
+            new SortCommand("name","invalid").execute(model, commandHistory);
+        }, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
     @Test
