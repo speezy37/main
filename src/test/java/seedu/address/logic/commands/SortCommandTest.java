@@ -35,9 +35,16 @@ public class SortCommandTest {
 
     @Test
     public void sortByName_success() throws Exception {
-        SortCommand so = prepareCommand("name", "asc");
+        SortCommand command = prepareCommand("name", "asc");
         String expected = String.format(MESSAGE_SUCCESS, "name", "asc");
-        assertCommandSuccess(so, model, commandHistory, expected, model);
+        assertCommandSuccess(command, model, commandHistory, expected, model);
+    }
+
+    @Test
+    public void sortByNameDesc_success() throws Exception {
+        SortCommand command = prepareCommand("name", "desc");
+        String expected = String.format(MESSAGE_SUCCESS, "name", "desc");
+        assertCommandSuccess(command, model, commandHistory, expected, model);
     }
 
     /**
