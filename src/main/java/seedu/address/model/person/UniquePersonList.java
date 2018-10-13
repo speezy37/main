@@ -115,16 +115,22 @@ public class UniquePersonList implements Iterable<Person> {
             throw new NoEmployeeException();
         }
 
-        Comparator<Person> comparator = null;
+        Comparator<Person> comparator;
 
-        Comparator<Person> nameComparator = new Comparator<Person>() {
+        /**
+         * Used to sort by name
+         */
+        class sortByName implements Comparator<Person>  {
             @Override
             public int compare(Person p1, Person p2) {
                 return p1.getName().fullName.compareTo(p2.getName().fullName);
             }
         };
 
-        Comparator<Person> departmentComparator = new Comparator<Person>() {
+        /**
+         * Used to sort by department
+         */
+        class sortByDepartment implements Comparator<Person> {
             @Override
             public int compare(Person p1, Person p2) {
                 return p1.getDepartment().fullDepartment.compareTo(p2.getDepartment().fullDepartment);
@@ -133,11 +139,11 @@ public class UniquePersonList implements Iterable<Person> {
 
         switch (field) {
         case "name":
-            comparator = nameComparator;
+            comparator = new sortByName();
             break;
 
         case "department":
-            comparator = departmentComparator;
+            comparator = new sortByDepartment();
             break;
 
         default:
