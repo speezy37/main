@@ -47,14 +47,14 @@ public class SortCommandTest {
     @Test
     public void execute_wrongField_throwsAssertionError() {
         Assertions.assertThrows(AssertionError.class, () -> {
-            new SortCommand("invalid","asc").execute(model, commandHistory);
+            new SortCommand("invalid", "asc").execute(model, commandHistory);
         }, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
     @Test
     public void execute_wrongOrder_throwsAssertionError() {
         Assertions.assertThrows(AssertionError.class, () -> {
-            new SortCommand("name","invalid").execute(model, commandHistory);
+            new SortCommand("name", "invalid").execute(model, commandHistory);
         }, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
