@@ -47,6 +47,20 @@ public class SortCommandTest {
         assertCommandSuccess(command, model, commandHistory, expected, model);
     }
 
+    @Test
+    public void sortByDepartment_success() throws Exception {
+        SortCommand command = prepareCommand("department", "asc");
+        String expected = String.format(MESSAGE_SUCCESS, "department", "asc");
+        assertCommandSuccess(command, model, commandHistory, expected, model);
+    }
+
+    @Test
+    public void sortByDepartmentDesc_success() throws Exception {
+        SortCommand command = prepareCommand("department", "desc");
+        String expected = String.format(MESSAGE_SUCCESS, "department", "desc");
+        assertCommandSuccess(command, model, commandHistory, expected, model);
+    }
+
     /**
      * Returns a {@code sortCommand} with the parameters {@code field and @code order}.
      */
