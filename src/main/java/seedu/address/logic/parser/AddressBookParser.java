@@ -120,7 +120,7 @@ public class AddressBookParser {
             return new DeleteLeaveCommandParser().parse(arguments);
 
         case FilterLeaveCommand.COMMAND_WORD:
-            return new FilterLeaveCommandParser().parse(SessionManager.getLoggedInEmployeeNric());
+            return new FilterLeaveCommandParser().parse(arguments);
 
         case ListLeaveCommand.COMMAND_WORD:
             return new ListLeaveCommand();
