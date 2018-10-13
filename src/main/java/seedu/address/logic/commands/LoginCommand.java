@@ -15,6 +15,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 
+//@@author jylee-git
 /**
  * Enables the use of application by logging in using the specified personnel's NRIC and password.
  */
@@ -29,9 +30,12 @@ public class LoginCommand extends Command {
 
     public static final String INVALID_LOGIN_CREDENTIALS = "Login failed. Incorrect NRIC and/or password.";
     public static final String LOGIN_SUCCESS = "Login successful. You are logged in as: %s";
+    public static final String ALREADY_LOGGED_IN = "You are already logged in. Logout first before logging in again.";
 
     private Nric loginNric;
     private Password loginPassword;
+    private Person personToBeLoggedIn;
+    private Nric nricToBeLoggedIn;
 
     public LoginCommand(Nric loginNric, Password loginPassword) {
         requireNonNull(loginNric);
@@ -44,11 +48,14 @@ public class LoginCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        if (SessionManager.isLoggedIn()) {
+            throw new CommandException(ALREADY_LOGGED_IN);
+        }
         if (!isLoginCredentialsValid(model)) {
             throw new CommandException(INVALID_LOGIN_CREDENTIALS);
         } else {
-            SessionManager.loginToSession(loginNric);
-            return new CommandResult(String.format(LOGIN_SUCCESS, loginNric));
+            SessionManager.loginToSession(model, nricToBeLoggedIn);
+            return new CommandResult(String.format(LOGIN_SUCCESS, personToBeLoggedIn.getNric()));
         }
     }
 
@@ -57,11 +64,14 @@ public class LoginCommand extends Command {
      * Returns false if login NRIC tallies but login password is wrong, or NRIC is not found.
      */
     private boolean isLoginCredentialsValid(Model model) {
-        List<Person> allPersonsList = model.getFilteredPersonList();
+        // Grabs the list of ALL people in the address book.
+        List<Person> allPersonsList = model.getAddressBook().getPersonList();
 
         for (Person currPerson : allPersonsList) {
             if ((currPerson.getNric()).toString().equals(loginNric.toString())) {
                 if ((currPerson.getPassword()).toString().equals(loginPassword.toString())) {
+                    personToBeLoggedIn = currPerson;
+                    nricToBeLoggedIn = currPerson.getNric();
                     return true;
                 } else {
                     return false;

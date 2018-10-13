@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person {
     private final Email email;
     private final Department department;
     private final Password password;
+    private final PriorityLevel priorityLevel;
 
     // Data fields
     private final Address address;
@@ -32,14 +34,15 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  Address address, Set<Tag> tags) {
-        requireAllNonNull(name, nric, password, phone, email, department, address, tags);
+                  PriorityLevel priorityLevel, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, nric, password, phone, email, department, priorityLevel, address, tags);
         this.name = name;
         this.nric = nric;
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.department = department;
+        this.priorityLevel = priorityLevel;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -70,6 +73,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public PriorityLevel getPriorityLevel() {
+        return priorityLevel;
     }
 
     /**
@@ -113,13 +120,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getPriorityLevel().equals(getPriorityLevel())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, password, phone, email, address, tags);
+        return Objects.hash(name, nric, password, phone, email, address, priorityLevel, tags);
     }
 
     /**
@@ -129,17 +137,19 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" NRIC: ")
+                .append("\n NRIC: ")
                 .append(getNric())
-                .append(" Phone: ")
+                .append("\n Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
+                .append("\n Email: ")
                 .append(getEmail())
-                .append(" Department: ")
+                .append("\n Department: ")
                 .append(getDepartment())
-                .append(" Address: ")
+                .append("\n Priority Level: ")
+                .append(getPriorityLevel())
+                .append("\n Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
+                .append("\n Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
