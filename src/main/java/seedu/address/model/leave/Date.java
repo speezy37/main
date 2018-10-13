@@ -11,7 +11,7 @@ import java.time.DateTimeException;
  */
 public class Date {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format;";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format";
 
     public final String date;
 

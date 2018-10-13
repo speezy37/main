@@ -27,7 +27,7 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
     public AddLeaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_DATE);
-        String employeeNric = "S1111111E";
+        String employeeNric = "S1234591A";
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
