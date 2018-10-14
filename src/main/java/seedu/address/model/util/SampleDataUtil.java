@@ -65,9 +65,9 @@ public class SampleDataUtil {
 
     public static Leave[] getSampleLeaves() {
         return new Leave[] {
-                new Leave(new EmployeeId("S1234567E"), new Date("01/01/2019"), new Approval("APPROVED")),
-                new Leave(new EmployeeId("F1234567E"), new Date("01/12/2019"), new Approval("PENDING")),
-                new Leave(new EmployeeId("S8570520Q"), new Date("01/12/2019"), new Approval("PENDING"))
+            new Leave(new EmployeeId("S1234567E"), new Date("01/01/2019"), new Approval("APPROVED")),
+            new Leave(new EmployeeId("F1234567E"), new Date("01/12/2019"), new Approval("PENDING")),
+            new Leave(new EmployeeId("S8570520Q"), new Date("01/12/2019"), new Approval("PENDING"))
         };
     }
 
