@@ -25,7 +25,7 @@ public class XmlAdapatedLeaveTest {
 
     @Test
     public void toModelType_validLeaveDetails_returnsLeave() throws Exception {
-        XmlAdaptedLeave leave= new XmlAdaptedLeave(REQUEST_1);
+        XmlAdaptedLeave leave = new XmlAdaptedLeave(REQUEST_1);
         assertEquals(REQUEST_1, leave.toModelType());
     }
 
@@ -47,7 +47,7 @@ public class XmlAdapatedLeaveTest {
 
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
-        XmlAdaptedLeave leave = new XmlAdaptedLeave(VALID_NRIC,null , VALID_APPROVAL);
+        XmlAdaptedLeave leave = new XmlAdaptedLeave(VALID_NRIC, null, VALID_APPROVAL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, leave::toModelType);
     }
