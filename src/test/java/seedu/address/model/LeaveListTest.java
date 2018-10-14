@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.testutil.TypicalLeave.REQUEST_1;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,6 +16,8 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.leave.exceptions.DuplicateLeaveException;
+import seedu.address.testutil.LeaveBuilder;
 
 public class LeaveListTest {
 
@@ -43,6 +48,18 @@ public class LeaveListTest {
     public void getLeaveList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
         leaveList.getRequestList().remove(0);
+    }
+
+    @Test
+    public void resetData_withDuplicateLeaves_throwsDuplicateLeaveException() {
+        // Two leave with the same date and identity fields
+        Leave editedLeave = new LeaveBuilder(REQUEST_1).withNric("S1234567A").withDate("01/02/2018")
+                .build();
+        List<Leave> newLeaves = Arrays.asList(REQUEST_1, editedLeave);
+        LeaveListStub newData = new LeaveListStub(newLeaves);
+
+        thrown.expect(DuplicateLeaveException.class);
+        leaveList.resetData(newData);
     }
 
     /**
