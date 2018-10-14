@@ -105,7 +105,6 @@ public class AddressBookParserTest {
                 FilterLeaveCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterLeaveCommand(new NricContainsKeywordsPredicate(keywords)), command);
     }
-    
     @Test
     public void parseCommand_filterdepartment() throws Exception {
         List<String> keywords = Arrays.asList("junior", "senior");
