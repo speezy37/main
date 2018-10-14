@@ -32,6 +32,7 @@ public class DeleteLeaveCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
+        deleteLeaveCommand.setIsLogin(false);
 
         String expectedMessage = String.format(DeleteLeaveCommand.MESSAGE_DELETE_LEAVE_SUCCESS, leaveToDelete);
 
@@ -56,6 +57,7 @@ public class DeleteLeaveCommandTest {
 
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
+        deleteLeaveCommand.setIsLogin(false);
 
         String expectedMessage = String.format(DeleteLeaveCommand.MESSAGE_DELETE_LEAVE_SUCCESS, leaveToDelete);
 
