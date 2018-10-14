@@ -38,8 +38,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* `add n/John Doe ic/s1234567h p/NeUeR2018 e/john8888@example.com a/Blk 888, Clementi Rd #08-88, S888888` :
-adds a contact named `John Doe` to the Address Book.
+* *`add n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
+a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`* : adds a contact named `John Doe` to the Address Book.
 * `schedule/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
@@ -71,7 +71,7 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS ic/NRIC pwd/PASSWORD [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
@@ -81,9 +81,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS ic/NRIC pwd/PA
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Legal Services ic/T0249855I
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Rehabilitation Management
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Senior Management
 t/criminal
 ic/S1875858E pwd/Fed528F`
 
@@ -143,9 +143,54 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 ====
 
 === Sort address book contacts: `sort`
-Shows the sorted list of the employees in the address book. +
-Format: `sort`
+Shows the sorted list of the employees or departments in the address book.
+The list can be sorted in ascending or descending order. +
+Format: `sort FIELD ORDER`
 
+[NOTE]
+====
+This operation only supports the following fields and orders
+
+* `FIELD`: `name` and `department`
+
+* `ORDER`: `asc` and `desc`
+====
+
+Examples:
+
+* `sort name asc`
+====
+Sorts the employee names in the list in ascending order
+====
+* `sort department desc`
+====
+Sorts the department names in the list in descending order
+====
+
+=== Filtering department : `filterdepartment`
+Filter departments and list out the employees who are in the department +
+Format: `filterdepartment KEYWORD [MORE KEYWORDS]` +
+Alias: `fd`
+
+[NOTE]
+====
+* The keyword `Management` will not be accepted to prevent listing of all departments
+====
+
+* The search is case insensitive. e.g. `junior` will match employees in `Junior Management`
+* Only full words will be matched. e.g. `junio` will not match `Junior Management`
+* Filtering of more than one department will list out the employees in the departments.
+
+Examples:
+
+* `filterdepartment junior`
+====
+Returns a list of employees who are in `Junior Management`.
+====
+* `filter department junior senior`
+====
+Returns a list of employees who are in `Junior Management` and `Senior Management`.
+====
 
 === Deleting a person : `delete`
 [NOTE]
@@ -164,7 +209,7 @@ Format: `delete INDEX [MORE_INDEX]...`
 
 Examples:
 
-* `delete 1'
+* `delete 1`
 ====
 Deletes the employee with ID 1 in the address book.
 ====
@@ -365,7 +410,6 @@ Restrict access to BankAB for maintenance to all employees except superusers lev
 Anyone below superuser level 4 priority will not be able to log into the application. +
 Format: `restrict`
 
-
 === Exiting the program : `exit`
 
 Exits the program. +
@@ -401,7 +445,8 @@ _{explain how the user can enable/disable data encryption}_
 //•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
 •	*Approve/Reject off request*: `request ic/s1234567a mode/approve (3)`
-•	*Sort address book contacts*: `sort`
+•	*Sort address book contacts*: `sort name asc`
+•	*Filter departments*: `filterdepartment junior`
 •	*Deleting employee*: `delete INDEX [MORE_INDEX]`
 •	*Change priority level of employee*: `setplvl ic/NRIC plvl//LEVEL`
 //•	*Restrict access to BankAB*: `restrict`
@@ -416,10 +461,16 @@ _{explain how the user can enable/disable data encryption}_
 | Name must be alphabetical
 | n/Lewis Hamilton
 
-| Address
-| a/ADDRESS
-| N/A
-| a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
+| NRIC Number
+| ic/NRIC
+| NRIC should start with a character [S, T, F, G], followed by a seven-digit number, and ending with a upper-case
+alphabet.
+| ic/S9203948E
+
+| Password
+| pwd/PASSWORD
+| Password should be alphanumeric and should contain at least five characters
+| pwd/NeUeR2018
 
 | Phone
 | p/PHONE_NUMBER
@@ -434,16 +485,16 @@ _{explain how the user can enable/disable data encryption}_
     alphanumeric characters.
 | e/jarvin@eltech.com
 
-| NRIC Number
-| ic/NRIC
-| NRIC should start with a character [S, T, F, G], followed by a seven-digit number, and ending with a upper-case
-alphabet.
-| ic/S9203948E
+| Department
+| d/DEPARTMENT
+| Department should contain alphabetic characters and spaces, and it should not be blank.
+Department names should start with a name, and ends with 'Management'.
+| d/Junior Management
 
-| Password
-| pwd/PASSWORD
-| Password should be alphanumeric and should contain at least five characters
-| pwd/NeUeR2018
+| Address
+| a/ADDRESS
+| N/A
+| a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
 
 | Priority Level
 | plvl/PRIORITY_LEVEL
@@ -458,9 +509,4 @@ alphabet.
 | t/TAG1 t/TAG2 ...
 | Tag names should be alphanumeric
 | t/Admin t/Boss t/OweMeMoney
-
-| Department
-| d/DEPARTMENT
-| Department should contain alphanumeric characters, and may contain spaces.
-| d/Legal Services
 |===
