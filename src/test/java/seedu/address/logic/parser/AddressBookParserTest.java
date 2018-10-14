@@ -22,8 +22,8 @@ import seedu.address.logic.commands.DeleteLeaveCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterLeaveCommand;
 import seedu.address.logic.commands.FilterDepartmentCommand;
+import seedu.address.logic.commands.FilterLeaveCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
@@ -105,7 +105,7 @@ public class AddressBookParserTest {
                 FilterLeaveCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterLeaveCommand(new NricContainsKeywordsPredicate(keywords)), command);
     }
-  
+    
     @Test
     public void parseCommand_filterdepartment() throws Exception {
         List<String> keywords = Arrays.asList("junior", "senior");
