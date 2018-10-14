@@ -44,8 +44,6 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_DEPARTMENT_AMY = "Junior Management";
-    public static final String VALID_DEPARTMENT_BOB = "Junior Management";
     public static final String VALID_DATE_REQUEST3 = "01/10/2018";
     public static final String VALID_NRIC_REQUEST3 = "S1234591A";
     public static final String VALID_DEPARTMENT_AMY = "Top Management";
