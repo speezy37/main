@@ -61,7 +61,6 @@ public class AddLeaveCommandTest {
         thrown.expectMessage(AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
         addLeaveCommand.execute(modelStub, commandHistory);
     }
-    
     @Test
     public void equals() {
         Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2018").build();
