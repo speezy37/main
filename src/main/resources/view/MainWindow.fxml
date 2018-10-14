@@ -49,7 +49,7 @@
         </StackPane>
 
         <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
-          <VBox fx:id="personList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
+          <VBox fx:id="personList" minWidth="270" prefWidth="260" SplitPane.resizableWithParent="false">
             <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="addressBookTab" text="People">
@@ -64,7 +64,7 @@
 
           <StackPane fx:id="browserPlaceholder" prefWidth="340" >
             <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
+              <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
           </StackPane>
         </SplitPane>
