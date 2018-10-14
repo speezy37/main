@@ -5,7 +5,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.LeaveList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLeaveList;
+import seedu.address.model.leave.Approval;
+import seedu.address.model.leave.Date;
+import seedu.address.model.leave.EmployeeId;
+import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -57,12 +63,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Leave[] getSampleLeaves() {
+        return new Leave[] {
+            new Leave(new EmployeeId("S1234567E"), new Date("01/01/2019"), new Approval("APPROVED")),
+            new Leave(new EmployeeId("F1234567E"), new Date("01/12/2019"), new Approval("PENDING")),
+            new Leave(new EmployeeId("S8570520Q"), new Date("01/12/2019"), new Approval("PENDING"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyLeaveList getSampleLeaveList() {
+        LeaveList leaveList = new LeaveList();
+        for (Leave sampleLeave : getSampleLeaves()) {
+            leaveList.addRequest(sampleLeave);
+        }
+        return leaveList;
     }
 
     /**

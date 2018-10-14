@@ -13,7 +13,8 @@ import seedu.address.model.leave.NricContainsKeywordsPredicate;
  */
 public class FilterLeaveCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "filterleave";
+    public static final String COMMAND_ALIAS = "fl";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all leaves whose nric contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
