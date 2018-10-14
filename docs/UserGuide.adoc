@@ -38,9 +38,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* *`add n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
-a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`* : adds a contact named `John Doe` to the Address Book.
-* `schedule/John Doe ic/s1234567a` : list input user’s schedule
+* `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
+a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+* `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -440,7 +440,7 @@ _{explain how the user can enable/disable data encryption}_
 •	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
 •	*Edit particulars*: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
 •	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
-•	*Add employee*: `add n/NAME p/PHONE NUMBER e/EMAIL a/ADDRESS ic/NRIC pwd/PASSWORD d/DEPARTMENT
+•	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS
 [plvl/PRIORITY_LEVEL] [t/TAGS]...`
 //•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
