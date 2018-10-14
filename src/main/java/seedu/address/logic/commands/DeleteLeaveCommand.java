@@ -9,7 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 /**
  * Deletes a leave identified using it's displayed index from the leave book.
@@ -24,6 +26,7 @@ public class DeleteLeaveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_LEAVE_SUCCESS = "Deleted Leave: %1$s";
+    public static final String MESSAGE_INVALID_LEAVE_DELETE = "Not authorized to delete other users' leave application";
 
     private final Index targetIndex;
 
@@ -41,6 +44,13 @@ public class DeleteLeaveCommand extends Command {
         }
 
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+
+        if (leaveToDelete.getEmployeeId().nric != SessionManager.getLoggedInSessionNric().nric &&
+                !SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+            throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
+        }
+
         model.deleteLeave(leaveToDelete);
         model.commitLeaveList();
         return new CommandResult(String.format(MESSAGE_DELETE_LEAVE_SUCCESS, leaveToDelete));
