@@ -129,7 +129,6 @@ public class AddressBookParser {
             return new DeleteLeaveCommandParser().parse(arguments);
 
         case FilterLeaveCommand.COMMAND_WORD:
-        case FilterLeaveCommand.COMMAND_ALIAS:
             return new FilterLeaveCommandParser().parse(arguments);
 
         case ListLeaveCommand.COMMAND_WORD:
