@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.NoEmployeeException;
 
 /**
  * The API of the Model component.
@@ -44,6 +45,14 @@ public interface Model {
      */
     void addPerson(Person person);
     void addLeave (Leave leave);
+
+    /**
+     * Sorts players in address book by field in asc or desc order
+     * @param field
+     * @param order
+     */
+    void sortEmployee(String field, String order) throws NoEmployeeException;
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.

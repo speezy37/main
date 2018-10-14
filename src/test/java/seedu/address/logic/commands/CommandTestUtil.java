@@ -48,6 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_DEPARTMENT_BOB = "Junior Management";
     public static final String VALID_DATE_REQUEST3 = "01/10/2018";
     public static final String VALID_NRIC_REQUEST3 = "S1234591A";
+    public static final String VALID_DEPARTMENT_AMY = "Top Management";
+    public static final String VALID_DEPARTMENT_BOB = "Top Management";
     public static final int VALID_PRIORITYLEVEL_AMY = PriorityLevelEnum.MANAGER.getPriorityLevelCode();
     public static final int VALID_PRIORITYLEVEL_BOB = PriorityLevelEnum.MANAGER.getPriorityLevelCode();
 
