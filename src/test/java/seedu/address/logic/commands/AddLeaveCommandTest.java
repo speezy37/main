@@ -61,18 +61,7 @@ public class AddLeaveCommandTest {
         thrown.expectMessage(AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
         addLeaveCommand.execute(modelStub, commandHistory);
     }
-
-    @Test
-    public void execute_notLogin_throwsCommandException() throws Exception {
-        Leave validLeave = new LeaveBuilder().build();
-        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
-        ModelStub modelStub = new ModelStubWithLeave(validLeave);
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(AddLeaveCommand.STATUS_NOT_LOGGED_IN);
-        addLeaveCommand.execute(modelStub, commandHistory);
-    }
-
+    
     @Test
     public void equals() {
         Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2018").build();
