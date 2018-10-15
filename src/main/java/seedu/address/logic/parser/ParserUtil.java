@@ -24,6 +24,8 @@ import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,6 +123,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author Woonhian
     /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
@@ -222,6 +225,7 @@ public class ParserUtil {
     }
 
     /**
+<<<<<<< HEAD
      * Parses a {@code String timeStart}, {@code String timeEnd}, {@code String venue} into a {@code Schedule}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -260,5 +264,24 @@ public class ParserUtil {
             scheduleSet.add(parseSchedule(schedule, schedule, schedule));
         }
         return scheduleSet;
+    }
+
+    /** Parses a {@code String priorityLevel} into a {@code PriorityLevel}.
+     * @throws ParseException is the priorityLevel does not fall between the valid levels.
+     */
+    public static PriorityLevel parsePriorityLevel(String priorityLevel) throws ParseException {
+        requireNonNull(priorityLevel);
+
+        int priorityLevelCode;
+        try {
+            priorityLevelCode = Integer.valueOf(priorityLevel.trim());
+        } catch (NumberFormatException e) {
+            throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+        }
+
+        if (!PriorityLevelEnum.isValidPriorityLevel(priorityLevelCode)) {
+            throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+        }
+        return new PriorityLevel(priorityLevelCode);
     }
 }
