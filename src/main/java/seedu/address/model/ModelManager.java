@@ -15,6 +15,7 @@ import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.events.model.LeaveListChangedEvent;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.NoEmployeeException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -131,6 +132,12 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         versionedAddressBook.updatePerson(target, editedPerson);
+        indicateAddressBookChanged();
+    }
+
+    @Override
+    public void sortEmployee(String field, String order) throws NoEmployeeException {
+        versionedAddressBook.sortEmployeeBy(field, order);
         indicateAddressBookChanged();
     }
 

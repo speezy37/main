@@ -38,9 +38,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* `add n/John Doe ic/s1234567h p/NeUeR2018 e/john8888@example.com a/Blk 888, Clementi Rd #08-88, S888888` :
-adds a contact named `John Doe` to the Address Book.
-* `schedule/John Doe ic/s1234567a` : list input user’s schedule
+* `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
+a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+* `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -64,16 +64,28 @@ Format: `help`
 
 === Adding a person: `add`
 
+[NOTE]
+====
+* Refer to <<Appendix A: List of prefixes in the application, Appendix A>> for the list of prefixes and its' constraints.
+* This operation requires administrator priviledge to perform.
+====
+
 Adds an employee to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
-A person can have any number of tags (including 0)
+====
+* A person can have any number of tags (including 0) +
+* Priority level will be set to BASIC if left empty.
+====
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
+pwd/9EwciT plvl/1`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Senior Management
+t/criminal
+ic/S1875858E pwd/Fed528F`
 
 === Listing all persons : `list`
 
@@ -83,8 +95,7 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits the existing particulars of the logged in user. +
-Format (DEPRECATED): `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-Format: `edit n/NAME ic/NRIC pass/PASSWORD [en/NAME] [ep/PHONE] [ee/EMAIL] [ea/ADDRESS]....`
+Format : `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` +
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
@@ -92,35 +103,20 @@ Format: `edit n/NAME ic/NRIC pass/PASSWORD [en/NAME] [ep/PHONE] [ee/EMAIL] [ea/A
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person's tags by typing `t/` without specifying any tags after it.
-
-.List of parameters
-|===
-|Parameter name |Format |Example
-
-| Name
-| n/NAME
-| n/Lewis
-
-| Phone number
-| ep/PHONE
-| ep/96549950
-
-| Email address
-| ee/EMAIL
-| ee/lewis@hotmail.com
-
-| Address
-| ea/ADDRESS
-| ea/Blk 26, Tiong Bahru Rd #19-22, s(190026)
-|===
+* You are able to edit the following fields for this command: -
+** Name: n/NAME
+** Address: a/ADDRESS
+** Phone: p/PHONE_NUMBER
+** Department: d/DEPARTMENT
+** Tag(s): t/TAG1 t/TAG2 ...
 ****
 
 Examples:
 
-* `edit n/John Doe ic/s1234567h pass/NeUeR2018 ep/91234567 ee/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit n/John Doe2 ic/s1234567h pass/NeUeR2018 en/John Doe` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 2 p/91234567 e/johndoe@example.com` +
+Set the second person listed in the address book to the aforementioned email and phone number, and also clears tags if any. +
+* `edit 3 t/friend t/lecturer n/John Doe` +
+Changes the name of the third person in the address book to by John Doe; clears all tag and sets the two aforementioned tags. +
 
 === Locating persons by name: `find`
 
@@ -146,12 +142,61 @@ Returns `john` and `John Doe`
 Returns any person having names `Betsy`, `Tim`, or `John`
 ====
 
-=== Sort address book contacts: sort
-Shows the sorted list of the employees in the address book. +
-Format: `sort`
+=== Sort address book contacts: `sort`
+Shows the sorted list of the employees or departments in the address book.
+The list can be sorted in ascending or descending order. +
+Format: `sort FIELD ORDER`
 
+[NOTE]
+====
+This operation only supports the following fields and orders
+
+* `FIELD`: `name` and `department`
+
+* `ORDER`: `asc` and `desc`
+====
+
+Examples:
+
+* `sort name asc`
+====
+Sorts the employee names in the list in ascending order
+====
+* `sort department desc`
+====
+Sorts the department names in the list in descending order
+====
+
+=== Filtering department : `filterdepartment`
+Filter departments and list out the employees who are in the department +
+Format: `filterdepartment KEYWORD [MORE KEYWORDS]` +
+Alias: `fd`
+
+[NOTE]
+====
+* The keyword `Management` will not be accepted to prevent listing of all departments
+====
+
+* The search is case insensitive. e.g. `junior` will match employees in `Junior Management`
+* Only full words will be matched. e.g. `junio` will not match `Junior Management`
+* Filtering of more than one department will list out the employees in the departments.
+
+Examples:
+
+* `filterdepartment junior`
+====
+Returns a list of employees who are in `Junior Management`.
+====
+* `filter department junior senior`
+====
+Returns a list of employees who are in `Junior Management` and `Senior Management`.
+====
 
 === Deleting a person : `delete`
+[NOTE]
+====
+This operation requires administrator priviledge to perform.
+====
 
 Deletes the specified person from the address book. +
 Format: `delete INDEX [MORE_INDEX]...`
@@ -164,7 +209,7 @@ Format: `delete INDEX [MORE_INDEX]...`
 
 Examples:
 
-* `delete 1'
+* `delete 1`
 ====
 Deletes the employee with ID 1 in the address book.
 ====
@@ -226,7 +271,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete 1` command) +
 
-////
+
 === Redoing the previously undone command : `redo`
 
 Reverses the most recent `undo` command. +
@@ -249,8 +294,9 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
-////
 
+//Reason for block comment: Not implemented yet.
+////
 === Setting password: `setpass`
 Set password for employee on the address book. +
 Format: `setpass n/NAME ic/s1234567h sp/PASSWORD` +
@@ -262,11 +308,19 @@ Format: `setpass n/NAME ic/s1234567h sp/PASSWORD` +
 ====
 Sets PaS88of as a password for John Doe.
 ====
+////
 
-=== Switch to superuser: `superuser`
-Switch to superuser profile to use ‘superuser’ commands +
-Format: `superuser n/NAME ic/s1234567h pass/PASSWORD` +
-Example: `superuser n/John Doe ic/s1234567h pass/888888`
+=== Login to the application: `login`
+Logs in to the application using a registered NRIC and password. +
+Format: `login ic/NRIC pwd/PASSWORD` +
+Example: `login ic/T1234567U pwd/NeUeR2018`
+
+=== Checks the login status of the application: `checkloginstatus`
+Prints whether this application is logged in. +
+Also prints the logged in NRIC if logged in.
+
+=== Logout of the application: `logout`
+Logs out of the application, allowing for other users to log in again.
 
 
 === Check in/out working hours: `check`
@@ -309,7 +363,11 @@ Example: `applyoff n/John Doe ic/s123457h pass/NeUeR2018 date/080818` +
 Apply off day for John Doe on the 8th of August 2018 (DDMMYY).
 ====
 
-=== [SUPERUSER] Approve/Reject off request: `request`
+=== Approve/Reject off request: `request`
+[NOTE]
+====
+This operation requires a priority level of MANAGER to execute.
+====
 Approve or reject off day request applied by employees.
 Format: request [ic/NRIC] [mode/APPROVE/REJECT (INDEX)]
 ****
@@ -333,23 +391,24 @@ List all off day request by the employee.
 Approve the 3rd request made by the employee.
 ====
 
-=== Change priority level of employee: `priority`
-Change priority level of employee. +
+=== Change priority level of employee: `setplvl`
+[NOTE]
+====
+* This operations requires administrator priviledge to perform.
+* Refer to the Priority level section in Appendix A for the appropriate input value.
+====
+Sets the priority level of an employee. +
 Format: `priority ic/NRIC superuser/LEVEL` +
-====
-•	Command only available for superuser level 3 and above.
-•	LEVEL field must be integers 1, 2, 3.
-====
 Example: `priority ic/s1234567a superuser/2`
 
 === Restrict access to BankAB : `restrict`
+[NOTE]
+====
+This operation requires those with priviledge of `I.T. Unit` to perform.
+====
 Restrict access to BankAB for maintenance to all employees except superusers level 4 (Technicians).
 Anyone below superuser level 4 priority will not be able to log into the application. +
 Format: `restrict`
-====
-Command only available for superuser level 4.
-====
-
 
 === Exiting the program : `exit`
 
@@ -379,14 +438,75 @@ _{explain how the user can enable/disable data encryption}_
 •	*List schedule*: `schedule n/NAME ic/NRIC`
 •	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
 •	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
-•	*Edit particulars*: `edit n/NAME ic/NRIC pass/PASSWORD [en/NAME] [ep/PHONE] [ee/EMAIL] [ea/ADDRESS]....`
-•	*Add employee*: `add n/NAME ic/s1234567h p/PHONE NUMBER e/EMAIL a/ADDRESS`
-•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
+•	*Edit particulars*: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
+•	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
+•	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS
+[plvl/PRIORITY_LEVEL] [t/TAGS]...`
+//•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
-•	*Switch to superuser*: `superuser n/NAME ic/s1234567h pass/PASSWORD`
 •	*Approve/Reject off request*: `request ic/s1234567a mode/approve (3)`
-•	*Sort address book contacts*: `sort`
+•	*Sort address book contacts*: `sort name asc`
+•	*Filter departments*: `filterdepartment junior`
 •	*Deleting employee*: `delete INDEX [MORE_INDEX]`
-•	*Change priority level of employee*: `priority ic/NRIC superuser/LEVEL`
-•	*Restrict access to BankAB*: `restrict`
+•	*Change priority level of employee*: `setplvl ic/NRIC plvl//LEVEL`
+//•	*Restrict access to BankAB*: `restrict`
 
+== Appendix A: List of prefixes in the application
+.List of prefixes
+|===
+|Parameter name |Prefix |Constraints |Example
+
+| Name
+| n/NAME
+| Name must be alphabetical
+| n/Lewis Hamilton
+
+| NRIC Number
+| ic/NRIC
+| NRIC should start with a character [S, T, F, G], followed by a seven-digit number, and ending with a upper-case
+alphabet.
+| ic/S9203948E
+
+| Password
+| pwd/PASSWORD
+| Password should be alphanumeric and should contain at least five characters
+| pwd/NeUeR2018
+
+| Phone
+| p/PHONE_NUMBER
+| Phone numbers should contain only numbers, and should have at least three digits.
+| p/81667800
+
+| Email
+| e/EMAIL_ADDRESS
+| Emails should be of the format local-part@domain, and also satisfy the following requirements: - +
+    1) "local-part" should contain only alphanumeric characters and an underscore '_' +
+    2) "domain" can consist of alphanumeric characters, a period, or hyphen, but should start and end with only
+    alphanumeric characters.
+| e/jarvin@eltech.com
+
+| Department
+| d/DEPARTMENT
+| Department should contain alphabetic characters and spaces, and it should not be blank.
+Department names should start with a name, and ends with 'Management'.
+| d/Junior Management
+
+| Address
+| a/ADDRESS
+| N/A
+| a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
+
+| Priority Level
+| plvl/PRIORITY_LEVEL
+| Priority Level should be a number respective to the following classification: - +
+[0] I.T. Unit +
+[1] Administrator +
+[2] Manager +
+[3] Basic
+| plvl/2
+
+| Tag(s)
+| t/TAG1 t/TAG2 ...
+| Tag names should be alphanumeric
+| t/Admin t/Boss t/OweMeMoney
+|===

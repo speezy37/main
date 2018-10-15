@@ -133,6 +133,11 @@ public class AddLeaveCommandTest {
         }
 
         @Override
+        public void sortEmployee(String field, String order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updatePerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
