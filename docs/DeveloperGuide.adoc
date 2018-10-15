@@ -342,7 +342,7 @@ public FilterDepartmentCommand parse(String args) throws ParseException {
 In the second phase, the command is being executed in `FilterDepartmentCommand`. The updateFilteredPersonList updates the filteredPersonList with the departments that matches the keywords use as the argument in `FilterDepartmentCommand`.
 The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandResult` object and returns it to the `LogicManager` and subsequently to the UI and display the filtered department employee's list.
 
-The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartment` command:
+The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
 
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
 
