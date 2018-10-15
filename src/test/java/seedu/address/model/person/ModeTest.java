@@ -27,5 +27,4 @@ public class ModeTest {
         Mode differentMode = new Mode("Bye");
         assertFalse(mode.equals(differentMode));
     }
-    
 }

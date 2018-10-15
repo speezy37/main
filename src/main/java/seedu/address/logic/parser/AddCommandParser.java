@@ -69,7 +69,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             priorityLevel = ParserUtil.parsePriorityLevel(argMultimap.getValue(PREFIX_PRIORITYLEVEL).get());
         }
 
-        Person person = new Person(name, nric, password, phone, email, department, priorityLevel, address, mode, tagList);
+        Person person = new Person(name, nric, password, phone, email,
+            department, priorityLevel, address, mode, tagList);
 
         return new AddCommand(person);
     }

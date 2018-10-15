@@ -42,5 +42,4 @@ public class CheckCommandParserTest {
         // no name
         assertParseFailure(parser, CheckCommand.COMMAND_WORD + " " + VALID_PASSWORD_AMY + nonEmptyMode, expectedMessage);
     }
-
 }

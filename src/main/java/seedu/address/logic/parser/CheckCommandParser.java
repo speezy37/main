@@ -26,7 +26,8 @@ public class CheckCommandParser implements Parser<CheckCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_MODE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_MODE) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_MODE) ||
+            !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));
         }
 

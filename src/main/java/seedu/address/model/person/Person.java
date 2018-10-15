@@ -74,9 +74,13 @@ public class Person {
         return department;
     }
 
-    public Address getAddress() { return address; }
+    public Address getAddress() {
+        return address;
+    }
 
-    public Mode getMode() { return mode; }
+    public Mode getMode() {
+        return mode;
+    }
 
     public PriorityLevel getPriorityLevel() {
         return priorityLevel;
