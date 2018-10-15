@@ -319,6 +319,34 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+=== FilterDepartment feature
+==== Implementation
+
+The `filterdepartment` is a command that filters out department to list a particular department employee's list.
+The `filterdepartment` mechanism is facilitated by the `FilterDepartmentCommandParser`, which parses input arguments and creates a new `FilterDepartmentCommand` object.
+The `FilterDepartmentCommandParser`, which implements the `Parser` interface, parses the arguments inputted in to the CLI, and checks if the user input conforms the expected format.
+
+Code snippet from `FilterDepartmentCommandParser.java` that shows the parsing of arguments and checking for invalid arguments:
+
+[source, java]
+----
+public FilterDepartmentCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        trimmedArgs = trimmedArgs.toLowerCase();
+        if (trimmedArgs.isEmpty() || trimmedArgs.contains("management")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
+        }
+----
+
+In the second phase, the command is being executed in `FilterDepartmentCommand`. The updateFilteredPersonList updates the filteredPersonList with the departments that matches the keywords use as the argument in `FilterDepartmentCommand`.
+The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandResult` object and returns it to the `LogicManager` and subsequently to the UI and display the filtered department employee's list.
+
+The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartment` command:
+
+image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
+
+
 // tag::dataencryption[]
 === [Proposed] Data Encryption
 
