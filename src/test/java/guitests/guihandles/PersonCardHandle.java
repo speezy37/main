@@ -2,13 +2,14 @@ package guitests.guihandles;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.google.common.collect.ImmutableMultiset;
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 import seedu.address.model.person.Person;
-
-import com.google.common.collect.ImmutableMultiset;
 
 /**
  * Provides a handle to a person card in the person list panel.
