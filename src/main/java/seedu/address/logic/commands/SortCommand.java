@@ -20,7 +20,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all employees in Bank Address Book "
             + "by name or department in ascending or descending order.\n"
-            + "Parameters: KEYWORD [FIELD] [ORDER]\n"
+            + "Parameters: FIELD ORDER\n"
             + "Example to sort by name in ascending order: " + COMMAND_WORD + " name " + BY_ASCENDING
             + "\nExample to sort department in descending order: " + COMMAND_WORD + " department " + BY_DESCENDING;
 
