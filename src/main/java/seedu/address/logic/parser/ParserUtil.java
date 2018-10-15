@@ -20,12 +20,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
-import seedu.address.model.prioritylevel.PriorityLevel;
-import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
 
 /**

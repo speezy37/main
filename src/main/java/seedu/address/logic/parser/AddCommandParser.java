@@ -25,9 +25,9 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,7 +71,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             priorityLevel = ParserUtil.parsePriorityLevel(argMultimap.getValue(PREFIX_PRIORITYLEVEL).get());
         }
 
-        Person person = new Person(name, nric, password, phone, email, department, priorityLevel, address, tagList, schedule);
+        Person person = new Person(name, nric, password, phone, email, department, priorityLevel,
+                address, tagList, schedule);
 
         return new AddCommand(person);
     }

@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.password.Password;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
