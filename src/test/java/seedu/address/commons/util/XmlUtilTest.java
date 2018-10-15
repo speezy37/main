@@ -43,6 +43,7 @@ public class XmlUtilTest {
     private static final String VALID_PHONE = "9482424";
     private static final String VALID_EMAIL = "hans@example";
     private static final String VALID_DEPARTMENT = "Junior Management";
+    private static final String VALID_PRIORITYLEVEL = "0";
     private static final String VALID_ADDRESS = "4th street";
     private static final List<XmlAdaptedTag> VALID_TAGS =
             Collections.singletonList(new XmlAdaptedTag("friends"));
@@ -88,7 +89,7 @@ public class XmlUtilTest {
         XmlAdaptedPerson actualPerson = XmlUtil.getDataFromFile(
                 MISSING_PERSON_FIELD_FILE, XmlAdaptedPersonWithRootElement.class);
         XmlAdaptedPerson expectedPerson = new XmlAdaptedPerson(
-                null, VALID_NRIC, VALID_PASSWORD, VALID_PHONE, VALID_EMAIL, VALID_DEPARTMENT,
+                null, VALID_NRIC, VALID_PASSWORD, VALID_PHONE, VALID_EMAIL, VALID_DEPARTMENT, VALID_PRIORITYLEVEL,
                 VALID_ADDRESS, VALID_TAGS, VALID_SCHEDULE);
         assertEquals(expectedPerson, actualPerson);
     }
@@ -99,7 +100,7 @@ public class XmlUtilTest {
                 INVALID_PERSON_FIELD_FILE, XmlAdaptedPersonWithRootElement.class);
         XmlAdaptedPerson expectedPerson = new XmlAdaptedPerson(
                 VALID_NAME, VALID_NRIC, VALID_PASSWORD, INVALID_PHONE, VALID_EMAIL, VALID_DEPARTMENT,
-                VALID_ADDRESS, VALID_TAGS, VALID_SCHEDULE);
+                VALID_PRIORITYLEVEL, VALID_ADDRESS, VALID_TAGS, VALID_SCHEDULE);
         assertEquals(expectedPerson, actualPerson);
     }
 
@@ -109,7 +110,7 @@ public class XmlUtilTest {
                 VALID_PERSON_FILE, XmlAdaptedPersonWithRootElement.class);
         XmlAdaptedPerson expectedPerson = new XmlAdaptedPerson(
                 VALID_NAME, VALID_NRIC, VALID_PASSWORD, VALID_PHONE, VALID_EMAIL, VALID_DEPARTMENT,
-                VALID_ADDRESS, VALID_TAGS, VALID_SCHEDULE);
+                VALID_PRIORITYLEVEL, VALID_ADDRESS, VALID_TAGS, VALID_SCHEDULE);
         assertEquals(expectedPerson, actualPerson);
     }
 

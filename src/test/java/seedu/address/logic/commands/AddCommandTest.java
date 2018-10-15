@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -22,7 +24,10 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLeaveList;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.PersonBuilder;
+import systemtests.SessionHelper;
 
 public class AddCommandTest {
 
@@ -33,10 +38,29 @@ public class AddCommandTest {
 
     private CommandHistory commandHistory = new CommandHistory();
 
+    @Before
+    public void setUp() {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+    }
+
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddCommand(null);
+    }
+
+    @Test
+    public void execute_insufficientPriorityLevel_throwsCommandException() throws CommandException {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.BASIC.getPriorityLevelCode());
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+
+
+        thrown.expect(CommandException.class);
+        thrown.expectMessage(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL, PriorityLevelEnum.ADMINISTRATOR));
+        addCommand.execute(modelStub, commandHistory);
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
     }
 
     @Test
@@ -86,6 +110,11 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
+    @After
+    public void tearDown() {
+        SessionHelper.logoutOfSession();
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -132,6 +161,11 @@ public class AddCommandTest {
 
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortEmployee(String field, String order) {
             throw new AssertionError("This method should not be called.");
         }
 

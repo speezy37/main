@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -39,8 +41,11 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_DEPARTMENT_AMY = "Junior Management";
-    public static final String VALID_DEPARTMENT_BOB = "Junior Management";
+    public static final String VALID_DEPARTMENT_AMY = "Top Management";
+    public static final String VALID_DEPARTMENT_BOB = "Top Management";
+    public static final int VALID_PRIORITYLEVEL_AMY = PriorityLevelEnum.MANAGER.getPriorityLevelCode();
+    public static final int VALID_PRIORITYLEVEL_BOB = PriorityLevelEnum.MANAGER.getPriorityLevelCode();
+
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -58,6 +63,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String DEPARTMENT_DESC_AMY = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_AMY;
     public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
+    public static final String PRIORITYLEVEL_DESC_AMY = " " + PREFIX_PRIORITYLEVEL + VALID_PRIORITYLEVEL_AMY;
+    public static final String PRIORITYLEVEL_DESC_BOB = " " + PREFIX_PRIORITYLEVEL + VALID_PRIORITYLEVEL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -71,6 +78,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PASSWORD_DESC = " " + PREFIX_PASSWORD + "A1e"; // Too short
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect prefix
+    public static final String INVALID_PRIORITYLEVEL_DESC = " " + PREFIX_PRIORITYLEVEL + "9999.52"; //Not an integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.password.Password;
 
+//@@author jylee-git
 /**
  * Parses input arguments and creates a new LoginCommand object,
  */

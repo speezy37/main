@@ -32,6 +32,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
@@ -45,10 +46,18 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditCommandSystemTest extends AddressBookSystemTest {
+
+    @Override
+    @Before
+    public void setUp() {
+        super.setUp();
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+    }
 
     @Test
     public void edit() {
@@ -64,7 +73,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         Index index = INDEX_FIRST_PERSON;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
                 + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + TAG_DESC_HUSBAND + " ";
-        Person editedPerson = new PersonBuilder(BOB).withNric(ALICE.getNric().toString())
+        Person editedPerson = new PersonBuilder(BOB).withNric(ALICE.getNric().toString()).withPriorityLevel(0)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertCommandSuccess(command, index, editedPerson);
 
@@ -81,7 +90,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a person with new values same as existing values -> edited */
-        Person editedBob = new PersonBuilder(BOB).withNric(ALICE.getNric().toString())
+        Person editedBob = new PersonBuilder(BOB).withNric(ALICE.getNric().toString()).withPriorityLevel(0)
                 .withTags(VALID_TAG_HUSBAND).build();
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
@@ -94,7 +103,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertNotEquals(getModel().getFilteredPersonList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        editedPerson = new PersonBuilder(BOB).withName(VALID_NAME_AMY).withNric(BENSON.getNric().toString()).build();
+        editedPerson = new PersonBuilder(BOB).withName(VALID_NAME_AMY).withNric(BENSON.getNric().toString())
+                .withPriorityLevel(0).build();
         assertCommandSuccess(command, index, editedPerson);
 
         /* Case: edit a person with new values same as another person's values but with different phone and email
@@ -103,7 +113,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_SECOND_PERSON;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        editedPerson = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+        editedPerson = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY).withPriorityLevel(0)
                 .withNric(BENSON.getNric().toString()).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedPerson);
 
@@ -141,7 +151,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         showAllPersons();
         index = INDEX_FIRST_PERSON;
         selectPerson(index);
-        Person editedAlice = new PersonBuilder(AMY).withNric(ALICE.getNric().toString())
+        Person editedAlice = new PersonBuilder(AMY).withNric(ALICE.getNric().toString()).withPriorityLevel(0)
                 .withPassword(ALICE.getPassword().toString()).build();
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + TAG_DESC_FRIEND;

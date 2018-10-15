@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -80,6 +81,6 @@ public class SetScheduleCommand extends Command {
 
         return new Person(updatedName, personToEdit.getNric(),
                 personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
-                updatedAddress, updatedTags, updatedSchedule);
+                personToEdit.getPriorityLevel(), updatedAddress, updatedTags, updatedSchedule);
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.model.person.password;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author jylee-git
 /**
  * Represents the password tagged to a NRIC that is used to login.
  */

@@ -21,4 +21,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME_START = new Prefix("ts/");
     public static final Prefix PREFIX_TIME_END = new Prefix("te/");
     public static final Prefix PREFIX_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_PRIORITYLEVEL = new Prefix("plvl/");
 }

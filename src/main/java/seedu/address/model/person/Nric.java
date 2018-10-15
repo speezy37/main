@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author jylee-git
 /**
  * Represents the unique identity of a person in the address book.
  */
 public class Nric {
     public static final String MESSAGE_NRIC_CONSTRAINTS =
-            "NRIC should contain a prefix containing 'S', 'T', 'F' or 'G', followed by a seven-digit number,"
-                    + " followed by an alphabetical suffix; it should not be blank.";
+            "NRIC should contain a prefix containing capital 'S', 'T', 'F' or 'G', followed by a seven-digit number,"
+                    + " followed by a capital suffix; it should not be blank.";
     /*
      * Prefix should be a S, T, F or G, followed by a 7-digit number, followed by an alphabetical suffix.
      */
