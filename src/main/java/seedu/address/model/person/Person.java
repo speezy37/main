@@ -1,15 +1,16 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.password.Password;
-import seedu.address.model.prioritylevel.PriorityLevel;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.
@@ -73,9 +74,7 @@ public class Person {
         return department;
     }
 
-    public Address getAddress() {
-        return address;
-    }
+    public Address getAddress() { return address; }
 
     public Mode getMode() { return mode; }
 

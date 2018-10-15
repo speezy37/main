@@ -1,5 +1,13 @@
 package seedu.address.storage;
 
+import javax.xml.bind.annotation.XmlElement;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
@@ -13,14 +21,6 @@ import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.tag.Tag;
-
-import javax.xml.bind.annotation.XmlElement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * JAXB-friendly version of the Person.

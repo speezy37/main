@@ -1,9 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.Test;
-import seedu.address.logic.commands.CheckCommand;
-import seedu.address.model.person.Mode;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_AMY;
@@ -12,6 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.Test;
+import seedu.address.logic.commands.CheckCommand;
+import seedu.address.model.person.Mode;
 
 public class CheckCommandParserTest {
     private CheckCommandParser parser = new CheckCommandParser();
@@ -42,4 +42,5 @@ public class CheckCommandParserTest {
         // no name
         assertParseFailure(parser, CheckCommand.COMMAND_WORD + " " + VALID_PASSWORD_AMY + nonEmptyMode, expectedMessage);
     }
+
 }

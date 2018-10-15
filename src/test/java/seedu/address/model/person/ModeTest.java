@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 public class ModeTest {
     @Test
@@ -27,4 +27,5 @@ public class ModeTest {
         Mode differentMode = new Mode("Bye");
         assertFalse(mode.equals(differentMode));
     }
+    
 }
