@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.Test;
+
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.model.person.Mode;
 
@@ -40,6 +41,7 @@ public class CheckCommandParserTest {
         assertParseFailure(parser, CheckCommand.COMMAND_WORD, expectedMessage);
 
         // no name
-        assertParseFailure(parser, CheckCommand.COMMAND_WORD + " " + VALID_PASSWORD_AMY + nonEmptyMode, expectedMessage);
+        assertParseFailure(parser, CheckCommand.COMMAND_WORD + " "
+            + VALID_PASSWORD_AMY + nonEmptyMode, expectedMessage);
     }
 }
