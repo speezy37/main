@@ -24,7 +24,7 @@ public class ModeTest {
         assertFalse(mode.equals(null));
 
         // different remark -> returns false
-        Mode differentMode = new Mode("Bye");
+        Mode differentMode = new Mode("out");
         assertFalse(mode.equals(differentMode));
     }
 }

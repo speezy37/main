@@ -16,20 +16,21 @@ import seedu.address.model.person.Mode;
 
 public class CheckCommandParserTest {
     private CheckCommandParser parser = new CheckCommandParser();
-    private final String nonEmptyMode = "in";
+    private final String inMode = "in";
+    private final String outMode = "out";
 
     @Test
-    public void parse_indexSpecified_success() {
-        // have mode
-        String userInput = PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
-                + VALID_PASSWORD_AMY + " " + PREFIX_MODE + nonEmptyMode;
-        CheckCommand expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(nonEmptyMode));
+    public void parse_modeSpecified_success() {
+        // in mode
+        String userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
+                + VALID_PASSWORD_AMY + " " + PREFIX_MODE + inMode;
+        CheckCommand expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(inMode));
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // no mode
-        userInput = PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
-                + VALID_PASSWORD_AMY + " " + PREFIX_MODE;
-        expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(""));
+        // out mode
+        userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
+                + VALID_PASSWORD_AMY + " " + PREFIX_MODE + outMode;
+        expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(outMode));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -42,6 +43,6 @@ public class CheckCommandParserTest {
 
         // no name
         assertParseFailure(parser, CheckCommand.COMMAND_WORD + " "
-            + VALID_PASSWORD_AMY + nonEmptyMode, expectedMessage);
+            + VALID_PASSWORD_AMY + inMode, expectedMessage);
     }
 }

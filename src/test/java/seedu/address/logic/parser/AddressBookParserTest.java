@@ -7,7 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -172,7 +171,7 @@ public class AddressBookParserTest {
         final Mode mode = new Mode("in");
 
         CheckCommand command = (CheckCommand) parser.parseCommand(CheckCommand.COMMAND_WORD + " "
-            + PREFIX_NAME + VALID_NRIC_AMY + " " + PREFIX_PASSWORD + VALID_PASSWORD_AMY
+            + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD + VALID_PASSWORD_AMY
             + " " + PREFIX_MODE + mode.value);
         assertEquals(new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, mode), command);
     }

@@ -68,6 +68,7 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         priorityLevel = personToCopy.getPriorityLevel();
         address = personToCopy.getAddress();
+        mode = personToCopy.getMode();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
