@@ -405,10 +405,41 @@ public FilterDepartmentCommand parse(String args) throws ParseException {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
         }
+        String[] departmentKeywords = trimmedArgs.split("\\s+");
+
+        return new FilterDepartmentCommand(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
+}
 ----
 
 In the second phase, the command is being executed in `FilterDepartmentCommand`. The updateFilteredPersonList updates the filteredPersonList with the departments that matches the keywords use as the argument in `FilterDepartmentCommand`.
 The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandResult` object and returns it to the `LogicManager` and subsequently to the UI and display the filtered department employee's list.
+
+Code snippet from `FilterDepartmentCommand.java`:
+
+[source, java]
+----
+public class FilterDepartmentCommand extends Command {
+
+    ...
+    ...
+
+    private final DepartmentContainsKeywordsPredicate predicate;
+
+    public FilterDepartmentCommand(DepartmentContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) {
+        requireNonNull(model);
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+    ...
+    ...
+}
+----
 
 The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
 
