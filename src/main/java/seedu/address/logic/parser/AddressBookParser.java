@@ -123,7 +123,7 @@ public class AddressBookParser {
             return new CheckLoginStatusCommand();
 
         case CheckCommand.COMMAND_WORD:
-            return new CheckCommand();
+            return new CheckCommandParser().parse(arguments);
 
         case DeleteLeaveCommand.COMMAND_WORD:
             return new DeleteLeaveCommandParser().parse(arguments);

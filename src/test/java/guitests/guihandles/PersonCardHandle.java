@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -20,6 +21,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String EMAIL_FIELD_ID = "#email";
     private static final String DEPARTMENT_FIELD_ID = "#department";
+    private static final String MODE_FIELD_ID = "#mode";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
@@ -28,6 +30,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private final Label phoneLabel;
     private final Label emailLabel;
     private final Label departmentLabel;
+    private final Label modeLabel;
     private final List<Label> tagLabels;
 
     public PersonCardHandle(Node cardNode) {
@@ -39,6 +42,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         phoneLabel = getChildNode(PHONE_FIELD_ID);
         emailLabel = getChildNode(EMAIL_FIELD_ID);
         departmentLabel = getChildNode(DEPARTMENT_FIELD_ID);
+        modeLabel = getChildNode(MODE_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         tagLabels = tagsContainer
@@ -70,6 +74,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
 
     public String getDepartment() {
         return departmentLabel.getText();
+    }
+
+    public String getMode() {
+        return modeLabel.getText();
     }
 
     public List<String> getTags() {
