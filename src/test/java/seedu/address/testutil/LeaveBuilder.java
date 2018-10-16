@@ -9,7 +9,7 @@ import seedu.address.model.leave.Leave;
  * A utility class to help with building Leave objects.
  */
 public class LeaveBuilder {
-    public static final String DEFAULT_NRIC = "S1111111A";
+    public static final String DEFAULT_NRIC = "S1111111E";
     public static final String DEFAULT_DATE = "30/12/2018";
     public static final String DEFAULT_APPROVAL = "PENDING";
 

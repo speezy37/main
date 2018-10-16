@@ -19,6 +19,7 @@ public class SessionManager {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
     private static Nric loggedInNric = null;
+    private static String employeeNric = null;
     private static PriorityLevel loggedInPriorityLevel = null;
 
     /**
@@ -50,6 +51,10 @@ public class SessionManager {
             throw new CommandException(NOT_LOGGED_IN);
         }
         return loggedInNric;
+    }
+    public static String getLoggedInEmployeeNric() {
+        employeeNric = loggedInNric.nric;
+        return employeeNric;
     }
 
     /**
