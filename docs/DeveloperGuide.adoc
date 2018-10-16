@@ -319,6 +319,74 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+// tag::addleave[]
+=== Add Leave command
+The `leave` is a command that allows the user to request leave applications. This command is only available after the user has logged in successfully.
+
+The format of the command is: `leave date/DATE`
+
+It takes in the parameter DATE in a valid format (DD/MM/YYYY).
+
+==== Implementation
+The implementation is divided in two phases.
+
+In the first phase, parsing of the input arguments is handled by `AddLeaveParser`, which will create a new object `AddLeaveCommand`.
+`AddLeaveParser` which implements `Parser` interface, parses the inputted arguments from the CLI and also checks if it conforms the expected input format.
+
+Code snippet from `AddLeaveParser` that shows the above:
+[source, java]
+----
+ public AddLeaveCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_DATE);
+        String employeeNric = "S1234591A";
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
+        }
+
+        if (SessionManager.isLoggedIn()) {
+            employeeNric = SessionManager.getLoggedInEmployeeNric();
+        }
+
+        EmployeeId employeeId = ParserUtil.parseEmployeeId(employeeNric);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Approval status = ParserUtil.parseApproval("PENDING");
+
+        Leave leave = new Leave (employeeId, date, status);
+
+        return new AddLeaveCommand(leave);
+    }
+----
+In the second phase, `AddLeaveCommand` is being executed. The `AddLeaveCommand`
+adds a `Leave` to the `LeaveList`.
+If the leave being added already exists in the LeaveList or when user is not logged in, executing the `leave`
+command raises a `DuplicateLeaveException` or `UserNotLoggedInException`:
+[source, java]
+----
+public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        if (isLogin && !SessionManager.isLoggedIn()) {
+            throw new CommandException(STATUS_NOT_LOGGED_IN);
+        } else if (model.hasLeave(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
+        } else {
+            model.addLeave(toAdd);
+            model.commitLeaveList();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+    }
+----
+
+The result of `AddLeaveCommand` execution is encapsulated as a `CommandResult` object which is passed back to the UI
+and display the added leave application in the leave list.
+
+The sequence diagram below demonstrates the interaction within the `Logic` component of `AddLeaveCommand`:
+
+image::AddLeaveCommandSequenceDiagram.png[width="800"]
+// end::addleave[]
+
+// tag::filterdepartment[]
 === FilterDepartment feature
 ==== Implementation
 
@@ -345,7 +413,7 @@ The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandR
 The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
 
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
-
+// end::filterdepartment[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption

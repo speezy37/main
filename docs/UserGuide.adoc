@@ -187,7 +187,7 @@ Examples:
 ====
 Returns a list of employees who are in `Junior Management`.
 ====
-* `filter department junior senior`
+* `filterdepartment junior senior`
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
 ====
@@ -233,6 +233,75 @@ Selects the 2nd person in the address book.
 * `find Betsy` +
 `select 1` +
 Selects the 1st person in the results of the `find` command.
+
+=== Add Leave application : `leave`
+
+Add leave application of the user for approval.
+
+Format: `leave date/DATE`
+
+[NOTE]
+====
+* Requires the user to log in before using the command.
+* DATE must be in the format DD/MM/YYYY
+====
+
+Example: `leave date/20/03/2019`
+====
+Request leave application on 20/03/2019.
+====
+
+=== List Leave application : `listleave`
+
+List out all leave application in the leave list.
+
+Format: `listleave`
+
+=== Filter Leave application : `filterleave`
+
+Filter leave applications based on NRIC.
+
+Format: `filterleave NRIC`
+
+Alias: `fl NRIC`
+
+[NOTE]
+====
+* Filter is case insensative eg. `s1234567a` matches `S1234567A`
+====
+
+Example:
+`fl S1213452A`
+
+====
+* List all leave application requested by the user with NRIC, 'S1213452A'.
+====
+
+=== Delete Leave application : `deleteleave`
+
+Delete the specified leave from leave list.
+
+[NOTE]
+====
+* Requires the user to log in before using the command.
+* User can only delete leave application he/she requested.
+* To delete other user's application, requires adminstrator priviledge to perform.
+====
+
+Format: `deleteleave INDEX`
+
+****
+* Deletes the leave at the specified `INDEX`.
+* The index refers to the index number shown in the displayed leave list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+`deleteleave 2`
+
+****
+* Deletes the leave applicarion with ID 2 in the leave list.
+****
 
 === Listing entered commands : `history`
 
@@ -448,7 +517,11 @@ _{explain how the user can enable/disable data encryption}_
 •	*Sort address book contacts*: `sort name asc`
 •	*Filter departments*: `filterdepartment junior`
 •	*Deleting employee*: `delete INDEX [MORE_INDEX]`
-•	*Change priority level of employee*: `setplvl ic/NRIC plvl//LEVEL`
+•	*Change priority level of employee*: `setplvl ic/NRIC plvl/LEVEL`
+•	*Add leave application*: `leave date/DATE`
+•	*List all leave applications*: `listleave`
+•	*Filter leave applications*: `filterleave NRIC`
+•	*Delete leave application*: `deleteleave INDEX`
 //•	*Restrict access to BankAB*: `restrict`
 
 == Appendix A: List of prefixes in the application
