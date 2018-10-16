@@ -274,7 +274,7 @@ Example:
 `fl S1213452A`
 
 ====
-* list all leave application requested by the user with NRIC, 'S1213452A'.
+* List all leave application requested by the user with NRIC, 'S1213452A'.
 ====
 
 === Delete Leave application : `deleteleave`
@@ -297,7 +297,6 @@ Format: `deleteleave INDEX`
 ****
 
 Example:
-
 `deleteleave 2`
 
 ****
