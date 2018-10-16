@@ -115,7 +115,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, personToEdit.getNric(),
                 personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
-                personToEdit.getPriorityLevel(), updatedAddress, updateMode, updatedTags, updatedSchedule);
+                personToEdit.getPriorityLevel(), updatedAddress, updatedMode, updatedTags, updatedSchedule);
     }
 
     @Override
