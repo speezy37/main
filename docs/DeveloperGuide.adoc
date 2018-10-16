@@ -384,7 +384,9 @@ and display the added leave application in the leave list.
 The sequence diagram below demonstrates the interaction within the `Logic` component of `AddLeaveCommand`:
 
 image::AddLeaveCommandSequenceDiagram.png[width="800"]
+// end::addleave[]
 
+// tag::filterdepartment[]
 === FilterDepartment feature
 ==== Implementation
 
@@ -411,6 +413,7 @@ The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandR
 The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
 
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
+// end::filterdepartment[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
