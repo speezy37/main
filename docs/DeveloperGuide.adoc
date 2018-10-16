@@ -385,8 +385,32 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 
 image::AddLeaveCommandSequenceDiagram.png[width="800"]
 
+=== FilterDepartment feature
+==== Implementation
 
+The `filterdepartment` is a command that filters out department to list a particular department employee's list.
+The `filterdepartment` mechanism is facilitated by the `FilterDepartmentCommandParser`, which parses input arguments and creates a new `FilterDepartmentCommand` object.
+The `FilterDepartmentCommandParser`, which implements the `Parser` interface, parses the arguments inputted in to the CLI, and checks if the user input conforms the expected format.
 
+Code snippet from `FilterDepartmentCommandParser.java` that shows the parsing of arguments and checking for invalid arguments:
+
+[source, java]
+----
+public FilterDepartmentCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        trimmedArgs = trimmedArgs.toLowerCase();
+        if (trimmedArgs.isEmpty() || trimmedArgs.contains("management")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
+        }
+----
+
+In the second phase, the command is being executed in `FilterDepartmentCommand`. The updateFilteredPersonList updates the filteredPersonList with the departments that matches the keywords use as the argument in `FilterDepartmentCommand`.
+The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandResult` object and returns it to the `LogicManager` and subsequently to the UI and display the filtered department employee's list.
+
+The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
+
+image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
@@ -900,21 +924,21 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |user	|Access my payroll	|Calculate my incoming pay according to the number of hours I have worked easily
-|`* * *` |user	|Check my schedule	|Know where I am deployed for the day
-|`* * *` |user	|Check my notifications via CLI	|View my notifications
+|`* * *` |User	|Access my payroll	|Calculate my incoming pay according to the number of hours I have worked easily
+|`* * *` |User	|Check my schedule	|Know where I am deployed for the day
+|`* * *` |User	|Check my notifications via CLI	|View my notifications
 |`* * *` |Elevated user	|Set employees’ access levels	|Ensure that employees have the appropriate level of access to classified items/areas
 |`* * *` |Elevated user	|Add/Delete/Edit employees into the database	|Ensure that the company manpower list is updated
 |`* * *` |Elevated user	|Set schedule for employee 	|Deploy employees to their designated location.
 |`* * *` |User	|Edit my personal particulars	|Update them as required (Edit function)
 |`* * *` |Elevated user	|Access employee off-day requests	|Approve/Reject off for employees
 |`* * *` |User	|Search for a specific contact	|Obtain the particulars of the contact easily
-|`* * *` |Elevated user	|Sort contacts by department	|Allocate manpower accordingly
-|`* * *` |User	|Sort my address book by name/department	|Look for contacts that I want easily
-|`* * *` |User	|Filter and view my relevant colleague’s contact details	|Get in touch in them seamlessly
+|`* * *` |User	|List the manpower for the day	|Allocate my manpower accordingly
+|`* * *` |User	|Sort my address book by name and department	|Look for contacts that I want easily
+|`* * *` |User	|Filter out and view my relevant colleague’s contact details	|Spend less time searching for their contact details and contact them
 |`* * *` |User	|Set password to my address book	|Prevent unauthorized access to my address book
-|`* * *` |user	|access my remaining off days	|Apply for my off
-|`* * *` |user	|check in and out during my work days	|I will be able to view the number of hours I have worked for
+|`* * *` |User	|Access my remaining off days	|Apply for my off
+|`* * *` |User	|Check in and out during my work days	|I will be able to view the number of hours I have worked for
 |`* * *` |Elevated user	|Check my employees’ working hours	|Pay them accordingly
 |`* * *` |Administrator	|Restrict employee access to the address book application	|Perform maintenance or upgrades
 |`* *`	|User	|Check the staff’s direct superior	|Feedback to the particular superior
@@ -923,7 +947,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *`	|User	|Notified via email/sms	|Get the latest updates at the earliest possible time
 |`* *`	|User	|Upload profile picture	|I can be identified easily by others
 |`* *`	|User	|Use keyboard shortcuts	|Quickly navigate around the address book
-|`*	`|User	|Deploy available cleaners	|Get the place cleaned up as soon as possible.
+|`*`|User	|Deploy available cleaners	|Get the place cleaned up as soon as possible.
 |=======================================================================
 
 _{More to be added}_
