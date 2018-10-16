@@ -28,7 +28,7 @@ public class SampleDataUtil {
     public static final Mode DEFAULT_MODE = new Mode("out");
 
     public static Person[] getSamplePersons() {
-        return new Person[]{
+        return new Person[] {
             new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Department("Top Management"),
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
