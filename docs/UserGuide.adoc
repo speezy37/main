@@ -187,7 +187,7 @@ Examples:
 ====
 Returns a list of employees who are in `Junior Management`.
 ====
-* `filter department junior senior`
+* `filterdepartment junior senior`
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
 ====
@@ -304,9 +304,6 @@ Example:
 * Deletes the leave applicarion with ID 2 in the leave list.
 ****
 
-
-
-
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -314,7 +311,7 @@ Format: `history`
 
 [NOTE]
 ====
-* Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
+Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
 // tag::undoredo[]
@@ -521,7 +518,11 @@ _{explain how the user can enable/disable data encryption}_
 •	*Sort address book contacts*: `sort name asc`
 •	*Filter departments*: `filterdepartment junior`
 •	*Deleting employee*: `delete INDEX [MORE_INDEX]`
-•	*Change priority level of employee*: `setplvl ic/NRIC plvl//LEVEL`
+•	*Change priority level of employee*: `setplvl ic/NRIC plvl/LEVEL`
+•	*Add leave application*: `leave date/DATE`
+•	*List all leave applications*: `listleave`
+•	*Filter leave applications*: `filterleave NRIC`
+•	*Delete leave application*: `deleteleave INDEX`
 //•	*Restrict access to BankAB*: `restrict`
 
 == Appendix A: List of prefixes in the application
