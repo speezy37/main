@@ -78,14 +78,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20/03/18"; // '&' not allowed in names
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20/03/18"; //year must be in a format YYYY
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT + "Junior&"; // '&' not allowed
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PASSWORD_DESC = " " + PREFIX_PASSWORD + "A1e"; // Too short
-    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect prefix
+    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect NRIC
     public static final String INVALID_PRIORITYLEVEL_DESC = " " + PREFIX_PRIORITYLEVEL + "9999.52"; //Not an integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
