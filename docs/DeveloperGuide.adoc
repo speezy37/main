@@ -319,6 +319,32 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+// tag::checkinout[]
+=== Check in/out feature
+==== Current implementation
+
+The `checkCommand` is a command that allows employees to check in and out to work so that their working hours will be recorded according to the time they checked in/out and calculate their pay accordingly.
+
+1. The `checkCommand` mechanism is facilitated by the `AddressBookParser`, which parses the user input to identify the requested command and calls the particular command parser to deal with the input arguments.
+
+2. The `checkCommandParser`, which implements the `Parser` interface, parses the arguments inputted in to the CLI, and checks if the user input conforms the expected format.
+ Code snippet from `FilterDepartmentCommandParser.java` that shows the parsing of arguments and checking for invalid arguments:
+
+[source, java]
+----
+public FilterDepartmentCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        trimmedArgs = trimmedArgs.toLowerCase();
+        if (trimmedArgs.isEmpty() || trimmedArgs.contains("management")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
+        }
+----
+
+In the second phase, the command is being executed in `FilterDepartmentCommand`. The updateFilteredPersonList updates the filteredPersonList with the departments that matches the keywords use as the argument in `FilterDepartmentCommand`.
+The result of `FilterDepartmentCommand` execution is encapsulated as a `CommandResult` object and returns it to the `LogicManager` and subsequently to the UI and display the filtered department employee's list.
+// end::checkinout[]
+
 // tag::dataencryption[]
 === [Proposed] Data Encryption
 
