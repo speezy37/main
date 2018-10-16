@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.leave.Leave;
+import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -41,6 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_DATE_REQUEST3 = "01/10/2018";
+    public static final String VALID_NRIC_REQUEST3 = "S1234591A";
     public static final String VALID_DEPARTMENT_AMY = "Top Management";
     public static final String VALID_DEPARTMENT_BOB = "Top Management";
     public static final int VALID_PRIORITYLEVEL_AMY = PriorityLevelEnum.MANAGER.getPriorityLevelCode();
@@ -57,6 +62,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
+    public static final String NRIC_DESC_REQUEST3 = " " + PREFIX_NRIC + VALID_NRIC_REQUEST3;
+    public static final String DATE_DESC_REQUEST3 = " " + PREFIX_DATE + VALID_DATE_REQUEST3;
     public static final String PASSWORD_DESC_AMY = " " + PREFIX_PASSWORD + VALID_PASSWORD_AMY;
     public static final String PASSWORD_DESC_BOB = " " + PREFIX_PASSWORD + VALID_PASSWORD_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -73,13 +80,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20/03/18"; //year must be in a format YYYY
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT + "Junior&"; // '&' not allowed
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PASSWORD_DESC = " " + PREFIX_PASSWORD + "A1e"; // Too short
-    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect prefix
+    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect NRIC
     public static final String INVALID_PRIORITYLEVEL_DESC = " " + PREFIX_PRIORITYLEVEL + "9999.52"; //Not an integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -156,6 +164,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the leave at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showLeaveAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredLeaveList().size());
+
+        Leave leave = model.getFilteredLeaveList().get(targetIndex.getZeroBased());
+        final String[] splitName = leave.getEmployeeId().nric.split("\\s+");
+        model.updateFilteredLeaveList(new NricContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredLeaveList().size());
     }
 
     /**

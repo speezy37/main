@@ -24,13 +24,13 @@ public class XmlAdaptedLeave {
     private String status;
 
     /**
-     * Constructs an XmlAdaptedPerson.
+     * Constructs an XmlAdaptedLeave.
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedLeave() {}
 
     /**
-     * Constructs an {@code XmlAdaptedPerson} with the given person details.
+     * Constructs an {@code XmlAdaptedLeave} with the given person details.
      */
     public XmlAdaptedLeave(String nric, String date, String status) {
         this.nric = nric;
@@ -39,9 +39,9 @@ public class XmlAdaptedLeave {
     }
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Leave into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created XmlAdaptedPerson
+     * @param source future changes to this will not affect the created XmlAdaptedLeave
      */
     public XmlAdaptedLeave(Leave source) {
         nric = source.getEmployeeId().nric;
@@ -50,9 +50,9 @@ public class XmlAdaptedLeave {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Person object.
+     * Converts this jaxb-friendly adapted leave object into the model's Leave object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Leave
      */
 
     public Leave toModelType() throws IllegalValueException {
@@ -64,26 +64,26 @@ public class XmlAdaptedLeave {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EmployeeId.class.getSimpleName()));
         }
-        //  if (!nric.isValidNric(nric)) {
-        //    throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS);
-        //}
+        if (!EmployeeId.isValidEmployeeId(nric)) {
+            throw new IllegalValueException(EmployeeId.MESSAGE_NRIC_CONSTRAINTS);
+        }
         final EmployeeId modelEmployeeId = new EmployeeId(nric);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        // if (!Approval.isValidPhone(phone)) {
-        //throw new IllegalValueException(Phone.MESSAGE_PHONE_CONSTRAINTS);
-        //}
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_DATE_CONSTRAINTS);
+        }
         final Date modelDate = new Date(date);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Approval.class.getSimpleName()));
         }
-        // if (!Email.isValidEmail(email)) {
-        // throw new IllegalValueException(Email.MESSAGE_EMAIL_CONSTRAINTS);
-        // }
+        if (!Approval.isValidApproval(status)) {
+            throw new IllegalValueException(Approval.MESSAGE_APPROVAL_CONSTRAINTS);
+        }
         final Approval modelApproval = new Approval(status);
 
         // final Set<Tag> modelTags = new HashSet<>(personTags);

@@ -34,7 +34,7 @@ public class AddLeaveCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullLeave_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddLeaveCommand(null);
     }
@@ -43,9 +43,9 @@ public class AddLeaveCommandTest {
     public void execute_leaveAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingLeaveAdded modelStub = new ModelStubAcceptingLeaveAdded();
         Leave validLeave = new LeaveBuilder().build();
-
-        CommandResult commandResult = new AddLeaveCommand(validLeave).execute(modelStub, commandHistory);
-
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
+        addLeaveCommand.setIsLogin(false);
+        CommandResult commandResult = addLeaveCommand.execute(modelStub, commandHistory);
         assertEquals(String.format(AddLeaveCommand.MESSAGE_SUCCESS, validLeave), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validLeave), modelStub.leavesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
@@ -61,10 +61,9 @@ public class AddLeaveCommandTest {
         thrown.expectMessage(AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
         addLeaveCommand.execute(modelStub, commandHistory);
     }
-
     @Test
     public void equals() {
-        Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2012").build();
+        Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2018").build();
         Leave leave2 = new LeaveBuilder().withNric("S9513222E").withDate("12/04/2018").build();
         AddLeaveCommand addLeaveCommand1 = new AddLeaveCommand(leave1);
         AddLeaveCommand addLeaveCommand2 = new AddLeaveCommand(leave2);
@@ -133,7 +132,13 @@ public class AddLeaveCommandTest {
         }
 
         @Override
+        public void deleteLeave(Leave target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortEmployee(String field, String order) {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -148,7 +153,17 @@ public class AddLeaveCommandTest {
         }
 
         @Override
+        public ObservableList<Leave> getFilteredLeaveList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -181,10 +196,11 @@ public class AddLeaveCommandTest {
         public void commitLeaveList() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single leave.
      */
     private class ModelStubWithLeave extends ModelStub {
         private final Leave leave;
@@ -202,7 +218,7 @@ public class AddLeaveCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the leave being added.
      */
     private class ModelStubAcceptingLeaveAdded extends ModelStub {
         final ArrayList<Leave> leavesAdded = new ArrayList<>();

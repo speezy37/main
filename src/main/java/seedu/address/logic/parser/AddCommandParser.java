@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,7 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD, PREFIX_PRIORITYLEVEL);
+                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PASSWORD, PREFIX_PRIORITYLEVEL,
+                        PREFIX_SCHEDULE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_DEPARTMENT, PREFIX_PASSWORD) || !argMultimap.getPreamble().isEmpty()) {
@@ -58,6 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Mode mode = new Mode("out"); // add command does not allow adding modes straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
+        Set<Schedule> schedule = ParserUtil.parseSchedules(argMultimap.getAllValues(PREFIX_SCHEDULE));
 
         /**
          * Assign the lowest priority level as default if the prefix is missing.
@@ -70,7 +74,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Person person = new Person(name, nric, password, phone, email,
-            department, priorityLevel, address, mode, tagList);
+            department, priorityLevel, address, mode, tagList, schedule);
 
         return new AddCommand(person);
     }
@@ -82,5 +86,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

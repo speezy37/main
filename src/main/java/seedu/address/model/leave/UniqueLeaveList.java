@@ -67,6 +67,24 @@ public class UniqueLeaveList implements Iterable<Leave> {
         internalList2.set(index, editedRequest);
     }
 
+    public void setRequests(UniqueLeaveList replacement) {
+        requireNonNull(replacement);
+        internalList2.setAll(replacement.internalList2);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code leaves}.
+     * {@code leaves} must not contain duplicate leaves.
+     */
+    public void setRequests(List<Leave> leaves) {
+        requireAllNonNull(leaves);
+        if (!leavesAreUnique(leaves)) {
+            throw new DuplicateLeaveException();
+        }
+
+        internalList2.setAll(leaves);
+    }
+
     /**
      * Removes the equivalent leave from the list.
      * The leave must exist in the list.

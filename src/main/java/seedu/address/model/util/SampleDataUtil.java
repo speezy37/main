@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,32 +33,32 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"), new Department("Top Management"),
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"), DEFAULT_MODE,
-                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password")),
+                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"), new HashSet<>()),
             new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Department("Senior Management"),
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), DEFAULT_MODE,
-                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password")),
+                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password"), new HashSet<>()),
             new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
                 new Phone("93210283"), new Email("charlotte@example.com"), new Department("Middle Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), DEFAULT_MODE,
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), new HashSet<>()),
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), DEFAULT_MODE,
-                getTagSet("family")),
+                getTagSet("family"), new HashSet<>()),
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
                 new Phone("92492021"), new Email("irfan@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 47 Tampines Street 20, #17-35"), DEFAULT_MODE,
-                getTagSet("classmates")),
+                getTagSet("classmates"), new HashSet<>()),
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), DEFAULT_MODE,
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), new HashSet<>())
         };
     }
 
@@ -77,5 +78,4 @@ public class SampleDataUtil {
             .map(Tag::new)
             .collect(Collectors.toSet());
     }
-
 }

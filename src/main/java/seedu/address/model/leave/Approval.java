@@ -9,7 +9,9 @@ import static java.util.Objects.requireNonNull;
 public class Approval {
 
     public static final String MESSAGE_APPROVAL_CONSTRAINTS = "Incorrect Approval format(PENDING, APPROVED, REJECTED).";
-    public static final String APPROVAL_VALIDATION_REGEX = "PENDING";
+    public static final String APPROVAL_PENDING_VALIDATION_REGEX = "PENDING";
+    public static final String APPROVAL_APPROVED_VALIDATION_REGEX = "APPROVED";
+    public static final String APPROVAL_REJECTED_VALIDATION_REGEX = "REJECTED";
 
     public final String status;
 
@@ -39,7 +41,8 @@ public class Approval {
      * Returns true if a given string is a valid approval.
      */
     public static boolean isValidApproval(String test) {
-        return test.matches(APPROVAL_VALIDATION_REGEX);
+        return test.matches(APPROVAL_PENDING_VALIDATION_REGEX) || test.matches(APPROVAL_APPROVED_VALIDATION_REGEX)
+                || test.matches(APPROVAL_REJECTED_VALIDATION_REGEX);
     }
 
     @Override
