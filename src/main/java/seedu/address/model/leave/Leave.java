@@ -36,6 +36,7 @@ public class Leave {
         return approval;
     }
 
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -75,6 +76,20 @@ public class Leave {
         return otherPerson.getEmployeeId().equals(getEmployeeId())
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getApproval().equals(getApproval());
+    }
+
+    /**
+     * Returns the appended string of the person's PUBLIC particulars (i.e.: Without password).
+     */
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getEmployeeId())
+                .append(" Date of Application: ")
+                .append(getDate())
+                .append(" Approval: ")
+                .append(getApproval());
+        return builder.toString();
     }
 
 

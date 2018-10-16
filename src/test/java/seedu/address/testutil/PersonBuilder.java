@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -42,6 +43,7 @@ public class PersonBuilder {
     private Address address;
     private Mode mode;
     private Set<Tag> tags;
+    private Set<Schedule> schedules;
 
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -54,6 +56,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         mode = new Mode(DEFAULT_MODE);
         tags = new HashSet<>();
+        schedules = new HashSet<>();
     }
 
     /**
@@ -70,6 +73,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         mode = personToCopy.getMode();
         tags = new HashSet<>(personToCopy.getTags());
+        schedules = new HashSet<>(personToCopy.getSchedule());
     }
 
     /**
@@ -153,7 +157,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, password, phone, email, department, priorityLevel, address, mode, tags);
+        return new Person(name, nric, password, phone, email, department, priorityLevel, address, mode, tags, schedules);
     }
 
 }

@@ -160,6 +160,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteLeave(Leave target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,7 +185,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Leave> getFilteredLeaveList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

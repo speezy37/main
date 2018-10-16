@@ -14,6 +14,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Leave> PREDICATE_SHOW_ALL_LEAVES = unused -> true;
+
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
     void resetData2(ReadOnlyLeaveList newData);
@@ -27,12 +30,14 @@ public interface Model {
      */
     boolean hasPerson(Person person);
     boolean hasLeave(Leave leave);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-    //void deleteLeave(Leave target);
+    void deleteLeave(Leave target);
+
 
     /**
      * Adds the given person.
@@ -59,11 +64,21 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered Leave list */
+    ObservableList<Leave> getFilteredLeaveList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered leave list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLeaveList(Predicate<Leave> predicate);
+
 
     /**
      * Returns true if the model has previous address book states to restore.

@@ -11,7 +11,7 @@ import java.time.DateTimeException;
  */
 public class Date {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format;";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format";
 
     public final String date;
 
@@ -48,11 +48,11 @@ public class Date {
             return false;
         }
 
-        if (day < 1 || day > 31) {
+        if (year < 2018) {
             return false;
         }
+        return day >= 1 && day <= 31;
 
-        return true;
     }
 
     @Override

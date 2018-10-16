@@ -23,19 +23,23 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLeaveCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterDepartmentCommand;
+import seedu.address.logic.commands.FilterLeaveCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListLeaveCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.Mode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -71,6 +75,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteLeave() throws Exception {
+        DeleteLeaveCommand command = (DeleteLeaveCommand) parser.parseCommand(
+                DeleteLeaveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteLeaveCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
@@ -93,6 +104,13 @@ public class AddressBookParserTest {
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
+    @Test
+    public void parseCommand_filterLeave() throws Exception {
+        List<String> keywords = Arrays.asList("S1111111E");
+        FilterLeaveCommand command = (FilterLeaveCommand) parser.parseCommand(
+                FilterLeaveCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterLeaveCommand(new NricContainsKeywordsPredicate(keywords)), command);
+    }
     @Test
     public void parseCommand_filterdepartment() throws Exception {
         List<String> keywords = Arrays.asList("junior", "senior");
@@ -125,6 +143,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_lisLeave() throws Exception {
+        assertTrue(parser.parseCommand(ListLeaveCommand.COMMAND_WORD) instanceof ListLeaveCommand);
+        assertTrue(parser.parseCommand(ListLeaveCommand.COMMAND_WORD + " 3") instanceof ListLeaveCommand);
     }
 
     @Test
