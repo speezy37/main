@@ -6,7 +6,7 @@ import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Schedule objects.
  */
 public class ScheduleBuilder {
 
@@ -25,7 +25,7 @@ public class ScheduleBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the ScheduleBuilder with the data of {@code scheduleToCopy}.
      */
     public ScheduleBuilder(Schedule scheduleToCopy) {
         timeStart = scheduleToCopy.getTimeStart();
