@@ -405,9 +405,8 @@ public FilterDepartmentCommand parse(String args) throws ParseException {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterDepartmentCommand.MESSAGE_USAGE));
         }
-        String[] departmentKeywords = trimmedArgs.split("\\s+");
-
-        return new FilterDepartmentCommand(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
+        ...
+        ...
 }
 ----
 
