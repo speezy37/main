@@ -79,7 +79,7 @@ public class SetPriorityLevelCommand extends Command {
                 priorityLevel,
                 personToEdit.getAddress(),
                 personToEdit.getMode(),
-                personToEdit.getTags());
+                personToEdit.getTags(),
                 personToEdit.getSchedule());
 
         model.updatePerson(personToEdit, editedPerson);
