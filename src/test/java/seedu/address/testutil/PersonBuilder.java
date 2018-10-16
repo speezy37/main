@@ -157,7 +157,8 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, password, phone, email, department, priorityLevel, address, mode, tags, schedules);
+        return new Person(name, nric, password, phone, email,
+            department, priorityLevel, address, mode, tags, schedules);
     }
 
 }
