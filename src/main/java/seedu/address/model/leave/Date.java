@@ -48,15 +48,11 @@ public class Date {
             return false;
         }
 
-        if (day < 1 || day > 31) {
-            return false;
-        }
-
         if (year < 2018) {
             return false;
         }
+        return day >= 1 && day <= 31;
 
-        return true;
     }
 
     @Override

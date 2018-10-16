@@ -20,6 +20,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,6 +48,8 @@ public class XmlAdaptedPerson {
     private String address;
 
     @XmlElement
+    private List<XmlAdaptedSchedule> schedule = new ArrayList<>();
+    @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -59,7 +62,8 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String nric, String password, String phone, String email,
-                            String department, String priorityLevel, String address, List<XmlAdaptedTag> tagged) {
+                            String department, String priorityLevel, String address, List<XmlAdaptedTag> tagged,
+                            List<XmlAdaptedSchedule> schedule) {
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -70,6 +74,9 @@ public class XmlAdaptedPerson {
         this.address = address;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
+        }
+        if (schedule != null) {
+            this.schedule = new ArrayList<>(schedule);
         }
     }
 
@@ -90,6 +97,9 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
+        schedule = source.getSchedule().stream()
+                .map(XmlAdaptedSchedule::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -101,6 +111,10 @@ public class XmlAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<Schedule> personSchedules = new ArrayList<>();
+        for (XmlAdaptedSchedule schedule : schedule) {
+            personSchedules.add(schedule.toModelType());
         }
 
         if (name == null) {
@@ -167,8 +181,9 @@ public class XmlAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelPriorityLevel, modelAddress, modelTags);
+                modelPriorityLevel, modelAddress, modelTags, modelSchedule);
     }
 
     @Override
@@ -190,6 +205,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(department, otherPerson.department)
                 && Objects.equals(priorityLevel, otherPerson.priorityLevel)
                 && Objects.equals(address, otherPerson.address)
-                && tagged.equals(otherPerson.tagged);
+                && tagged.equals(otherPerson.tagged)
+                && schedule.equals(otherPerson.schedule);
     }
 }

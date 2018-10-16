@@ -79,7 +79,8 @@ public class SetPriorityLevelCommand extends Command {
                 personToEdit.getDepartment(),
                 priorityLevel,
                 personToEdit.getAddress(),
-                personToEdit.getTags());
+                personToEdit.getTags(),
+                personToEdit.getSchedule());
 
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
