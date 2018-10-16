@@ -13,13 +13,16 @@ import seedu.address.logic.commands.CheckLoginStatusCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLeaveCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterDepartmentCommand;
+import seedu.address.logic.commands.FilterLeaveCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListLeaveCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -122,9 +125,18 @@ public class AddressBookParser {
         case CheckCommand.COMMAND_WORD:
             return new CheckCommand();
 
+        case DeleteLeaveCommand.COMMAND_WORD:
+            return new DeleteLeaveCommandParser().parse(arguments);
+
+        case FilterLeaveCommand.COMMAND_WORD:
+        case FilterLeaveCommand.COMMAND_ALIAS:
+            return new FilterLeaveCommandParser().parse(arguments);
+
+        case ListLeaveCommand.COMMAND_WORD:
+            return new ListLeaveCommand();
+
         case SetPriorityLevelCommand.COMMAND_WORD:
             return new SetPriorityLevelCommandParser().parse(arguments);
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -87,6 +87,7 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyLeaveList> leaveListOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyLeaveList initialRequest;
         try {
@@ -102,7 +103,22 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-        initialRequest = new LeaveList();
+
+        try {
+            leaveListOptional = storage.readLeaveList();
+            if (!leaveListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                initialRequest = new LeaveList();
+            } else {
+                initialRequest = leaveListOptional.get();
+            }
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialRequest = new LeaveList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialRequest = new LeaveList();
+        }
 
         return new ModelManager(initialData, initialRequest, userPrefs);
     }

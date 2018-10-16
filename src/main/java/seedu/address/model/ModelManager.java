@@ -51,6 +51,10 @@ public class ModelManager extends ComponentManager implements Model {
         this(addressBook, new LeaveList(), userPrefs);
     }
 
+    public ModelManager(ReadOnlyLeaveList leaveList, UserPrefs userPrefs) {
+        this(new AddressBook(), leaveList, userPrefs);
+    }
+
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
         versionedAddressBook.resetData(newData);
@@ -99,19 +103,17 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedLeaveList.hasRequest(leave);
     }
 
-
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
         indicateAddressBookChanged();
     }
 
-    /*
     @Override
     public void deleteLeave(Leave target) {
         versionedLeaveList.removeRequest(target);
         indicateLeaveListChanged();
-    }*/
+    }
 
     @Override
     public void addPerson(Person person) {
@@ -161,10 +163,25 @@ public class ModelManager extends ComponentManager implements Model {
         return FXCollections.unmodifiableObservableList(filteredPersons);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Leave> getFilteredLeaveList() {
+        return FXCollections.unmodifiableObservableList(filteredLeave);
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredLeaveList(Predicate<Leave> predicate) {
+        requireNonNull(predicate);
+        filteredLeave.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
