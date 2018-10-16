@@ -187,7 +187,7 @@ Examples:
 ====
 Returns a list of employees who are in `Junior Management`.
 ====
-* `filter department junior senior`
+* `fd junior senior`
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
 ====
@@ -199,7 +199,7 @@ This operation requires administrator priviledge to perform.
 ====
 
 Deletes the specified person from the address book. +
-Format: `delete INDEX [MORE_INDEX]...`
+Format: `delete INDEX`
 
 ****
 * Deletes the person at the specified `INDEX`.
