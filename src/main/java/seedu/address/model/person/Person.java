@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,14 +29,15 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Set<Schedule> schedule = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  PriorityLevel priorityLevel, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, nric, password, phone, email, department, priorityLevel, address, tags);
+                  PriorityLevel priorityLevel, Address address, Set<Tag> tags, Set<Schedule> schedule) {
+        requireAllNonNull(name, nric, password, phone, email, department, address, tags, schedule);
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -45,6 +47,7 @@ public class Person {
         this.priorityLevel = priorityLevel;
         this.address = address;
         this.tags.addAll(tags);
+        this.schedule.addAll(schedule);
     }
 
     public Name getName() {
@@ -87,6 +90,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Set<Schedule> getSchedule() {
+        return Collections.unmodifiableSet(schedule);
+    }
     /**
      * Returns true if both persons have the same NRIC number, which is a unique identifier.
      * This defines a weaker notion of equality between two persons.
@@ -121,13 +127,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getPriorityLevel().equals(getPriorityLevel())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getSchedule().equals(getSchedule());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, password, phone, email, address, priorityLevel, tags);
+        return Objects.hash(name, nric, password, phone, email, address, priorityLevel, tags, schedule);
     }
 
     /**
@@ -151,6 +158,8 @@ public class Person {
                 .append(getAddress())
                 .append("\n Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Schedule: ")
+                .append(getSchedule());
         return builder.toString();
     }
 
