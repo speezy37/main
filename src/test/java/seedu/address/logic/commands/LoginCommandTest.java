@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
@@ -36,7 +37,7 @@ public class LoginCommandTest {
     @BeforeEach
     public void setUp() throws CommandException {
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
-        personA = new PersonBuilder().withNric(CORRECT_NRIC.toString())
+        personA = new PersonBuilder().withName("Michael").withNric(CORRECT_NRIC.toString())
                 .withPassword(CORRECT_PASSWORD.toString()).build();
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(personA);
@@ -70,8 +71,11 @@ public class LoginCommandTest {
     @Test
     public void execute_validAccount_success() {
         LoginCommand loginCommand = new LoginCommand(CORRECT_NRIC, CORRECT_PASSWORD);
-        assertCommandSuccess(loginCommand, model, commandHistory,
-                String.format(LoginCommand.LOGIN_SUCCESS, CORRECT_NRIC.toString()), expectedModel);
+
+        String expectedResult = String.format(LoginCommand.LOGIN_SUCCESS, CORRECT_NRIC.toString())
+                + "\nWelcome Michael" + "\nNo Schedule Available";
+
+        assertCommandSuccess(loginCommand, model, commandHistory, expectedResult, expectedModel);
     }
 
     @Test

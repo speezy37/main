@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
+import static seedu.address.model.SessionManager.getLoggedInPersonDetails;
+import static seedu.address.model.SessionManager.getLoggedInPersonName;
+import static seedu.address.model.SessionManager.getLoggedInPersonSchedule;
 
 import java.util.List;
 
@@ -55,7 +58,12 @@ public class LoginCommand extends Command {
             throw new CommandException(INVALID_LOGIN_CREDENTIALS);
         } else {
             SessionManager.loginToSession(model, nricToBeLoggedIn);
-            return new CommandResult(String.format(LOGIN_SUCCESS, personToBeLoggedIn.getNric()));
+
+            String introduction = "\nWelcome " + getLoggedInPersonName(model) + "\n"
+                    + getLoggedInPersonSchedule(model);
+
+            return new CommandResult(String.format(LOGIN_SUCCESS, personToBeLoggedIn.getNric())
+                    + introduction);
         }
     }
 
