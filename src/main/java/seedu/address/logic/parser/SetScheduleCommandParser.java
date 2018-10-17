@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -42,9 +43,7 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_TIME_START).isPresent()
-                && argMultimap.getValue(PREFIX_TIME_END).isPresent()
-                && argMultimap.getValue(PREFIX_VENUE).isPresent()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TIME_START, PREFIX_TIME_START, PREFIX_VENUE)) {
             Schedule schedule = ParserUtil.parseSchedule(
                     argMultimap.getValue(PREFIX_TIME_START).get(),
                     argMultimap.getValue(PREFIX_TIME_END).get(),
@@ -61,5 +60,13 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         return new SetScheduleCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -33,7 +36,12 @@ public class SetScheduleCommand extends Command {
     public static final String COMMAND_WORD = "setschedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)";
+            + "Parameters: INDEX (must be a positive integer)"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_TIME_START + " 1000 "
+            + PREFIX_TIME_END + " 1600 "
+            + PREFIX_VENUE + " Toilet\n";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Set Schedule Successful";
     public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Failed.";

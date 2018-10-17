@@ -33,7 +33,6 @@ public class SessionManager {
         loggedInPriorityLevel = getLoggedInPersonDetails(model).getPriorityLevel();
     }
 
-
     /**
      * Logs out of the current session.
      */
@@ -58,7 +57,7 @@ public class SessionManager {
     }
 
     /**
-     * Reutrns true if user is logged in to the application.
+     * Returns true if user is logged in to the application.
      */
     public static boolean isLoggedIn() {
         return loggedInNric != null;
