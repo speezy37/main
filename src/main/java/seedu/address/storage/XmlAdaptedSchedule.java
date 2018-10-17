@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.sql.Time;
-
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -54,9 +52,10 @@ public class XmlAdaptedSchedule {
      * Converts this jaxb-friendly adapted tag object into the model's Schedule object.
      *
      */
-    public Schedule toModelType() throws IllegalValueException{
+    public Schedule toModelType() throws IllegalValueException {
         if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, TimeStart.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
+                    TimeStart.class.getSimpleName()));
         }
         if (!TimeStart.isValidTimeStart(startTime)) {
             throw new IllegalValueException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
@@ -64,7 +63,8 @@ public class XmlAdaptedSchedule {
         final TimeStart timeStart = new TimeStart(this.startTime);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, TimeEnd.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
+                    TimeEnd.class.getSimpleName()));
         }
         if (!TimeEnd.isValidTimeEnd(endTime)) {
             throw new IllegalValueException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
@@ -72,7 +72,8 @@ public class XmlAdaptedSchedule {
         final TimeEnd timeEnd = new TimeEnd(this.endTime);
 
         if (venue == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, Venue.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
+                    Venue.class.getSimpleName()));
         }
         if (!Venue.isValidVenue(venue)) {
             throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);

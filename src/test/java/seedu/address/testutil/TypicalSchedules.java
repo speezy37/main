@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.schedule.Schedule;
 
@@ -21,7 +21,7 @@ public class TypicalSchedules {
 
     private TypicalSchedules() {}
 
-    public static List<Schedule> getTypicalSchedules() {
-        return new ArrayList<>(Arrays.asList(CLEANING, USHER, OFFICE, ACCOUTING));
+    public static Set<Schedule> getTypicalSchedules() {
+        return new HashSet<>(Arrays.asList(CLEANING, USHER, OFFICE, ACCOUTING));
     }
 }
