@@ -32,6 +32,7 @@ public class VenueTest {
         // valid venue
         assertTrue(Venue.isValidVenue("Level 2"));
         assertTrue(Venue.isValidVenue("-")); // one character
-        assertTrue(Venue.isValidVenue("31 Lower Kent Ridge Rd, #01-02 Yusof Ishak House, Singapore 119078")); // long venue
+        // long venue
+        assertTrue(Venue.isValidVenue("31 Lower Kent Ridge Rd, #01-02 Yusof Ishak House, Singapore 119078"));
     }
 }

@@ -160,8 +160,9 @@ public class PersonBuilder {
      * Sets the {@code Schedule} of the {@code Person} that we are building.
      */
     public PersonBuilder withSchedule(Schedule... scheduleInput) {
-        for(Schedule schedule: scheduleInput)
+        for (Schedule schedule: scheduleInput) {
             this.schedules.add(schedule);
+        }
         return this;
     }
 

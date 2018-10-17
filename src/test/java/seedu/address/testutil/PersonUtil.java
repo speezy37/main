@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
@@ -51,9 +50,9 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getSchedule().stream().forEach(
-                s -> sb.append(PREFIX_TIME_START + s.getTimeStart().toString() + " ")
-                .append(PREFIX_TIME_END + s.getTimeEnd().toString() + " ")
-                .append(PREFIX_VENUE + s.getVenue().toString() + " ")
+            s -> sb.append(PREFIX_TIME_START + s.getTimeStart().toString() + " ")
+            .append(PREFIX_TIME_END + s.getTimeEnd().toString() + " ")
+            .append(PREFIX_VENUE + s.getVenue().toString() + " ")
         );
         return sb.toString();
     }
