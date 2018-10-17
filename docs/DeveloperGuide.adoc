@@ -458,6 +458,64 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
 // end::filterdepartment[]
 
+// tag::schedule[]
+=== Schedule Feature
+
+==== Implementation
+The `setschedule` is a command that set a particular department employee's schedule.
+The `setschedule` mechanism is facilitated by the `SetScheduleCommandParser`, which parses input arguments and creates a new `SetScheduleCommand` object.
+The `SetScheduleCommandParser`, which implements the `Parser` interface, parses the arguments inputted in to the CLI, and checks if the user input conforms the expected format.
+
+Code snippet from `SetScheduleCommandParser.java` that shows the parsing of arguments and checking for invalid arguments:
+
+[source, java]
+----
+public SetScheduleCommand parse(String args) throws ParseException {
+
+    ...
+    ...
+
+    EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+    if (argMultimap.getValue(PREFIX_TIME_START).isPresent()
+            && argMultimap.getValue(PREFIX_TIME_END).isPresent()
+            && argMultimap.getValue(PREFIX_VENUE).isPresent()) {
+        Schedule schedule = ParserUtil.parseSchedule(
+                argMultimap.getValue(PREFIX_TIME_START).get(),
+                argMultimap.getValue(PREFIX_TIME_END).get(),
+                argMultimap.getValue(PREFIX_VENUE).get());
+
+        Set<Schedule> scheduleList = new HashSet<>();
+        scheduleList.add(schedule);
+
+        editPersonDescriptor.setSchedule(scheduleList);
+    }
+
+    ...
+    ...
+
+}
+----
+
+The sequence diagram below demonstrates the interaction within the `Logic` component of `SetScheduleCommand`:
+
+image::SetScheduleCommandParserSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: Storage for schedule
+
+* **Alternative 1 (current choice):** Store with AddressBook XML.
+** Pros: Easier to implement (able to add onto existing parser).
+** Cons: May require extra parameters to create a Person object.
+* **Alternative 2:** Store in a different XML file.
+** Pros: Easy to implement (duplicate existing parser but for different XML file).
+** Cons: Consumes extra time to delete schedule when a particular person is deleted.
+* **Alternative 3:** Store in a different file format.
+** Pros: Easier to understand.
+** Cons: Consumes extra time to implement different parser from scratch.
+
+// end::schedule[]
+
 // tag::priorityLevel[]
 === Priority level restriction feature
 All employee accounts contain a priority level field. Depending on the priority level that they are given, administrative

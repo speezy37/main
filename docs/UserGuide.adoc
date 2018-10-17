@@ -289,7 +289,7 @@ Example:
 `deleteleave 2`
 
 ****
-* Deletes the leave applicarion with ID 2 in the leave list.
+* Deletes the leave application with ID 2 in the leave list.
 ****
 
 
@@ -391,18 +391,36 @@ Examples: - +
 * `check n/Jane Doe ic/s7654327h mode/out`
 
 === List schedule: `schedule`
+
 List schedule for the employee. +
-Format: `schedule n/NAME ic/NRIC` +
-Examples: `schedule n/John Doe ic/s1234567h`
+
+Format: `schedule INDEX` +
+
+****
+* Shows schedule at the specified `INDEX`.
+* The index refers to the index number shown in the displayed leave list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples: `schedule 1`
+
+****
+* Shows the schedule of person with ID 1 in the leave list.
+****
 
 === List schedule: `setschedule`
+
 Set schedule of the employee. This Requires superuser level 1. +
-Format: `setschedule n/NAME ic/NRIC start/DATE end/DATE place/VENUE` +
-Example: `setschedule n/John Doe ic/s1234567h start/110918 end/301018 place/Counter 1` +
-[NOTE]
-====
-Date should be in the format DDMMYY
-====
+
+Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
+
+****
+* Set the schedule at the specified `INDEX`.
+* The index refers to the index number shown in the displayed leave list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
 
 === Access payroll: `payroll`
 List payroll of the employee. +
@@ -494,7 +512,8 @@ _{explain how the user can enable/disable data encryption}_
 
 •	*Help*: `help`
 •	*Check in/out working hours*: `check n/NAME ic/NRIC mode/IN-OUT`
-•	*List schedule*: `schedule n/NAME ic/NRIC`
+•	*List schedule*: `schedule INDEX`
+•	*Set schedule*: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE`
 •	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
 •	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
 •	*Edit particulars*: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
