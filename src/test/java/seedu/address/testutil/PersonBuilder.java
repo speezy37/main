@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -28,7 +29,9 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "S1458574G";
     public static final String DEFAULT_PASSWORD = "PQWOei23";
+    public static final String DEFAULT_MODE = "out";
     public static final int DEFAULT_PRIORITYLEVEL = 3;
+
 
     private Name name;
     private Nric nric;
@@ -38,6 +41,7 @@ public class PersonBuilder {
     private Department department;
     private PriorityLevel priorityLevel;
     private Address address;
+    private Mode mode;
     private Set<Tag> tags;
     private Set<Schedule> schedules;
 
@@ -50,6 +54,7 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         priorityLevel = new PriorityLevel(DEFAULT_PRIORITYLEVEL);
         address = new Address(DEFAULT_ADDRESS);
+        mode = new Mode(DEFAULT_MODE);
         tags = new HashSet<>();
         schedules = new HashSet<>();
     }
@@ -66,6 +71,7 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         priorityLevel = personToCopy.getPriorityLevel();
         address = personToCopy.getAddress();
+        mode = personToCopy.getMode();
         tags = new HashSet<>(personToCopy.getTags());
         schedules = new HashSet<>(personToCopy.getSchedule());
     }
@@ -142,8 +148,20 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Mode} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMode(String mode) {
+        this.mode = new Mode(mode);
+        return this;
+    }
+
+    /**
+     * Building Person objects.
+     */
     public Person build() {
-        return new Person(name, nric, password, phone, email, department, priorityLevel, address, tags, schedules);
+        return new Person(name, nric, password, phone, email,
+            department, priorityLevel, address, mode, tags, schedules);
     }
 
 }

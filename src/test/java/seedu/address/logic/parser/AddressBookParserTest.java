@@ -4,6 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -36,6 +41,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -187,6 +193,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_check() throws Exception {
-        assertTrue(parser.parseCommand(CheckCommand.COMMAND_WORD) instanceof CheckCommand);
+        final Mode mode = new Mode("in");
+
+        CheckCommand command = (CheckCommand) parser.parseCommand(CheckCommand.COMMAND_WORD + " "
+            + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD + VALID_PASSWORD_AMY
+            + " " + PREFIX_MODE + mode.value);
+        assertEquals(new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, mode), command);
     }
 }
