@@ -12,6 +12,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -19,6 +20,8 @@ import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -33,9 +36,8 @@ public class SetScheduleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Set Schedule Successful";
-    public static final String MESSAGE_SCHEDULE_FAIL = "Person not found in address book.";
+    public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Failed.";
 
-    private static final String FILE_PATH = "data\\schedule.txt";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -50,6 +52,18 @@ public class SetScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!SessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+        /**
+         * Throws exception if user does not have the required access level.
+         */
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
