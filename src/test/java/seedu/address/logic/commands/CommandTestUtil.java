@@ -12,6 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,12 +61,12 @@ public class CommandTestUtil {
     public static final String VALID_MODE_AMY = "in";
     public static final String VALID_MODE_BOB = "out";
 
-    public static final String VALID_TIME_START_AMY = "1000";
-    public static final String VALID_TIME_START_BOB = "1100";
-    public static final String VALID_TIME_END_AMY = "Amy Bee";
-    public static final String VALID_TIME_END_BOB = "Amy Bee";
-    public static final String VALID_VENUE_AMY = "Amy Bee";
-    public static final String VALID_VENUE_BOB = "Amy Bee";
+    public static final String VALID_TIME_DAWN = "1000";
+    public static final String VALID_TIME_NOON = "1100";
+    public static final String VALID_TIME_DUSK = "1800";
+    public static final String VALID_TIME_MIDNIGHT = "1700";
+    public static final String VALID_VENUE_LEVEL_3 = "Level 3";
+    public static final String VALID_VENUE_TOILET = "Toilet";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -85,6 +88,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String TIME_START_DESC_DAWN = " " + PREFIX_TIME_START + VALID_TIME_DAWN;
+    public static final String TIME_END_DESC_DUSK = " " + PREFIX_TIME_END + VALID_TIME_DUSK;
+    public static final String VENUE_DESC_TOILET = " " + PREFIX_VENUE + VALID_VENUE_TOILET;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20/03/18"; //year must be in a format YYYY

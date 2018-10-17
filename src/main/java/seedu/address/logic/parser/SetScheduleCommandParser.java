@@ -43,7 +43,7 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (!arePrefixesPresent(argMultimap, PREFIX_TIME_START, PREFIX_TIME_START, PREFIX_VENUE)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_TIME_START, PREFIX_TIME_START, PREFIX_VENUE)) {
             Schedule schedule = ParserUtil.parseSchedule(
                     argMultimap.getValue(PREFIX_TIME_START).get(),
                     argMultimap.getValue(PREFIX_TIME_END).get(),
@@ -56,7 +56,7 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(ScheduleCommand.MESSAGE_SCHEDULE_FAIL);
+            throw new ParseException(SetScheduleCommand.MESSAGE_SCHEDULE_FAIL);
         }
 
         return new SetScheduleCommand(index, editPersonDescriptor);
