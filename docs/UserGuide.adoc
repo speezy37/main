@@ -187,7 +187,7 @@ Examples:
 ====
 Returns a list of employees who are in `Junior Management`.
 ====
-* `fd junior senior`
+* `filterdepartment junior senior`
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
 ====
@@ -235,7 +235,7 @@ Selects the 2nd person in the address book.
 Selects the 1st person in the results of the `find` command.
 
 === Add Leave application : `leave`
-Add leave application of the user for approval.
+Add leave application of the user for approval. +
 Format: `leave date/DATE`
 [NOTE]
 ====
@@ -250,12 +250,12 @@ Request leave application on 20/03/2019.
 ====
 
 === List Leave application : `listleave`
-List out all leave application in the leave list.
+List out all leave application in the leave list. +
 Format: `listleave`
 
 === Filter Leave application : `filterleave`
-Filter leave applications based on NRIC.
-Format: `filterleave NRIC`
+Filter leave applications based on NRIC. +
+Format: `filterleave NRIC` +
 Alias: `fl NRIC`
 
 [NOTE]
