@@ -199,7 +199,7 @@ This operation requires administrator priviledge to perform.
 ====
 
 Deletes the specified person from the address book. +
-Format: `delete INDEX [MORE_INDEX]...`
+Format: `delete INDEX`
 
 ****
 * Deletes the person at the specified `INDEX`.
@@ -235,11 +235,8 @@ Selects the 2nd person in the address book.
 Selects the 1st person in the results of the `find` command.
 
 === Add Leave application : `leave`
-
-Add leave application of the user for approval.
-
+Add leave application of the user for approval. +
 Format: `leave date/DATE`
-
 [NOTE]
 ====
 * Requires the user to log in before using the command.
@@ -247,38 +244,31 @@ Format: `leave date/DATE`
 ====
 
 Example: `leave date/20/03/2019`
+
 ====
 Request leave application on 20/03/2019.
 ====
 
 === List Leave application : `listleave`
-
-List out all leave application in the leave list.
-
+List out all leave application in the leave list. +
 Format: `listleave`
 
 === Filter Leave application : `filterleave`
-
-Filter leave applications based on NRIC.
-
-Format: `filterleave NRIC`
-
+Filter leave applications based on NRIC. +
+Format: `filterleave NRIC` +
 Alias: `fl NRIC`
 
 [NOTE]
 ====
 * Filter is case insensative eg. `s1234567a` matches `S1234567A`
 ====
-
 Example:
 `fl S1213452A`
-
 ====
 * List all leave application requested by the user with NRIC, 'S1213452A'.
 ====
 
 === Delete Leave application : `deleteleave`
-
 Delete the specified leave from leave list.
 
 [NOTE]
@@ -289,7 +279,6 @@ Delete the specified leave from leave list.
 ====
 
 Format: `deleteleave INDEX`
-
 ****
 * Deletes the leave at the specified `INDEX`.
 * The index refers to the index number shown in the displayed leave list.
@@ -302,6 +291,7 @@ Example:
 ****
 * Deletes the leave applicarion with ID 2 in the leave list.
 ****
+
 
 === Listing entered commands : `history`
 
@@ -509,8 +499,7 @@ _{explain how the user can enable/disable data encryption}_
 •	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
 •	*Edit particulars*: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
 •	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
-•	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS
-[plvl/PRIORITY_LEVEL] [t/TAGS]...`
+•	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAGS]...`
 //•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
 •	*Approve/Reject off request*: `request ic/s1234567a mode/approve (3)`
