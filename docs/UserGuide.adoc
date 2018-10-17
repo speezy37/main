@@ -390,6 +390,7 @@ Examples: - +
 * `check n/John Doe ic/s1234567h mode/in` +
 * `check n/Jane Doe ic/s7654327h mode/out`
 
+// tag::schedule[]
 === List schedule: `schedule`
 
 List schedule for the employee. +
@@ -408,7 +409,7 @@ Examples: `schedule 1`
 * Shows the schedule of person with ID 1 in the leave list.
 ****
 
-=== List schedule: `setschedule`
+=== Set schedule: `setschedule`
 
 Set schedule of the employee. This Requires superuser level 1. +
 
@@ -421,6 +422,7 @@ Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
 ****
 
 Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
+// end::schedule[]
 
 === Access payroll: `payroll`
 List payroll of the employee. +
@@ -496,12 +498,6 @@ Format: `exit`
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
-
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
 
 == FAQ
 
