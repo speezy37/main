@@ -238,7 +238,7 @@ The `Storage` component,
 
 The `Session` component,
 
-* stores the details of the user who is logged in to the app during runtime.
+* stores the identity of the user who is logged in to the app during runtime.
 * allows other functions that require elevated user status, to inquire from `SessionManager` as to whether the user
 is logged in, and also to inquire if the user has sufficient level of access to execute that particular function.
 
@@ -1034,38 +1034,32 @@ Use case ends.
 === Use case: Change priority level of user
 *MSS*
 
-. User enters superuser command
-. AddressBook prompts password
-. User enters password
-. AddressBook prompts user for ‘superuser’ command
-. User enters priority level command
-. AddressBook prompts user for employee name and new priority level
-. User enters both employee name and new priority level
-. AddressBook updates the changes
+. User enters `setplvl INDEX plvl/PRIORITY_LEVEL`
+. AddressBook updates the priority level of the person at stated index.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. Incorrect password
-** 4a1. AddressBook shows an error message.
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case ends.
 
-* 6a. No such command
-** 6a1. AddressBook shows an error message.
+* 2b. Invalid priority level
+** 2b1. AddressBook shows an error message.
 +
-Use case resumes to step 4.
+Use case ends.
 
-* 8a. No such employee found
-** 8a1. AddressBook shows an error message.
+* 2c. User logged in, but insufficient priority level
+** 2c1. AddressBook shows an error message.
 +
-Use case resumes to step 6.
+Use case ends.
 
-* 8b. No such priority level
-** 8b1. AddressBook shows an error message.
+* 2d. User logged in, sufficient priority level, but tries to edit his/her own priority level
+** 2d1. AddressBook shows an error message.
 +
-Use case resumes to step 6.
+Use case ends.
 
 === Use case: Edit personal particulars
 *MSS*
