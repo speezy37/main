@@ -516,9 +516,6 @@ image::SetScheduleCommandParserSequenceDiagram.png[width="800"]
 
 // end::schedule[]
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
-
 // tag::priorityLevel[]
 === Priority level restriction feature
 All employee accounts contain a priority level field. Depending on the priority level that they are given, administrative
