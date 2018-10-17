@@ -12,6 +12,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -29,6 +30,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Mode mode;
     private final Set<Schedule> schedule = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
@@ -36,8 +38,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  PriorityLevel priorityLevel, Address address, Set<Tag> tags, Set<Schedule> schedule) {
-        requireAllNonNull(name, nric, password, phone, email, department, address, tags, schedule);
+                  PriorityLevel priorityLevel, Address address, Mode mode, Set<Tag> tags, Set<Schedule> schedule) {
+        requireAllNonNull(name, nric, password, phone, email, department, priorityLevel, mode, address, tags, schedule);
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -46,6 +48,7 @@ public class Person {
         this.department = department;
         this.priorityLevel = priorityLevel;
         this.address = address;
+        this.mode = mode;
         this.tags.addAll(tags);
         this.schedule.addAll(schedule);
     }
@@ -76,6 +79,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Mode getMode() {
+        return mode;
     }
 
     public PriorityLevel getPriorityLevel() {

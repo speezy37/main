@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -28,32 +29,32 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Department("Top Management"),
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Mode("out"),
                 getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"), new HashSet<>()),
             new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Department("Senior Management"),
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Mode("out"),
                 getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password"), new HashSet<>()),
             new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
                 new Phone("93210283"), new Email("charlotte@example.com"), new Department("Middle Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
                 getTagSet("neighbours"), new HashSet<>()),
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("in"),
                 getTagSet("family"), new HashSet<>()),
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
                 new Phone("92492021"), new Email("irfan@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("in"),
                 getTagSet("classmates"), new HashSet<>()),
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("in"),
                 getTagSet("colleagues"), new HashSet<>())
         };
     }
@@ -71,7 +72,7 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 }
