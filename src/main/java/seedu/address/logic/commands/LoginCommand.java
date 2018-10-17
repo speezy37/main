@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
-import static seedu.address.model.SessionManager.getLoggedInPersonDetails;
 import static seedu.address.model.SessionManager.getLoggedInPersonName;
 import static seedu.address.model.SessionManager.getLoggedInPersonSchedule;
 

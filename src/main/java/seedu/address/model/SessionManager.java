@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
@@ -91,10 +90,9 @@ public class SessionManager {
      */
     public static String getLoggedInPersonSchedule(Model model) {
         Set<Schedule> schedule = getLoggedInPersonDetails(model).getSchedule();
-        if (schedule.isEmpty()){
+        if (schedule.isEmpty()) {
             return "No Schedule Available";
-        }
-        else {
+        } else {
             return schedule.toString();
         }
     }
