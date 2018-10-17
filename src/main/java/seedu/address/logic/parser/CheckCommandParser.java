@@ -6,11 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mode;
+import seedu.address.model.person.PersonNricContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new {@code CheckCommand} object
@@ -35,7 +37,10 @@ public class CheckCommandParser implements Parser<CheckCommand> {
         String password = argMultimap.getValue(PREFIX_PASSWORD).orElse("");
         String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
 
-        return new CheckCommand(nric, password, new Mode(mode));
+        String trimmedNric = nric.trim();
+        String[] nricKeywords = trimmedNric.split("\\s+");
+
+        return new CheckCommand(new PersonNricContainsKeywordsPredicate(Arrays.asList(nricKeywords)), password, new Mode(mode));
     }
 
     /**
