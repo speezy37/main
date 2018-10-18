@@ -22,7 +22,9 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)";
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: "
+            + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Listed Schedule:";
     public static final String MESSAGE_SCHEDULE_FAIL = "Schedule Command Failed.";
@@ -41,13 +43,6 @@ public class ScheduleCommand extends Command {
         if (!SessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
-        /**
-         * Throws exception if user does not have the required access level.
-         */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
-            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
-                    PriorityLevelEnum.ADMINISTRATOR));
-        }
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -55,7 +50,17 @@ public class ScheduleCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        String schedule = lastShownList.get(index.getZeroBased()).getSchedule().toString();
+        Person targetPerson = lastShownList.get(index.getZeroBased());
+        /**
+         * Throws exception if user does not have the required access level and is not the logged in person
+         */
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
+                && targetPerson.getNric() != SessionManager.getLoggedInSessionNric()) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
+
+        String schedule = targetPerson.getSchedule().toString();
 
         return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + " " + schedule);
     }

@@ -17,7 +17,7 @@ public class SetScheduleCommandTest {
         final SetScheduleCommand standardCommand = new SetScheduleCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        final EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         SetScheduleCommand commandWithSameValues = new SetScheduleCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertNotEquals(standardCommand, commandWithSameValues);
 
