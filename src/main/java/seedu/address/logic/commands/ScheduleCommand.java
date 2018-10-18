@@ -9,7 +9,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 /**
  * List schedule of a person in the address book to the user.
@@ -19,7 +22,9 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)";
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: "
+            + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Listed Schedule:";
     public static final String MESSAGE_SCHEDULE_FAIL = "Schedule Command Failed.";
@@ -35,13 +40,27 @@ public class ScheduleCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
+        if (!SessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        String schedule = lastShownList.get(index.getZeroBased()).getSchedule().toString();
+        Person targetPerson = lastShownList.get(index.getZeroBased());
+        /**
+         * Throws exception if user does not have the required access level and is not the logged in person
+         */
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
+                && targetPerson.getNric() != SessionManager.getLoggedInSessionNric()) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
+
+        String schedule = targetPerson.getSchedule().toString();
 
         return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + " " + schedule);
     }

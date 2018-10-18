@@ -496,9 +496,13 @@ public SetScheduleCommand parse(String args) throws ParseException {
 }
 ----
 
-The sequence diagram below demonstrates the interaction within the `Logic` component of `SetScheduleCommand`:
+The sequence diagram below demonstrates `parse()` function of `SetScheduleCommandParser`:
 
 image::SetScheduleCommandParserSequenceDiagram.png[width="800"]
+
+The sequence diagram below demonstrates `execute()` function of `SetScheduleCommand`:
+
+image::SetScheduleCommandSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 

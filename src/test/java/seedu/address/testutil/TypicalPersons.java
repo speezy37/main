@@ -41,7 +41,8 @@ public class TypicalPersons {
             .withPriorityLevel(0).withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withNric("T2456699E").withPassword("ASd654").withPriorityLevel(0)
-            .withEmail("heinz@example.com").withDepartment("Senior Management").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withDepartment("Senior Management").withAddress("wall street")
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withNric("S2457855E").withPassword("ASd654").withPriorityLevel(0)
             .withEmail("cornelia@example.com").withDepartment("Middle Management")

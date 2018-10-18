@@ -45,7 +45,7 @@ public class XmlAdaptedPersonTest {
             .collect(Collectors.toList());
     private static final List<XmlAdaptedSchedule> VALID_SCHEDULE = BENSON.getSchedule().stream()
             .map(XmlAdaptedSchedule::new)
-            .collect(Collectors.toList());;
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
