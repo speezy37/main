@@ -7,6 +7,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author speezy37
 /**
  * Parses input arguments and creates a new ScheduleCommand object
  */

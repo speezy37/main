@@ -5,6 +5,7 @@ import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
 
+//@@author speezy37
 /**
  * A utility class to help with building Schedule objects.
  */

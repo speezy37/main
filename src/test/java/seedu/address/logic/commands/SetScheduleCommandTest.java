@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 
+//@@author speezy37
 public class SetScheduleCommandTest {
     @Test
     public void equals() {

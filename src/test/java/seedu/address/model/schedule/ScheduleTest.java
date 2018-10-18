@@ -11,6 +11,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.testutil.ScheduleBuilder;
 
+//@@author speezy37
 public class ScheduleTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();

@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
+//@@author speezy37
 public class VenueTest {
     @Test
-
     public void constructor_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new Venue(null));
     }
