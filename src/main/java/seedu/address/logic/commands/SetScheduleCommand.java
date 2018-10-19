@@ -29,9 +29,9 @@ public class SetScheduleCommand extends Command {
     public static final String COMMAND_WORD = "setschedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: "
-            + COMMAND_WORD + " "
+            + COMMAND_WORD + " 1 "
             + PREFIX_TIME_START + " 1000 "
             + PREFIX_TIME_END + " 1600 "
             + PREFIX_VENUE + " Toilet\n";
@@ -57,13 +57,6 @@ public class SetScheduleCommand extends Command {
         if (!SessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
-        /**
-         * Throws exception if user does not have the required access level.
-         */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
-            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
-                    PriorityLevelEnum.ADMINISTRATOR));
-        }
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -72,6 +65,15 @@ public class SetScheduleCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        /**
+         * Throws exception if user does not have the required access level
+         * or the login user is not the modified user.
+         */
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
+                && personToEdit.getNric() != SessionManager.getLoggedInSessionNric()) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         model.updatePerson(personToEdit, editedPerson);
