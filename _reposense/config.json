@@ -3,8 +3,28 @@
   [
     {
       "githubId": "speezy37",
-      "displayName": "Chong Yu",
+      "displayName": "Chua Chong Yu",
       "authorNames": ["Chong Yu"]
-    }
+    },
+	{
+	  "githubId": "Hafizuddin-NUS",
+      "displayName": "Hafizuddin",
+      "authorNames": ["hafiz"]
+	},
+	{
+	  "githubId": "jylee-git",
+      "displayName": "Lee Jin Yao",
+      "authorNames": ["Jin Yao"]
+	},
+	{
+	  "githubId": "Woonhian",
+      "displayName": "Lim Woon Hian",
+      "authorNames": ["Woon Hian"]
+	},
+	{
+	  "githubId": "pinjuen",
+      "displayName": "Lim Pin Juen",
+      "authorNames": ["Pin Juen"]
+	}
   ]
 }
