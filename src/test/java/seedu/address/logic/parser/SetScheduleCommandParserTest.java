@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.SetScheduleCommand;
 
-//@@author speezy37
 public class SetScheduleCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TIME_END + " "

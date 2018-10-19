@@ -17,7 +17,6 @@ import seedu.address.logic.commands.SetScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.schedule.Schedule;
 
-//@@author speezy37
 /**
  * Parses input arguments and creates a new SetScheduleCommand object
  */

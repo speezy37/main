@@ -6,7 +6,6 @@ import java.util.Set;
 
 import seedu.address.model.schedule.Schedule;
 
-//@@author speezy37
 /**
  * A utility class containing a list of {@code Schedule} objects to be used in tests.
  */

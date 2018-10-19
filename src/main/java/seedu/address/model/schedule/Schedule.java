@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-//@@author speezy37
 /**
  * Represents a Schedule of a Person in address book.
  */

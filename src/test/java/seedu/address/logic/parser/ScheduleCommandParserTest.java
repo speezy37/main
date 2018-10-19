@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.ScheduleCommand;
 
-//@@author speezy37
 public class ScheduleCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =

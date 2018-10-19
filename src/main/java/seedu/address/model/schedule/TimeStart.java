@@ -3,7 +3,6 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-//@@author speezy37
 /**
  * Represents a Start Time of a Schedule in address book.
  */

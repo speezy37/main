@@ -21,7 +21,6 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.schedule.Schedule;
 
-//@@author speezy37
 /**
  * Sets schedule of a person in the address book to the user.
  */
