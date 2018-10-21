@@ -122,7 +122,7 @@ The `.pptx` files used to create diagrams in this document can be found in the l
 * `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
 * `LogsCenter` : Used by many classes to write log messages to the App's log file.
 
-The rest of the App consists of four components.
+The rest of the App consists of five components.
 
 * <<Design-Ui,*`UI`*>>: The UI of the App.
 * <<Design-Logic,*`Logic`*>>: The command executor.
@@ -130,7 +130,7 @@ The rest of the App consists of four components.
 * <<Design-Storage,*`Storage`*>>: Reads data from, and writes data to, the hard disk.
 * <<Design-Session, *`Session`*>>: Stores the data of the user who is logged in to the application during runtime.
 
-Each of the four components
+Each of the five components
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -270,14 +270,17 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
+.Undo/Redo Command State List Diagram (Part 1)
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
+.Undo/Redo Command State List Diagram (Part 2)
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
 Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
+.Undo/Redo Command State List Diagram (Part 3)
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
@@ -285,6 +288,7 @@ If a command fails its execution, it will not call `Model#commitAddressBook()`, 
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
+.Undo/Redo Command State List Diagram (Part 4)
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
 [NOTE]
@@ -292,6 +296,7 @@ If the `currentStatePointer` is at index 0, pointing to the initial address book
 
 The following sequence diagram shows how the undo operation works:
 
+.Undo Command Sequence Diagram
 image::UndoRedoSequenceDiagram.png[width="800"]
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
@@ -301,14 +306,17 @@ If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, poin
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
+.Undo/Redo Command State List Diagram (Part 5)
 image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
+.Undo/Redo Command State List Diagram (Part 6)
 image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
+.Undo/Redo Command Activity Diagram
 image::UndoRedoActivityDiagram.png[width="650"]
 
 ==== Design Considerations
@@ -396,6 +404,7 @@ and display the added leave application in the leave list.
 
 The sequence diagram below demonstrates the interaction within the `Logic` component of `AddLeaveCommand`:
 
+.Sequence diagram of AddLeaveCommand
 image::AddLeaveCommandSequenceDiagram.png[width="800"]
 // end::addleave[]
 
@@ -455,6 +464,7 @@ public class FilterDepartmentCommand extends Command {
 
 The sequence diagram below demonstrates the interaction within the `Logic` component of `FilterDepartmentCommand`:
 
+.Sequence diagram of FilterDepartmentCommand
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
 // end::filterdepartment[]
 
@@ -494,6 +504,7 @@ The result of `checkCommand` execution is encapsulated as a `CommandResult` obje
 
 The sequence diagram below demonstrates the interaction within the `Logic` component of `CheckCommand`:
 
+.Sequence diagram of CheckCommand
 image::CheckCommandSequenceDiagram.png[width="800"]
 // end::checkinout[]
 
@@ -536,10 +547,12 @@ public SetScheduleCommand parse(String args) throws ParseException {
 
 The sequence diagram below demonstrates `parse()` function of `SetScheduleCommandParser`:
 
+.Sequence diagram of SetScheduleCommandParser
 image::SetScheduleCommandParserSequenceDiagram.png[width="800"]
 
 The sequence diagram below demonstrates `execute()` function of `SetScheduleCommand`:
 
+.Sequence diagram of SetScheduleCommand
 image::SetScheduleCommandSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
@@ -565,7 +578,7 @@ operations may be executed if they have sufficient priority level required to do
 
 ==== Implementation
 Here is a code snippet of executing the AddCommand function. In this example, adding a person requires a person to be
-logged in with a priority level of ADMINISTRATOR or above, in order to execute this function: -
+logged in with a priority level of ADMINISTRATOR or above, in order to execute this function:
 
 .AddCommand.java
 [source,java]
@@ -591,8 +604,9 @@ public CommandResult execute(Model model, CommandHistory history) throws Command
 <2> Check if the logged in user has a priority level of ADMINISTRATOR and above.
 ** This function checks if the user is logged in at the same time.
 
-The following sequence diagram below shows the flow of how the feature works: -
+The following sequence diagram below shows the flow of how the feature works:
 
+.Sequence diagram of priority level restriction feature
 image::ImplementPlvlRestrictionSequenceDiagram.png[width=900]
 
 // end:priorityLevel[]
