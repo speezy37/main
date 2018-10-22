@@ -42,6 +42,7 @@ public class DeleteLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
         List<Leave> lastShownList = model.getFilteredLeaveList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -51,8 +52,8 @@ public class DeleteLeaveCommand extends Command {
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
 
 
-        if (isLogin && leaveToDelete.getEmployeeId().nric != SessionManager.getLoggedInSessionNric().nric
-                && !SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
+        if (isLogin && leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
+                && !sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }
 

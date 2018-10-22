@@ -17,11 +17,12 @@ public class CheckLoginStatusCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (!SessionManager.isLoggedIn()) {
+        SessionManager sessionManager = SessionManager.getInstance(model);
+        if (!sessionManager.isLoggedIn()) {
             return new CommandResult(STATUS_NOT_LOGGED_IN);
         } else {
             return new CommandResult(String.format(STATUS_LOGGED_IN,
-                    SessionManager.getLoggedInSessionNric()));
+                    sessionManager.getLoggedInSessionNric()));
         }
     }
 }

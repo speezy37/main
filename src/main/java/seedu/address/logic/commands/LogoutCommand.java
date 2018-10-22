@@ -18,10 +18,11 @@ public class LogoutCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (!SessionManager.isLoggedIn()) {
+        SessionManager sessionManager = SessionManager.getInstance(model);
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
         } else {
-            SessionManager.logOutSession();
+            sessionManager.logOutSession();
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }

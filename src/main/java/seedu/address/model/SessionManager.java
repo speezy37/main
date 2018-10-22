@@ -1,107 +1,118 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
+import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
-import seedu.address.model.schedule.Schedule;
 
 //@@author jylee-git
 /**
  * Stores the {@Code Nric} and {@code PriorityLevel} of the user who's logged in to the application.
  * Also manages the logging in and out of the current session.
+ * This class is singleton class.
  */
 public class SessionManager {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
+    private static SessionManager single_instance = null;
+
     private static Nric loggedInNric = null;
-    private static String employeeNric = null;
     private static PriorityLevel loggedInPriorityLevel = null;
 
+    private HashMap<Nric, Person> allPersonsHashMap;
+
+    private SessionManager(Model model) {
+        allPersonsHashMap = new HashMap<>();
+        List<Person> allPersonsList = model.getAddressBook().getPersonList();
+        for (Person currPerson : allPersonsList) {
+            allPersonsHashMap.put(currPerson.getNric(), currPerson);
+        }
+    }
+
     /**
-     * Stores the {@code Nric} of the successfully logged in person into the session.
-     * PRE-CONDITION: Nric must be valid.
-     * @param logInWithThisNric
+     * Returns the one and only initialized instance of the Object
      */
-    public static void loginToSession(Model model, Nric logInWithThisNric) {
-        requireNonNull(logInWithThisNric);
-        loggedInNric = logInWithThisNric;
-        loggedInPriorityLevel = getLoggedInPersonDetails(model).getPriorityLevel();
+    public static SessionManager getInstance(Model model) {
+        if (single_instance == null) {
+            single_instance = new SessionManager(model);
+        }
+        return single_instance;
+    }
+
+    //================================ LOGIN/LOGOUT =================================================================
+
+    /**
+     * Returns true if user is logged in to the application.
+     */
+    public boolean isLoggedIn() {
+        return loggedInNric != null;
+    }
+
+    /**
+     * Attempts to log into the session using a user input NRIC and Password.
+     * @throws CommandException if the login parameters are incorrect.
+     */
+    public void loginToSession(Nric loginWithThisNric, Password loginWithThisPassword) throws CommandException {
+        if (isLoggedIn()) {
+            throw new CommandException(LoginCommand.ALREADY_LOGGED_IN);
+        }
+        if (!isLoginCredentialsValid(loginWithThisNric, loginWithThisPassword)) {
+            throw new CommandException(LoginCommand.INVALID_LOGIN_CREDENTIALS);
+        } else {
+            loggedInNric = loginWithThisNric;
+            loggedInPriorityLevel = allPersonsHashMap.get(loginWithThisNric).getPriorityLevel();
+        }
+    }
+
+    private boolean isLoginCredentialsValid(Nric loginNric, Password loginPassword) {
+        //Returns false if wrong NRIC and/or Password. Else return true.
+        return (allPersonsHashMap.containsKey(loginNric) &&
+                allPersonsHashMap.get(loginNric).getPassword().equals(loginPassword));
     }
 
     /**
      * Logs out of the current session.
      */
-    public static void logOutSession() {
+    public void logOutSession() {
         loggedInNric = null;
         loggedInPriorityLevel = null;
     }
+
+    //================================================ GETTING LOGGED IN DETAILS ====================================
 
     /**
      * Returns the {@code Nric} of the logged in person.
      * @throws CommandException if the app's not logged in.
      */
-    public static Nric getLoggedInSessionNric() throws CommandException {
+    public Nric getLoggedInSessionNric() throws CommandException {
         if (!isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
         }
         return loggedInNric;
     }
-    public static String getLoggedInEmployeeNric() {
-        employeeNric = loggedInNric.nric;
-        return employeeNric;
-    }
-
-    /**
-     * Returns true if user is logged in to the application.
-     */
-    public static boolean isLoggedIn() {
-        return loggedInNric != null;
-    }
 
     /**
      * Returns the {@code Person} object whose NRIC matches the one that's currently logged in.
      */
-    public static Person getLoggedInPersonDetails(Model model) {
-        List<Person> allPersonsList = model.getAddressBook().getPersonList();
-        for (Person currPerson : allPersonsList) {
-            if (currPerson.getNric() == loggedInNric) {
-                return currPerson;
-            }
+    public Person getLoggedInPersonDetails() throws CommandException {
+        if (!isLoggedIn()) {
+            throw new CommandException(NOT_LOGGED_IN);
         }
-        return null;
+        return allPersonsHashMap.get(loggedInNric);
     }
 
-    /**
-     * Returns the {@code name} of the person whose NRIC matches the one that's currently logged in.
-     */
-    public static String getLoggedInPersonName(Model model) {
-        return getLoggedInPersonDetails(model).getName().toString();
-    }
-
-    /**
-     * Returns the {@code schedule} of the person whose NRIC matches the one that's currently logged in.
-     */
-    public static String getLoggedInPersonSchedule(Model model) {
-        Set<Schedule> schedule = getLoggedInPersonDetails(model).getSchedule();
-        if (schedule.isEmpty()) {
-            return "No Schedule Available";
-        } else {
-            return schedule.toString();
-        }
-    }
-
+    //================================== PRIORITY LEVEL CONCERNS ==================================================
     /**
      * Returns true if current session has at least the required priority level for the operation.
      * @throws CommandException if user's not logged in.
      */
-    public static boolean hasSufficientPriorityLevelForThisSession(
+    public boolean hasSufficientPriorityLevelForThisSession(
             PriorityLevelEnum minimumPriorityLevel) throws CommandException {
         if (!isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
@@ -109,6 +120,8 @@ public class SessionManager {
         return PriorityLevel.isPriorityLevelAtLeastOf(loggedInPriorityLevel, minimumPriorityLevel);
     }
 
+
+    //================================= FOR TEST USE ONLY =========================================================
     /**
      * For test use only. Logs in with a defined priority level, which may be necessary for operations
      * requiring admin rights.

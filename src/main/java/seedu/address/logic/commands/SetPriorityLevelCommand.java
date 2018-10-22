@@ -46,14 +46,15 @@ public class SetPriorityLevelCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
 
-        if (!SessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
         /**
          * Throws exception if user does not have the required access level.
          */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
@@ -65,7 +66,7 @@ public class SetPriorityLevelCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (personToEdit == SessionManager.getLoggedInPersonDetails(model)) {
+        if (personToEdit == sessionManager.getLoggedInPersonDetails()) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_OWN_PLVL);
         }
 

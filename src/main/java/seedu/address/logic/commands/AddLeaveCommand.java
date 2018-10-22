@@ -39,12 +39,18 @@ public class AddLeaveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (isLogin && !SessionManager.isLoggedIn()) {
+        SessionManager sessionManager = SessionManager.getInstance(model);
+
+        if (isLogin && !sessionManager.isLoggedIn()) {
             throw new CommandException(STATUS_NOT_LOGGED_IN);
-        } else if (model.hasLeave(toAdd)) {
+        }
+        Leave personLeaveToAdd = new Leave(sessionManager.getLoggedInSessionNric(),
+                toAdd.getDate(), toAdd.getApproval());
+
+        if (model.hasLeave(personLeaveToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
         } else {
-            model.addLeave(toAdd);
+            model.addLeave(personLeaveToAdd);
             model.commitLeaveList();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }

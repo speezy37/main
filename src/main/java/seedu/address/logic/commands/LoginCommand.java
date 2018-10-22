@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
-import static seedu.address.model.SessionManager.getLoggedInPersonName;
-import static seedu.address.model.SessionManager.getLoggedInPersonSchedule;
 
-import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,8 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.SessionManager;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.schedule.Schedule;
 
 //@@author jylee-git
 /**
@@ -36,8 +35,6 @@ public class LoginCommand extends Command {
 
     private Nric loginNric;
     private Password loginPassword;
-    private Person personToBeLoggedIn;
-    private Nric nricToBeLoggedIn;
 
     public LoginCommand(Nric loginNric, Password loginPassword) {
         requireNonNull(loginNric);
@@ -50,42 +47,23 @@ public class LoginCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (SessionManager.isLoggedIn()) {
-            throw new CommandException(ALREADY_LOGGED_IN);
-        }
-        if (!isLoginCredentialsValid(model)) {
-            throw new CommandException(INVALID_LOGIN_CREDENTIALS);
+        SessionManager sessionManager = SessionManager.getInstance(model);
+
+        //This method will throw CommandException if user is already logged in or user has typed in invalid credentials.
+        sessionManager.loginToSession(loginNric, loginPassword);
+
+        // Retrieves the user schedule once the user is logged in successfully
+        String scheduleString;
+        Set<Schedule> scheduleSet = sessionManager.getLoggedInPersonDetails().getSchedule();
+        if (scheduleSet.isEmpty()) {
+            scheduleString = "No schedule available";
         } else {
-            SessionManager.loginToSession(model, nricToBeLoggedIn);
-
-            String introduction = "\nWelcome " + getLoggedInPersonName(model) + "\n"
-                    + getLoggedInPersonSchedule(model);
-
-            return new CommandResult(String.format(LOGIN_SUCCESS, personToBeLoggedIn.getNric())
-                    + introduction);
+            scheduleString = scheduleSet.toString();
         }
-    }
+        String introduction = "\nWelcome " + sessionManager.getLoggedInPersonDetails().getName().toString() + "\n"
+                + scheduleString;
 
-    /**
-     * Returns true if login NRIC and Password is equal to the one in AddressBook.
-     * Returns false if login NRIC tallies but login password is wrong, or NRIC is not found.
-     */
-    private boolean isLoginCredentialsValid(Model model) {
-        // Grabs the list of ALL people in the address book.
-        List<Person> allPersonsList = model.getAddressBook().getPersonList();
-
-        for (Person currPerson : allPersonsList) {
-            if ((currPerson.getNric()).toString().equals(loginNric.toString())) {
-                if ((currPerson.getPassword()).toString().equals(loginPassword.toString())) {
-                    personToBeLoggedIn = currPerson;
-                    nricToBeLoggedIn = currPerson.getNric();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        return false;
+        return new CommandResult(String.format(LOGIN_SUCCESS,
+                sessionManager.getLoggedInSessionNric()) + introduction);
     }
 }
