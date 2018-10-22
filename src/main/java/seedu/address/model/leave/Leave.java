@@ -1,10 +1,10 @@
 package seedu.address.model.leave;
 
-import seedu.address.model.person.Nric;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.person.Nric;
 
 /**
  * Represents a Leave in the leave list.

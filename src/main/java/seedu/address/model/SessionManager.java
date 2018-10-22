@@ -20,7 +20,7 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
 public class SessionManager {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
-    private static SessionManager single_instance = null;
+    private static SessionManager singleInstance = null;
 
     private static Nric loggedInNric = null;
     private static PriorityLevel loggedInPriorityLevel = null;
@@ -39,10 +39,10 @@ public class SessionManager {
      * Returns the one and only initialized instance of the Object
      */
     public static SessionManager getInstance(Model model) {
-        if (single_instance == null) {
-            single_instance = new SessionManager(model);
+        if (singleInstance == null) {
+            singleInstance = new SessionManager(model);
         }
-        return single_instance;
+        return singleInstance;
     }
 
     //================================ LOGIN/LOGOUT =================================================================
@@ -72,8 +72,8 @@ public class SessionManager {
 
     private boolean isLoginCredentialsValid(Nric loginNric, Password loginPassword) {
         //Returns false if wrong NRIC and/or Password. Else return true.
-        return (allPersonsHashMap.containsKey(loginNric) &&
-                allPersonsHashMap.get(loginNric).getPassword().equals(loginPassword));
+        return (allPersonsHashMap.containsKey(loginNric)
+                && allPersonsHashMap.get(loginNric).getPassword().equals(loginPassword));
     }
 
     /**
