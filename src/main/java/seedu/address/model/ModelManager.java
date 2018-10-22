@@ -16,6 +16,7 @@ import seedu.address.commons.events.model.LeaveListChangedEvent;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.NoEmployeeException;
+import session.SessionManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,6 +28,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final VersionedLeaveList versionedLeaveList;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Leave> filteredLeave;
+    private final SessionManager sessionManager;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager extends ComponentManager implements Model {
         versionedLeaveList = new VersionedLeaveList(leaveList);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredLeave = new FilteredList<>(versionedLeaveList.getRequestList());
+        sessionManager = SessionManager.getInstance(this);
     }
 
     public ModelManager() {
@@ -80,11 +83,13 @@ public class ModelManager extends ComponentManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateAddressBookChanged() {
+        sessionManager.resyncPersonsHashMap(this);
         raise(new AddressBookChangedEvent(versionedAddressBook));
     }
 
     /** Raises an event to indicate the model has changed */
     private void indicateLeaveListChanged() {
+        sessionManager.resyncPersonsHashMap(this);
         raise(new LeaveListChangedEvent(versionedLeaveList));
     }
 
@@ -132,7 +137,6 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updatePerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         versionedAddressBook.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
     }

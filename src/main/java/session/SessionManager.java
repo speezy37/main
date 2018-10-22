@@ -1,10 +1,13 @@
-package seedu.address.model;
+package session;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
@@ -17,7 +20,7 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
  * Also manages the logging in and out of the current session.
  * This class is singleton class.
  */
-public class SessionManager {
+public class SessionManager implements Session {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
     private static SessionManager singleInstance = null;
@@ -50,6 +53,7 @@ public class SessionManager {
     /**
      * Returns true if user is logged in to the application.
      */
+    @Override
     public boolean isLoggedIn() {
         return loggedInNric != null;
     }
@@ -58,6 +62,7 @@ public class SessionManager {
      * Attempts to log into the session using a user input NRIC and Password.
      * @throws CommandException if the login parameters are incorrect.
      */
+    @Override
     public void loginToSession(Nric loginWithThisNric, Password loginWithThisPassword) throws CommandException {
         if (isLoggedIn()) {
             throw new CommandException(LoginCommand.ALREADY_LOGGED_IN);
@@ -79,6 +84,7 @@ public class SessionManager {
     /**
      * Logs out of the current session.
      */
+    @Override
     public void logOutSession() {
         loggedInNric = null;
         loggedInPriorityLevel = null;
@@ -90,6 +96,7 @@ public class SessionManager {
      * Returns the {@code Nric} of the logged in person.
      * @throws CommandException if the app's not logged in.
      */
+    @Override
     public Nric getLoggedInSessionNric() throws CommandException {
         if (!isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
@@ -100,6 +107,7 @@ public class SessionManager {
     /**
      * Returns the {@code Person} object whose NRIC matches the one that's currently logged in.
      */
+    @Override
     public Person getLoggedInPersonDetails() throws CommandException {
         if (!isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
@@ -112,6 +120,7 @@ public class SessionManager {
      * Returns true if current session has at least the required priority level for the operation.
      * @throws CommandException if user's not logged in.
      */
+    @Override
     public boolean hasSufficientPriorityLevelForThisSession(
             PriorityLevelEnum minimumPriorityLevel) throws CommandException {
         if (!isLoggedIn()) {
@@ -120,14 +129,42 @@ public class SessionManager {
         return PriorityLevel.isPriorityLevelAtLeastOf(loggedInPriorityLevel, minimumPriorityLevel);
     }
 
+    //================================= UPDATE/DELETE KEY IN HASHMAP ==============================================
+    public void updatePersonsHashMap(Person toAmend) {
+        requireNonNull(toAmend);
+        allPersonsHashMap.replace(toAmend.getNric(), toAmend);
+    }
+
+    public void addIntoPersonsHashMap(Person toAdd) {
+        requireNonNull(toAdd);
+        if (allPersonsHashMap.containsKey(toAdd.getNric())) {
+            updatePersonsHashMap(toAdd);
+        }
+    }
+
+    public void resyncPersonsHashMap(Model model) {
+        allPersonsHashMap.clear();
+        List<Person> allPersonsList = model.getAddressBook().getPersonList();
+        for (Person currPerson : allPersonsList) {
+            allPersonsHashMap.put(currPerson.getNric(), currPerson);
+        }
+    }
+
 
     //================================= FOR TEST USE ONLY =========================================================
     /**
      * For test use only. Logs in with a defined priority level, which may be necessary for operations
      * requiring admin rights.
      */
+    protected SessionManager() {
+
+    }
     protected static void forceLoginWith(String nric, int priorityLevel) {
         loggedInNric = new Nric(nric);
         loggedInPriorityLevel = new PriorityLevel(priorityLevel);
+    }
+    protected static void forceLogout() {
+        loggedInNric = null;
+        loggedInPriorityLevel = null;
     }
 }

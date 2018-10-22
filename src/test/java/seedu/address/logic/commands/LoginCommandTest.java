@@ -72,7 +72,7 @@ public class LoginCommandTest {
         LoginCommand loginCommand = new LoginCommand(CORRECT_NRIC, CORRECT_PASSWORD);
 
         String expectedResult = String.format(LoginCommand.LOGIN_SUCCESS, CORRECT_NRIC.toString())
-                + "\nWelcome Michael" + "\nNo Schedule Available";
+                + "\nWelcome Michael" + "\nNo schedule available";
 
         assertCommandSuccess(loginCommand, model, commandHistory, expectedResult, expectedModel);
     }
