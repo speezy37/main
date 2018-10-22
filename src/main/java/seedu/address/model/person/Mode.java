@@ -3,13 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author pinjuen
+
 /**
  * Represents a Person checked in/out to work in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Mode {
 
-    public static final String MESSAGE_NAME_CONSTRAINTS =
+    public static final String MESSAGE_MODE_CONSTRAINTS =
             "Mode should only contains \"in\" or \"out\" and it should not be blank";
 
     /*
@@ -28,7 +30,7 @@ public class Mode {
      */
     public Mode(String mode) {
         requireNonNull(mode);
-        checkArgument(isValidMode(mode), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidMode(mode), MESSAGE_MODE_CONSTRAINTS);
         value = mode;
     }
 

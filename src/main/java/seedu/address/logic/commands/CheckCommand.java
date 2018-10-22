@@ -11,9 +11,13 @@ import java.util.List;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.SessionManager;
 import seedu.address.model.person.Mode;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonNricContainsKeywordsPredicate;
+import seedu.address.model.person.password.Password;
+
+//@@author pinjuen
 
 /**
  * Check in or out to work.
@@ -32,18 +36,18 @@ public class CheckCommand extends Command {
             + PREFIX_PASSWORD + "HEllo12 "
             + PREFIX_MODE + "in ";
 
-    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s";
-    public static final String MESSAGE_DUPLICATE = "User has already checked %1$s";
+    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s!";
+    public static final String MESSAGE_DUPLICATE = "User has already checked %1$s!";
     public static final String MESSAGE_NOT_FOUND = "User is not found!";
 
-    private final String password;
-    private final Mode mode;
-    private final PersonNricContainsKeywordsPredicate predicate;
+    private Password password;
+    private Mode mode;
+    private Nric nric;
+    private Person personToEdit;
 
-
-    public CheckCommand(PersonNricContainsKeywordsPredicate predicate, String password, Mode mode) {
-        requireAllNonNull(predicate, password, mode);
-        this.predicate = predicate;
+    public CheckCommand(Nric nric, Password password, Mode mode) {
+        requireAllNonNull(nric, password, mode);
+        this.nric = nric;
         this.password = password;
         this.mode = mode;
     }
@@ -51,15 +55,15 @@ public class CheckCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
 
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (lastShownList.size() == 0){
+        if (!isUserValid(model)){
             throw new CommandException(MESSAGE_NOT_FOUND);
         }
 
-        Person personToEdit = lastShownList.get(0);
+        if (!SessionManager.isLoggedIn()) {
+            SessionManager.loginToSession(model, nric);
+        }
+
         if (personToEdit.getMode().equals(mode)){
             throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
         }
@@ -69,7 +73,7 @@ public class CheckCommand extends Command {
             personToEdit.getAddress(), mode, personToEdit.getTags(), personToEdit.getSchedule());
 
         model.updatePerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, mode));
@@ -89,8 +93,29 @@ public class CheckCommand extends Command {
 
         // state check
         CheckCommand e = (CheckCommand) other;
-        return predicate.equals(e.predicate)
+        return nric.equals(e.nric)
                 && password.equals(e.password)
                 && mode.equals(e.mode);
+    }
+
+    /**
+     * Returns true if Nric and Password are equal to the one in AddressBook.
+     */
+    private boolean isUserValid(Model model) {
+        // Grabs the list of ALL people in the address book.
+        List<Person> allPersonsList = model.getAddressBook().getPersonList();
+
+        for (Person currPerson : allPersonsList) {
+            if ((currPerson.getNric()).toString().equals(nric.toString())) {
+                if ((currPerson.getPassword()).toString().equals(password.toString())) {
+                    personToEdit = currPerson;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return false;
     }
 }
