@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -64,7 +65,8 @@ public class SetPriorityLevelCommandTest {
      */
     @Test
     public void execute_setPriorityLevelOfSecondPerson_success() throws CommandException {
-        LoginCommand loginCommand = new LoginCommand(TypicalPersons.ALICE.getNric(), TypicalPersons.ALICE.getPassword());
+        LoginCommand loginCommand = new LoginCommand(TypicalPersons.ALICE.getNric(),
+                TypicalPersons.ALICE.getPassword());
         loginCommand.execute(model, commandHistory);
 
         Person editedBenson = new PersonBuilder(TypicalPersons.BENSON)
