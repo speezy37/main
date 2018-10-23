@@ -31,8 +31,8 @@ public class SetPriorityLevelCommand extends Command {
             + PREFIX_PRIORITYLEVEL + "PRIORITYLEVEL\n"
             + "Example: " + COMMAND_WORD + " 2 " + PREFIX_PRIORITYLEVEL + "3";
 
-    private static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
-    private static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
+    public static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
+    public static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
 
     private final Index index;
     private final PriorityLevel priorityLevel;
