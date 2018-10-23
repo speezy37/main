@@ -89,7 +89,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateLeaveListChanged() {
-        sessionManager.resyncPersonsHashMap(this);
         raise(new LeaveListChangedEvent(versionedLeaveList));
     }
 
