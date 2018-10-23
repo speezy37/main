@@ -1,4 +1,4 @@
-package session;
+package seedu.address.session;
 
 import static java.util.Objects.requireNonNull;
 
@@ -29,6 +29,11 @@ public class SessionManager implements Session {
     private static PriorityLevel loggedInPriorityLevel = null;
 
     private HashMap<Nric, Person> allPersonsHashMap;
+
+    // FOR TEST USE ONLY
+    protected SessionManager() {
+
+    }
 
     private SessionManager(Model model) {
         allPersonsHashMap = new HashMap<>();
@@ -130,11 +135,18 @@ public class SessionManager implements Session {
     }
 
     //================================= UPDATE/DELETE KEY IN HASHMAP ==============================================
+
+    /**
+     * Update a single key with the new values
+     */
     public void updatePersonsHashMap(Person toAmend) {
         requireNonNull(toAmend);
         allPersonsHashMap.replace(toAmend.getNric(), toAmend);
     }
 
+    /**
+     * Adds a new key into the hash map
+     */
     public void addIntoPersonsHashMap(Person toAdd) {
         requireNonNull(toAdd);
         if (allPersonsHashMap.containsKey(toAdd.getNric())) {
@@ -142,6 +154,10 @@ public class SessionManager implements Session {
         }
     }
 
+    /**
+     * Clears the hashmap and re-synchronizes the list of persons into the hashmap.
+     * O(N) time complexity
+     */
     public void resyncPersonsHashMap(Model model) {
         allPersonsHashMap.clear();
         List<Person> allPersonsList = model.getAddressBook().getPersonList();
@@ -156,9 +172,7 @@ public class SessionManager implements Session {
      * For test use only. Logs in with a defined priority level, which may be necessary for operations
      * requiring admin rights.
      */
-    protected SessionManager() {
 
-    }
     protected static void forceLoginWith(String nric, int priorityLevel) {
         loggedInNric = new Nric(nric);
         loggedInPriorityLevel = new PriorityLevel(priorityLevel);

@@ -1,4 +1,4 @@
-package session;
+package seedu.address.session;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Nric;
@@ -6,6 +6,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
+/**
+ * Public API for Session, which manages the user login into the application.
+ */
 public interface Session {
     //================================ LOGIN/LOGOUT =================================================================
     boolean isLoggedIn();

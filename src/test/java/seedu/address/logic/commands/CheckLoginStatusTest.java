@@ -14,10 +14,9 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
-import seedu.address.testutil.PersonBuilder;
 
-import session.Session;
-import session.SessionManager;
+import seedu.address.session.SessionManager;
+import seedu.address.testutil.PersonBuilder;
 import systemtests.SessionHelper;
 
 public class CheckLoginStatusTest {

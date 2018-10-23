@@ -1,6 +1,6 @@
 package systemtests;
 
-import session.SessionManager;
+import seedu.address.session.SessionManager;
 
 //@@author jylee-git
 /**

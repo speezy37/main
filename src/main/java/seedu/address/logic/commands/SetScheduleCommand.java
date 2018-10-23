@@ -15,11 +15,11 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import session.SessionManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.session.SessionManager;
 
 /**
  * Sets schedule of a person in the address book to the user.

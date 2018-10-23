@@ -11,10 +11,10 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 import seedu.address.model.Model;
-import session.SessionManager;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.session.SessionManager;
 
 //@@author jylee-git
 /**

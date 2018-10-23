@@ -16,7 +16,7 @@ import seedu.address.commons.events.model.LeaveListChangedEvent;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.NoEmployeeException;
-import session.SessionManager;
+import seedu.address.session.SessionManager;
 
 /**
  * Represents the in-memory model of the address book data.

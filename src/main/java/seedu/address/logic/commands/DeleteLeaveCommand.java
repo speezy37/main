@@ -9,9 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import session.SessionManager;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 /**
  * Deletes a leave identified using it's displayed index from the leave book.

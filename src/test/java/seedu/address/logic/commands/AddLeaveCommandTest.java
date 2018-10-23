@@ -26,8 +26,8 @@ import seedu.address.model.ReadOnlyLeaveList;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 import seedu.address.testutil.LeaveBuilder;
-import session.SessionManager;
 import systemtests.SessionHelper;
 
 public class AddLeaveCommandTest {
