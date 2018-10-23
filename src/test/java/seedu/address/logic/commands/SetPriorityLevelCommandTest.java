@@ -39,7 +39,9 @@ public class SetPriorityLevelCommandTest {
 
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> new SetPriorityLevelCommand(null, null));
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            new SetPriorityLevelCommand(null, null);
+        });
         Assertions.assertThrows(NullPointerException.class, () -> {
             new SetPriorityLevelCommand(INDEX_FIRST_PERSON, null);
         });
@@ -105,11 +107,14 @@ public class SetPriorityLevelCommandTest {
                 String.format(SetPriorityLevelCommand.MESSAGE_CANNOT_EDIT_OWN_PLVL));
     }
 
+    /**
+     * Logs out of the application after each test
+     */
     @AfterEach
     public void tearDown() throws CommandException {
         try {
             new LogoutCommand().execute(model, commandHistory);
-        } catch(CommandException ce) {
+        } catch (CommandException ce) {
             //Ignores the CommandException if user is not logged in in the first place.
             if (!ce.getMessage().equals(LogoutCommand.NOT_LOGGED_IN)) {
                 throw new CommandException(ce.getMessage());
