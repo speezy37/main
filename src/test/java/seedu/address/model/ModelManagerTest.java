@@ -19,10 +19,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.LeaveBuilder;
 import seedu.address.testutil.LeaveListBuilder;
-
-import javax.management.modelmbean.ModelMBeanAttributeInfo;
 
 public class ModelManagerTest {
     @Rule

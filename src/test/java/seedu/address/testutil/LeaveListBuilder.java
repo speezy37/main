@@ -3,6 +3,11 @@ package seedu.address.testutil;
 import seedu.address.model.LeaveList;
 import seedu.address.model.leave.Leave;
 
+/**
+ * A utility class to help with building LeaveList objects.
+ * Example usage: <br>
+ *     {@code LeaveList ll = new LeaveListBuilder().withLeave("REQUEST_1", "REQUEST_1").build();}
+ */
 public class LeaveListBuilder {
     private LeaveList leaveList;
 
@@ -15,7 +20,7 @@ public class LeaveListBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Leave} to the {@code LeaveList} that we are building.
      */
     public LeaveListBuilder withLeave(Leave leave) {
         leaveList.addRequest(leave);
