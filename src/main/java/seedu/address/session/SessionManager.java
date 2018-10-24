@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.ComponentManager;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.SessionChangedEvent;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,7 +26,7 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
  */
 public class SessionManager extends ComponentManager implements Session {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
-
+    private static final Logger logger = LogsCenter.getLogger(SessionManager.class);
     private static SessionManager singleInstance = null;
 
     private static Nric loggedInNric = null;
@@ -34,7 +36,8 @@ public class SessionManager extends ComponentManager implements Session {
 
     // FOR TEST USE ONLY
     protected SessionManager() {
-
+        logger.warning("Empty SessionManager constructor called. If this isn't a test, there is a bug in the"
+            + "source code.");
     }
 
     private SessionManager(Model model) {
@@ -75,10 +78,13 @@ public class SessionManager extends ComponentManager implements Session {
             throw new CommandException(LoginCommand.ALREADY_LOGGED_IN);
         }
         if (!isLoginCredentialsValid(loginWithThisNric, loginWithThisPassword)) {
+            logger.info("Invalid userID and/or password");
             throw new CommandException(LoginCommand.INVALID_LOGIN_CREDENTIALS);
         } else {
             loggedInNric = loginWithThisNric;
             loggedInPriorityLevel = allPersonsHashMap.get(loginWithThisNric).getPriorityLevel();
+            logger.info("Logged in as " + loggedInNric + " with priority level of "
+                    + loggedInPriorityLevel.toString());
             raise(new SessionChangedEvent(getLoggedInPersonDetails()));
         }
     }
@@ -163,6 +169,7 @@ public class SessionManager extends ComponentManager implements Session {
      * O(N) time complexity
      */
     public void resyncPersonsHashMap(Model model) {
+        logger.fine("Synchronizing allPersonsHashMap");
         allPersonsHashMap.clear();
         List<Person> allPersonsList = model.getAddressBook().getPersonList();
         for (Person currPerson : allPersonsList) {
