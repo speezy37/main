@@ -3,20 +3,20 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.CommandHistory;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+
 /**
  * Lists all departments in the address book to the user.
  */
-public class ListDepartmentCommand extends Command{
+public class ListDepartmentCommand extends Command {
 
     public static final String COMMAND_WORD = "listdepartment";
     public static final String COMMAND_ALIAS = "ld";
