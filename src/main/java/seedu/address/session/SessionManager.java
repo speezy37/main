@@ -181,4 +181,11 @@ public class SessionManager implements Session {
         loggedInNric = null;
         loggedInPriorityLevel = null;
     }
+
+    /**
+     * Forcefully destroys the instance. This should only be used in testing.
+     */
+    public void destroy() {
+        singleInstance = null;
+    }
 }

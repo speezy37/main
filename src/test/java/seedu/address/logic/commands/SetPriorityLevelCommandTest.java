@@ -27,15 +27,14 @@ import seedu.address.testutil.TypicalPersons;
  */
 public class SetPriorityLevelCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model;
     private CommandHistory commandHistory = new CommandHistory();
+
     private ModelManager expectedModel;
 
     @BeforeEach
     void setUp() {
-        if (model == null) {
-            model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        }
+        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
@@ -65,6 +64,9 @@ public class SetPriorityLevelCommandTest {
      */
     @Test
     public void execute_setPriorityLevelOfSecondPerson_success() throws CommandException {
+        SessionManager.getInstance(model).destroy();
+        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
         LoginCommand loginCommand = new LoginCommand(TypicalPersons.ALICE.getNric(),
                 TypicalPersons.ALICE.getPassword());
         loginCommand.execute(model, commandHistory);
@@ -85,6 +87,9 @@ public class SetPriorityLevelCommandTest {
 
     @Test
     public void execute_insufficientPriorityLevel_throwsCommandException() throws CommandException {
+        Person editedBenson = new PersonBuilder(TypicalPersons.BENSON)
+                .withPriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()).build();
+        model.updatePerson(TypicalPersons.BENSON, editedBenson);
         LoginCommand loginCommand = new LoginCommand(TypicalPersons.BENSON.getNric(),
                 TypicalPersons.BENSON.getPassword());
         loginCommand.execute(model, commandHistory);
@@ -94,6 +99,7 @@ public class SetPriorityLevelCommandTest {
 
         Assertions.assertThrows(CommandException.class, () -> spl.execute(model, commandHistory),
                 String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL, PriorityLevelEnum.ADMINISTRATOR));
+
     }
 
     @Test
@@ -121,6 +127,8 @@ public class SetPriorityLevelCommandTest {
             if (!ce.getMessage().equals(LogoutCommand.NOT_LOGGED_IN)) {
                 throw new CommandException(ce.getMessage());
             }
+        } finally {
+            SessionManager.getInstance(model).destroy();
         }
     }
 }
