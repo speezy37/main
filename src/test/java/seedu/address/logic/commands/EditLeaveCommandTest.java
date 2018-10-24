@@ -25,8 +25,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
-import seedu.address.testutil.LeaveBuilder;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
+import seedu.address.testutil.LeaveBuilder;
 import systemtests.SessionHelper;
 
 /**

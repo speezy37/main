@@ -31,8 +31,8 @@ import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

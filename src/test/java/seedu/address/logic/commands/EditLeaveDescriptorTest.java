@@ -10,9 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 
 import org.junit.Test;
 
-import seedu.address.testutil.EditLeaveDescriptorBuilder;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
-
+import seedu.address.testutil.EditLeaveDescriptorBuilder;
 
 public class EditLeaveDescriptorTest {
     @Test

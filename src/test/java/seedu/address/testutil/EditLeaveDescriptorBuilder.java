@@ -6,6 +6,9 @@ import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
 
+/**
+ * A utility class to help with building EditLeaveDescriptor objects.
+ */
 public class EditLeaveDescriptorBuilder {
 
     private EditLeaveDescriptor descriptor;
