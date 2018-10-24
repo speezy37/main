@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPROVAL;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLeaveCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditLeaveCommand object

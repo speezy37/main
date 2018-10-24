@@ -64,7 +64,7 @@ public class EditLeaveCommand extends Command {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
 
-        if(!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
+        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
 
@@ -145,11 +145,11 @@ public class EditLeaveCommand extends Command {
             return CollectionUtil.isAnyNonNull(approval);
         }
 
-        public void setNric(EmployeeId nric){
+        public void setNric(EmployeeId nric) {
             this.nric = nric;
         }
 
-        public void setDate(Date date){
+        public void setDate(Date date) {
             this.date = date;
         }
 
