@@ -8,7 +8,7 @@ import seedu.address.model.person.Person;
  */
 public class SessionChangedEvent extends BaseEvent {
 
-    String toFeedback;
+    private String toFeedback;
 
     public SessionChangedEvent() {
         toFeedback = "Not logged in";

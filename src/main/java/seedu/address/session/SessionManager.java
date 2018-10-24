@@ -22,7 +22,7 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
  * Also manages the logging in and out of the current session.
  * This class is singleton class.
  */
-public class SessionManager extends ComponentManager implements Session  {
+public class SessionManager extends ComponentManager implements Session {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
     private static SessionManager singleInstance = null;
