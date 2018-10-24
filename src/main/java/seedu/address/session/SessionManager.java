@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashMap;
 import java.util.List;
 
+import seedu.address.commons.core.ComponentManager;
+import seedu.address.commons.events.model.SessionChangedEvent;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,7 +22,7 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
  * Also manages the logging in and out of the current session.
  * This class is singleton class.
  */
-public class SessionManager implements Session {
+public class SessionManager extends ComponentManager implements Session  {
     public static final String NOT_LOGGED_IN = "This operation requires the user to be logged in!";
 
     private static SessionManager singleInstance = null;
@@ -77,6 +79,7 @@ public class SessionManager implements Session {
         } else {
             loggedInNric = loginWithThisNric;
             loggedInPriorityLevel = allPersonsHashMap.get(loginWithThisNric).getPriorityLevel();
+            raise(new SessionChangedEvent(getLoggedInPersonDetails()));
         }
     }
 
@@ -93,6 +96,7 @@ public class SessionManager implements Session {
     public void logOutSession() {
         loggedInNric = null;
         loggedInPriorityLevel = null;
+        raise(new SessionChangedEvent());
     }
 
     //================================================ GETTING LOGGED IN DETAILS ====================================
