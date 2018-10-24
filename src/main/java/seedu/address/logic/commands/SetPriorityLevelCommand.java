@@ -90,4 +90,12 @@ public class SetPriorityLevelCommand extends Command {
         return new CommandResult(String.format(MESSAGE_CHANGE_PLVL_SUCCESS,
                 editedPerson.getName(), priorityLevel));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetPriorityLevelCommand // instanceof handles nulls
+                && (index.equals(((SetPriorityLevelCommand) other).index)
+                && priorityLevel.equals(((SetPriorityLevelCommand) other).priorityLevel)));
+    }
 }

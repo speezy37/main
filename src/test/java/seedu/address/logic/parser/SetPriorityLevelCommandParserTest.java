@@ -2,11 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SetPriorityLevelCommand;
 import seedu.address.model.prioritylevel.PriorityLevel;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.testutil.TypicalIndexes;
 
 public class SetPriorityLevelCommandParserTest {
     private SetPriorityLevelCommandParser parser = new SetPriorityLevelCommandParser();
@@ -28,6 +32,14 @@ public class SetPriorityLevelCommandParserTest {
     }
 
     @Test
+    public void parse_invalidIndex_failure() {
+        String setPlvlCommand = " iWantCrashThisApp " + CliSyntax.PREFIX_PRIORITYLEVEL
+                + PriorityLevelEnum.BASIC;
+        assertParseFailure(parser, setPlvlCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPriorityLevelCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidPriorityLevel_failure() {
         String setPlvlCommand = " 1 " + CliSyntax.PREFIX_PRIORITYLEVEL + "9999";
         assertParseFailure(parser, setPlvlCommand,
@@ -40,5 +52,16 @@ public class SetPriorityLevelCommandParserTest {
         setPlvlCommand = " 1 " + CliSyntax.PREFIX_PRIORITYLEVEL + "LimpehTryToCrashThisApp";
         assertParseFailure(parser, setPlvlCommand,
                 PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
+    }
+
+    @Test
+    void parse_validParameters_success() {
+        Index targetIndex = TypicalIndexes.INDEX_FIRST_PERSON;
+        PriorityLevel expectedPlvl = new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode());
+        SetPriorityLevelCommand expectedCommandReturn = new SetPriorityLevelCommand(targetIndex, expectedPlvl);
+
+        String spl = String.valueOf(targetIndex.getOneBased()) + " " + CliSyntax.PREFIX_PRIORITYLEVEL
+                + expectedPlvl.priorityLevelCode;
+        assertParseSuccess(parser, spl, expectedCommandReturn);
     }
 }
