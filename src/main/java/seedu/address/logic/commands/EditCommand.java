@@ -160,9 +160,12 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setNric(toCopy.nric);
+            setPassword(toCopy.password);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setDepartment(toCopy.department);
+            setPriorityLevel(toCopy.priorityLevel);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setSchedule(toCopy.schedules);

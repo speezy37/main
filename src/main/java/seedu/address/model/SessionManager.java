@@ -3,12 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.model.schedule.Schedule;
 
 //@@author jylee-git
 /**
@@ -32,7 +34,6 @@ public class SessionManager {
         loggedInNric = logInWithThisNric;
         loggedInPriorityLevel = getLoggedInPersonDetails(model).getPriorityLevel();
     }
-
 
     /**
      * Logs out of the current session.
@@ -58,14 +59,14 @@ public class SessionManager {
     }
 
     /**
-     * Reutrns true if user is logged in to the application.
+     * Returns true if user is logged in to the application.
      */
     public static boolean isLoggedIn() {
         return loggedInNric != null;
     }
 
     /**
-     * Returns the {@code Person} of the person whose NRIC matches the one that's currently logged in.
+     * Returns the {@code Person} object whose NRIC matches the one that's currently logged in.
      */
     public static Person getLoggedInPersonDetails(Model model) {
         List<Person> allPersonsList = model.getAddressBook().getPersonList();
@@ -75,6 +76,25 @@ public class SessionManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns the {@code name} of the person whose NRIC matches the one that's currently logged in.
+     */
+    public static String getLoggedInPersonName(Model model) {
+        return getLoggedInPersonDetails(model).getName().toString();
+    }
+
+    /**
+     * Returns the {@code schedule} of the person whose NRIC matches the one that's currently logged in.
+     */
+    public static String getLoggedInPersonSchedule(Model model) {
+        Set<Schedule> schedule = getLoggedInPersonDetails(model).getSchedule();
+        if (schedule.isEmpty()) {
+            return "No Schedule Available";
+        } else {
+            return schedule.toString();
+        }
     }
 
     /**

@@ -18,6 +18,10 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.TimeEnd;
+import seedu.address.model.schedule.TimeStart;
+import seedu.address.model.schedule.Venue;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,22 +34,26 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"), new Department("Top Management"),
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Mode("out"),
-                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"), new HashSet<>()),
+                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"),
+                    getScheduleSet("1300", "1400", "Level 5")),
             new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Department("Senior Management"),
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Mode("out"),
-                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password"), new HashSet<>()),
+                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password"),
+                    getScheduleSet("1100", "1600", "Level 4")),
             new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
                 new Phone("93210283"), new Email("charlotte@example.com"), new Department("Middle Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
-                getTagSet("neighbours"), new HashSet<>()),
+                getTagSet("neighbours"),
+                    getScheduleSet("1000", "1700", "Counter 1")),
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("in"),
-                getTagSet("family"), new HashSet<>()),
+                getTagSet("family"),
+                    getScheduleSet("0900", "1800", "Toilet")),
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
                 new Phone("92492021"), new Email("irfan@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
@@ -74,5 +82,16 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
             .map(Tag::new)
             .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Schedule> getScheduleSet(String timeStart, String timeEnd, String venue) {
+        Schedule schedule = new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
+        Set<Schedule> scheduleSet = new HashSet<>();
+        scheduleSet.add(schedule);
+
+        return scheduleSet;
     }
 }
