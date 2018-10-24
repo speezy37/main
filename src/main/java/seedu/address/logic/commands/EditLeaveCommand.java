@@ -18,6 +18,7 @@ import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 /**
  * Edits the details of an existing leave in the leave list.
@@ -38,6 +39,8 @@ public class EditLeaveCommand extends Command {
     public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Edited Leave: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave already exists in the address book.";
+    public static final String MESSAGE_INVALID_LEAVE_APPROVAL =
+            "Not authorized to approve leave application";
 
     private final Index index;
     private final EditLeaveDescriptor editLeaveDescriptor;
@@ -59,6 +62,10 @@ public class EditLeaveCommand extends Command {
         requireNonNull(model);
         if (!SessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+
+        if(!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
+            throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
 
         List<Leave> lastShownList = model.getFilteredLeaveList();

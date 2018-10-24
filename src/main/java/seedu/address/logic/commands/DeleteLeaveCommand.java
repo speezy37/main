@@ -26,8 +26,7 @@ public class DeleteLeaveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_LEAVE_SUCCESS = "Deleted Leave: %1$s";
-    public static final String MESSAGE_INVALID_LEAVE_DELETE = "Not authorized to delete other users' leave application";
-    private static boolean isLogin = true;
+    public static final String MESSAGE_INVALID_LEAVE_DELETE = "Not authorized to delete other user's leave application";
 
     private final Index targetIndex;
 
@@ -35,9 +34,6 @@ public class DeleteLeaveCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    public void setIsLogin(boolean isLogin) {
-        this.isLogin = isLogin;
-    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
@@ -51,7 +47,7 @@ public class DeleteLeaveCommand extends Command {
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
 
 
-        if (isLogin && leaveToDelete.getEmployeeId().nric != SessionManager.getLoggedInSessionNric().nric
+        if (leaveToDelete.getEmployeeId().nric != SessionManager.getLoggedInSessionNric().nric
                 && !SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }

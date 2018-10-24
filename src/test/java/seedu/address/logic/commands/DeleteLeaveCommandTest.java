@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
@@ -18,6 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import systemtests.SessionHelper;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,11 +31,15 @@ public class DeleteLeaveCommandTest {
     private Model model = new ModelManager(getTypicalLeaveList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
+    @Before
+    public void setUp() {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+    }
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
-        deleteLeaveCommand.setIsLogin(false);
 
         String expectedMessage = String.format(DeleteLeaveCommand.MESSAGE_DELETE_LEAVE_SUCCESS, leaveToDelete);
 
@@ -57,7 +64,6 @@ public class DeleteLeaveCommandTest {
 
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
-        deleteLeaveCommand.setIsLogin(false);
 
         String expectedMessage = String.format(DeleteLeaveCommand.MESSAGE_DELETE_LEAVE_SUCCESS, leaveToDelete);
 

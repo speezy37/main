@@ -42,7 +42,7 @@ public class EditLeaveCommandTest {
 
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.MANAGER.getPriorityLevelCode());
     }
 
     @Test

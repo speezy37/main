@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -22,7 +23,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLeaveList;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.LeaveBuilder;
+import systemtests.SessionHelper;
 
 public class AddLeaveCommandTest {
 
@@ -32,6 +35,12 @@ public class AddLeaveCommandTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private CommandHistory commandHistory = new CommandHistory();
+
+    @Before
+    public void setUp() {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.MANAGER.getPriorityLevelCode());
+    }
+
 
     @Test
     public void constructor_nullLeave_throwsNullPointerException() {
@@ -44,7 +53,6 @@ public class AddLeaveCommandTest {
         ModelStubAcceptingLeaveAdded modelStub = new ModelStubAcceptingLeaveAdded();
         Leave validLeave = new LeaveBuilder().build();
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
-        addLeaveCommand.setIsLogin(false);
         CommandResult commandResult = addLeaveCommand.execute(modelStub, commandHistory);
         assertEquals(String.format(AddLeaveCommand.MESSAGE_SUCCESS, validLeave), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validLeave), modelStub.leavesAdded);
