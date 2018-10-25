@@ -26,15 +26,15 @@ import seedu.address.session.SessionManager;
  */
 public class EditLeaveCommand extends Command {
 
-    public static final String COMMAND_WORD = "editleave";
-    public static final String COMMAND_ALIAS = "el";
+    public static final String COMMAND_APPROVE = "approve";
+    public static final String COMMAND_REJECT = "reject";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the leave identified "
+    public static final String MESSAGE_USAGE = COMMAND_APPROVE + ": Edits the details of the leave identified "
             + "by the index number used in the displayed leave list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPROVAL + "APPROVAL ] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_APPROVE + " 1 "
             + PREFIX_APPROVAL + "APPROVED ";
 
     public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Edited Leave: %1$s";

@@ -136,9 +136,11 @@ public class AddressBookParser {
         case ListLeaveCommand.COMMAND_WORD:
             return new ListLeaveCommand();
 
-        case EditLeaveCommand.COMMAND_WORD:
-        case EditLeaveCommand.COMMAND_ALIAS:
-            return new EditLeaveCommandParser().parse(arguments);
+        case EditLeaveCommand.COMMAND_APPROVE:
+            return new ApproveLeaveCommandParser().parse(arguments);
+
+        case EditLeaveCommand.COMMAND_REJECT:
+            return new RejectLeaveCommandParser().parse(arguments);
 
 
         case SetPriorityLevelCommand.COMMAND_WORD:
