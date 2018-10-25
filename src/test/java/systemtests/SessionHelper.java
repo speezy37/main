@@ -1,6 +1,6 @@
 package systemtests;
 
-import seedu.address.model.SessionManager;
+import seedu.address.session.SessionManager;
 
 //@@author jylee-git
 /**
@@ -16,7 +16,11 @@ public class SessionHelper extends SessionManager {
         forceLoginWith("F9999999P", priorityLevel);
     }
 
+    public static void forceLoginWithPriorityLevelOf(String nric, int priorityLevel) {
+        forceLoginWith(nric, priorityLevel);
+    }
+
     public static void logoutOfSession() {
-        SessionManager.logOutSession();
+        SessionManager.forceLogout();
     }
 }
