@@ -105,7 +105,7 @@ public class UniquePersonList implements Iterable<Person> {
         return FXCollections.unmodifiableObservableList(internalList);
     }
 
-    //@@author Woonhian
+    //Reused from https://github.com/CS2103JAN2018-F14-B1/main/pull/57/files with minor modifications
     /**
      * Sorts employees by name or department in ascending or descending order.
      * @return
