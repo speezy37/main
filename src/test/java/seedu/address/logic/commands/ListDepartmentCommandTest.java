@@ -36,13 +36,11 @@ public class ListDepartmentCommandTest {
         List<Person> lastShownList = model.getFilteredPersonList();
         List<String> departments = new ArrayList<>();
 
-        for (int i = 0; i < lastShownList.size(); i++) {
-            Person department = lastShownList.get(i);
+        for (Person department : lastShownList) {
             departments.add(department.getDepartment().toString());
         }
 
-        Set<String> hs = new HashSet<>();
-        hs.addAll(departments);
+        Set<String> hs = new HashSet<>(departments);
         departments.clear();
         departments.addAll(hs);
 
