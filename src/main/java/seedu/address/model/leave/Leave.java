@@ -13,13 +13,13 @@ import seedu.address.model.person.Nric;
 public class Leave {
 
     private final Date date;
-    private final Nric employeeId;
+    private final EmployeeId employeeId;
     private final Approval approval;
 
     /**
      * Every field must be present and not null.
      */
-    public Leave(Nric employeeId, Date date, Approval approval) {
+    public Leave(EmployeeId employeeId, Date date, Approval approval) {
         requireAllNonNull(employeeId, date, approval);
         this.employeeId = employeeId;
         this.date = date;
@@ -30,7 +30,7 @@ public class Leave {
         return date;
     }
 
-    public Nric getEmployeeId() {
+    public EmployeeId getEmployeeId() {
         return employeeId;
     }
 

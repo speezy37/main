@@ -68,7 +68,7 @@ public class XmlAdaptedLeave {
         if (!EmployeeId.isValidEmployeeId(nric)) {
             throw new IllegalValueException(EmployeeId.MESSAGE_NRIC_CONSTRAINTS);
         }
-        final Nric modelEmployeeId = new Nric(nric);
+        final EmployeeId modelEmployeeId = new EmployeeId(nric);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));

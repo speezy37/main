@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
 import seedu.address.session.SessionManager;
 
@@ -40,8 +41,9 @@ public class AddLeaveCommand extends Command {
         if (!sessionManager.isLoggedIn()) {
             throw new CommandException(STATUS_NOT_LOGGED_IN);
         }
-        Leave personLeaveToAdd = new Leave(sessionManager.getLoggedInSessionNric(),
-                toAdd.getDate(), toAdd.getApproval());
+
+        EmployeeId nric = new EmployeeId(sessionManager.getLoggedInSessionNric().nric);
+        Leave personLeaveToAdd = new Leave(nric, toAdd.getDate(), toAdd.getApproval());
 
         if (model.hasLeave(personLeaveToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
