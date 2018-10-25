@@ -16,6 +16,7 @@ import seedu.address.model.person.Mode;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
+import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
 //@@author pinjuen
 
@@ -27,22 +28,25 @@ public class CheckCommand extends Command {
     public static final String COMMAND_WORD = "check";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in/out to work. "
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC "
-            + PREFIX_PASSWORD + "PASSWORD "
-            + PREFIX_MODE + "MODE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NRIC + "G1234567T "
-            + PREFIX_PASSWORD + "HEllo12 "
-            + PREFIX_MODE + "in ";
+        + "Parameters: "
+        + PREFIX_NRIC + "NRIC "
+        + PREFIX_PASSWORD + "PASSWORD "
+        + PREFIX_MODE + "MODE \n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NRIC + "G1234567T "
+        + PREFIX_PASSWORD + "HEllo12 "
+        + PREFIX_MODE + "in ";
 
-    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s!";
-    public static final String MESSAGE_DUPLICATE = "User has already checked %1$s!";
+    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s to work!";
+    public static final String MESSAGE_DUPLICATE = "User has already checked %1$s to work!";
     public static final String MESSAGE_NOT_FOUND = "User is not found!";
+    public static final String MESSAGE_NOT_LOGIN = "User has not logged in yet!";
+    public static final String MESSAGE_NOT_AUTHORISED = "User is not authorised to do so!";
 
     private Password password;
     private Mode mode;
     private Nric nric;
+    private Person personLoggedIn;
     private Person personToEdit;
 
     public CheckCommand(Nric nric, Password password, Mode mode) {
@@ -56,27 +60,33 @@ public class CheckCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (!isUserValid(model)){
-            throw new CommandException(MESSAGE_NOT_FOUND);
-        }
-
         if (!SessionManager.isLoggedIn()) {
-            SessionManager.loginToSession(model, nric);
+            throw new CommandException(MESSAGE_NOT_LOGIN);
+        } else {
+            personLoggedIn = SessionManager.getLoggedInPersonDetails(model);
+
+            if (!isUserValid(model)) {
+                throw new CommandException(MESSAGE_NOT_FOUND);
+            }
+
+            if (personLoggedIn.getPriorityLevel().priorityLevelCode == PriorityLevelEnum.BASIC.getPriorityLevelCode() && !personLoggedIn.getNric().toString().equals(nric.toString())){
+                throw new CommandException(MESSAGE_NOT_AUTHORISED);
+            }
+
+            if (personToEdit.getMode().equals(mode)) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
+            }
+
+            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
+                personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(), personToEdit.getPriorityLevel(),
+                personToEdit.getAddress(), mode, personToEdit.getTags(), personToEdit.getSchedule());
+
+            model.updatePerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            model.commitAddressBook();
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS, mode));
         }
-
-        if (personToEdit.getMode().equals(mode)){
-            throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
-        }
-
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
-            personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(), personToEdit.getPriorityLevel(),
-            personToEdit.getAddress(), mode, personToEdit.getTags(), personToEdit.getSchedule());
-
-        model.updatePerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, mode));
     }
 
     @Override
@@ -94,8 +104,8 @@ public class CheckCommand extends Command {
         // state check
         CheckCommand e = (CheckCommand) other;
         return nric.equals(e.nric)
-                && password.equals(e.password)
-                && mode.equals(e.mode);
+            && password.equals(e.password)
+            && mode.equals(e.mode);
     }
 
     /**
