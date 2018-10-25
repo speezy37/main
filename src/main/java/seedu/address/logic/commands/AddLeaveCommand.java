@@ -10,6 +10,7 @@ import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
 import seedu.address.session.SessionManager;
 
+//@@author Hafizuddin-NUS
 /**
  * Adds a leave request to the Leave List.
  */
