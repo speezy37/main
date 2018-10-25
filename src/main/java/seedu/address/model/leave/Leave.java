@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Nric;
+
 /**
  * Represents a Leave in the leave list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -11,13 +13,13 @@ import java.util.Objects;
 public class Leave {
 
     private final Date date;
-    private final EmployeeId employeeId;
+    private final Nric employeeId;
     private final Approval approval;
 
     /**
      * Every field must be present and not null.
      */
-    public Leave(EmployeeId employeeId, Date date, Approval approval) {
+    public Leave(Nric employeeId, Date date, Approval approval) {
         requireAllNonNull(employeeId, date, approval);
         this.employeeId = employeeId;
         this.date = date;
@@ -28,7 +30,7 @@ public class Leave {
         return date;
     }
 
-    public EmployeeId getEmployeeId() {
+    public Nric getEmployeeId() {
         return employeeId;
     }
 

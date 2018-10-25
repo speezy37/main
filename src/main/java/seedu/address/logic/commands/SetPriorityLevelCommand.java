@@ -12,10 +12,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 //@@author jylee-git
 /**
@@ -31,8 +31,8 @@ public class SetPriorityLevelCommand extends Command {
             + PREFIX_PRIORITYLEVEL + "PRIORITYLEVEL\n"
             + "Example: " + COMMAND_WORD + " 2 " + PREFIX_PRIORITYLEVEL + "3";
 
-    private static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
-    private static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
+    public static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
+    public static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
 
     private final Index index;
     private final PriorityLevel priorityLevel;
@@ -46,14 +46,15 @@ public class SetPriorityLevelCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
 
-        if (!SessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
         /**
          * Throws exception if user does not have the required access level.
          */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
@@ -65,7 +66,7 @@ public class SetPriorityLevelCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (personToEdit == SessionManager.getLoggedInPersonDetails(model)) {
+        if (personToEdit == sessionManager.getLoggedInPersonDetails()) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_OWN_PLVL);
         }
 
@@ -88,5 +89,13 @@ public class SetPriorityLevelCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_CHANGE_PLVL_SUCCESS,
                 editedPerson.getName(), priorityLevel));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetPriorityLevelCommand // instanceof handles nulls
+                && (index.equals(((SetPriorityLevelCommand) other).index)
+                && priorityLevel.equals(((SetPriorityLevelCommand) other).priorityLevel)));
     }
 }

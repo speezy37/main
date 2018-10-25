@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.SetPriorityLevelCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.prioritylevel.PriorityLevel;
@@ -36,7 +35,8 @@ public class SetPriorityLevelCommandParser implements Parser<SetPriorityLevelCom
         try {
             index = ParserUtil.parseIndex(argMultiMap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetPriorityLevelCommand.MESSAGE_USAGE), pe);
         }
 
         PriorityLevel priorityLevel = ParserUtil.parsePriorityLevel(argMultiMap.getValue(PREFIX_PRIORITYLEVEL).get());

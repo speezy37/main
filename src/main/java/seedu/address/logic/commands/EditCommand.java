@@ -21,7 +21,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -34,6 +33,8 @@ import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
+
+import seedu.address.session.SessionManager;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -78,7 +79,8 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (!SessionManager.isLoggedIn()) {
+        SessionManager sessionManager = SessionManager.getInstance(model);
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
 

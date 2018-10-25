@@ -8,6 +8,7 @@ import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.person.Nric;
 
 /**
  * JAXB-friendly version of the Leave.
@@ -67,7 +68,7 @@ public class XmlAdaptedLeave {
         if (!EmployeeId.isValidEmployeeId(nric)) {
             throw new IllegalValueException(EmployeeId.MESSAGE_NRIC_CONSTRAINTS);
         }
-        final EmployeeId modelEmployeeId = new EmployeeId(nric);
+        final Nric modelEmployeeId = new Nric(nric);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
