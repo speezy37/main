@@ -31,7 +31,7 @@ public class ListDepartmentCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_departmentListIsFiltered_showsDepartments() {
 
         List<Person> lastShownList = model.getFilteredPersonList();
         List<String> departments = new ArrayList<>();
