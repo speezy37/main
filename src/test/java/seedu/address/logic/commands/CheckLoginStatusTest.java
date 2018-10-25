@@ -14,8 +14,9 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
-import seedu.address.testutil.PersonBuilder;
 
+import seedu.address.session.SessionManager;
+import seedu.address.testutil.PersonBuilder;
 import systemtests.SessionHelper;
 
 public class CheckLoginStatusTest {
@@ -27,6 +28,7 @@ public class CheckLoginStatusTest {
     private CommandHistory commandHistory = new CommandHistory();
     private ModelManager expectedModel;
     private Person personA;
+    private SessionManager sessionManager;
 
     /**
      * Sets up an empty addressBook, then add a user inside; for purpose of CheckLoginStatus Command testing.

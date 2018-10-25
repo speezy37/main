@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,17 +20,20 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LeaveList;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLeaveList;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 import seedu.address.testutil.LeaveBuilder;
 import systemtests.SessionHelper;
 
 public class AddLeaveCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+    private static Model dummyModel;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -38,9 +42,10 @@ public class AddLeaveCommandTest {
 
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.MANAGER.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+        dummyModel = new ModelManager();
+        SessionManager.getInstance(dummyModel);
     }
-
 
     @Test
     public void constructor_nullLeave_throwsNullPointerException() {
@@ -53,6 +58,7 @@ public class AddLeaveCommandTest {
         ModelStubAcceptingLeaveAdded modelStub = new ModelStubAcceptingLeaveAdded();
         Leave validLeave = new LeaveBuilder().build();
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
+        SessionHelper.forceLoginWithPriorityLevelOf(validLeave.getEmployeeId().toString(), 1);
         CommandResult commandResult = addLeaveCommand.execute(modelStub, commandHistory);
         assertEquals(String.format(AddLeaveCommand.MESSAGE_SUCCESS, validLeave), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validLeave), modelStub.leavesAdded);
@@ -62,8 +68,10 @@ public class AddLeaveCommandTest {
     @Test
     public void execute_duplicateLeave_throwsCommandException() throws Exception {
         Leave validLeave = new LeaveBuilder().build();
-        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
+        SessionHelper.forceLoginWithPriorityLevelOf(validLeave.getEmployeeId().toString(), 1);
         ModelStub modelStub = new ModelStubWithLeave(validLeave);
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(validLeave);
+        addLeaveCommand.execute(dummyModel, commandHistory);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddLeaveCommand.MESSAGE_DUPLICATE_LEAVE);
@@ -89,6 +97,10 @@ public class AddLeaveCommandTest {
         assertFalse(addLeaveCommand1.equals(addLeaveCommand2));
     }
 
+    @After
+    public void tearDown() {
+        SessionHelper.logoutOfSession();
+    }
 
     /**
      * A default model stub that have all of the methods failing.

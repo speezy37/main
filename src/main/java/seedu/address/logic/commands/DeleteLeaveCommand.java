@@ -9,9 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 /**
  * Deletes a leave identified using it's displayed index from the leave book.
@@ -38,6 +38,7 @@ public class DeleteLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
         List<Leave> lastShownList = model.getFilteredLeaveList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -46,9 +47,8 @@ public class DeleteLeaveCommand extends Command {
 
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-
-        if (leaveToDelete.getEmployeeId().nric != SessionManager.getLoggedInSessionNric().nric
-                && !SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
+        if (leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
+                && !sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }
 

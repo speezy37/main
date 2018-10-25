@@ -9,10 +9,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 /**
  * List schedule of a person in the address book to the user.
@@ -39,8 +39,9 @@ public class ScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
 
-        if (!SessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
 
@@ -54,8 +55,8 @@ public class ScheduleCommand extends Command {
         /**
          * Throws exception if user does not have the required access level and is not the logged in person
          */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
-                && targetPerson.getNric() != SessionManager.getLoggedInSessionNric()) {
+        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
+                && targetPerson.getNric() != sessionManager.getLoggedInSessionNric()) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
