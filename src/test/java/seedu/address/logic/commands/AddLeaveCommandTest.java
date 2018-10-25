@@ -30,6 +30,7 @@ import seedu.address.session.SessionManager;
 import seedu.address.testutil.LeaveBuilder;
 import systemtests.SessionHelper;
 
+//@@author Hafizuddin-NUS
 public class AddLeaveCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();

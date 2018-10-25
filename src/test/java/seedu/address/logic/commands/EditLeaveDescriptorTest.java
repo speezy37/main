@@ -13,6 +13,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
 
+//@@author Hafizuddin-NUS
 public class EditLeaveDescriptorTest {
     @Test
     public void equals() {
