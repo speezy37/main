@@ -30,7 +30,7 @@ public class ListDepartmentCommand extends Command {
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        List <String> departments = new ArrayList<>();
+        List<String> departments = new ArrayList<>();
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Person department = lastShownList.get(i);
