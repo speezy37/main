@@ -34,6 +34,8 @@ public class SessionManager extends ComponentManager implements Session {
 
     private HashMap<Nric, Person> allPersonsHashMap;
 
+    private double checkedInHour = 0;
+
     // FOR TEST USE ONLY
     protected SessionManager() {
         logger.warning("Empty SessionManager constructor called. If this isn't a test, there is a bug in the"
@@ -57,7 +59,22 @@ public class SessionManager extends ComponentManager implements Session {
         }
         return singleInstance;
     }
+    //@@author pinjuen
+    //================================ CHECK IN =================================================================
 
+    public void checkedInToWork(double hour){
+        checkedInHour = hour;
+    }
+
+    public double getCheckedInHour(){
+        return checkedInHour;
+    }
+
+    public void checkedOutToWork(){
+        checkedInHour = 0;
+    }
+
+    //@@author
     //================================ LOGIN/LOGOUT =================================================================
 
     /**

@@ -6,17 +6,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.person.Mode;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 //@@author pinjuen
 
@@ -24,9 +27,10 @@ import seedu.address.model.prioritylevel.PriorityLevelEnum;
  * Check in or out to work.
  */
 public class CheckCommand extends Command {
+    public final String CURRENT_DATE = currentDate();
+    public final String CURRENT_TIME = currentTime();
 
     public static final String COMMAND_WORD = "check";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in/out to work. "
         + "Parameters: "
         + PREFIX_NRIC + "NRIC "
@@ -36,8 +40,10 @@ public class CheckCommand extends Command {
         + PREFIX_NRIC + "G1234567T "
         + PREFIX_PASSWORD + "HEllo12 "
         + PREFIX_MODE + "in ";
-
-    public static final String MESSAGE_SUCCESS = "Successfully checked %1$s to work!";
+    public static final String MESSAGE_SUCCESS_CHECKED_IN = "Successfully checked in to work!\n"
+        + "Date: %1$s Time: %2$s ";
+    public static final String MESSAGE_SUCCESS_CHECKED_OUT = "Successfully checked out from work!\n"
+        + "Date: %1$s Time: %2$s Worked for: %3$s hours";
     public static final String MESSAGE_DUPLICATE = "User has already checked %1$s to work!";
     public static final String MESSAGE_NOT_FOUND = "User is not found!";
     public static final String MESSAGE_NOT_LOGIN = "User has not logged in yet!";
@@ -48,29 +54,43 @@ public class CheckCommand extends Command {
     private Nric nric;
     private Person personLoggedIn;
     private Person personToEdit;
+    private String[] timeArray = new String[2];
+    private double currHour;
+    private double currMinute;
+
 
     public CheckCommand(Nric nric, Password password, Mode mode) {
         requireAllNonNull(nric, password, mode);
         this.nric = nric;
         this.password = password;
         this.mode = mode;
+
+        String[] timeTokens = CURRENT_TIME.split("\\:");
+
+        for (int i = 0; i < timeTokens.length; i++)
+            timeArray[i] = timeTokens[i];
+
+        currMinute = Double.parseDouble(timeArray[1]);
+        currHour = Double.parseDouble(timeArray[0]) + currMinute/60;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
 
-        if (!SessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(MESSAGE_NOT_LOGIN);
         } else {
-            personLoggedIn = SessionManager.getLoggedInPersonDetails(model);
+            personLoggedIn = sessionManager.getLoggedInPersonDetails();
+
+            if (personLoggedIn.getPriorityLevel().priorityLevelCode == PriorityLevelEnum.BASIC.getPriorityLevelCode()
+                && !personLoggedIn.getNric().toString().equals(nric.toString())){
+                throw new CommandException(MESSAGE_NOT_AUTHORISED);
+            }
 
             if (!isUserValid(model)) {
                 throw new CommandException(MESSAGE_NOT_FOUND);
-            }
-
-            if (personLoggedIn.getPriorityLevel().priorityLevelCode == PriorityLevelEnum.BASIC.getPriorityLevelCode() && !personLoggedIn.getNric().toString().equals(nric.toString())){
-                throw new CommandException(MESSAGE_NOT_AUTHORISED);
             }
 
             if (personToEdit.getMode().equals(mode)) {
@@ -85,7 +105,17 @@ public class CheckCommand extends Command {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             model.commitAddressBook();
 
-            return new CommandResult(String.format(MESSAGE_SUCCESS, mode));
+            if (mode.equals(new Mode("in"))) {
+                sessionManager.checkedInToWork(currHour);
+
+                return new CommandResult(String.format(MESSAGE_SUCCESS_CHECKED_IN, CURRENT_DATE, CURRENT_TIME));
+            } else {
+                double hoursWorked = calculateHoursWorked(sessionManager.getCheckedInHour());
+
+                sessionManager.checkedOutToWork();
+
+                return new CommandResult(String.format(MESSAGE_SUCCESS_CHECKED_OUT, CURRENT_DATE, CURRENT_TIME, hoursWorked));
+            }
         }
     }
 
@@ -128,4 +158,23 @@ public class CheckCommand extends Command {
 
         return false;
     }
+
+    private String currentDate(){
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate dateNow = LocalDate.now();
+
+        return date.format(dateNow);
+    }
+
+    private String currentTime(){
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime timeNow = LocalTime.now();
+
+        return time.format(timeNow);
+    }
+
+    private double calculateHoursWorked(double checkedInHour){
+        return currHour - checkedInHour;
+    }
+
 }

@@ -51,18 +51,18 @@ public class SampleDataUtil {
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("in"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("out"),
                 getTagSet("family"),
                     getScheduleSet("0900", "1800", "Toilet")),
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
                 new Phone("92492021"), new Email("irfan@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("in"),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("out"),
                 getTagSet("classmates"), new HashSet<>()),
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("in"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("out"),
                 getTagSet("colleagues"), new HashSet<>())
         };
     }
