@@ -35,7 +35,8 @@ public class SetDepartmentCommandParser implements Parser<SetDepartmentCommand> 
         try {
             index = ParserUtil.parseIndex(argMultiMap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetDepartmentCommand.MESSAGE_USAGE), pe);
         }
 
         Department department = ParserUtil.parseDepartment(argMultiMap.getValue(PREFIX_DEPARTMENT).get());
