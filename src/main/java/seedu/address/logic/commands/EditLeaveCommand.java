@@ -76,8 +76,8 @@ public class EditLeaveCommand extends Command {
         Leave leaveToEdit = lastShownList.get(index.getZeroBased());
         Leave editedLeave = createEditedLeave(leaveToEdit, editLeaveDescriptor);
 
-        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode >=
-                leaveToEdit.getPriorityLevel().priorityLevelCode) {
+        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode
+                >= leaveToEdit.getPriorityLevel().priorityLevelCode) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
 
