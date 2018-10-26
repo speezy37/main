@@ -17,6 +17,7 @@ import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.session.SessionManager;
 
 //@@author Hafizuddin-NUS
@@ -126,6 +127,7 @@ public class EditLeaveCommand extends Command {
         private EmployeeId nric;
         private Date date;
         private Approval approval;
+        private PriorityLevel priorityLevel;
 
 
         public EditLeaveDescriptor() {
@@ -140,6 +142,7 @@ public class EditLeaveCommand extends Command {
             setNric(toCopy.nric);
             setDate(toCopy.date);
             setApproval(toCopy.approval);
+            setPriorityLevel(priorityLevel);
         }
 
         /**
@@ -161,6 +164,10 @@ public class EditLeaveCommand extends Command {
             this.approval = approval;
         }
 
+        public void setPriorityLevel(PriorityLevel priorityLevel) {
+            this.priorityLevel = priorityLevel;
+        }
+
         public Optional<EmployeeId> getNric() {
             return Optional.ofNullable(nric);
         }
@@ -171,6 +178,10 @@ public class EditLeaveCommand extends Command {
 
         public Optional<Approval> getApproval() {
             return Optional.ofNullable(approval);
+        }
+
+        public Optional<PriorityLevel> getPriorityLevel() {
+            return Optional.ofNullable(priorityLevel);
         }
 
         @Override
@@ -189,7 +200,7 @@ public class EditLeaveCommand extends Command {
             EditLeaveDescriptor e = (EditLeaveDescriptor) other;
 
             return getApproval().equals(e.getApproval()) && getNric().equals(e.getNric())
-                    && getDate().equals(e.getDate());
+                    && getDate().equals(e.getDate()) && getPriorityLevel().equals(e.getPriorityLevel());
         }
     }
 }

@@ -5,6 +5,7 @@ import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevel;
 
 /**
  * A utility class to help with building EditLeaveDescriptor objects.
@@ -29,6 +30,7 @@ public class EditLeaveDescriptorBuilder {
         descriptor.setApproval(leave.getApproval());
         descriptor.setNric(leave.getEmployeeId());
         descriptor.setDate(leave.getDate());
+        descriptor.setPriorityLevel(leave.getPriorityLevel());
     }
 
     /**
@@ -52,6 +54,11 @@ public class EditLeaveDescriptorBuilder {
      */
     public EditLeaveDescriptorBuilder withDate(String date) {
         descriptor.setDate(new Date(date));
+        return this;
+    }
+
+    public EditLeaveDescriptorBuilder withPriorityLevel(int priorityLevel) {
+        descriptor.setPriorityLevel(new PriorityLevel(priorityLevel));
         return this;
     }
 

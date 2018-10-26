@@ -36,14 +36,14 @@ import systemtests.SessionHelper;
 public class EditLeaveCommandTest {
 
     private static final Leave REQUEST1EDIT = new LeaveBuilder().withNric("S1234567A")
-            .withDate("01/02/2018").withApproval("APPROVED").build();
+            .withDate("01/02/2018").withApproval("APPROVED").withPriorityLevel(1).build();
 
     private Model model = new ModelManager(getTypicalLeaveList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.MANAGER.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.IT_UNIT.getPriorityLevelCode());
     }
 
     @Test

@@ -2,11 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_REQUEST1;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_REQUEST2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPROVAL_REQUEST2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_REQUEST3;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 import org.junit.Test;
 
@@ -47,7 +43,11 @@ public class EditLeaveDescriptorTest {
 
         // different approval -> returns false
         editedRequest = new EditLeaveDescriptorBuilder(DESC_REQUEST1).withApproval(VALID_APPROVAL_REQUEST2).build();
+
+        // different priority level -> returns false
+        editedRequest = new EditLeaveDescriptorBuilder(DESC_REQUEST1).withPriorityLevel(VALID_PRIORITYLEVEL_AMY).build();
         assertFalse(DESC_REQUEST1.equals(editedRequest));
+
 
     }
 }
