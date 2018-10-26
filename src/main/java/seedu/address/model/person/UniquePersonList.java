@@ -108,7 +108,6 @@ public class UniquePersonList implements Iterable<Person> {
     //Reused from https://github.com/CS2103JAN2018-F14-B1/main/pull/57/files with minor modifications
     /**
      * Sorts employees by name or department in ascending or descending order.
-     * @return
      */
     public void sortBy(String field, String order) throws NoEmployeeException {
         if (internalList.size() < 1) {
@@ -162,11 +161,11 @@ public class UniquePersonList implements Iterable<Person> {
 
         switch (order) {
         case "asc":
-            Collections.sort(internalList, comparator);
+            internalList.sort(comparator);
             break;
 
         case "desc":
-            Collections.sort(internalList, Collections.reverseOrder(comparator));
+            internalList.sort(Collections.reverseOrder(comparator));
             break;
 
         default:
