@@ -1,14 +1,20 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -55,6 +61,23 @@ public class SetDepartmentCommandTest {
                     new Department("Junior Management"));
             sd.execute(model, commandHistory);
         }, SessionManager.NOT_LOGGED_IN);
+    }
+
+    @Test
+    public void execute_invalidPersonIndexFilteredList_failure() throws CommandException{
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        LoginCommand loginCommand = new LoginCommand(TypicalPersons.ALICE.getNric(),
+                TypicalPersons.ALICE.getPassword());
+        loginCommand.execute(model, commandHistory);
+
+        SetDepartmentCommand sd = new SetDepartmentCommand(outOfBoundIndex,
+                new Department("Junior Management"));
+
+        assertCommandFailure(sd, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
