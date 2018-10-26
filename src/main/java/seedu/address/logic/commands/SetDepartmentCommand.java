@@ -32,8 +32,8 @@ public class SetDepartmentCommand extends Command {
             + PREFIX_DEPARTMENT + "DEPARTMENT\n"
             + "Example: " + COMMAND_WORD + " 2 " + PREFIX_DEPARTMENT + "Junior Management";
 
-    private static final String MESSAGE_CHANGE_DEPARTMENT_SUCCESS = "Successfully changed the department of %s to %s";
-    private static final String MESSAGE_CANNOT_EDIT_OWN_DEPARTMENT = "You can't edit your own department.";
+    public static final String MESSAGE_CHANGE_DEPARTMENT_SUCCESS = "Successfully changed the department of %s to %s";
+    public static final String MESSAGE_CANNOT_EDIT_OWN_DEPARTMENT = "You can't edit your own department.";
 
     private final Index index;
     private final Department department;
@@ -91,5 +91,13 @@ public class SetDepartmentCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_CHANGE_DEPARTMENT_SUCCESS,
                 editedPerson.getName(), department));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetDepartmentCommand // instanceof handles nulls
+                && (index.equals(((SetDepartmentCommand) other).index)
+                && department.equals(((SetDepartmentCommand) other).department)));
     }
 }
