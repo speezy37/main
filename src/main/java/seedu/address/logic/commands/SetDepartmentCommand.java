@@ -12,11 +12,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 
 /**
  * This command sets the department of other users.
@@ -32,8 +32,8 @@ public class SetDepartmentCommand extends Command {
             + PREFIX_DEPARTMENT + "DEPARTMENT\n"
             + "Example: " + COMMAND_WORD + " 2 " + PREFIX_DEPARTMENT + "Junior Management";
 
-    private static final String MESSAGE_CANNOT_EDIT_OWN_DEPARTMENT = "You can't edit your own department.";
     private static final String MESSAGE_CHANGE_DEPARTMENT_SUCCESS = "Successfully changed the department of %s to %s";
+    private static final String MESSAGE_CANNOT_EDIT_OWN_DEPARTMENT = "You can't edit your own department.";
 
     private final Index index;
     private final Department department;
@@ -47,15 +47,16 @@ public class SetDepartmentCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
 
-        if (!SessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
 
         /**
          * Throws exception if user does not have the required access level.
          */
-        if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
@@ -67,7 +68,7 @@ public class SetDepartmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (personToEdit == SessionManager.getLoggedInPersonDetails(model)) {
+        if (personToEdit == sessionManager.getLoggedInPersonDetails()) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_OWN_DEPARTMENT);
         }
 
