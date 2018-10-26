@@ -18,6 +18,7 @@ import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.PersonBuilder;
 
+import seedu.address.testutil.ScheduleBuilder;
 import systemtests.SessionHelper;
 
 //@@author jylee-git
@@ -72,7 +73,24 @@ public class LoginCommandTest {
         LoginCommand loginCommand = new LoginCommand(CORRECT_NRIC, CORRECT_PASSWORD);
 
         String expectedResult = String.format(LoginCommand.LOGIN_SUCCESS, CORRECT_NRIC.toString())
-                + "\nWelcome Michael" + "\nNo Schedule Available";
+                + "\nWelcome Michael" + "\nNo schedule available";
+
+        assertCommandSuccess(loginCommand, model, commandHistory, expectedResult, expectedModel);
+    }
+
+    /**
+     * Main objective is to test whether the welcome message works as required when user is successfully logged in.
+     */
+    @Test
+    public void execute_validAccountWithSchedule_success() {
+        LoginCommand loginCommand = new LoginCommand(CORRECT_NRIC, CORRECT_PASSWORD);
+        Person amendedPersonA = new PersonBuilder(personA).withSchedule(new ScheduleBuilder().build()).build();
+        expectedModel = new ModelManager();
+        expectedModel.addPerson(amendedPersonA);
+        model = expectedModel;
+
+        String expectedResult = String.format(LoginCommand.LOGIN_SUCCESS, CORRECT_NRIC.toString())
+                + "\nWelcome Michael\n" + amendedPersonA.getSchedule().toString();
 
         assertCommandSuccess(loginCommand, model, commandHistory, expectedResult, expectedModel);
     }

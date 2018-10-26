@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.SessionManager;
+import seedu.address.session.SessionManager;
 
 //@@author jylee-git
 /**
@@ -18,10 +18,11 @@ public class LogoutCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (!SessionManager.isLoggedIn()) {
+        SessionManager sessionManager = SessionManager.getInstance(model);
+        if (!sessionManager.isLoggedIn()) {
             throw new CommandException(NOT_LOGGED_IN);
         } else {
-            SessionManager.logOutSession();
+            sessionManager.logOutSession();
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }

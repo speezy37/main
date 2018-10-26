@@ -2,17 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddLeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.SessionManager;
 import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
-import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.person.Nric;
 
 /**
  * Parses input arguments and creates a new AddLeaveCommand object
@@ -26,23 +24,19 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
      */
     public AddLeaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_DATE);
-        String employeeNric = "S1234591A";
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
-        if (SessionManager.isLoggedIn()) {
-            employeeNric = SessionManager.getLoggedInEmployeeNric();
-        }
+        Nric dummyNric = ParserUtil.parseNric("F9999999F");
 
-        EmployeeId employeeId = ParserUtil.parseEmployeeId(employeeNric);
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Approval status = ParserUtil.parseApproval("PENDING");
 
-        Leave leave = new Leave (employeeId, date, status);
+        Leave leave = new Leave (dummyNric, date, status);
 
         return new AddLeaveCommand(leave);
     }
