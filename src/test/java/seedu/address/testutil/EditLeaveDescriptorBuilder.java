@@ -57,6 +57,9 @@ public class EditLeaveDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PriorityLevel} of the {@code EditLeaveDescriptor} that we are building.
+     */
     public EditLeaveDescriptorBuilder withPriorityLevel(int priorityLevel) {
         descriptor.setPriorityLevel(new PriorityLevel(priorityLevel));
         return this;
