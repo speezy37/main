@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.session.SessionManager;
 
 //@@author Hafizuddin-NUS
@@ -44,7 +45,8 @@ public class AddLeaveCommand extends Command {
         }
 
         EmployeeId nric = new EmployeeId(sessionManager.getLoggedInSessionNric().nric);
-        Leave personLeaveToAdd = new Leave(nric, toAdd.getDate(), toAdd.getApproval());
+        PriorityLevel priorityLevel = new PriorityLevel(sessionManager.getLoggedInPriorityLevel().priorityLevelCode);
+        Leave personLeaveToAdd = new Leave(nric, toAdd.getDate(), toAdd.getApproval(), priorityLevel);
 
         if (model.hasLeave(personLeaveToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LEAVE);

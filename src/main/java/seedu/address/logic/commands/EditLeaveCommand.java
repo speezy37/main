@@ -68,10 +68,6 @@ public class EditLeaveCommand extends Command {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
 
-        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
-            throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
-        }
-
         List<Leave> lastShownList = model.getFilteredLeaveList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -80,6 +76,11 @@ public class EditLeaveCommand extends Command {
 
         Leave leaveToEdit = lastShownList.get(index.getZeroBased());
         Leave editedLeave = createEditedLeave(leaveToEdit, editLeaveDescriptor);
+
+        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode >=
+                leaveToEdit.getPriorityLevel().priorityLevelCode) {
+            throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
+        }
 
         model.updateLeave(leaveToEdit, editedLeave);
         model.updateFilteredLeaveList(PREDICATE_SHOW_ALL_LEAVES);
@@ -97,7 +98,7 @@ public class EditLeaveCommand extends Command {
         Approval updatedApproval = editLeaveDescriptor.getApproval().orElse(leaveToEdit.getApproval());
 
         return new Leave(leaveToEdit.getEmployeeId(), leaveToEdit.getDate(),
-                updatedApproval);
+                updatedApproval, leaveToEdit.getPriorityLevel());
     }
 
     @Override

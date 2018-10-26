@@ -11,6 +11,7 @@ import seedu.address.model.leave.Approval;
 import seedu.address.model.leave.Date;
 import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.leave.Leave;
+import seedu.address.model.prioritylevel.PriorityLevel;
 
 //@@author Hafizuddin-NUS
 /**
@@ -33,11 +34,12 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
         }
 
         EmployeeId dummyNric = ParserUtil.parseEmployeeId("F9999999F");
+        PriorityLevel dummypriorityLevel = ParserUtil.parsePriorityLevel("1");
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Approval status = ParserUtil.parseApproval("PENDING");
 
-        Leave leave = new Leave (dummyNric, date, status);
+        Leave leave = new Leave (dummyNric, date, status, dummypriorityLevel);
 
         return new AddLeaveCommand(leave);
     }

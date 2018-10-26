@@ -1,5 +1,7 @@
 package seedu.address.model.leave;
 
+import seedu.address.model.prioritylevel.PriorityLevel;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -14,15 +16,18 @@ public class Leave {
     private final Date date;
     private final EmployeeId employeeId;
     private final Approval approval;
+    private final PriorityLevel priorityLevel;
 
     /**
      * Every field must be present and not null.
      */
-    public Leave(EmployeeId employeeId, Date date, Approval approval) {
+    public Leave(EmployeeId employeeId, Date date, Approval approval, PriorityLevel priorityLevel) {
         requireAllNonNull(employeeId, date, approval);
         this.employeeId = employeeId;
         this.date = date;
         this.approval = approval;
+        this.priorityLevel = priorityLevel;
+
     }
 
     public Date getDate() {
@@ -35,6 +40,10 @@ public class Leave {
 
     public Approval getApproval() {
         return approval;
+    }
+
+    public PriorityLevel getPriorityLevel() {
+        return priorityLevel;
     }
 
 
