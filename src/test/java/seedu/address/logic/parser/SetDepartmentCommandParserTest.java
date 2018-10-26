@@ -17,6 +17,7 @@ public class SetDepartmentCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         String setDepartmentCommand = SetDepartmentCommand.COMMAND_WORD + " %s %s";
+
         // no index specified
         assertParseFailure(parser, String.format(setDepartmentCommand, null, "Junior Management"),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDepartmentCommand.MESSAGE_USAGE));
@@ -32,7 +33,7 @@ public class SetDepartmentCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        String setDepartmentCommand = "invalid" + CliSyntax.PREFIX_DEPARTMENT
+        String setDepartmentCommand = "invalid " + CliSyntax.PREFIX_DEPARTMENT
                 + "Junior Management";
         assertParseFailure(parser, setDepartmentCommand,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDepartmentCommand.MESSAGE_USAGE));
@@ -56,8 +57,8 @@ public class SetDepartmentCommandParserTest {
         Department expectedDepartment = new Department("Junior Management");
         SetDepartmentCommand expectedCommandReturn = new SetDepartmentCommand(targetIndex, expectedDepartment);
 
-        String sdl = String.valueOf(targetIndex.getOneBased()) + " " + CliSyntax.PREFIX_DEPARTMENT
+        String sd = String.valueOf(targetIndex.getOneBased()) + " " + CliSyntax.PREFIX_DEPARTMENT
                 + expectedDepartment.fullDepartment;
-        assertParseSuccess(parser, sdl, expectedCommandReturn);
+        assertParseSuccess(parser, sd, expectedCommandReturn);
     }
 }
