@@ -11,7 +11,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
  * A utility class to help with building Leave objects.
  */
 public class LeaveBuilder {
-    public static final String DEFAULT_NRIC = "S1111111E";
+    public static final String DEFAULT_NRIC = "F9999999P";
     public static final String DEFAULT_DATE = "30/12/2018";
     public static final String DEFAULT_APPROVAL = "PENDING";
     public static final int DEFAULT_PRIORITY = 1;

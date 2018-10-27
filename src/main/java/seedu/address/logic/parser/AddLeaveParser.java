@@ -33,7 +33,7 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
-        EmployeeId dummyNric = ParserUtil.parseEmployeeId("F9999999F");
+        EmployeeId dummyNric = ParserUtil.parseEmployeeId("F9999999P");
         PriorityLevel dummypriorityLevel = ParserUtil.parsePriorityLevel("1");
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
