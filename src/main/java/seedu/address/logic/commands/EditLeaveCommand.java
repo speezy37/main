@@ -29,19 +29,16 @@ public class EditLeaveCommand extends Command {
     public static final String COMMAND_APPROVE = "approve";
     public static final String COMMAND_REJECT = "reject";
 
-    public static final String MESSAGE_USAGE = COMMAND_APPROVE + ": Edits the details of the leave identified "
-            + "by the index number used in the displayed leave list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_APPROVE + "/" + COMMAND_REJECT
+            + ": Approve/Reject of the leave identified "
+            + "by the index number used in the displayed leave list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPROVAL + "APPROVAL ] "
-            + "Example: " + COMMAND_APPROVE + " 1 "
-            + PREFIX_APPROVAL + "APPROVED ";
+            + "[" + COMMAND_APPROVE + " INDEX] "
+            + "Example: " + COMMAND_APPROVE + " 1 ";
 
-    public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Edited Leave: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LEAVE = "This leave already exists in the address book.";
+    public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Approve/Reject Leave: %1$s";
     public static final String MESSAGE_INVALID_LEAVE_APPROVAL =
-            "Not authorized to approve leave application";
+            "Not authorized to approve leave application.";
 
     private final Index index;
     private final EditLeaveDescriptor editLeaveDescriptor;

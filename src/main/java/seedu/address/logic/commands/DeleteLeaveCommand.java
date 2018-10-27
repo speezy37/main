@@ -20,6 +20,7 @@ import seedu.address.session.SessionManager;
 public class DeleteLeaveCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteleave";
+    public static final String COMMAND_ALIAS = "dl";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the leave identified by the index number used in the displayed leave list.\n"
@@ -49,7 +50,8 @@ public class DeleteLeaveCommand extends Command {
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
-                && !sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.MANAGER)) {
+                && (sessionManager.getLoggedInPriorityLevel().priorityLevelCode
+                >= leaveToDelete.getPriorityLevel().priorityLevelCode)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }
 
