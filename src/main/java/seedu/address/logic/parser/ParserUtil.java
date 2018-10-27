@@ -124,6 +124,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author pinjuen
     /**
      * Parses a {@code String mode} into an {@code Mode}.
      * Leading and trailing whitespaces will be trimmed.
