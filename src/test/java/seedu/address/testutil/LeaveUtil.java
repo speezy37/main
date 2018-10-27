@@ -1,9 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPROVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 
 import seedu.address.logic.commands.AddLeaveCommand;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
@@ -39,9 +36,10 @@ public class LeaveUtil {
         StringBuilder sb = new StringBuilder();
         //descriptor.getNric().ifPresent(nric-> sb.append(PREFIX_NRIC).append(nric.nric).append(" "));
         //descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.date).append(" "));
-        //descriptor.getApproval().ifPresent(approval -> sb.append(PREFIX_APPROVAL).append(approval.status).append(" "));
+        //descriptor.getApproval().ifPresent(approval -> sb.append(PREFIX_APPROVAL)
+        // .append(approval.status).append(" "));
         //descriptor.getPriorityLevel().ifPresent(priorityLevel -> sb.append(PREFIX_PRIORITYLEVEL)
-                //.append(priorityLevel.priorityLevelCode).append(" "));
+        //.append(priorityLevel.priorityLevelCode).append(" "));
 
         return sb.toString();
     }

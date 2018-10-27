@@ -56,7 +56,7 @@ public class ApproveLeaveCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased()+ " ";
+        String userInput = targetIndex.getOneBased() + " ";
 
         EditLeaveCommand.EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder()
                 .withApproval(VALID_APPROVAL_REQUEST1).build();
@@ -68,7 +68,7 @@ public class ApproveLeaveCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_failure() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased()+ " 2";
+        String userInput = targetIndex.getOneBased() + " 2";
 
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
