@@ -34,7 +34,7 @@ public class DeleteLeaveCommandTest {
 
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.IT_UNIT.getPriorityLevelCode());
     }
 
     @Test
