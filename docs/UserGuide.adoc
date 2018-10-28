@@ -201,13 +201,13 @@ Returns a list of employees who are in `Junior Management` and `Senior Managemen
 [NOTE]
 ====
 * This operation requires administrator privilege to perform.
-* Administrator can only change the departments of other employees other than himself/herself.
+* Administrator can only change the departments of other employees but not himself/herself.
 ====
 Changes the department of an employee. +
 Format: `setdepartment INDEX d/DEPARTMENT` +
 Alias: `sd`
 ****
-* Changes the person at the specified `INDEX`.
+* Changes the employee's department at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employee list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * Refer to the *Department* section at *Appendix A* for the appropriate input for the department name.
@@ -217,8 +217,6 @@ Example: `setdepartment 2 d/Junior Management`
 ====
 Changes the employee department with ID 2 in the address book to `Junior Management`.
 ====
-
-
 
 === Deleting a person : `delete`
 [NOTE]
