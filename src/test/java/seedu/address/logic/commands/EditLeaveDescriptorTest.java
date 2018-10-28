@@ -53,7 +53,5 @@ public class EditLeaveDescriptorTest {
         editedRequest = new EditLeaveDescriptorBuilder(DESC_REQUEST1)
                 .withPriorityLevel(VALID_PRIORITYLEVEL_AMY).build();
         assertFalse(DESC_REQUEST1.equals(editedRequest));
-
-
     }
 }
