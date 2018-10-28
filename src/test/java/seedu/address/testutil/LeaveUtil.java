@@ -23,27 +23,7 @@ public class LeaveUtil {
      */
     public static String getLeaveDetails(Leave leave) {
         StringBuilder sb = new StringBuilder();
-        //sb.append(PREFIX_NRIC + leave.getEmployeeId().nric + " ");
         sb.append(PREFIX_DATE + leave.getDate().date);
-        //sb.append(PREFIX_APPROVAL + leave.getApproval().status + " ");
         return sb.toString();
     }
-
-    /**
-     * Returns the part of command string for the given {@code EditLeaveDescriptor}'s details.
-     */
-    public static String getEditLeaveDescriptorDetails(EditLeaveDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        //descriptor.getNric().ifPresent(nric-> sb.append(PREFIX_NRIC).append(nric.nric).append(" "));
-        //descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.date).append(" "));
-        //descriptor.getApproval().ifPresent(approval -> sb.append(PREFIX_APPROVAL)
-        // .append(approval.status).append(" "));
-        //descriptor.getPriorityLevel().ifPresent(priorityLevel -> sb.append(PREFIX_PRIORITYLEVEL)
-        //.append(priorityLevel.priorityLevelCode).append(" "));
-
-        return sb.toString();
-    }
-
 }
-
-
