@@ -1348,12 +1348,17 @@ Use case ends.
 * 4c. User keys in an invalid INDEX.
 ** 4c1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case ends.
 
 * 4d. User keys in an invalid department name.
 ** 4d1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case ends.
+
+* 4e. User tries to edit his/her department.
+** 4e1. AddressBook shows an error message.
++
+Use case ends.
 
 === Use case: Change priority level of user
 *MSS*
