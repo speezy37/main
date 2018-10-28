@@ -1127,7 +1127,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |User	|Search for a specific contact	|Obtain the particulars of the contact easily
 |`* * *` |User	|List the manpower for the day	|Allocate my manpower accordingly
 |`* * *` |User	|Sort my address book by name and department	|Look for contacts that I want easily
-|`* * *` |User	|Filter out and view my relevant colleague’s contact details	|Spend less time searching for their contact details and contact them
+|`* * *` |User	|List out the departments that are available	|Know what departments I can filter
+|`* * *` |User	|Filter out and view my relevant colleague’s department	|Spend less time searching for their contact details and contact them
+|`* * *` |Elevated User	|Change the department of the employees	|They are allocated at the correct department
 |`* * *` |User	|Set password to my address book	|Prevent unauthorized access to my address book
 |`* * *` |User	|Access my remaining off days	|Apply for my off
 |`* * *` |User	|Check in and out during my work days	|I will be able to view the number of hours I have worked for
