@@ -53,7 +53,7 @@ public class SetDepartmentCommandTest {
             new SetDepartmentCommand(null, new Department("Junior Management"));
         });
     }
-    /*
+    
     @Test
     public void execute_notLoggedIn_throwsCommandException() {
         Assertions.assertThrows(CommandException.class, () -> {
@@ -61,7 +61,7 @@ public class SetDepartmentCommandTest {
                     new Department("Junior Management"));
             sd.execute(model, commandHistory);
         }, SessionManager.NOT_LOGGED_IN);
-    }*/
+    }
 
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() throws CommandException {
