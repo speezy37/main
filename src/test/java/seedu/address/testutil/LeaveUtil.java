@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import seedu.address.logic.commands.AddLeaveCommand;
-import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
 import seedu.address.model.leave.Leave;
 
 //@@author Hafizuddin-NUS
