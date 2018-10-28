@@ -1355,7 +1355,7 @@ Use case ends.
 +
 Use case ends.
 
-* 4e. User tries to edit his/her department.
+* 4e. User tries to edit his/her own department.
 ** 4e1. AddressBook shows an error message.
 +
 Use case ends.
