@@ -1277,7 +1277,7 @@ Use case ends.
 . User enters sort command.
 . AddressBook prompts user to enter the field and order of sort.
 . User enters the field and order to sort.
-. AddressBook shows a list sorted list by the field and order.
+. AddressBook shows a sorted list by the field and order.
 +
 Use case ends.
 
