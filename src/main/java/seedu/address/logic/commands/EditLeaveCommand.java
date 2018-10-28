@@ -43,7 +43,7 @@ public class EditLeaveCommand extends Command {
     private final EditLeaveDescriptor editLeaveDescriptor;
 
     /**
-     * @param index               of the leave in the filtered leave list to edit
+     * @param index of the leave in the filtered leave list to edit
      * @param editLeaveDescriptor details to edit the leave with
      */
     public EditLeaveCommand(Index index, EditLeaveDescriptor editLeaveDescriptor) {

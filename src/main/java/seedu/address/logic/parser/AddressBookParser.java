@@ -143,7 +143,6 @@ public class AddressBookParser {
         case EditLeaveCommand.COMMAND_REJECT:
             return new RejectLeaveCommandParser().parse(arguments);
 
-
         case SetPriorityLevelCommand.COMMAND_WORD:
             return new SetPriorityLevelCommandParser().parse(arguments);
 

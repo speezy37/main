@@ -27,7 +27,6 @@ public class Leave {
         this.date = date;
         this.approval = approval;
         this.priorityLevel = priorityLevel;
-
     }
 
     public Date getDate() {
@@ -45,7 +44,6 @@ public class Leave {
     public PriorityLevel getPriorityLevel() {
         return priorityLevel;
     }
-
 
     @Override
     public int hashCode() {
