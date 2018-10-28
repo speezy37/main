@@ -18,7 +18,7 @@ public class PriorityLevel {
             + BASIC + " (" + BASIC.getPriorityLevelCode() + " - lowest).";
 
     public static final String INSUFFICIENT_PRIORITY_LEVEL = "You must have a priority level of at least %s to perform "
-            + " this operation.";
+            + "this operation.";
 
     public final int priorityLevelCode;
 
