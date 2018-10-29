@@ -22,6 +22,11 @@ public class RejectLeaveCommandParserTest {
 
     private RejectLeaveCommandParser parser = new RejectLeaveCommandParser();
 
+    @Before
+    public void setUp() {
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+    }
+
     @Test
     public void parse_missingParts_failure() {
         // no index specified
