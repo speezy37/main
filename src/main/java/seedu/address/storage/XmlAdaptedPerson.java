@@ -200,7 +200,8 @@ public class XmlAdaptedPerson {
         final Mode modelMode = new Mode(mode);
 
         if (workingRate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, WorkingRate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                WorkingRate.class.getSimpleName()));
         }
         if (!WorkingRate.isValidWorkingRate(workingRate)) {
             throw new IllegalValueException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);

@@ -47,9 +47,8 @@ public class CheckCommand extends Command {
     public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
         + "Date: %1$s Time: %2$s\n"
         + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
-    public final String DATE_NOW = currentDate();
-    public final String TIME_NOW = currentTime();
 
+    private String currentTime = currentTime();
     private String messageSucess;
     private Password password;
     private Mode mode;
@@ -66,7 +65,7 @@ public class CheckCommand extends Command {
         requireAllNonNull(nric, password, mode);
         double currSecond;
         double currMinute;
-        String[] currTimeArray = splitTime(TIME_NOW);
+        String[] currTimeArray = splitTime(currentTime);
         currSecond = Double.parseDouble(currTimeArray[2]);
         currMinute = Double.parseDouble(currTimeArray[1]);
 
@@ -101,7 +100,7 @@ public class CheckCommand extends Command {
             }
 
             if (mode.equals(new Mode("in"))) {
-                checkedInTime = new CheckedInTime(TIME_NOW);
+                checkedInTime = new CheckedInTime(currentTime);
                 messageSucess = MESSAGE_CHECKED_IN;
             } else {
                 hoursWorked = calculateHoursWorked(personToEdit.getCheckedInTime().toString());
@@ -120,7 +119,7 @@ public class CheckCommand extends Command {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             model.commitAddressBook();
 
-            return new CommandResult(String.format(messageSucess, DATE_NOW, TIME_NOW,
+            return new CommandResult(String.format(messageSucess, currentDate(), currentTime,
                 hoursWorked, salaryPerDay));
         }
     }
