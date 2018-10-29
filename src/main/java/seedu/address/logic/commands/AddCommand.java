@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKINGRATE;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,6 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DEPARTMENT + "DEPARTMENT "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_WORKINGRATE + "WORKINGRATE "
             + "[" + PREFIX_PRIORITYLEVEL + "PRIORITYLEVEL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -46,6 +48,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_DEPARTMENT + "Junior Management "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_WORKINGRATE + "7.5"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

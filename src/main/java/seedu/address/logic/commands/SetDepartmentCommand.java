@@ -82,6 +82,8 @@ public class SetDepartmentCommand extends Command {
                 personToEdit.getPriorityLevel(),
                 personToEdit.getAddress(),
                 personToEdit.getMode(),
+                personToEdit.getWorkingRate(),
+                personToEdit.getCheckedInTime(),
                 personToEdit.getTags(),
                 personToEdit.getSchedule());
 

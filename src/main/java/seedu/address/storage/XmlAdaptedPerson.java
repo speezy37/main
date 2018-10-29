@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mode;
@@ -17,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -187,11 +189,13 @@ public class XmlAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mode.class.getSimpleName()));
         }
         final Mode modelMode = new Mode(mode);
+        final WorkingRate modelWorkingRate = new WorkingRate("7.5");
+        final CheckedInTime modelCheckedInTime = new CheckedInTime("");
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelPriorityLevel, modelAddress, modelMode, modelTags, modelSchedule);
+                modelPriorityLevel, modelAddress, modelMode, modelWorkingRate, modelCheckedInTime, modelTags, modelSchedule);
     }
 
     @Override

@@ -33,6 +33,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label mode;
     @FXML
+    private Label checkedInTime;
+    @FXML
+    private Label workingRate;
+    @FXML
     private Label phone;
     @FXML
     private Label address;

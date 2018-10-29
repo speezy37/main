@@ -97,9 +97,11 @@ public class CheckCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
             }
 
-            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
-                personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(), personToEdit.getPriorityLevel(),
-                personToEdit.getAddress(), mode, personToEdit.getTags(), personToEdit.getSchedule());
+            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(),
+                personToEdit.getPassword(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getDepartment(), personToEdit.getPriorityLevel(), personToEdit.getAddress(),
+                mode, personToEdit.getWorkingRate(), personToEdit.getCheckedInTime(), personToEdit.getTags(),
+                personToEdit.getSchedule());
 
             model.updatePerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);

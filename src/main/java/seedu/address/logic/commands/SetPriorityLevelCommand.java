@@ -80,6 +80,8 @@ public class SetPriorityLevelCommand extends Command {
                 priorityLevel,
                 personToEdit.getAddress(),
                 personToEdit.getMode(),
+                personToEdit.getWorkingRate(),
+                personToEdit.getCheckedInTime(),
                 personToEdit.getTags(),
                 personToEdit.getSchedule());
 

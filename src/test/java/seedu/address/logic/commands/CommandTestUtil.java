@@ -60,6 +60,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MODE_AMY = "in";
     public static final String VALID_MODE_BOB = "out";
+    public static final double VALID_WORKINGRATE_AMY = 7.5;
+    public static final double VALID_WORKINGRATE_BOB = 10;
+
 
     public static final String VALID_TIME_DAWN = "1000";
     public static final String VALID_TIME_NOON = "1100";

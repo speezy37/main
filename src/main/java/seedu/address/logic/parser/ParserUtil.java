@@ -20,6 +20,7 @@ import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -298,5 +299,14 @@ public class ParserUtil {
             throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
         }
         return new PriorityLevel(priorityLevelCode);
+    }
+
+    public static WorkingRate parseWorkingRate(String workingRate) throws ParseException {
+        requireNonNull(workingRate);
+        String trimmedWorkingRate = workingRate.trim();
+        if (!WorkingRate.isValidWorkingRate(workingRate)) {
+            throw new ParseException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);
+        }
+        return new WorkingRate(trimmedWorkingRate);
     }
 }

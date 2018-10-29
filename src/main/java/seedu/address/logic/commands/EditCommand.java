@@ -22,6 +22,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mode;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
@@ -111,13 +113,19 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Mode updatedMode = personToEdit.getMode(); // edit command does not allow editing modes
+        Mode updatedMode = personToEdit.getMode();
+        // edit command does not allow editing modes
+        WorkingRate updatedWorkingRate = personToEdit.getWorkingRate();
+        //edit command does not allow editing working rates
+        CheckedInTime updatedChecedInTime = personToEdit.getCheckedInTime();
+        //edit command does not allow editing checked in time
         Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, personToEdit.getNric(),
-                personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
-                personToEdit.getPriorityLevel(), updatedAddress, updatedMode, updatedTags, updatedSchedule);
+            personToEdit.getPassword(), updatedPhone, updatedEmail, updatedDepartment,
+            personToEdit.getPriorityLevel(), updatedAddress, updatedMode, updatedWorkingRate, updatedChecedInTime, updatedTags,
+            updatedSchedule);
     }
 
     @Override
