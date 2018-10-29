@@ -80,11 +80,11 @@ public class EditLeaveCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
 
-        if(leaveToEdit.equals(editedLeave)) {
+        if (leaveToEdit.equals(editedLeave)) {
             if (leaveToEdit.getApproval().status == "APPROVED") {
                 throw new CommandException(MESSAGE_ALREADY_APPROVE);
-            } else if(leaveToEdit.getApproval().status == "REJECTED") {
-                throw  new CommandException(MESSAGE_ALREADY_REJECTED);
+            } else if (leaveToEdit.getApproval().status == "REJECTED") {
+                throw new CommandException(MESSAGE_ALREADY_REJECTED);
             }
         }
 
