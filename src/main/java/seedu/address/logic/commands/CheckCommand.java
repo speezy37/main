@@ -14,6 +14,7 @@ import java.util.List;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Mode;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -40,38 +41,35 @@ public class CheckCommand extends Command {
         + PREFIX_NRIC + "G1234567T "
         + PREFIX_PASSWORD + "HEllo12 "
         + PREFIX_MODE + "in ";
-    public static final String MESSAGE_SUCCESS_CHECKED_IN = "Successfully checked in to work!\n"
-        + "Date: %1$s Time: %2$s ";
-    public static final String MESSAGE_SUCCESS_CHECKED_OUT = "Successfully checked out from work!\n"
-        + "Date: %1$s Time: %2$s Worked for: %3$s hours";
     public static final String MESSAGE_DUPLICATE = "User has already checked %1$s to work!";
     public static final String MESSAGE_NOT_FOUND = "User is not found!";
     public static final String MESSAGE_NOT_LOGIN = "User has not logged in yet!";
     public static final String MESSAGE_NOT_AUTHORISED = "User is not authorised to do so!";
+    public String MESSAGE_SUCCESS;
 
     private Password password;
     private Mode mode;
     private Nric nric;
+    private CheckedInTime checkedInTime;
     private Person personLoggedIn;
     private Person personToEdit;
-    private String[] timeArray = new String[2];
     private double currHour;
-    private double currMinute;
-
+    private double checkedInHour;
+    private double hoursWorked;
+    private double salaryPerDay;
 
     public CheckCommand(Nric nric, Password password, Mode mode) {
         requireAllNonNull(nric, password, mode);
+        double currSecond;
+        double currMinute;
+        String[] currTimeArray = splitTime(CURRENT_TIME);
+        currSecond = Double.parseDouble(currTimeArray[2]);
+        currMinute = Double.parseDouble(currTimeArray[1]);
+
         this.nric = nric;
         this.password = password;
         this.mode = mode;
-
-        String[] timeTokens = CURRENT_TIME.split("\\:");
-
-        for (int i = 0; i < timeTokens.length; i++)
-            timeArray[i] = timeTokens[i];
-
-        currMinute = Double.parseDouble(timeArray[1]);
-        currHour = Double.parseDouble(timeArray[0]) + currMinute/60;
+        this.currHour = Double.parseDouble(currTimeArray[0]) + currMinute/60 + currSecond/360;
     }
 
     @Override
@@ -97,27 +95,30 @@ public class CheckCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
             }
 
+            if (mode.equals(new Mode("in"))) {
+                checkedInTime = new CheckedInTime(CURRENT_TIME);
+                MESSAGE_SUCCESS = "Successfully checked in to work!\n"
+                    + "Date: %1$s Time: %2$s";
+            } else {
+                hoursWorked = calculateHoursWorked(personToEdit.getCheckedInTime().toString());
+                salaryPerDay = hoursWorked*(Double.parseDouble(personToEdit.getWorkingRate().toString()));
+                checkedInTime = new CheckedInTime("");
+                MESSAGE_SUCCESS = "Successfully checked out from work!\n"
+                    + "Date: %1$s Time: %2$s\n"
+                    + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
+            }
+
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(),
                 personToEdit.getPassword(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getDepartment(), personToEdit.getPriorityLevel(), personToEdit.getAddress(),
-                mode, personToEdit.getWorkingRate(), personToEdit.getCheckedInTime(), personToEdit.getTags(),
+                mode, personToEdit.getWorkingRate(), checkedInTime, personToEdit.getTags(),
                 personToEdit.getSchedule());
 
             model.updatePerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             model.commitAddressBook();
 
-            if (mode.equals(new Mode("in"))) {
-                sessionManager.checkedInToWork(currHour);
-
-                return new CommandResult(String.format(MESSAGE_SUCCESS_CHECKED_IN, CURRENT_DATE, CURRENT_TIME));
-            } else {
-                double hoursWorked = calculateHoursWorked(sessionManager.getCheckedInHour());
-
-                sessionManager.checkedOutToWork();
-
-                return new CommandResult(String.format(MESSAGE_SUCCESS_CHECKED_OUT, CURRENT_DATE, CURRENT_TIME, hoursWorked));
-            }
+            return new CommandResult(String.format(MESSAGE_SUCCESS, CURRENT_DATE, CURRENT_TIME, hoursWorked, salaryPerDay));
         }
     }
 
@@ -161,22 +162,37 @@ public class CheckCommand extends Command {
         return false;
     }
 
-    private String currentDate(){
+    private String currentDate() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate dateNow = LocalDate.now();
 
         return date.format(dateNow);
     }
 
-    private String currentTime(){
-        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+    private String currentTime() {
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime timeNow = LocalTime.now();
 
         return time.format(timeNow);
     }
 
-    private double calculateHoursWorked(double checkedInHour){
+    private double calculateHoursWorked(String checkedInTime){
+        String[] checkedInTimeArray = splitTime(checkedInTime);
+
+        double checkedInSecond = Double.parseDouble(checkedInTimeArray[2]);
+        double checkedInMinute = Double.parseDouble(checkedInTimeArray[1]);
+        checkedInHour = Double.parseDouble(checkedInTimeArray[0]) + checkedInMinute/60 + checkedInSecond/360;
         return currHour - checkedInHour;
+    }
+
+    private String[] splitTime(String time) {
+        String[] timeTokens = time.split("\\:");
+        String[] timeArray = new String[3];
+
+        for (int i = 0; i < timeTokens.length; i++)
+            timeArray[i] = timeTokens[i];
+
+        return timeArray;
     }
 
 }

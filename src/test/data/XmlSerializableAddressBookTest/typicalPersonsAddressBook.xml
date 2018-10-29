@@ -92,7 +92,7 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>4th street</address>
-        <mode>out</mode>
+        <mode>in</mode>
         <workingRate>7.5</workingRate>
         <checkedInTime>9:00:00</checkedInTime>
     </persons>

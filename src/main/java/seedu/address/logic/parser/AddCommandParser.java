@@ -46,8 +46,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_WORKINGRATE, PREFIX_PASSWORD, PREFIX_PRIORITYLEVEL,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_WORKINGRATE, PREFIX_PRIORITYLEVEL, PREFIX_TAG,
                         PREFIX_SCHEDULE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
@@ -62,8 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Mode mode = new Mode("out"); // add command does not allow adding modes straight away
-        WorkingRate workingrate = ParserUtil.parseWorkingRate(argMultimap.getValue(PREFIX_WORKINGRATE).get());
-        CheckedInTime checkedInTime = new CheckedInTime("10:00:00"); // add command does not allow adding checked in time straight away
+        WorkingRate workingRate = ParserUtil.parseWorkingRate(argMultimap.getValue(PREFIX_WORKINGRATE).get());
+        CheckedInTime checkedInTime = new CheckedInTime(""); // add command does not allow adding checked in time straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
         Set<Schedule> schedule = ParserUtil.parseSchedules(argMultimap.getAllValues(PREFIX_SCHEDULE));
@@ -79,7 +79,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Person person = new Person(name, nric, password, phone, email,
-            department, priorityLevel, address, mode, workingrate, checkedInTime, tagList, schedule);
+            department, priorityLevel, address, mode, workingRate, checkedInTime, tagList, schedule);
 
         return new AddCommand(person);
     }

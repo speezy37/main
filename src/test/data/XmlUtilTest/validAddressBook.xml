@@ -9,7 +9,7 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">4th street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
         <workingRate isPrivate="false">7.5</workingRate>
         <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
@@ -22,7 +22,7 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">81th street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
         <workingRate isPrivate="false">7.5</workingRate>
         <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
@@ -35,7 +35,7 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">wall street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
         <workingRate isPrivate="false">7.5</workingRate>
         <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
@@ -49,6 +49,8 @@
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">10th street</address>
         <mode isPrivate="false">in</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false">9:00:00</checkedInTime>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -59,7 +61,7 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">michegan ave</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
         <workingRate isPrivate="false">7.5</workingRate>
         <checkedInTime isPrivate="false"></checkedInTime>
     </persons>

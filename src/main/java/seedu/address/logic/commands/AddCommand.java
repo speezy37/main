@@ -48,7 +48,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_DEPARTMENT + "Junior Management "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_WORKINGRATE + "7.5"
+            + PREFIX_WORKINGRATE + "7.5 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
