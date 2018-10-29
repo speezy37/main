@@ -579,8 +579,8 @@ There is no need to save manually.
 •	*List available departments*: `listdepartment`
 •	*Filter departments*: `filterdepartment junior`
 •	*Change department of an employee*: `setdepartment INDEX d/DEPARTMENT`
-•	*Deleting employee*: `delete INDEX [MORE_INDEX]`
-•	*Change priority level of employee*: `setplvl ic/NRIC plvl/LEVEL`
+•	*Deleting employee*: `delete INDEX`
+•	*Change priority level of employee*: `setplvl ic/NRIC plvl/PRIORITY_LEVEL`
 •	*Add leave application*: `leave date/DATE`
 •	*List all leave applications*: `listleave`
 •	*Filter leave applications*: `filterleave NRIC`
