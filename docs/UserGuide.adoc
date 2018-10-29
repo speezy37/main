@@ -280,7 +280,7 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
-=== Add Leave application : `leave`
+=== Add leave application : `leave`
 Add leave application of the user for approval. +
 Format: `leave date/DATE`
 [NOTE]
@@ -295,18 +295,18 @@ Example: `leave date/20/03/2019`
 Request leave application on 20/03/2019.
 ====
 
-=== List Leave application : `listleave`
+=== List leave application : `listleave`
 List out all leave application in the leave list. +
 Format: `listleave`
 
-=== Filter Leave application : `filterleave`
+=== Filter leave application : `filterleave`
 Filter leave applications based on NRIC. +
 Format: `filterleave NRIC` +
-Alias: `fl NRIC`
+Alias: `fl`
 
 [NOTE]
 ====
-* Filter is case insensative eg. `s1234567a` matches `S1234567A`
+* Filter is case insensitive eg. `s1234567a` matches `S1234567A`
 ====
 Example:
 `fl S1213452A`
@@ -314,14 +314,14 @@ Example:
 * List all leave application requested by the user with NRIC, 'S1213452A'.
 ====
 
-=== Delete Leave application : `deleteleave`
+=== Delete leave application : `deleteleave`
 Delete the specified leave from leave list.
 
 [NOTE]
 ====
 * Requires the user to log in before using the command.
 * User can only delete leave application he/she requested.
-* To delete other user's application, requires adminstrator privilege to perform.
+* To delete other user's application, requires higher privilege to perform.
 ====
 
 Format: `deleteleave INDEX`
@@ -335,9 +335,56 @@ Example:
 `deleteleave 2`
 
 ****
-* Deletes the leave application with ID 2 in the leave list.
+* Deletes the leave application with INDEX 2 in the leave list.
 ****
 
+=== Approve leave application  : `approve`
+Approve leave application based on INDEX.
+
+[NOTE]
+====
+* Requires the user to log in before using the command.
+* Only higher priority users can approve leave application.
+Example, MANAGER can approve BASIC user's leave application.
+====
+
+Format: `approve INDEX`
+****
+* Approve the leave at the specified `INDEX`.
+* The index refers to the index number shown in the displayed leave list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+`approve 2`
+
+****
+* Approve the leave application with INDEX 2 in the leave list.
+****
+
+=== Reject leave application  : `reject`
+Reject leave application based on INDEX.
+
+[NOTE]
+====
+* Requires the user to log in before using the command.
+* Only higher priority users can reject leave application.
+Example, MANAGER can reject BASIC user's leave application.
+====
+
+Format: `reject INDEX`
+****
+* Reject the leave at the specified `INDEX`.
+* The index refers to the index number shown in the displayed leave list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+`reject 2`
+
+****
+* Reject the leave application with INDEX 2 in the leave list.
+****
 
 === Listing entered commands : `history`
 
@@ -414,7 +461,6 @@ Format: `setpass n/NAME ic/s1234567h sp/PASSWORD` +
 Sets PaS88of as a password for John Doe.
 ====
 ////
-
 === Login to the application: `login`
 Logs in to the application using a registered NRIC and password. +
 Format: `login ic/NRIC pwd/PASSWORD` +
@@ -475,47 +521,6 @@ List payroll of the employee. +
 Format: `payroll n/NAME ic/NRIC pass/PASSWORD` +
 Example: `payroll n/John Doe ic/s1234567h pass/NeUeR2018`
 
-=== Check off days: `checkoffstatus`
-Checks the number of off days available and off application status for an employee. +
-Format: `checkoffstatus ic/NRIC pass/PASSWORD` +
-Example: `checkoffstatis ic/S9486222J pass/NeUeR2018`
-
-=== Apply off days: `applyoff`
-Apply off days for employee. +
-Format: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE` +
-Example: `applyoff n/John Doe ic/s123457h pass/NeUeR2018 date/080818` +
-====
-Apply off day for John Doe on the 8th of August 2018 (DDMMYY).
-====
-
-=== Approve/Reject off request: `request`
-[NOTE]
-====
-This operation requires a priority level of MANAGER to execute.
-====
-Approve or reject off day request applied by employees.
-Format: request [ic/NRIC] [mode/APPROVE/REJECT (INDEX)]
-****
-•	If no field is provided, BankAB will list all off day request from the company.
-•	If only NRIC field is provided, BankAB will list all off day request from that employee.
-•	INDEX refers to the index number shown in the displayed request list. The index must be positive integer 1, 2, 3, ….
-****
-
-Examples: - +
-
-* `request`
-====
-List all off day request from the company.
-====
-* request ic/s1234567a
-====
-List all off day request by the employee.
-====
-* request ic/s1234567a mode/approve (3)
-====
-Approve the 3rd request made by the employee.
-====
-
 === Change priority level of employee: `setplvl`
 [NOTE]
 ====
@@ -568,13 +573,11 @@ There is no need to save manually.
 •	*List schedule*: `schedule INDEX`
 •	*Set schedule*: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE`
 •	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
-•	*Apply off days*: `applyoff n/NAME ic/NRIC pass/PASSWORD date/DATE`
 •	*Edit particulars*: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
 •	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
 •	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAGS]...`
 //•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
 •	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
-•	*Approve/Reject off request*: `request ic/s1234567a mode/approve (3)`
 •	*Sort address book contacts*: `sort name asc`
 •	*List available departments*: `listdepartment`
 •	*Filter departments*: `filterdepartment junior`
@@ -585,6 +588,8 @@ There is no need to save manually.
 •	*List all leave applications*: `listleave`
 •	*Filter leave applications*: `filterleave NRIC`
 •	*Delete leave application*: `deleteleave INDEX`
+•	*Approve leave application*: `approve INDEX`
+•	*Reject leave application*: `reject INDEX`
 //•	*Restrict access to BankAB*: `restrict`
 •	*Reset the application*: `reset`
 
