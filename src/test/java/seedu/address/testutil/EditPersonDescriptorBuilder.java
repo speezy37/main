@@ -117,9 +117,8 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code scheduleInput} into a {@code Set<Schedule>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withSchedule(Schedule... scheduleInput) {
-        Set<Schedule> scheduleSet = Stream.of(scheduleInput).collect(Collectors.toSet());
-        descriptor.setSchedule(scheduleSet);
+    public EditPersonDescriptorBuilder withSchedule(Schedule scheduleInput) {
+        descriptor.setSchedule(scheduleInput);
         return this;
     }
 

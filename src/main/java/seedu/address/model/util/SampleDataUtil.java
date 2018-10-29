@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,12 +57,12 @@ public class SampleDataUtil {
                 new Phone("92492021"), new Email("irfan@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("in"),
-                getTagSet("classmates"), new HashSet<>()),
+                getTagSet("classmates"), null),
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@example.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("in"),
-                getTagSet("colleagues"), new HashSet<>())
+                getTagSet("colleagues"), null)
         };
     }
 
@@ -87,11 +86,7 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Schedule> getScheduleSet(String timeStart, String timeEnd, String venue) {
-        Schedule schedule = new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
-        Set<Schedule> scheduleSet = new HashSet<>();
-        scheduleSet.add(schedule);
-
-        return scheduleSet;
+    public static Schedule getScheduleSet(String timeStart, String timeEnd, String venue) {
+        return new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
     }
 }

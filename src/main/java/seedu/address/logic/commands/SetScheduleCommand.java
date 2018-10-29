@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -90,7 +89,7 @@ public class SetScheduleCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
+        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
 
         return new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
                 personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(),
