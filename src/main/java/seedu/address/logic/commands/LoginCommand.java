@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 
-import java.util.Set;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 
@@ -30,7 +28,7 @@ public class LoginCommand extends Command {
             + PREFIX_PASSWORD + "NeUeR2018";
 
     public static final String INVALID_LOGIN_CREDENTIALS = "Login failed. Incorrect NRIC and/or password.";
-    public static final String LOGIN_SUCCESS = "Login successful. You are logged in as: %s";
+    public static final String LOGIN_SUCCESS = "Login successful";
     public static final String ALREADY_LOGGED_IN = "You are already logged in. Logout first before logging in again.";
 
     private Nric loginNric;
@@ -53,12 +51,12 @@ public class LoginCommand extends Command {
         sessionManager.loginToSession(loginNric, loginPassword);
 
         // Retrieves the user schedule once the user is logged in successfully
-        String scheduleString;
-        Set<Schedule> scheduleSet = sessionManager.getLoggedInPersonDetails().getSchedule();
-        if (scheduleSet.isEmpty()) {
-            scheduleString = "No schedule available";
-        } else {
-            scheduleString = scheduleSet.toString();
+        String scheduleString = "";
+        try {
+            Schedule schedule = sessionManager.getLoggedInPersonDetails().getSchedule();
+            scheduleString = schedule.toString();
+        } catch (NullPointerException e) {
+            scheduleString = "No schedule allocated.";
         }
         String introduction = "\nWelcome " + sessionManager.getLoggedInPersonDetails().getName().toString() + "\n"
                 + scheduleString;

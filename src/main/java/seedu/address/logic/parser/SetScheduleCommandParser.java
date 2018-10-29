@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -48,10 +46,7 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
                     argMultimap.getValue(PREFIX_TIME_END).get(),
                     argMultimap.getValue(PREFIX_VENUE).get());
 
-            Set<Schedule> scheduleList = new HashSet<>();
-            scheduleList.add(schedule);
-
-            editPersonDescriptor.setSchedule(scheduleList);
+            editPersonDescriptor.setSchedule(schedule);
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

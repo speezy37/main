@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -16,7 +15,6 @@ import java.util.Set;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,8 +30,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHEDULE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
+                        PREFIX_ADDRESS, PREFIX_TAG);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -49,7 +47,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseSchedulesForEdit(argMultimap.getAllValues(PREFIX_SCHEDULE)).ifPresent(editPersonDescriptor::setSchedule);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED + "\n\n" + EditCommand.MESSAGE_USAGE);
@@ -72,21 +69,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
-    /**
-     * Parses {@code Collection<String> schedule} into a {@code Set<Schedule>} if {@code schedule} is non-empty.
-     * If {@code schedule} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Schedule>} containing zero tags.
-     */
-    private Optional<Set<Schedule>> parseSchedulesForEdit(Collection<String> schedule) throws ParseException {
-        assert schedule != null;
-
-        if (schedule.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> scheduleSet = schedule.size() == 1 && schedule.contains("")
-                ? Collections.emptySet() : schedule;
-        return Optional.of(ParserUtil.parseSchedules(scheduleSet));
-    }
-
 }

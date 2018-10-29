@@ -59,13 +59,13 @@ public class Schedule {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("\nSchedule: { START: ")
+        builder.append("START: ")
+
                 .append(getTimeStart())
-                .append(", End: ")
+                .append("\nEnd: ")
                 .append(getTimeEnd())
-                .append(", Venue: ")
-                .append(getVenue())
-                .append(" }");
+                .append("\nVenue: ")
+                .append(getVenue());
         return builder.toString();
     }
 }

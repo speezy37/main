@@ -14,6 +14,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.TimeEnd;
+import seedu.address.model.schedule.TimeStart;
+import seedu.address.model.schedule.Venue;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,7 +34,9 @@ public class PersonBuilder {
     public static final String DEFAULT_PASSWORD = "PQWOei23";
     public static final String DEFAULT_MODE = "out";
     public static final int DEFAULT_PRIORITYLEVEL = 3;
-
+    public static final String DEFAULT_TIME_START = "0900";
+    public static final String DEFAULT_TIME_END = "1800";
+    public static final String DEFAULT_VENUE = "Counter 2";
 
     private Name name;
     private Nric nric;
@@ -43,7 +48,7 @@ public class PersonBuilder {
     private Address address;
     private Mode mode;
     private Set<Tag> tags;
-    private Set<Schedule> schedules;
+    private Schedule schedule;
 
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -56,7 +61,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         mode = new Mode(DEFAULT_MODE);
         tags = new HashSet<>();
-        schedules = new HashSet<>();
+        schedule = new Schedule(new TimeStart(DEFAULT_TIME_START), new TimeEnd(DEFAULT_TIME_END),
+                new Venue(DEFAULT_VENUE));
     }
 
     /**
@@ -73,7 +79,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         mode = personToCopy.getMode();
         tags = new HashSet<>(personToCopy.getTags());
-        schedules = new HashSet<>(personToCopy.getSchedule());
+        schedule = personToCopy.getSchedule();
     }
 
     /**
@@ -159,10 +165,17 @@ public class PersonBuilder {
     /**
      * Sets the {@code Schedule} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSchedule(Schedule... scheduleInput) {
-        for (Schedule schedule: scheduleInput) {
-            this.schedules.add(schedule);
-        }
+    public PersonBuilder withSchedule(Schedule scheduleInput) {
+        this.schedule = scheduleInput;
+        return this;
+    }
+
+    /**
+     * Removes the {@code Schedule} of the {@code Person} that we are building.
+     * Used for testing add command
+     */
+    public PersonBuilder withoutSchedule() {
+        this.schedule = null;
         return this;
     }
 
@@ -171,7 +184,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, nric, password, phone, email,
-            department, priorityLevel, address, mode, tags, schedules);
+            department, priorityLevel, address, mode, tags, schedule);
     }
 
 }
