@@ -36,7 +36,7 @@ import systemtests.SessionHelper;
 public class EditLeaveCommandTest {
 
     private static final Leave REQUEST1EDIT = new LeaveBuilder().withNric("S1234567A")
-            .withDate("01/02/2018").withApproval("APPROVED").withPriorityLevel(1).build();
+            .withDate("01/02/2020").withApproval("APPROVED").withPriorityLevel(1).build();
 
     private Model model = new ModelManager(getTypicalLeaveList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
