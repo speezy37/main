@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -86,7 +85,6 @@ public class SetDepartmentCommand extends Command {
                 personToEdit.getSchedule());
 
         model.updatePerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_CHANGE_DEPARTMENT_SUCCESS,

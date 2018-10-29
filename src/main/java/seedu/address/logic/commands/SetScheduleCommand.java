@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -77,7 +76,6 @@ public class SetScheduleCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         model.updatePerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS, editedPerson));
     }
