@@ -61,9 +61,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Mode mode = new Mode("out"); // add command does not allow adding modes straight away
+        Mode mode = new Mode("out");
+        // add command does not allow adding modes straight away
         WorkingRate workingRate = ParserUtil.parseWorkingRate(argMultimap.getValue(PREFIX_WORKINGRATE).get());
-        CheckedInTime checkedInTime = new CheckedInTime(""); // add command does not allow adding checked in time straight away
+        CheckedInTime checkedInTime = new CheckedInTime("");
+        // add command does not allow adding checked in time straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
         Set<Schedule> schedule = ParserUtil.parseSchedules(argMultimap.getAllValues(PREFIX_SCHEDULE));

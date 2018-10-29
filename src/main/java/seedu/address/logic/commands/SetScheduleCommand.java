@@ -93,7 +93,7 @@ public class SetScheduleCommand extends Command {
         return new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
                 personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(),
                 personToEdit.getPriorityLevel(), personToEdit.getAddress(), personToEdit.getMode(),
-                personToEdit.getWorkingRate(), personToEdit.getCheckedInTime(),personToEdit.getTags(),
+                personToEdit.getWorkingRate(), personToEdit.getCheckedInTime(), personToEdit.getTags(),
                 updatedSchedule);
     }
 }

@@ -301,6 +301,12 @@ public class ParserUtil {
         return new PriorityLevel(priorityLevelCode);
     }
 
+    /**
+     * Parses a {@code String workingRate} into a {@code WorkingRate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code workingRate} is invalid.
+     */
     public static WorkingRate parseWorkingRate(String workingRate) throws ParseException {
         requireNonNull(workingRate);
         String trimmedWorkingRate = workingRate.trim();

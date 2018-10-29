@@ -40,8 +40,10 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
-                  PriorityLevel priorityLevel, Address address, Mode mode, WorkingRate workingRate, CheckedInTime checkedInTime, Set<Tag> tags, Set<Schedule> schedule) {
-        requireAllNonNull(name, nric, password, phone, email, department, priorityLevel, mode, address, tags, schedule);
+                  PriorityLevel priorityLevel, Address address, Mode mode, WorkingRate workingRate,
+                  CheckedInTime checkedInTime, Set<Tag> tags, Set<Schedule> schedule) {
+        requireAllNonNull(name, nric, password, phone, email, department, priorityLevel,
+            mode, address, tags, schedule);
         this.name = name;
         this.nric = nric;
         this.password = password;

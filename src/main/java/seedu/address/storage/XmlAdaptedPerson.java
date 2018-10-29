@@ -208,14 +208,16 @@ public class XmlAdaptedPerson {
         final WorkingRate modelWorkingRate = new WorkingRate(workingRate);
 
         if (checkedInTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CheckedInTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                CheckedInTime.class.getSimpleName()));
         }
         final CheckedInTime modelCheckedInTime = new CheckedInTime(checkedInTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelPriorityLevel, modelAddress, modelMode, modelWorkingRate, modelCheckedInTime, modelTags, modelSchedule);
+            modelPriorityLevel, modelAddress, modelMode, modelWorkingRate,
+            modelCheckedInTime, modelTags, modelSchedule);
     }
 
     @Override

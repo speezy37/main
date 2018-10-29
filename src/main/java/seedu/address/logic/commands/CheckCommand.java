@@ -28,9 +28,6 @@ import seedu.address.session.SessionManager;
  * Check in or out to work.
  */
 public class CheckCommand extends Command {
-    public final String CURRENT_DATE = currentDate();
-    public final String CURRENT_TIME = currentTime();
-
     public static final String COMMAND_WORD = "check";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in/out to work. "
         + "Parameters: "
@@ -50,8 +47,10 @@ public class CheckCommand extends Command {
     public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
         + "Date: %1$s Time: %2$s\n"
         + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
-    public String MESSAGE_SUCCESS;
+    public final String DATE_NOW = currentDate();
+    public final String TIME_NOW = currentTime();
 
+    private String messageSucess;
     private Password password;
     private Mode mode;
     private Nric nric;
@@ -67,14 +66,14 @@ public class CheckCommand extends Command {
         requireAllNonNull(nric, password, mode);
         double currSecond;
         double currMinute;
-        String[] currTimeArray = splitTime(CURRENT_TIME);
+        String[] currTimeArray = splitTime(TIME_NOW);
         currSecond = Double.parseDouble(currTimeArray[2]);
         currMinute = Double.parseDouble(currTimeArray[1]);
 
         this.nric = nric;
         this.password = password;
         this.mode = mode;
-        this.currHour = Double.parseDouble(currTimeArray[0]) + currMinute/60 + currSecond/360;
+        this.currHour = Double.parseDouble(currTimeArray[0]) + currMinute / 60 + currSecond / 360;
     }
 
     @Override
@@ -92,7 +91,7 @@ public class CheckCommand extends Command {
             }
 
             if (personLoggedIn.getPriorityLevel().priorityLevelCode == PriorityLevelEnum.BASIC.getPriorityLevelCode()
-                && !personLoggedIn.getNric().toString().equals(nric.toString())){
+                && !personLoggedIn.getNric().toString().equals(nric.toString())) {
                 throw new CommandException(MESSAGE_NOT_AUTHORISED);
             }
 
@@ -102,13 +101,13 @@ public class CheckCommand extends Command {
             }
 
             if (mode.equals(new Mode("in"))) {
-                checkedInTime = new CheckedInTime(CURRENT_TIME);
-                MESSAGE_SUCCESS = MESSAGE_CHECKED_IN;
+                checkedInTime = new CheckedInTime(TIME_NOW);
+                messageSucess = MESSAGE_CHECKED_IN;
             } else {
                 hoursWorked = calculateHoursWorked(personToEdit.getCheckedInTime().toString());
-                salaryPerDay = hoursWorked*(Double.parseDouble(personToEdit.getWorkingRate().toString()));
+                salaryPerDay = hoursWorked * (Double.parseDouble(personToEdit.getWorkingRate().toString()));
                 checkedInTime = new CheckedInTime("");
-                MESSAGE_SUCCESS = MESSAGE_CHECKED_OUT;
+                messageSucess = MESSAGE_CHECKED_OUT;
             }
 
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(),
@@ -121,7 +120,8 @@ public class CheckCommand extends Command {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             model.commitAddressBook();
 
-            return new CommandResult(String.format(MESSAGE_SUCCESS, CURRENT_DATE, CURRENT_TIME, hoursWorked, salaryPerDay));
+            return new CommandResult(String.format(messageSucess, DATE_NOW, TIME_NOW,
+                hoursWorked, salaryPerDay));
         }
     }
 
@@ -165,6 +165,9 @@ public class CheckCommand extends Command {
         return false;
     }
 
+    /**
+     * Returns current date.
+     */
     private String currentDate() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate dateNow = LocalDate.now();
@@ -172,6 +175,9 @@ public class CheckCommand extends Command {
         return date.format(dateNow);
     }
 
+    /**
+     * Returns current time.
+     */
     private String currentTime() {
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime timeNow = LocalTime.now();
@@ -179,21 +185,28 @@ public class CheckCommand extends Command {
         return time.format(timeNow);
     }
 
-    private double calculateHoursWorked(String checkedInTime){
+    /**
+     * Returns hours worked.
+     */
+    private double calculateHoursWorked(String checkedInTime) {
         String[] checkedInTimeArray = splitTime(checkedInTime);
 
         double checkedInSecond = Double.parseDouble(checkedInTimeArray[2]);
         double checkedInMinute = Double.parseDouble(checkedInTimeArray[1]);
-        checkedInHour = Double.parseDouble(checkedInTimeArray[0]) + checkedInMinute/60 + checkedInSecond/360;
+        checkedInHour = Double.parseDouble(checkedInTimeArray[0]) + checkedInMinute / 60 + checkedInSecond / 360;
         return currHour - checkedInHour;
     }
 
+    /**
+     * Returns array contains hours, minutes and seconds separately.
+     */
     private String[] splitTime(String time) {
         String[] timeTokens = time.split("\\:");
         String[] timeArray = new String[3];
 
-        for (int i = 0; i < timeTokens.length; i++)
+        for (int i = 0; i < timeTokens.length; i++) {
             timeArray[i] = timeTokens[i];
+        }
 
         return timeArray;
     }
