@@ -197,7 +197,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
-image::DeletePersonSdForLogic.png[width="800"]
+image::ImplementPlvlRestrictionSequenceDiagram.png[width=900]
 
 [[Design-Model]]
 === Model component
@@ -583,26 +583,27 @@ logged in with a priority level of ADMINISTRATOR or above, in order to execute t
 .AddCommand.java
 [source,java]
 ----
+@Override
 public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-    requireNonNull(model);
+        requireNonNull(model);
+        SessionManager sessionManager = SessionManager.getInstance(model);
+        /**
+         * Throws exception if user is not logged in.
+         */
+        if (!sessionManager.isLoggedIn()) {
+            throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        }
+        /**
+         * Throws exception if user does not have the required access level.
+         */
+        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {
+            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                    PriorityLevelEnum.ADMINISTRATOR));
+        }
 
-    if (!SessionManager.isLoggedIn()) { //<1>
-        throw new CommandException(SessionManager.NOT_LOGGED_IN);
+        // ... Complete the execution, now that user is verified to be an admin.
     }
-    /**
-     * Throws exception if user does not have the required access level.
-     */
-    if (!SessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)) {    //<2>
-        throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
-                PriorityLevelEnum.ADMINISTRATOR));
-    }
-    ...
-    ... //Execute the rest of the code only when both checks above have passed.
-}
 ----
-<1> Check if the user is logged in.
-<2> Check if the logged in user has a priority level of ADMINISTRATOR and above.
-** This function checks if the user is logged in at the same time.
 
 The following sequence diagram below shows the flow of how the feature works:
 
