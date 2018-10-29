@@ -50,7 +50,7 @@ public class DeleteLeaveCommand extends Command {
 
         if (leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
                 && (sessionManager.getLoggedInPriorityLevel().priorityLevelCode
-                >= leaveToDelete.getPriorityLevel().priorityLevelCode)) {
+                > leaveToDelete.getPriorityLevel().priorityLevelCode)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }
 

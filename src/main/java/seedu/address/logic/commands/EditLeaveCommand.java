@@ -36,6 +36,8 @@ public class EditLeaveCommand extends Command {
             + "Example: " + COMMAND_APPROVE + " 1 ";
 
     public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Approve/Reject Leave: %1$s";
+    public static final String MESSAGE_ALREADY_APPROVE = "This leave application is already approved.";
+    public static final String MESSAGE_ALREADY_REJECTED = "This leave application is already rejected.";
     public static final String MESSAGE_INVALID_LEAVE_APPROVAL =
             "Not authorized to approve leave application.";
 
@@ -77,6 +79,15 @@ public class EditLeaveCommand extends Command {
                 >= leaveToEdit.getPriorityLevel().priorityLevelCode) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
+
+        if(leaveToEdit.equals(editedLeave)) {
+            if (leaveToEdit.getApproval().status == "APPROVED") {
+                throw new CommandException(MESSAGE_ALREADY_APPROVE);
+            } else if(leaveToEdit.getApproval().status == "REJECTED") {
+                throw  new CommandException(MESSAGE_ALREADY_REJECTED);
+            }
+        }
+
 
         model.updateLeave(leaveToEdit, editedLeave);
         model.updateFilteredLeaveList(PREDICATE_SHOW_ALL_LEAVES);
