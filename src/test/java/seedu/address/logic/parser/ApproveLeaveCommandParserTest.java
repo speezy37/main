@@ -7,15 +7,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLeaveCommand;
-import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
-import systemtests.SessionHelper;
-
 
 public class ApproveLeaveCommandParserTest {
 
@@ -23,11 +19,6 @@ public class ApproveLeaveCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditLeaveCommand.MESSAGE_USAGE);
 
     private ApproveLeaveCommandParser parser = new ApproveLeaveCommandParser();
-
-    @Before
-    public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
-    }
 
     @Test
     public void parse_missingParts_failure() {
