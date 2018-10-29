@@ -13,15 +13,15 @@ import seedu.address.model.leave.Leave;
  */
 public class TypicalLeave {
 
-    public static final Leave REQUEST_1 = new LeaveBuilder().withNric("S1234567A").withDate("01/02/2018")
+    public static final Leave REQUEST_1 = new LeaveBuilder().withNric("S1234567A").withDate("01/02/2020")
             .withApproval("PENDING").withPriorityLevel(1).build();
-    public static final Leave REQUEST_2 = new LeaveBuilder().withNric("S1234597A").withDate("01/10/2018")
+    public static final Leave REQUEST_2 = new LeaveBuilder().withNric("S1234597A").withDate("01/10/2020")
             .withApproval("PENDING").withPriorityLevel(2).build();
 
     //Manually add
-    public static final Leave REQUEST_3 = new LeaveBuilder().withNric("S1234591A").withDate("01/10/2018")
+    public static final Leave REQUEST_3 = new LeaveBuilder().withNric("S1234591A").withDate("01/10/2020")
             .withApproval("PENDING").withPriorityLevel(3).build();
-    public static final Leave REQUEST_4 = new LeaveBuilder().withNric("S1234591Z").withDate("01/10/2018")
+    public static final Leave REQUEST_4 = new LeaveBuilder().withNric("S1234591Z").withDate("01/10/2020")
             .withApproval("PENDING").withPriorityLevel(3).build();
 
 

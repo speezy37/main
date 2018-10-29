@@ -49,9 +49,9 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_DATE_REQUEST3 = "01/10/2018";
-    public static final String VALID_DATE_REQUEST1 = "01/11/2018";
-    public static final String VALID_DATE_REQUEST2 = "01/12/2018";
+    public static final String VALID_DATE_REQUEST3 = "01/10/2020";
+    public static final String VALID_DATE_REQUEST1 = "01/11/2020";
+    public static final String VALID_DATE_REQUEST2 = "01/12/2020";
     public static final String VALID_NRIC_REQUEST3 = "S1234591A";
     public static final String VALID_APPROVAL_REQUEST3 = "PENDING";
     public static final String VALID_APPROVAL_REQUEST1 = "APPROVED";

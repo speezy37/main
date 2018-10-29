@@ -80,8 +80,8 @@ public class AddLeaveCommandTest {
     }
     @Test
     public void equals() {
-        Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2018").withPriorityLevel(3).build();
-        Leave leave2 = new LeaveBuilder().withNric("S9513222E").withDate("12/04/2018").withPriorityLevel(3).build();
+        Leave leave1 = new LeaveBuilder().withNric("S9514222A").withDate("12/03/2020").withPriorityLevel(3).build();
+        Leave leave2 = new LeaveBuilder().withNric("S9513222E").withDate("12/04/2020").withPriorityLevel(3).build();
         AddLeaveCommand addLeaveCommand1 = new AddLeaveCommand(leave1);
         AddLeaveCommand addLeaveCommand2 = new AddLeaveCommand(leave2);
 
