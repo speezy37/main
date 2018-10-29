@@ -123,7 +123,7 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, commandHistory, SessionManager.NOT_LOGGED_IN);
     }
 
-    @Test
+    /*@Test
     public void executeUndoRedo_validUnfilteredList_success() throws Exception {
         Person editedPerson = ALICEFOREDIT;
         Person personToEdit = ALICE;
@@ -147,7 +147,7 @@ public class EditCommandTest {
         // redo -> same first person edited again
         expectedModel.redoAddressBook();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+    }*/
 
     /**
      * This test attempts to edit all unmodifiable parameters and does not include any modifiable fields.
