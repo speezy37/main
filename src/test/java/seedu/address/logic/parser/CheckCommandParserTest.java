@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.Test;
+
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.model.person.Mode;
 import seedu.address.model.person.Nric;
@@ -25,13 +26,15 @@ public class CheckCommandParserTest {
         // in mode
         String userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE + inMode;
-        CheckCommand expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY), new Password(VALID_PASSWORD_AMY), new Mode(inMode));
+        CheckCommand expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY),
+            new Password(VALID_PASSWORD_AMY), new Mode(inMode));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // out mode
         userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE + outMode;
-        expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY), new Password(VALID_PASSWORD_AMY), new Mode(outMode));
+        expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY),
+            new Password(VALID_PASSWORD_AMY), new Mode(outMode));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

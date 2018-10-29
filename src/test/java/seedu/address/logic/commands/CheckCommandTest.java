@@ -39,27 +39,32 @@ public class CheckCommandTest {
 
     @Test
     public void execute() throws CommandException {
-        final Mode mode_in = new Mode("in");
+        final Mode inMode = new Mode("in");
         sessionManager.destroy();
 
         //user not login
-        assertCommandFailure(new CheckCommand(GEORGE.getNric(), GEORGE.getPassword(), mode_in), model, new CommandHistory(),
+        assertCommandFailure(new CheckCommand(GEORGE.getNric(), GEORGE.getPassword(), inMode),
+            model, new CommandHistory(),
             CheckCommand.MESSAGE_NOT_LOGIN);
 
         sessionManager = SessionManager.getInstance(model);
         sessionManager.loginToSession(GEORGE.getNric(), GEORGE.getPassword());
 
         //duplicate mode
-        assertCommandFailure(new CheckCommand(GEORGE.getNric(), GEORGE.getPassword(), mode_in), model, new CommandHistory(),
-            String.format(CheckCommand.MESSAGE_DUPLICATE, mode_in));
+        assertCommandFailure(new CheckCommand(GEORGE.getNric(), GEORGE.getPassword(), inMode),
+            model, new CommandHistory(),
+            String.format(CheckCommand.MESSAGE_DUPLICATE, inMode));
         //user not found (invalid NRIC)
-        assertCommandFailure(new CheckCommand(new Nric("S1112222T"), GEORGE.getPassword(), mode_in), model, new CommandHistory(),
+        assertCommandFailure(new CheckCommand(new Nric("S1112222T"), GEORGE.getPassword(), inMode),
+            model, new CommandHistory(),
             CheckCommand.MESSAGE_NOT_FOUND);
         //user not found (invalid password)
-        assertCommandFailure(new CheckCommand(GEORGE.getNric(), new Password("AAAA1234"), mode_in), model, new CommandHistory(),
+        assertCommandFailure(new CheckCommand(GEORGE.getNric(), new Password("AAAA1234"), inMode),
+            model, new CommandHistory(),
             CheckCommand.MESSAGE_NOT_FOUND);
         //user not authorised
-        assertCommandFailure(new CheckCommand(FIONA.getNric(), FIONA.getPassword(), mode_in), model, new CommandHistory(),
+        assertCommandFailure(new CheckCommand(FIONA.getNric(), FIONA.getPassword(), inMode),
+            model, new CommandHistory(),
             CheckCommand.MESSAGE_NOT_AUTHORISED);
     }
 

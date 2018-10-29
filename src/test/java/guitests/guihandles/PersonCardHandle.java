@@ -87,9 +87,13 @@ public class PersonCardHandle extends NodeHandle<Node> {
         return modeLabel.getText();
     }
 
-    public String getCheckedInTime() { return checkedInTimeLabel.getText(); }
+    public String getCheckedInTime() {
+        return checkedInTimeLabel.getText();
+    }
 
-    public String getWorkingRate() { return workingRateLabel.getText(); }
+    public String getWorkingRate() {
+        return workingRateLabel.getText();
+    }
 
     public List<String> getTags() {
         return tagLabels
