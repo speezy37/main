@@ -123,7 +123,7 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, commandHistory, SessionManager.NOT_LOGGED_IN);
     }
 
-    /*@Test
+    @Test
     public void executeUndoRedo_validUnfilteredList_success() throws Exception {
         Person editedPerson = ALICEFOREDIT;
         Person personToEdit = ALICE;
@@ -147,13 +147,13 @@ public class EditCommandTest {
         // redo -> same first person edited again
         expectedModel.redoAddressBook();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
-    }*/
+    }
 
     /**
      * This test attempts to edit all unmodifiable parameters and does not include any modifiable fields.
      * This test should succeed, but the person SHOULD NOT be edited.
      */
-    /*@Test
+    @Test
     public void execute_editUneditableFields_success() throws CommandException {
         Person editedPerson = new PersonBuilder(ALICE).withNric("G8888888E").withPassword("qwerty33")
                 .withDepartment("Test Management").withPriorityLevel(0).build();
@@ -168,7 +168,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(new EditCommand(descriptor), model, commandHistory,
                 String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, ALICE), expectedModel);
-    }*/
+    }
 
     @Test
     public void equals() {
