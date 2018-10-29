@@ -16,7 +16,7 @@ public class Date {
     public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format (DD/MM/YYYY) or date has passed.";
 
     public final String date;
-    
+
     /**
      * Constructs an {@code Date}.
      *
