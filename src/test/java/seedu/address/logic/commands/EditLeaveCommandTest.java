@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -143,5 +144,10 @@ public class EditLeaveCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditLeaveCommand(INDEX_FIRST_PERSON, DESC_REQUEST2)));
+    }
+
+    @After
+    public void tearDown() {
+        SessionHelper.logoutOfSession();
     }
 }
