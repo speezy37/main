@@ -45,6 +45,11 @@ public class CheckCommand extends Command {
     public static final String MESSAGE_NOT_FOUND = "User is not found!";
     public static final String MESSAGE_NOT_LOGIN = "User has not logged in yet!";
     public static final String MESSAGE_NOT_AUTHORISED = "User is not authorised to do so!";
+    public static final String MESSAGE_CHECKED_IN = "Successfully checked in to work!\n"
+        + "Date: %1$s Time: %2$s";
+    public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
+        + "Date: %1$s Time: %2$s\n"
+        + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
     public String MESSAGE_SUCCESS;
 
     private Password password;
@@ -82,14 +87,15 @@ public class CheckCommand extends Command {
         } else {
             personLoggedIn = sessionManager.getLoggedInPersonDetails();
 
+            if (!isUserValid(model)) {
+                throw new CommandException(MESSAGE_NOT_FOUND);
+            }
+
             if (personLoggedIn.getPriorityLevel().priorityLevelCode == PriorityLevelEnum.BASIC.getPriorityLevelCode()
                 && !personLoggedIn.getNric().toString().equals(nric.toString())){
                 throw new CommandException(MESSAGE_NOT_AUTHORISED);
             }
 
-            if (!isUserValid(model)) {
-                throw new CommandException(MESSAGE_NOT_FOUND);
-            }
 
             if (personToEdit.getMode().equals(mode)) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
@@ -97,15 +103,12 @@ public class CheckCommand extends Command {
 
             if (mode.equals(new Mode("in"))) {
                 checkedInTime = new CheckedInTime(CURRENT_TIME);
-                MESSAGE_SUCCESS = "Successfully checked in to work!\n"
-                    + "Date: %1$s Time: %2$s";
+                MESSAGE_SUCCESS = MESSAGE_CHECKED_IN;
             } else {
                 hoursWorked = calculateHoursWorked(personToEdit.getCheckedInTime().toString());
                 salaryPerDay = hoursWorked*(Double.parseDouble(personToEdit.getWorkingRate().toString()));
                 checkedInTime = new CheckedInTime("");
-                MESSAGE_SUCCESS = "Successfully checked out from work!\n"
-                    + "Date: %1$s Time: %2$s\n"
-                    + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
+                MESSAGE_SUCCESS = MESSAGE_CHECKED_OUT;
             }
 
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(),

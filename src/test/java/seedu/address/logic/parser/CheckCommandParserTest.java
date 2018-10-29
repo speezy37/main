@@ -10,9 +10,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.Test;
-
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.model.person.Mode;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.password.Password;
 
 public class CheckCommandParserTest {
     private CheckCommandParser parser = new CheckCommandParser();
@@ -24,13 +25,13 @@ public class CheckCommandParserTest {
         // in mode
         String userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE + inMode;
-        CheckCommand expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(inMode));
+        CheckCommand expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY), new Password(VALID_PASSWORD_AMY), new Mode(inMode));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // out mode
         userInput = " " + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD
                 + VALID_PASSWORD_AMY + " " + PREFIX_MODE + outMode;
-        expectedCommand = new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, new Mode(outMode));
+        expectedCommand = new CheckCommand(new Nric(VALID_NRIC_AMY), new Password(VALID_PASSWORD_AMY), new Mode(outMode));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -41,8 +42,14 @@ public class CheckCommandParserTest {
         // no parameters
         assertParseFailure(parser, CheckCommand.COMMAND_WORD, expectedMessage);
 
-        // no name
+        // no nric
         assertParseFailure(parser, CheckCommand.COMMAND_WORD + " "
-            + VALID_PASSWORD_AMY + inMode, expectedMessage);
+            + PREFIX_PASSWORD + VALID_PASSWORD_AMY + " "
+            + PREFIX_MODE + inMode, expectedMessage);
+
+        // no password
+        assertParseFailure(parser, CheckCommand.COMMAND_WORD + " "
+            + PREFIX_NRIC + VALID_NRIC_AMY + " "
+            + PREFIX_MODE + inMode, expectedMessage);
     }
 }

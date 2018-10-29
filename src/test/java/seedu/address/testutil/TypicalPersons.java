@@ -56,7 +56,7 @@ public class TypicalPersons {
             .withEmail("lydia@example.com").withDepartment("Junior Management")
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withNric("T2457775E").withPassword("ASd654").withPriorityLevel(0)
+            .withNric("T2457775E").withPassword("ASd654").withPriorityLevel(3)
             .withEmail("anna@example.com").withDepartment("Junior Management")
             .withAddress("4th street").withMode("in")
             .withWorkingRate("7.5").withCheckedInTime("9:00:00").build();

@@ -56,7 +56,9 @@ import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.Mode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.password.Password;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -260,6 +262,6 @@ public class AddressBookParserTest {
         CheckCommand command = (CheckCommand) parser.parseCommand(CheckCommand.COMMAND_WORD + " "
             + PREFIX_NRIC + VALID_NRIC_AMY + " " + PREFIX_PASSWORD + VALID_PASSWORD_AMY
             + " " + PREFIX_MODE + mode.value);
-        assertEquals(new CheckCommand(VALID_NRIC_AMY, VALID_PASSWORD_AMY, mode), command);
+        assertEquals(new CheckCommand(new Nric(VALID_NRIC_AMY), new Password(VALID_PASSWORD_AMY), mode), command);
     }
 }
