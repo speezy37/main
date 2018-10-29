@@ -15,6 +15,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteLeaveCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditLeaveCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterDepartmentCommand;
 import seedu.address.logic.commands.FilterLeaveCommand;
@@ -27,6 +28,7 @@ import seedu.address.logic.commands.ListLeaveCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SetDepartmentCommand;
@@ -136,6 +138,7 @@ public class AddressBookParser {
             return new CheckCommandParser().parse(arguments);
 
         case DeleteLeaveCommand.COMMAND_WORD:
+        case DeleteLeaveCommand.COMMAND_ALIAS:
             return new DeleteLeaveCommandParser().parse(arguments);
 
         case FilterLeaveCommand.COMMAND_WORD:
@@ -145,9 +148,17 @@ public class AddressBookParser {
         case ListLeaveCommand.COMMAND_WORD:
             return new ListLeaveCommand();
 
+        case EditLeaveCommand.COMMAND_APPROVE:
+            return new ApproveLeaveCommandParser().parse(arguments);
+
+        case EditLeaveCommand.COMMAND_REJECT:
+            return new RejectLeaveCommandParser().parse(arguments);
+
         case SetPriorityLevelCommand.COMMAND_WORD:
             return new SetPriorityLevelCommandParser().parse(arguments);
 
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
