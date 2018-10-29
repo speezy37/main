@@ -322,6 +322,7 @@ Delete the specified leave from leave list.
 * Requires the user to log in before using the command.
 * User can only delete leave application he/she requested.
 * To delete other user's application, requires higher privilege to perform.
+Example, MANAGER can delete BASIC user's leave application.
 ====
 
 Format: `deleteleave INDEX`
@@ -339,7 +340,7 @@ Example:
 ****
 
 === Approve leave application  : `approve`
-Approve leave application based on INDEX.
+Approve the specified leave from leave list.
 
 [NOTE]
 ====
@@ -363,7 +364,7 @@ Example:
 ****
 
 === Reject leave application  : `reject`
-Reject leave application based on INDEX.
+Reject the specified leave from leave list.
 
 [NOTE]
 ====
