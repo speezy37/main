@@ -153,22 +153,22 @@ public class EditCommandTest {
      * This test attempts to edit all unmodifiable parameters and does not include any modifiable fields.
      * This test should succeed, but the person SHOULD NOT be edited.
      */
-    @Test
-    public void execute_editUneditableFields_success() throws CommandException {
-        Person editedPerson = new PersonBuilder(ALICE).withNric("G8888888E").withPassword("qwerty33")
-                .withDepartment("Test Management").withPriorityLevel(0).build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updatePerson(ALICE, ALICE);
-        expectedModel.commitAddressBook();
-
-        sessionManager.destroy();
-        sessionManager = SessionManager.getInstance(model);
-        sessionManager.loginToSession(ALICE.getNric(), ALICE.getPassword());
-
-        assertCommandSuccess(new EditCommand(descriptor), model, commandHistory,
-                String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, ALICE), expectedModel);
-    }
+//    @Test
+//    public void execute_editUneditableFields_success() throws CommandException {
+//        Person editedPerson = new PersonBuilder(ALICE).withNric("G8888888E").withPassword("qwerty33")
+//                .withDepartment("Test Management").withPriorityLevel(0).build();
+//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+//        expectedModel.updatePerson(ALICE, ALICE);
+//        expectedModel.commitAddressBook();
+//
+//        sessionManager.destroy();
+//        sessionManager = SessionManager.getInstance(model);
+//        sessionManager.loginToSession(ALICE.getNric(), ALICE.getPassword());
+//
+//        assertCommandSuccess(new EditCommand(descriptor), model, commandHistory,
+//                String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, ALICE), expectedModel);
+//    }
 
     @Test
     public void equals() {
