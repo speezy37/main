@@ -105,6 +105,8 @@ public class PersonListPanelTest extends GuiUnitTest {
             builder.append("<department>Junior Management</department>\n");
             builder.append("<address>a</address>\n");
             builder.append("<mode>in</mode>\n");
+            builder.append("<workingRate>7.5</workingRate>");
+            builder.append("<checkedInTime></checkedInTime>");
             builder.append("</persons>\n");
         }
         builder.append("</addressbook>\n");

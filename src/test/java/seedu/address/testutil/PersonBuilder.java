@@ -61,7 +61,7 @@ public class PersonBuilder {
         priorityLevel = new PriorityLevel(DEFAULT_PRIORITYLEVEL);
         address = new Address(DEFAULT_ADDRESS);
         mode = new Mode(DEFAULT_MODE);
-        workingRate = new WorkingRate(DEFAULT_MODE);
+        workingRate = new WorkingRate(DEFAULT_WORKINGRATE);
         checkedInTime = new CheckedInTime(DEFAULT_CHECKEDINTIME);
         tags = new HashSet<>();
         schedules = new HashSet<>();
@@ -163,6 +163,22 @@ public class PersonBuilder {
      */
     public PersonBuilder withMode(String mode) {
         this.mode = new Mode(mode);
+        return this;
+    }
+
+    /**
+     * Sets the {@code WorkingRate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWorkingRate(String workingRate) {
+        this.workingRate = new WorkingRate(workingRate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code CheckedInTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCheckedInTime(String checkedInTime) {
+        this.checkedInTime = new CheckedInTime(checkedInTime);
         return this;
     }
 

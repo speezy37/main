@@ -9,6 +9,8 @@
 		<priorityLevel>0</priorityLevel>
         <address isPrivate="false">4th street</address>
         <mode isPrivate="false">in</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false">10:00:00</checkedInTime>
     </persons>
     <!-- Person with invalid phone field -->
     <persons>
@@ -19,5 +21,7 @@
 		<priorityLevel>0</priorityLevel>
         <address isPrivate="false">4th street</address>
         <mode isPrivate="false">in</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false">10:00:00</checkedInTime>
     </persons>
 </addressbook>

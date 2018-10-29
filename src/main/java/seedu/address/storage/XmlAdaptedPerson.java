@@ -50,6 +50,10 @@ public class XmlAdaptedPerson {
     private String address;
     @XmlElement(required = true)
     private String mode;
+    @XmlElement(required = true)
+    private String workingRate;
+    @XmlElement(required = true)
+    private String checkedInTime;
 
     @XmlElement
     private List<XmlAdaptedSchedule> schedule = new ArrayList<>();
@@ -99,6 +103,8 @@ public class XmlAdaptedPerson {
         priorityLevel = source.getPriorityLevel().priorityLevelCode;
         address = source.getAddress().value;
         mode = source.getMode().value;
+        workingRate = source.getWorkingRate().value;
+        checkedInTime = source.getCheckedInTime().value;
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -188,9 +194,23 @@ public class XmlAdaptedPerson {
         if (mode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mode.class.getSimpleName()));
         }
+        if (!Mode.isValidMode(mode)) {
+            throw new IllegalValueException(Mode.MESSAGE_MODE_CONSTRAINTS);
+        }
         final Mode modelMode = new Mode(mode);
-        final WorkingRate modelWorkingRate = new WorkingRate("7.5");
-        final CheckedInTime modelCheckedInTime = new CheckedInTime("");
+
+        if (workingRate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, WorkingRate.class.getSimpleName()));
+        }
+        if (!WorkingRate.isValidWorkingRate(workingRate)) {
+            throw new IllegalValueException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);
+        }
+        final WorkingRate modelWorkingRate = new WorkingRate(workingRate);
+
+        if (checkedInTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CheckedInTime.class.getSimpleName()));
+        }
+        final CheckedInTime modelCheckedInTime = new CheckedInTime(checkedInTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);

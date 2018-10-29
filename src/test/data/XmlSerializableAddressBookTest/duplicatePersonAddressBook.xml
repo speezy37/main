@@ -11,6 +11,8 @@
 		<priorityLevel>0</priorityLevel>
         <address>123, Jurong West Ave 6, #08-111</address>
         <mode>in</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime>10:00:00</checkedInTime>
         <tagged>friends</tagged>
     </persons>
 
@@ -25,6 +27,8 @@
 		<priorityLevel>0</priorityLevel>
         <address>4th street</address>
         <mode>in</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime>10:00:00</checkedInTime>
     </persons>
 
 </addressbook>
