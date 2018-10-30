@@ -47,9 +47,9 @@ public class CheckCommand extends Command {
     public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
         + "Date: %1$s Time: %2$s\n"
         + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
-    public static double checkedInHour;
-    public static double currHour;
 
+    private double checkedInHour;
+    private double currHour;
     private String currentTime = currentTime();
     private String messageSucess;
     private Password password;
@@ -187,7 +187,7 @@ public class CheckCommand extends Command {
     /**
      * Returns hours worked.
      */
-    public static double calculateHoursWorked(String checkedInTime) {
+    private double calculateHoursWorked(String checkedInTime) {
         String[] checkedInTimeArray = splitTime(checkedInTime);
 
         double checkedInSecond = Double.parseDouble(checkedInTimeArray[2]);
