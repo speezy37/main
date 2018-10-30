@@ -47,6 +47,8 @@ public class CheckCommand extends Command {
     public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
         + "Date: %1$s Time: %2$s\n"
         + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
+    public static double checkedInHour;
+    public static double currHour;
 
     private String currentTime = currentTime();
     private String messageSucess;
@@ -56,8 +58,6 @@ public class CheckCommand extends Command {
     private CheckedInTime checkedInTime;
     private Person personLoggedIn;
     private Person personToEdit;
-    private double currHour;
-    private double checkedInHour;
     private double hoursWorked;
     private double salaryPerDay;
 
@@ -167,7 +167,7 @@ public class CheckCommand extends Command {
     /**
      * Returns current date.
      */
-    private String currentDate() {
+    public static String currentDate() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate dateNow = LocalDate.now();
 
@@ -177,7 +177,7 @@ public class CheckCommand extends Command {
     /**
      * Returns current time.
      */
-    private String currentTime() {
+    public static String currentTime() {
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime timeNow = LocalTime.now();
 
@@ -187,7 +187,7 @@ public class CheckCommand extends Command {
     /**
      * Returns hours worked.
      */
-    private double calculateHoursWorked(String checkedInTime) {
+    public static double calculateHoursWorked(String checkedInTime) {
         String[] checkedInTimeArray = splitTime(checkedInTime);
 
         double checkedInSecond = Double.parseDouble(checkedInTimeArray[2]);
@@ -199,7 +199,7 @@ public class CheckCommand extends Command {
     /**
      * Returns array contains hours, minutes and seconds separately.
      */
-    private String[] splitTime(String time) {
+    public static String[] splitTime(String time) {
         String[] timeTokens = time.split("\\:");
         String[] timeArray = new String[3];
 
