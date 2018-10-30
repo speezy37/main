@@ -27,7 +27,7 @@ import seedu.address.model.person.password.Password;
 import seedu.address.session.SessionManager;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for CheckCommand.
  */
 public class CheckCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

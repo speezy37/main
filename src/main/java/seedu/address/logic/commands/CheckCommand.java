@@ -46,7 +46,8 @@ public class CheckCommand extends Command {
         + "Date: %1$s Time: %2$s";
     public static final String MESSAGE_CHECKED_OUT = "Successfully checked out from work!\n"
         + "Date: %1$s Time: %2$s\n"
-        + "Worked for: %3$.2f hours Salary per day: $%4$.2f";
+        + "Checked In hours: %3$s Checked out hours: %4$s\n"
+        + "Worked for: %5$.2f hours Salary per day: $%6$.2f";
 
     private String currentTime = currentTime();
     private String messageSucess;
@@ -72,7 +73,7 @@ public class CheckCommand extends Command {
         this.nric = nric;
         this.password = password;
         this.mode = mode;
-        this.currHour = Double.parseDouble(currTimeArray[0]) + currMinute / 60 + currSecond / 360;
+        this.currHour = Double.parseDouble(currTimeArray[0]) + currMinute / 60 + currSecond / 3600;
     }
 
     @Override
@@ -120,7 +121,7 @@ public class CheckCommand extends Command {
             model.commitAddressBook();
 
             return new CommandResult(String.format(messageSucess, currentDate(), currentTime,
-                hoursWorked, salaryPerDay));
+                checkedInHour, currHour, hoursWorked, salaryPerDay));
         }
     }
 
@@ -192,7 +193,7 @@ public class CheckCommand extends Command {
 
         double checkedInSecond = Double.parseDouble(checkedInTimeArray[2]);
         double checkedInMinute = Double.parseDouble(checkedInTimeArray[1]);
-        checkedInHour = Double.parseDouble(checkedInTimeArray[0]) + checkedInMinute / 60 + checkedInSecond / 360;
+        checkedInHour = Double.parseDouble(checkedInTimeArray[0]) + checkedInMinute / 60 + checkedInSecond / 3600;
         return currHour - checkedInHour;
     }
 
