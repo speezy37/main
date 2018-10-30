@@ -47,7 +47,7 @@ public class XmlAdaptedSchedule {
             venue = source.getVenue().value;
             endTime = source.getTimeEnd().value;
             startTime = source.getTimeStart().value;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             venue = endTime = startTime = null;
         }
     }
