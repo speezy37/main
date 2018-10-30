@@ -182,11 +182,12 @@ public class XmlAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Schedule scheduleObject = null;
+        Schedule scheduleObject;
         try {
             scheduleObject = schedule.toModelType();
+
         } catch (NullPointerException e) {
-            System.out.print("Schedule object is null\n");
+            scheduleObject = null;
         }
         final Schedule modelSchedule = scheduleObject;
 

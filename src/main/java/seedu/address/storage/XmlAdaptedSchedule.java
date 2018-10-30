@@ -43,9 +43,13 @@ public class XmlAdaptedSchedule {
      * @param source future changes to this will not affect the created
      */
     public XmlAdaptedSchedule(Schedule source) {
-        venue = source.getVenue().value;
-        endTime = source.getTimeEnd().value;
-        startTime = source.getTimeStart().value;
+        try {
+            venue = source.getVenue().value;
+            endTime = source.getTimeEnd().value;
+            startTime = source.getTimeStart().value;
+        } catch(NullPointerException e) {
+            venue = endTime = startTime = null;
+        }
     }
 
     /**
@@ -53,34 +57,26 @@ public class XmlAdaptedSchedule {
      *
      */
     public Schedule toModelType() throws IllegalValueException {
-        if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
-                    TimeStart.class.getSimpleName()));
-        }
-        if (!TimeStart.isValidTimeStart(startTime)) {
-            throw new IllegalValueException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
-        }
-        final TimeStart timeStart = new TimeStart(this.startTime);
+        try {
+            if (!TimeStart.isValidTimeStart(startTime)) {
+                throw new IllegalValueException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
+            }
+            final TimeStart timeStart = new TimeStart(this.startTime);
 
-        if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
-                    TimeEnd.class.getSimpleName()));
-        }
-        if (!TimeEnd.isValidTimeEnd(endTime)) {
-            throw new IllegalValueException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
-        }
-        final TimeEnd timeEnd = new TimeEnd(this.endTime);
+            if (!TimeEnd.isValidTimeEnd(endTime)) {
+                throw new IllegalValueException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
+            }
+            final TimeEnd timeEnd = new TimeEnd(this.endTime);
 
-        if (venue == null) {
-            throw new IllegalValueException(String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT,
-                    Venue.class.getSimpleName()));
-        }
-        if (!Venue.isValidVenue(venue)) {
-            throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);
-        }
-        final Venue venue = new Venue(this.venue);
+            if (!Venue.isValidVenue(venue)) {
+                throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);
+            }
+            final Venue venue = new Venue(this.venue);
 
-        return new Schedule(timeStart, timeEnd, venue);
+            return new Schedule(timeStart, timeEnd, venue);
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     @Override
