@@ -14,7 +14,7 @@ import seedu.address.logic.commands.SetScheduleCommand;
 
 public class SetScheduleCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TIME_END + " "
+    private static final String EMPTY_SCHEDULE = " " + PREFIX_TIME_END + " "
             + PREFIX_TIME_START + " " + PREFIX_VENUE;
 
     private static final String MESSAGE_INVALID_FORMAT =
