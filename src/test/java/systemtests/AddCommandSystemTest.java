@@ -31,8 +31,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -62,11 +62,14 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddCommandSystemTest extends AddressBookSystemTest {
 
+    Model expectedModel;
+
     @Override
     @Before
     public void setUp() {
         super.setUp();
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+        expectedModel = getModel();
     }
 
     @Test
@@ -83,14 +86,6 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
                 + NRIC_DESC_AMY + " " + PASSWORD_DESC_AMY + " " + PHONE_DESC_AMY + " "
                 + EMAIL_DESC_AMY + "   " + DEPARTMENT_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
                 + TAG_DESC_FRIEND + " ";
-        assertCommandSuccess(command, toAdd);
-
-        /* Case: add a person with all fields same as another person in the address book except NRIC -> added */
-        toAdd = new PersonBuilder(AMY).withPassword(VALID_PASSWORD_BOB)
-                .withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_BOB
-                + NRIC_DESC_BOB + PASSWORD_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + DEPARTMENT_DESC_AMY
-                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a person with all fields same as another person in the address book except phone and email
@@ -116,12 +111,6 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: filters the person list before adding -> added */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
         assertCommandSuccess(IDA);
-
-        /* ------------------------ Perform add operation while a person card is selected --------------------------- */
-
-        /* Case: selects first card in the person list, add a person -> added, card selection remains unchanged */
-        selectPerson(Index.fromOneBased(1));
-        assertCommandSuccess(CARL);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
@@ -237,7 +226,6 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
      * @see AddCommandSystemTest#assertCommandSuccess(Person)
      */
     private void assertCommandSuccess(String command, Person toAdd) {
-        Model expectedModel = getModel();
         expectedModel.addPerson(toAdd);
         String expectedResultMessage = String.format(AddCommand.MESSAGE_SUCCESS, toAdd);
 
