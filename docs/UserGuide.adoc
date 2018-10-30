@@ -477,8 +477,18 @@ Logs out of the application, allowing for other users to log in again.
 
 === Check in/out working hours: `check`
 Updates check in/out status for employees. +
-Checked in shows check in date and time +
-Checked out shows hours worked and salary per day +
+
+image::inStatus.png[width="270"]
+image::outStatus.png[width="270"]
+
+Checked in shows check in date and time. +
+
+image::checkedIn.png[width="270"]
+
+Checked out shows hours worked and salary per day. +
+
+image::checkedOut.png[width="270"]
+
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
