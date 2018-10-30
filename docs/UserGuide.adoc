@@ -104,7 +104,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Senior Management
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Tower p/1234567 d/Senior Management
 t/Creditor ic/S1875858E pwd/Fed528F`
 
 === Listing all persons : `list`
