@@ -568,30 +568,46 @@ There is no need to save manually.
 
 == Command Summary
 
-•	*Help*: `help`
-•	*Check in/out working hours*: `check n/NAME ic/NRIC mode/IN-OUT`
-•	*List schedule*: `schedule INDEX`
-•	*Set schedule*: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE`
-•	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
-•	*Edit particulars*: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]....`
-•	*Set priority level*: `setplvl INDEX plvl/PRIORITY_LEVEL`
+=== Personal User Account
+•	*Login*: `login ic/NRIC pwd/PASSWORD`
+•	*Logout*: `logout`
+•	*Check login status*: `checkloginstatus`
+•	*Edit particulars*: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+=== Employee Management Database
 •	*Add employee*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAGS]...`
-//•	*Setting password*: `setpass n/NAME ic/s1234567h sp/PASSWORD`
-•	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
-•	*Sort address book contacts*: `sort name asc`
-•	*List available departments*: `listdepartment`
-•	*Filter departments*: `filterdepartment junior`
-•	*Change department of an employee*: `setdepartment INDEX d/DEPARTMENT`
 •	*Deleting employee*: `delete INDEX`
-•	*Change priority level of employee*: `setplvl ic/NRIC plvl/PRIORITY_LEVEL`
+•	*Set priority level of an employee*: `setplvl INDEX plvl/PRIORITY_LEVEL`
+•	*Change department of an employee*: `setdepartment INDEX d/DEPARTMENT`
+
+=== Leave Application
 •	*Add leave application*: `leave date/DATE`
 •	*List all leave applications*: `listleave`
 •	*Filter leave applications*: `filterleave NRIC`
 •	*Delete leave application*: `deleteleave INDEX`
 •	*Approve leave application*: `approve INDEX`
 •	*Reject leave application*: `reject INDEX`
-//•	*Restrict access to BankAB*: `restrict`
+
+=== Scheduling
+•	*Check in/out working hours*: `check n/NAME ic/NRIC mode/IN-OUT`
+•	*List schedule*: `schedule INDEX`
+•	*Set schedule*: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE`
+
+=== Filtering/Sorting
+•	*Find employee*: `find KEYWORD [MORE_KEYWORDS]`
+•	*Sort address book contacts*: `sort name asc`
+•	*List available departments*: `listdepartment`
+•	*Filter departments*: `filterdepartment junior`
+
+=== Miscellaneous
+•	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
+•	*Help*: `help`
 •	*Reset the application*: `reset`
+•	*Exit application*: `exit`
+//•	*Restrict access to BankAB*: `restrict`
+
+
+
 
 == Appendix A: List of prefixes in the application
 .List of prefixes
@@ -641,7 +657,7 @@ Department names should start with a name, and ends with 'Management'.
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: - +
-[0] I.T. Unit (HIGHEST)+
+[0] I.T. Unit (HIGHEST) +
 [1] Administrator +
 [2] Manager +
 [3] Basic (LOWEST)
