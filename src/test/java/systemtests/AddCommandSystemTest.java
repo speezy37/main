@@ -100,7 +100,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: add a person with all fields same as another person in the address book except NRIC -> added */
         toAdd = new PersonBuilder(AMY).withPassword(VALID_PASSWORD_BOB)
-                .withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB).build();
+                .withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB).withoutSchedule().build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB
                 + NRIC_DESC_BOB + PASSWORD_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + DEPARTMENT_DESC_AMY
                 + ADDRESS_DESC_AMY + TAG_DESC_FRIEND;
@@ -110,7 +110,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
          * -> added
          */
         toAdd = new PersonBuilder(AMY).withNric("S8888888E")
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withoutSchedule().build();
         command = PersonUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 

@@ -1,12 +1,14 @@
 package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static seedu.address.storage.XmlAdaptedSchedule.MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalSchedules.CLEANING;
 
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
@@ -35,23 +37,9 @@ public class XmlAdaptedScheduleTest {
     }
 
     @Test
-    public void toModelType_nullTimeStart_throwsIllegalValueException() {
-        XmlAdaptedSchedule schedule = new XmlAdaptedSchedule(null, VALID_TIME_END, VALID_VENUE);
-        String expectedMessage = String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, TimeStart.class.getSimpleName());
-        Assert.assertThrows(IllegalValueException.class, expectedMessage, schedule::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidTimeEnd_throwsIllegalValueException() {
         XmlAdaptedSchedule schedule = new XmlAdaptedSchedule(VALID_TIME_START, INVALID_TIME_END, VALID_VENUE);
         String expectedMessage = TimeEnd.MESSAGE_TIME_END_CONSTRAINTS;
-        Assert.assertThrows(IllegalValueException.class, expectedMessage, schedule::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullTimeEnd_throwsIllegalValueException() {
-        XmlAdaptedSchedule schedule = new XmlAdaptedSchedule(VALID_TIME_START, null, VALID_VENUE);
-        String expectedMessage = String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, TimeEnd.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, schedule::toModelType);
     }
 
@@ -61,12 +49,4 @@ public class XmlAdaptedScheduleTest {
         String expectedMessage = Venue.MESSAGE_VENUE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, schedule::toModelType);
     }
-
-    @Test
-    public void toModelType_nullVenue_throwsIllegalValueException() {
-        XmlAdaptedSchedule schedule = new XmlAdaptedSchedule(VALID_TIME_START, VALID_TIME_END, null);
-        String expectedMessage = String.format(MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT, Venue.class.getSimpleName());
-        Assert.assertThrows(IllegalValueException.class, expectedMessage, schedule::toModelType);
-    }
-
 }
