@@ -689,5 +689,4 @@ Department names should start with a name, and ends with 'Management'.
 |
 - All privileges of a MANAGER Priority level +
 - <<???>>
-
 |===
