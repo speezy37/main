@@ -11,17 +11,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.logic.CommandHistory;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import systemtests.SessionHelper;
 
 public class ScheduleCommandTest {
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private CommandHistory commandHistory = new CommandHistory();
 
     @Before
     public void setUp() {
@@ -60,5 +55,4 @@ public class ScheduleCommandTest {
     public void tearDown() {
         SessionHelper.logoutOfSession();
     }
-
 }
