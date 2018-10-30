@@ -1,8 +1,6 @@
 package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.address.storage.XmlAdaptedSchedule.MISSING_SCHEDULE_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalSchedules.CLEANING;
 
 import org.junit.Test;
