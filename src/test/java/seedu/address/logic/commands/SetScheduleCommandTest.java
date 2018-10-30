@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -33,13 +34,13 @@ public class SetScheduleCommandTest {
     private Model model;
     private Model expectedModel;
     private CommandHistory commandHistory = new CommandHistory();
-    private Index index = Index.fromOneBased(1);
+    private EditPersonDescriptor editPersonDescriptor;
 
     @Before
     public void setUp() {
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        editPersonDescriptor = new EditPersonDescriptor();
     }
 
     @Test
@@ -51,7 +52,7 @@ public class SetScheduleCommandTest {
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new SetScheduleCommand(index, null);
+        new SetScheduleCommand(INDEX_FIRST_PERSON, null);
     }
 
     @Test
@@ -65,19 +66,22 @@ public class SetScheduleCommandTest {
     public void execute_emptyModel_failure() {
         // Empty Address Book
         Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        assertCommandFailure(new SetScheduleCommand(index, editPersonDescriptor),
-                emptyModel, commandHistory, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(new SetScheduleCommand(INDEX_FIRST_PERSON, editPersonDescriptor), emptyModel,
+                commandHistory, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndex_failure() {
-        // AddressBook with 7 people
-        Model emptyModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        // Index 8 (Person does not exist) -> failure
-        assertCommandFailure(new SetScheduleCommand(Index.fromOneBased(8), editPersonDescriptor),
-                emptyModel, commandHistory, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Index index = Index.fromOneBased(8);
+        // Index 8 (Person does not exist) in 7 people address book -> failure
+        assertCommandFailure(new SetScheduleCommand(index, editPersonDescriptor), model,
+                commandHistory, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_correctValues_success() {
+        assertCommandSuccess(new SetScheduleCommand(INDEX_FIRST_PERSON, editPersonDescriptor), model,
+                commandHistory, SetScheduleCommand.MESSAGE_SCHEDULE_SUCCESS, expectedModel);
     }
 
     @Test

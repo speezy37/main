@@ -60,7 +60,6 @@ public class Schedule {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("START: ")
-
                 .append(getTimeStart())
                 .append("\nEnd: ")
                 .append(getTimeEnd())

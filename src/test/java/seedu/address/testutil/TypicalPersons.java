@@ -30,15 +30,13 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withNric("T2457888E").withPassword("ASd654")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withDepartment("Top Management").withPhone("94351253").withPriorityLevel(0)
-            .withTags("friends").withoutSchedule().build();
+            .withNric("T2457888E").withPassword("ASd654").withAddress("123, Jurong West Ave 6, #08-111")
+            .withEmail("alice@example.com").withDepartment("Top Management").withPhone("94351253")
+            .withPriorityLevel(0).withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withNric("T2457846E").withPassword("ASd654")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withNric("T2457846E").withPassword("ASd654").withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withDepartment("Top Management").withPhone("98765432")
-            .withPriorityLevel(0).withTags("owesMoney", "friends").withoutSchedule().build();
+            .withPriorityLevel(0).withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withNric("T2456699E").withPassword("ASd654").withPriorityLevel(0)
             .withEmail("heinz@example.com").withDepartment("Senior Management").withAddress("wall street")
