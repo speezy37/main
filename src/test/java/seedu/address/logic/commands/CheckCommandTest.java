@@ -82,12 +82,12 @@ public class CheckCommandTest {
         final Mode outMode = new Mode("out");
         Person editedPerson = FIONAFOREDIT;
         Person personToEdit = FIONA;
-        String[] TimeArray = CheckCommand.splitTime(FIONA.getCheckedInTime().toString());
-        double checkedInHours = Double.parseDouble(TimeArray[0]) + (Double.parseDouble(TimeArray[1]) / 60)
-            + (Double.parseDouble(TimeArray[2]) / 3600);
-        TimeArray = CheckCommand.splitTime(CheckCommand.currentTime());
-        double checkedOutHours = Double.parseDouble(TimeArray[0]) + (Double.parseDouble(TimeArray[1]) / 60)
-            + (Double.parseDouble(TimeArray[2]) / 3600);
+        String[] timeArray = CheckCommand.splitTime(FIONA.getCheckedInTime().toString());
+        double checkedInHours = Double.parseDouble(timeArray[0]) + (Double.parseDouble(timeArray[1]) / 60)
+            + (Double.parseDouble(timeArray[2]) / 3600);
+        timeArray = CheckCommand.splitTime(CheckCommand.currentTime());
+        double checkedOutHours = Double.parseDouble(timeArray[0]) + (Double.parseDouble(timeArray[1]) / 60)
+            + (Double.parseDouble(timeArray[2]) / 3600);
         double hoursWorked = checkedOutHours - checkedInHours;
         double salaryPerDay = Double.parseDouble(FIONA.getWorkingRate().toString()) * hoursWorked;
 
