@@ -18,7 +18,7 @@ By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
 
 == Introduction
 Bank AddressBook (BankAB) is an employee management application.
-You can use BankAB to check working schedule, apply off day, check working hours, access payroll
+You can use BankAB to check working schedule, apply off day, check working hours
 and daily notification. The managers and boss will have more access of BankAB such as changing the
 priority level of the employee and approve or reject off day requests. This user guide will give
 you step by step instruction on how you can use the features of BankAB.
@@ -396,6 +396,7 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+////
 // tag::undoredo[]
 === Undoing previous command : `undo`
 
@@ -446,6 +447,7 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
+////
 
 //Reason for block comment: Not implemented yet.
 ////
@@ -461,6 +463,7 @@ Format: `setpass n/NAME ic/s1234567h sp/PASSWORD` +
 Sets PaS88of as a password for John Doe.
 ====
 ////
+
 === Login to the application: `login`
 Logs in to the application using a registered NRIC and password. +
 Format: `login ic/NRIC pwd/PASSWORD` +
@@ -515,11 +518,6 @@ Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
 
 Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
 // end::schedule[]
-
-=== Access payroll: `payroll`
-List payroll of the employee. +
-Format: `payroll n/NAME ic/NRIC pass/PASSWORD` +
-Example: `payroll n/John Doe ic/s1234567h pass/NeUeR2018`
 
 === Change priority level of employee: `setplvl`
 [NOTE]
@@ -600,7 +598,6 @@ There is no need to save manually.
 
 === Miscellaneous
 •	*Check in/out working hours*: `check n/NAME ic/NRIC mode/IN-OUT`
-•	*Access payroll*: `payroll n/NAME ic/NRIC pass/PASSWORD`
 •	*Help*: `help`
 •	*Reset the application*: `reset`
 •	*Exit application*: `exit`
@@ -688,5 +685,7 @@ Department names should start with a name, and ends with 'Management'.
 |ADMINISTRATOR (1)
 |
 - All privileges of a MANAGER Priority level +
+- Add and delete employees from the AddressBook +
+- Set the priority level of all employees +
 - <<???>>
 |===
