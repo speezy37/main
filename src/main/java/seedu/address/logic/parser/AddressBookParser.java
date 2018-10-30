@@ -101,12 +101,6 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-//        case UndoCommand.COMMAND_WORD:
-//            return new UndoCommand();
-//
-//        case RedoCommand.COMMAND_WORD:
-//            return new RedoCommand();
-
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
 
