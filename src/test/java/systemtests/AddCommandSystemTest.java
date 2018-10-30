@@ -101,10 +101,6 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         command = PersonUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add to empty address book -> added */
-        deleteAllPersons();
-        assertCommandSuccess(ALICE);
-
         /* Case: add a person with tags, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddCommand.COMMAND_WORD + TAG_DESC_FRIEND + PHONE_DESC_BOB + DEPARTMENT_DESC_BOB
