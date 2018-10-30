@@ -6,7 +6,6 @@ import static seedu.address.testutil.TypicalSchedules.CLEANING;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.TimeEnd;
 import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
