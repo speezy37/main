@@ -289,15 +289,22 @@ Format: `leave date/DATE`
 * DATE must be in the format DD/MM/YYYY
 ====
 
-Example: `leave date/20/03/2019`
+Example: `leave date/20/11/2019`
 
-====
-Request leave application on 20/03/2019.
-====
+image:leave.png[width=""]
+
+Requested leave application on 20/11/2019.
+
+image:acceptedleave.png[width=""]
+
 
 === List leave application : `listleave`
 List out all leave application in the leave list. +
 Format: `listleave`
+
+image:listleave.png[width=""]
+
+image:listedleave.png[width=""]
 
 === Filter leave application : `filterleave`
 Filter leave applications based on NRIC. +
@@ -309,10 +316,13 @@ Alias: `fl`
 * Filter is case insensitive eg. `s1234567a` matches `S1234567A`
 ====
 Example:
-`fl S1213452A`
-====
-* List all leave application requested by the user with NRIC, 'S1213452A'.
-====
+`fl T1213452E`
+
+image:filterleavecmd.png[width=""]
+
+List all leave application requested by the user with NRIC, 'T1213452E'.
+
+image:filterleave.png[width=""]
 
 === Delete leave application : `deleteleave`
 Delete the specified leave from leave list.
@@ -325,7 +335,9 @@ Delete the specified leave from leave list.
 Example, MANAGER can delete BASIC user's leave application.
 ====
 
-Format: `deleteleave INDEX`
+Format: `deleteleave INDEX` +
+Alias: `dl`
+
 ****
 * Deletes the leave at the specified `INDEX`.
 * The index refers to the index number shown in the displayed leave list.
@@ -333,11 +345,16 @@ Format: `deleteleave INDEX`
 ****
 
 Example:
-`deleteleave 2`
+`dl 1`
 
-****
-* Deletes the leave application with INDEX 2 in the leave list.
-****
+image:deleteleavecmd.png[width=""]
+
+image:deletingleave.png[width=""]
+
+Deletes the leave application with INDEX 1 in the leave list.
+
+image:deletedleave.png[width=""]
+
 
 === Approve leave application  : `approve`
 Approve the specified leave from leave list.
@@ -359,9 +376,12 @@ Format: `approve INDEX`
 Example:
 `approve 2`
 
-****
-* Approve the leave application with INDEX 2 in the leave list.
-****
+image:approvecmd.png[width=""]
+
+Approve the leave application with INDEX 2 in the leave list.
+
+image:approved.png[width=""]
+
 
 === Reject leave application  : `reject`
 Reject the specified leave from leave list.
@@ -383,9 +403,12 @@ Format: `reject INDEX`
 Example:
 `reject 2`
 
-****
-* Reject the leave application with INDEX 2 in the leave list.
-****
+image:rejectcmd.png[width=""]
+
+Reject the leave application with INDEX 2 in the leave list.
+
+image:rejected.png[width=""]
+
 
 === Listing entered commands : `history`
 
