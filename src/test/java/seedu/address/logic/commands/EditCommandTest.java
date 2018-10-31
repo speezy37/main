@@ -32,7 +32,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
@@ -121,32 +121,6 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(descriptor);
 
         assertCommandFailure(editCommand, model, commandHistory, SessionManager.NOT_LOGGED_IN);
-    }
-
-    @Test
-    public void executeUndoRedo_validUnfilteredList_success() throws Exception {
-        Person editedPerson = ALICEFOREDIT;
-        Person personToEdit = ALICE;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new
-                EditCommand(descriptor);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.updatePerson(personToEdit, editedPerson);
-        expectedModel.commitAddressBook();
-
-        // edit -> Alice edited
-        sessionManager.destroy();
-        sessionManager = SessionManager.getInstance(model);
-        sessionManager.loginToSession(ALICE.getNric(), ALICE.getPassword());
-        editCommand.execute(model, commandHistory);
-
-        // undo -> reverts addressbook back to previous state and filtered person list to show all persons
-        expectedModel.undoAddressBook();
-        assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
-
-        // redo -> same first person edited again
-        expectedModel.redoAddressBook();
-        assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     /**

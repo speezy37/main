@@ -186,30 +186,6 @@ public class ModelManager extends ComponentManager implements Model {
         filteredLeave.setPredicate(predicate);
     }
 
-    //=========== Undo/Redo =================================================================================
-
-    @Override
-    public boolean canUndoAddressBook() {
-        return versionedAddressBook.canUndo();
-    }
-
-    @Override
-    public boolean canRedoAddressBook() {
-        return versionedAddressBook.canRedo();
-    }
-
-    @Override
-    public void undoAddressBook() {
-        versionedAddressBook.undo();
-        indicateAddressBookChanged();
-    }
-
-    @Override
-    public void redoAddressBook() {
-        versionedAddressBook.redo();
-        indicateAddressBookChanged();
-    }
-
     @Override
     public void commitAddressBook() {
         versionedAddressBook.commit();
