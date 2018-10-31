@@ -480,18 +480,35 @@ Logs out of the application, allowing for other users to log in again.
 
 
 === Check in/out working hours: `check`
+====
 Updates check in/out status for employees. +
 
-image::inStatus.PNG[width="270"]
-image::outStatus.PNG[width="270"]
+- User checked in:
 
-Checked in shows check in date and time. +
+image::inStatus.PNG[width="270"]
+
+- User checked out:
+
+image::outStatus.PNG[width="270"]
+====
+
+====
+Checked in shows: +
+
+- Checked in date.
+- Checked in time.
 
 image::checkedIn.PNG[width="270"]
+====
 
-Checked out shows hours worked and salary per day according to employees' working rate per hour. +
+====
+Checked out shows: +
+
+- Hours worked
+- Salary per day according to employees' working rate per hour.
 
 image::checkedOut.PNG[width="270"]
+====
 
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
