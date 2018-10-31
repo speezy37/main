@@ -27,7 +27,6 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.CheckLoginStatusCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteLeaveCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -42,7 +41,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDepartmentCommand;
 import seedu.address.logic.commands.ListLeaveCommand;
 import seedu.address.logic.commands.LogoutCommand;
-import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SelectCommand;
@@ -50,7 +48,6 @@ import seedu.address.logic.commands.SetDepartmentCommand;
 import seedu.address.logic.commands.SetPriorityLevelCommand;
 import seedu.address.logic.commands.SetScheduleCommand;
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
@@ -74,12 +71,6 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
@@ -191,18 +182,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
                 + SortCommandParser.ACCEPTED_FIELDS.get(0) + " "
                 + SortCommandParser.ACCEPTED_ORDERS.get(0)) instanceof SortCommand);
-    }
-
-    @Test
-    public void parseCommand_redoCommandWord_returnsRedoCommand() throws Exception {
-        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
-        assertTrue(parser.parseCommand("redo 1") instanceof RedoCommand);
-    }
-
-    @Test
-    public void parseCommand_undoCommandWord_returnsUndoCommand() throws Exception {
-        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
-        assertTrue(parser.parseCommand("undo 3") instanceof UndoCommand);
     }
 
     @Test

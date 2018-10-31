@@ -27,9 +27,6 @@ public class SetScheduleCommandTest {
         // null -> returns false
         assertNotEquals(standardCommand, null);
 
-        // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
-
         // different index -> returns false
         assertNotEquals(standardCommand, new SetScheduleCommand(INDEX_SECOND_PERSON, DESC_AMY));
 

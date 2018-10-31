@@ -154,9 +154,6 @@ public class CheckCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
-
         // different nric -> returns false
         assertFalse(standardCommand.equals(new CheckCommand(new Nric(VALID_NRIC_BOB), new Password(VALID_PASSWORD_AMY),
             new Mode(VALID_MODE_AMY))));
