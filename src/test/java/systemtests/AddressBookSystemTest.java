@@ -278,6 +278,7 @@ public abstract class AddressBookSystemTest {
      * Returns a defensive copy of the current model.
      */
     protected Model getModel() {
+
         return testApp.getModel();
     }
 }
