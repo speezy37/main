@@ -261,8 +261,12 @@ Alias: `sd`
 ****
 
 Example: `setdepartment 2 d/Junior Management`
+
+image::SetDepartmentBefore.png[width=""]
 ====
 Changes the employee department with ID 2 in the address book to `Junior Management`.
+
+image::SetDepartmentAfter.png[width=""]
 ====
 
 === Deleting a person : `delete`
