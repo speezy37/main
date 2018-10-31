@@ -175,6 +175,8 @@ public class Person {
                 .append(getDepartment())
                 .append("\n Priority Level: ")
                 .append(getPriorityLevel())
+                .append("\n Working rate per hour: ")
+                .append("$" + getWorkingRate())
                 .append("\n Address: ")
                 .append(getAddress())
                 .append("\n Tags: ");
