@@ -190,7 +190,17 @@ Sorts the department names in the list in descending order
 === List department : `listdepartment`
 Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
-Alias: `ld`
+Alias: `ld` +
+Example:
+
+* `listdepartment`
+
+image::ListDepartmentBefore.png[width="300"]
+
+Returns a list of departments available in the addressbook currently.
+Listing of department names are in ascending order.
+
+image::ListDepartmentAfter.png[width="700"]
 
 === Filtering department : `filterdepartment`
 Filter departments and list out the employees who are in the department. +
