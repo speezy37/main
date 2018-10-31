@@ -457,16 +457,16 @@ Logs out of the application, allowing for other users to log in again.
 === Check in/out working hours: `check`
 Updates check in/out status for employees. +
 
-image::inStatus.png[width="270"]
-image::outStatus.png[width="270"]
+image::inStatus.PNG[width="270"]
+image::outStatus.PNG[width="270"]
 
 Checked in shows check in date and time. +
 
-image::checkedIn.png[width="270"]
+image::checkedIn.PNG[width="270"]
 
-Checked out shows hours worked and salary per day. +
+Checked out shows hours worked and salary per day according to employees' working rate per hour. +
 
-image::checkedOut.png[width="270"]
+image::checkedOut.PNG[width="270"]
 
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
@@ -626,6 +626,16 @@ Department names should start with a name, and ends with 'Management'.
 | N/A
 | a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
 
+| Mode
+| m/MODE
+| Mode should only contains "in" or "out" and it should not be blank.
+| m/in
+
+| WorkingRate
+| wr/WORKINGRATE
+| Working rate should only contains whole or decimal numbers and it should not be blank.
+| wr/7.5
+
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: - +
@@ -650,13 +660,14 @@ Department names should start with a name, and ends with 'Management'.
 |BASIC (3)
 |
 - Edit your own particulars +
-- Apply for leave
+- Apply for leave +
+- Check in/out to/from work for their own
 
 |MANAGER (2)
 |
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
-- Allow others to check in/out to/from work
+- Check in/out to/from work for others
 
 |ADMINISTRATOR (1)
 |
