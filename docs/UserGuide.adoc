@@ -35,7 +35,8 @@ image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  A sample list of contacts will be provided when the application is first run.
+.  The following table contains a sample list of persons with the respective account details when the application is first run
+ or when ResetCommand was executed in the previous runtime.
 
 .List of user accounts at first launch or upon reset
 |===
@@ -52,6 +53,11 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 |Bernice Yu
 |T1234567E
+|Password
+|MANAGER
+
+|Charlotte Oliveiro
+|F1234567E
 |Password
 |BASIC (Lowest Priority Level)
 |===
