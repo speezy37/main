@@ -15,11 +15,25 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
+== Introduction
+
 * This is a desktop *Bank Address Book (BankAB)* application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* It is acting as an *employee's workflow management system* in a bank.
-* It is aiming to *enhance the overall efficiency* in a bank by automating the whole workflow managing process.
-* It is written in OOP fashion and supported for _Build Automation_ using Gradle and for _Continuous Integration_ using Travis CI.
+* Bank Address Book is built for the employees of a Bank company. It acts as an *employee's workflow management system*.
+* It aims to *enhance the overall efficiency* in a bank by automating the whole workflow managing process.
 * It is developed by group T16-3 from CS2113 in National University Singapore (NUS).
+
+== What can Bank Address Book do? - Key Features
+
+* Authentication of employee accounts
+* Employee management - add, delete, edit employee details
+* Department management - set department for employees
+* Schedule management - set schedule for employees
+* Leave application system
+* Check in/out system
+* Working Rate System
+* Priority level for Human Resources(HR) use
+
+More features are listed in our <<UserGuide#, User Guide>>.
 
 == Site Map
 
