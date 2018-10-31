@@ -500,11 +500,14 @@ Format: `schedule INDEX` +
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
-Examples: `schedule 1`
+Example: `schedule 1`
 
 ****
-* Shows the schedule of person with ID 1 in the leave list.
+* Shows the schedule of person with ID 1 in the list.
 ****
+
+Sample output:
+image:schedule_cmd.png[]
 
 === Set schedule: `setschedule`
 
@@ -516,9 +519,10 @@ Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
 * Set the schedule at the specified `INDEX`.
 * The index refers to the index number shown in the displayed leave list.
 * The index *must be a positive integer* 1, 2, 3, ...
+* `TIME_START` and `TIME_END` must be in HHMM 24 hour format
 ****
 
-Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
+Example: `setschedule 1 ts/1100 te/1600 v/Toilet` +
 // end::schedule[]
 
 === Change priority level of employee: `setplvl`
@@ -652,6 +656,27 @@ Department names should start with a name, and ends with 'Management'.
 | t/TAG1 t/TAG2 ...
 | Tag names should be alphanumeric
 | t/Admin t/Boss t/OweMeMoney
+|===
+
+.List of prefixes used for schedule
+|===
+|Parameter |Prefix |Constraints |Example
+
+| Start Time
+| ts/START_TIME
+| Start Time should only be in numeric HHMM 24 hour format, and it should not be blank
+| ts/0900
+
+| End Time
+| te/END_TIME
+| End Time should only be in numeric HHMM 24 hour format, and it should not be blank
+| te/1800
+
+| Venue
+| v/VENUE
+| Venue should only contain alphanumeric characters and spaces, and it should not be blank
+| v/Level 5
+
 |===
 
 

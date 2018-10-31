@@ -76,14 +76,15 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
-                getTagSet("classmates"), null),
+                getTagSet("clas" +
+                        "smates"), null),
 
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("colleagues"),  null)
+                getTagSet("colleagues"), null)
         };
     }
 

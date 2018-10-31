@@ -28,7 +28,8 @@ public class SetScheduleCommandParserTest {
         assertParseFailure(parser, TIME_START_DESC_DAWN, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", SetScheduleCommand.MESSAGE_SCHEDULE_FAIL);
+        assertParseFailure(parser, "1", SetScheduleCommand.MESSAGE_SCHEDULE_FAIL +
+                "\n" + SetScheduleCommand.MESSAGE_USAGE);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
