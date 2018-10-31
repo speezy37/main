@@ -22,12 +22,13 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: "
+            + "\nParameters: INDEX (must be a positive integer)"
+            + "\nExample: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SCHEDULE_SUCCESS = "Listed Schedule:";
+    public static final String MESSAGE_SCHEDULE_SUCCESS = "Your allocated schedule:\n%s";
     public static final String MESSAGE_SCHEDULE_FAIL = "Schedule Command Failed.";
+    public static final String MESSAGE_NO_SCHEDULE = "No schedule allocated.";
 
     private final Index index;
 
@@ -61,8 +62,13 @@ public class ScheduleCommand extends Command {
                     PriorityLevelEnum.ADMINISTRATOR));
         }
 
-        String schedule = targetPerson.getSchedule().toString();
+        String schedule;
+        try {
+            schedule = targetPerson.getSchedule().toString();
+        } catch (NullPointerException e) {
+            schedule = MESSAGE_NO_SCHEDULE;
+        }
 
-        return new CommandResult(MESSAGE_SCHEDULE_SUCCESS + " " + schedule);
+        return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS, schedule));
     }
 }

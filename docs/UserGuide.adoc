@@ -39,6 +39,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
  or when ResetCommand was executed in the previous runtime.
 
 .List of user accounts at first launch or upon reset
+[[defaultcontacts]]
 |===
 |*Name* |*NRIC* |*Password* |*Priority Level*
 |Highest Admin Account
@@ -66,13 +67,12 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`login ic/S1234567E pwd/Password`* : Log in as Alex Yeoh, with a priority level of ADMINISTRATOR.
 * *`list`* : lists all contacts
 * `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
-a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
 * `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Features,Features>> for details of each command.
 
-[[Features]]
 == Features
 
 ====
@@ -89,6 +89,9 @@ a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `Joh
 
 Format: `help`
 
+User Guide will open in a separate window shown below:
+image:UserGuide.png[]
+
 === Adding a person: `add`
 
 [NOTE]
@@ -98,20 +101,21 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS wr/WORKINGRATE [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
-* A person can have any number of tags (including 0) +
-* Priority level will be set to BASIC if left empty.
+* A person can have any number of tags (including 0)
+* Priority level will be set to BASIC if left empty
+* A recently added person have no schedule allocated
 ====
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 wr/7.5 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Tower p/1234567 d/Senior Management
-t/Creditor ic/S1875858E pwd/Fed528F`
+t/Creditor ic/S1875858E pwd/Fed528F wr/10`
 
 === Listing all persons : `list`
 
@@ -133,8 +137,19 @@ Format : `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 ** Name: n/NAME
 ** Address: a/ADDRESS
 ** Phone: p/PHONE_NUMBER
+** Email: e/EMAIL
 ** Tag(s): t/TAG1 t/TAG2 ...
 ****
+
+[NOTE]
+====
+This command will NOT be able to edit the following:
+
+* `Department`
+* `Leave`
+* `Priority Level`
+* `Schedule`
+====
 
 Examples:
 
@@ -471,6 +486,14 @@ Logs in to the application using a registered NRIC and password. +
 Format: `login ic/NRIC pwd/PASSWORD` +
 Example: `login ic/T1234567E pwd/Password`
 
+====
+A successful login will show the NRIC and name which you have used to login, followed by the schedule of the day (if any).
+
+image::loginTextBox.png[]
+
+image::login_success_screenShot.png[width="600"]
+====
+
 === Checks the login status of the application: `checkloginstatus`
 Prints whether this application is logged in. +
 Also prints the logged in NRIC if logged in.
@@ -478,14 +501,43 @@ Also prints the logged in NRIC if logged in.
 === Logout of the application: `logout`
 Logs out of the application, allowing for other users to log in again.
 
-
 === Check in/out working hours: `check`
-Updates check in/out timings for employees. +
+Updates check in/out status for employees. +
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
-* `check ic/s1234567h pwd/Hello12 m/in` +
-* `check ic/s7654327h pwd/Hello12 m/out`
+* `check ic/S1234567E pwd/Password m/in`
+====
+User checked in:
+
+image::inStatus.PNG[width="270"]
+
+Checked in shows: +
+
+- Checked in date
+- Checked in time
+
+image::checkedIn.PNG[width="270"]
+
+====
+
+* `check ic/S1234567E pwd/Password m/out`
+
+====
+
+User checked out:
+
+image::outStatus.PNG[width="270"]
+
+Checked out shows: +
+
+- Checked out date
+- Checked out time
+- Hours worked
+- Salary per day according to employees' working rate per hour.
+
+image::checkedOut.PNG[width="270"]
+====
 
 // tag::schedule[]
 === List schedule: `schedule`
@@ -500,15 +552,22 @@ Format: `schedule INDEX` +
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
-Examples: `schedule 1`
+Example: `schedule 1`
 
 ****
-* Shows the schedule of person with ID 1 in the leave list.
+* Shows the schedule of person with ID 1 in the list.
 ****
+
+Sample output: +
+image:schedule_cmd.png[]
 
 === Set schedule: `setschedule`
+[NOTE]
+====
+* This operations requires administrator privilege to perform.
+====
 
-Set schedule of the employee. This Requires superuser level 1. +
+Set schedule of the employee. +
 
 Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
 
@@ -516,9 +575,10 @@ Format: `setschedule INDEX ts/TIME_START te/TIME_END v/VENUE` +
 * Set the schedule at the specified `INDEX`.
 * The index refers to the index number shown in the displayed leave list.
 * The index *must be a positive integer* 1, 2, 3, ...
+* `TIME_START` and `TIME_END` must be in HHMM 24 hour format
 ****
 
-Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
+Example: `setschedule 1 ts/1100 te/1600 v/Toilet` +
 // end::schedule[]
 
 === Change priority level of employee: `setplvl`
@@ -526,18 +586,37 @@ Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
 ====
 * This operations requires administrator privilege to perform.
 * Refer to the Priority level section in Appendix A for the appropriate input value.
+* You are not able to edit your own priority level.
 ====
 Sets the priority level of an employee at the specified index. +
 Format: `setplvl INDEX plvl/PRIORITY_LEVEL` +
 Example: `setplvl 4 plvl/3`
+
+====
+- A successful change of priority level should show the following message:
+
+image::setPlvl_success_screenShot.png[]
+
+- Users of insufficient priority level (below administrator priority level) will get the following
+error message when attempting to execute this command:
+
+image::setPlvl_failed_screenShot.png[]
+
+- Users (with sufficient priority level), that attempts to change their own priority level will not be allowed to do so:
+
+image::setOwnPlvl_failed_screenShot.png[]
+====
 
 === Reset the application : `reset`
 [NOTE]
 ====
 This operation requires user to be logged in with a priviledge level of `I.T. Unit` to perform.
 ====
-Resets the application into a clean slate, by deleting data/AddressBook.xml. The application will also close upon
-deleting data/AddressBook.xml. +
+Resets the application into a default slate, by deleting data/AddressBook.xml. The application will also close upon
+deleting data/AddressBook.xml.
+
+Refer to the <<defaultcontacts, List of Default Contacts>> upon app reset on the contacts available.
+
 Format: `reset`
 
 === Exiting the program : `exit`
@@ -597,7 +676,7 @@ There is no need to save manually.
 == Appendix A: List of prefixes in the application
 .List of prefixes
 |===
-|Parameter name |Prefix |Constraints |Example
+|*Parameter name* |*Prefix* |*Constraints* |*Example*
 
 | Name
 | n/NAME
@@ -639,6 +718,16 @@ Department names should start with a name, and ends with 'Management'.
 | N/A
 | a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
 
+| Mode
+| m/MODE
+| Mode should only contains "in" or "out".
+| m/in
+
+| WorkingRate
+| wr/WORKINGRATE
+| Working rate should only contains whole or decimal numbers.
+| wr/7.5
+
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: - +
@@ -654,6 +743,27 @@ Department names should start with a name, and ends with 'Management'.
 | t/Admin t/Boss t/OweMeMoney
 |===
 
+.List of prefixes used for schedule
+|===
+|Parameter |Prefix |Constraints |Example
+
+| Start Time
+| ts/START_TIME
+| Start Time should only be in numeric HHMM 24 hour format, and it should not be blank
+| ts/0900
+
+| End Time
+| te/END_TIME
+| End Time should only be in numeric HHMM 24 hour format, and it should not be blank
+| te/1800
+
+| Venue
+| v/VENUE
+| Venue should only contain alphanumeric characters and spaces, and it should not be blank
+| v/Level 5
+
+|===
+
 
 == Appendix B: Privileges in accordance to priority level
 .Priority level and its' privileges
@@ -663,13 +773,14 @@ Department names should start with a name, and ends with 'Management'.
 |BASIC (3)
 |
 - Edit your own particulars +
-- Apply for leave
+- Apply for leave +
+- Check in/out to/from work for their own
 
 |MANAGER (2)
 |
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
-- Allow others to check in/out to/from work
+- Check in/out to/from work for others
 
 |ADMINISTRATOR (1)
 |
@@ -678,8 +789,8 @@ Department names should start with a name, and ends with 'Management'.
 - Set the priority level of all employees +
 - Set Department of all employees
 
-|I.T. Unit (0)
+|I.T. UNIT (0)
 |
 - All privileges of a ADMINISTRATOR Priority level +
-- Reset the entire AddressBook
+- Reset the entire AddressBook into the default address book.
 |===

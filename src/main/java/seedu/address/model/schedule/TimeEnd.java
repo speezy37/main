@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TimeEnd {
     public static final String MESSAGE_TIME_END_CONSTRAINTS =
-            "End Time should only contain alphanumeric characters and spaces, and it should not be blank";
+            "End Time should only be in numeric HHMM 24 hour format, and it should not be blank";
 
     /*
      * The first character of the end time must not be a whitespace,

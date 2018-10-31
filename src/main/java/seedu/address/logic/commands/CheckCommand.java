@@ -30,11 +30,11 @@ import seedu.address.session.SessionManager;
 public class CheckCommand extends Command {
     public static final String COMMAND_WORD = "check";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in/out to work. "
-        + "Parameters: "
+        + "\nParameters: "
         + PREFIX_NRIC + "NRIC "
         + PREFIX_PASSWORD + "PASSWORD "
-        + PREFIX_MODE + "MODE \n"
-        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_MODE + "MODE"
+        + "\nExample: " + COMMAND_WORD + " "
         + PREFIX_NRIC + "G1234567T "
         + PREFIX_PASSWORD + "HEllo12 "
         + PREFIX_MODE + "in ";
