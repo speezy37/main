@@ -50,7 +50,8 @@ public class SetScheduleCommandParser implements Parser<SetScheduleCommand> {
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(SetScheduleCommand.MESSAGE_SCHEDULE_FAIL);
+            throw new ParseException(SetScheduleCommand.MESSAGE_SCHEDULE_FAIL + "\n"
+                    + SetScheduleCommand.MESSAGE_USAGE);
         }
 
         return new SetScheduleCommand(index, editPersonDescriptor);

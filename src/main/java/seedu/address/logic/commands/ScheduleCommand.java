@@ -22,8 +22,8 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: "
+            + "\nParameters: INDEX (must be a positive integer)"
+            + "\nExample: "
             + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Your allocated schedule:\n%s";
