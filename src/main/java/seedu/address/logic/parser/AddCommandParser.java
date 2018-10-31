@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKINGRATE;
 
@@ -31,7 +30,6 @@ import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_WORKINGRATE, PREFIX_PRIORITYLEVEL, PREFIX_TAG,
-                        PREFIX_SCHEDULE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_WORKINGRATE, PREFIX_TAG, PREFIX_PASSWORD,
+                        PREFIX_PRIORITYLEVEL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_DEPARTMENT, PREFIX_WORKINGRATE, PREFIX_PASSWORD) || !argMultimap.getPreamble().isEmpty()) {
@@ -68,7 +66,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         // add command does not allow adding checked in time straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
-        Set<Schedule> schedule = ParserUtil.parseSchedules(argMultimap.getAllValues(PREFIX_SCHEDULE));
 
         /**
          * Assign the lowest priority level as default if the prefix is missing.
@@ -81,7 +78,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Person person = new Person(name, nric, password, phone, email,
-            department, priorityLevel, address, mode, workingRate, checkedInTime, tagList, schedule);
+            department, priorityLevel, address, mode, workingRate, checkedInTime, tagList, null);
 
         return new AddCommand(person);
     }

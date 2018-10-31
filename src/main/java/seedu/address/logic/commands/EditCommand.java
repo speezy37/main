@@ -19,15 +19,12 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
@@ -96,18 +93,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Mode updatedMode = personToEdit.getMode();
-        // edit command does not allow editing modes
-        WorkingRate updatedWorkingRate = personToEdit.getWorkingRate();
-        //edit command does not allow editing working rates
-        CheckedInTime updatedChecedInTime = personToEdit.getCheckedInTime();
-        //edit command does not allow editing checked in time
-        Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, personToEdit.getNric(), personToEdit.getPassword(), updatedPhone, updatedEmail,
-            personToEdit.getDepartment(), personToEdit.getPriorityLevel(), updatedAddress, updatedMode,
-            updatedWorkingRate, updatedChecedInTime, updatedTags, updatedSchedule);
+        return new Person(updatedName, personToEdit.getNric(), personToEdit.getPassword(), updatedPhone,
+                updatedEmail, personToEdit.getDepartment(), personToEdit.getPriorityLevel(), updatedAddress,
+                personToEdit.getMode(), personToEdit.getWorkingRate(), personToEdit.getCheckedInTime(),
+                updatedTags, personToEdit.getSchedule());
     }
 
     @Override
@@ -140,7 +131,7 @@ public class EditCommand extends Command {
         private Department department;
         private PriorityLevel priorityLevel;
         private Address address;
-        private Set<Schedule> schedules;
+        private Schedule schedule;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -160,14 +151,14 @@ public class EditCommand extends Command {
             setPriorityLevel(toCopy.priorityLevel);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setSchedule(toCopy.schedules);
+            setSchedule(toCopy.schedule);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, schedules);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, schedule);
         }
 
         public void setName(Name name) {
@@ -222,12 +213,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSchedule(Set<Schedule> schedules) {
-            this.schedules = (schedules != null) ? new HashSet<>(schedules) : null;
+        public void setSchedule(Schedule schedule) {
+            this.schedule = schedule;
         }
 
-        public Optional<Set<Schedule>> getSchedule() {
-            return (schedules != null) ? Optional.of(Collections.unmodifiableSet(schedules)) : Optional.empty();
+        public Optional<Schedule> getSchedule() {
+            return Optional.ofNullable(schedule);
         }
 
         /**

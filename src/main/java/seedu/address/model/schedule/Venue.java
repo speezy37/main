@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Venue {
     public static final String MESSAGE_VENUE_CONSTRAINTS =
-            "End Time should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Venue should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the venue must not be a whitespace,
