@@ -10,7 +10,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>123, Jurong West Ave 6, #08-111</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -22,7 +24,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>311, Clementi Ave 2, #02-25</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </persons>
@@ -35,7 +39,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>wall street</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
     </persons>
     <persons>
         <name>Daniel Meier</name>
@@ -46,7 +52,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>10th street</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -58,7 +66,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>michegan ave</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
     </persons>
     <persons>
         <name>Fiona Kunz</name>
@@ -69,7 +79,9 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>little tokyo</address>
-        <mode>in</mode>
+        <mode>out</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime></checkedInTime>
     </persons>
     <persons>
         <name>George Best</name>
@@ -80,6 +92,8 @@
         <department>Junior Management</department>
 		<priorityLevel>0</priorityLevel>
         <address>4th street</address>
-        <mode>out</mode>
+        <mode>in</mode>
+        <workingRate>7.5</workingRate>
+        <checkedInTime>9:00:00</checkedInTime>
     </persons>
 </addressbook>

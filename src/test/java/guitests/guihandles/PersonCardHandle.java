@@ -23,6 +23,9 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String DEPARTMENT_FIELD_ID = "#department";
     private static final String MODE_FIELD_ID = "#mode";
     private static final String TAGS_FIELD_ID = "#tags";
+    private static final String CHECKEDINTIME_FIELD_ID = "#checkedInTime";
+    private static final String WORKINGRATE_FIELD_ID = "#workingRate";
+
 
     private final Label idLabel;
     private final Label nameLabel;
@@ -32,6 +35,8 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private final Label departmentLabel;
     private final Label modeLabel;
     private final List<Label> tagLabels;
+    private final Label checkedInTimeLabel;
+    private final Label workingRateLabel;
 
     public PersonCardHandle(Node cardNode) {
         super(cardNode);
@@ -43,6 +48,8 @@ public class PersonCardHandle extends NodeHandle<Node> {
         emailLabel = getChildNode(EMAIL_FIELD_ID);
         departmentLabel = getChildNode(DEPARTMENT_FIELD_ID);
         modeLabel = getChildNode(MODE_FIELD_ID);
+        checkedInTimeLabel = getChildNode(CHECKEDINTIME_FIELD_ID);
+        workingRateLabel = getChildNode(WORKINGRATE_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         tagLabels = tagsContainer
@@ -78,6 +85,14 @@ public class PersonCardHandle extends NodeHandle<Node> {
 
     public String getMode() {
         return modeLabel.getText();
+    }
+
+    public String getCheckedInTime() {
+        return checkedInTimeLabel.getText();
+    }
+
+    public String getWorkingRate() {
+        return workingRateLabel.getText();
     }
 
     public List<String> getTags() {

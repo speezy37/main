@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mode;
@@ -17,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -48,6 +50,10 @@ public class XmlAdaptedPerson {
     private String address;
     @XmlElement(required = true)
     private String mode;
+    @XmlElement(required = true)
+    private String workingRate;
+    @XmlElement(required = true)
+    private String checkedInTime;
 
     @XmlElement
     private List<XmlAdaptedSchedule> schedule = new ArrayList<>();
@@ -97,6 +103,8 @@ public class XmlAdaptedPerson {
         priorityLevel = source.getPriorityLevel().priorityLevelCode;
         address = source.getAddress().value;
         mode = source.getMode().value;
+        workingRate = source.getWorkingRate().value;
+        checkedInTime = source.getCheckedInTime().value;
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -186,12 +194,31 @@ public class XmlAdaptedPerson {
         if (mode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mode.class.getSimpleName()));
         }
+        if (!Mode.isValidMode(mode)) {
+            throw new IllegalValueException(Mode.MESSAGE_MODE_CONSTRAINTS);
+        }
         final Mode modelMode = new Mode(mode);
+
+        if (workingRate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                WorkingRate.class.getSimpleName()));
+        }
+        if (!WorkingRate.isValidWorkingRate(workingRate)) {
+            throw new IllegalValueException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);
+        }
+        final WorkingRate modelWorkingRate = new WorkingRate(workingRate);
+
+        if (checkedInTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                CheckedInTime.class.getSimpleName()));
+        }
+        final CheckedInTime modelCheckedInTime = new CheckedInTime(checkedInTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
-                modelPriorityLevel, modelAddress, modelMode, modelTags, modelSchedule);
+            modelPriorityLevel, modelAddress, modelMode, modelWorkingRate,
+            modelCheckedInTime, modelTags, modelSchedule);
     }
 
     @Override

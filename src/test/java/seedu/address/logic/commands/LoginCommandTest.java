@@ -96,7 +96,7 @@ public class LoginCommandTest {
     }
 
     @Test
-    public void ececute_loginWithoutLoggingOut_throwsCommandException() {
+    public void execute_loginWithoutLoggingOut_throwsCommandException() {
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.BASIC.getPriorityLevelCode());
         try {
             Assertions.assertThrows(CommandException.class, () -> {

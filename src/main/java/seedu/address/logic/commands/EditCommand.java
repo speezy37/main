@@ -19,17 +19,19 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
-
 import seedu.address.session.SessionManager;
 
 /**
@@ -40,17 +42,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person "
-            + "who is currently logged in to the session. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "who is currently logged in to the session. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one personal editable field to edit must be provided.";
@@ -94,12 +96,18 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Mode updatedMode = personToEdit.getMode();
+        // edit command does not allow editing modes
+        WorkingRate updatedWorkingRate = personToEdit.getWorkingRate();
+        //edit command does not allow editing working rates
+        CheckedInTime updatedChecedInTime = personToEdit.getCheckedInTime();
+        //edit command does not allow editing checked in time
         Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, personToEdit.getNric(),
-                personToEdit.getPassword(), updatedPhone, updatedEmail, personToEdit.getDepartment(),
-                personToEdit.getPriorityLevel(), updatedAddress, personToEdit.getMode(), updatedTags, updatedSchedule);
+        return new Person(updatedName, personToEdit.getNric(), personToEdit.getPassword(), updatedPhone, updatedEmail,
+            personToEdit.getDepartment(), personToEdit.getPriorityLevel(), updatedAddress, updatedMode,
+            updatedWorkingRate, updatedChecedInTime, updatedTags, updatedSchedule);
     }
 
     @Override
@@ -135,7 +143,8 @@ public class EditCommand extends Command {
         private Set<Schedule> schedules;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -254,12 +263,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getDepartment().equals(e.getDepartment())
-                    && getAddress().equals(e.getAddress())
-                    && getSchedule().equals(e.getSchedule())
-                    && getTags().equals(e.getTags());
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getDepartment().equals(e.getDepartment())
+                && getAddress().equals(e.getAddress())
+                && getSchedule().equals(e.getSchedule())
+                && getTags().equals(e.getTags());
         }
     }
 }

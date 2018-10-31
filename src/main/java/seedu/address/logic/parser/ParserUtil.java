@@ -16,9 +16,11 @@ import seedu.address.model.leave.EmployeeId;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -123,6 +125,23 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author pinjuen
+    /**
+     * Parses a {@code String mode} into an {@code Mode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mode} is invalid.
+     */
+    public static Mode parseMode(String mode) throws ParseException {
+        requireNonNull(mode);
+        String trimmedMode = mode.trim();
+        if (!Mode.isValidMode(trimmedMode)) {
+            throw new ParseException(Mode.MESSAGE_MODE_CONSTRAINTS);
+        }
+        return new Mode(trimmedMode);
+    }
+
+    //@@author Woonhian
     /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
@@ -280,5 +299,20 @@ public class ParserUtil {
             throw new ParseException(PriorityLevel.MESSAGE_PRIORITY_CONSTRAINTS);
         }
         return new PriorityLevel(priorityLevelCode);
+    }
+
+    /**
+     * Parses a {@code String workingRate} into a {@code WorkingRate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code workingRate} is invalid.
+     */
+    public static WorkingRate parseWorkingRate(String workingRate) throws ParseException {
+        requireNonNull(workingRate);
+        String trimmedWorkingRate = workingRate.trim();
+        if (!WorkingRate.isValidWorkingRate(workingRate)) {
+            throw new ParseException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);
+        }
+        return new WorkingRate(trimmedWorkingRate);
     }
 }
