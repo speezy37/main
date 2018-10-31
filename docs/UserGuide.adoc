@@ -348,6 +348,8 @@ Format: `listleave`
 
 image:listleave.png[width=""]
 
+Returns all the leave application in the system.
+
 image:listedleave.png[width=""]
 
 === Filter leave application : `filterleave`
