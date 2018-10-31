@@ -450,10 +450,8 @@ Example: `login ic/T1234567E pwd/Password`
 ====
 A successful login will show the NRIC and name which you have used to login, followed by the schedule of the day (if any).
 
-.Login command text box
 image::loginTextBox.png[]
 
-.Message that should appear after a successful login command
 image::loginSuccessScreenShot.png[width="600"]
 ====
 
