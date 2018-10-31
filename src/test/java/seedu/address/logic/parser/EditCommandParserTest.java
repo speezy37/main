@@ -52,7 +52,7 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no field specified
         assertParseFailure(parser, "",
-                EditCommand.MESSAGE_NOT_EDITED + "\n\n" + EditCommand.MESSAGE_USAGE);
+                EditCommand.MESSAGE_NOT_EDITED + "\n" + EditCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -188,6 +188,6 @@ public class EditCommandParserTest {
     public void parse_allNonEditableAndNoEditableFields_fail() {
         String userInput = NRIC_DESC_AMY + PASSWORD_DESC_AMY + DEPARTMENT_DESC_AMY + PRIORITYLEVEL_DESC_AMY;
         assertParseFailure(parser, userInput,
-                EditCommand.MESSAGE_NOT_EDITED + "\n\n" + EditCommand.MESSAGE_USAGE);
+                EditCommand.MESSAGE_NOT_EDITED + "\n" + EditCommand.MESSAGE_USAGE);
     }
 }
