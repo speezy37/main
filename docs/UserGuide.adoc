@@ -66,7 +66,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`login ic/S1234567E pwd/Password`* : Log in as Alex Yeoh, with a priority level of ADMINISTRATOR.
 * *`list`* : lists all contacts
 * `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
-a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
 * `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
@@ -98,7 +98,7 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS wr/WORKINGRATE [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
@@ -108,10 +108,10 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 wr/7.5 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Tower p/1234567 d/Senior Management
-t/Creditor ic/S1875858E pwd/Fed528F`
+t/Creditor ic/S1875858E pwd/Fed528F wr/10`
 
 === Listing all persons : `list`
 
@@ -478,14 +478,44 @@ Also prints the logged in NRIC if logged in.
 === Logout of the application: `logout`
 Logs out of the application, allowing for other users to log in again.
 
-
 === Check in/out working hours: `check`
-Updates check in/out timings for employees. +
+Updates check in/out status for employees. +
+
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
-* `check ic/s1234567h pwd/Hello12 m/in` +
-* `check ic/s7654327h pwd/Hello12 m/out`
+* `check ic/S1234567E pwd/Password m/in`
+====
+User checked in:
+
+image::inStatus.PNG[width="270"]
+
+Checked in shows: +
+
+- Checked in date
+- Checked in time
+
+image::checkedIn.PNG[width="270"]
+
+====
+
+* `check ic/S1234567E pwd/Password m/out`
+
+====
+
+User checked out:
+
+image::outStatus.PNG[width="270"]
+
+Checked out shows: +
+
+- Checked out date
+- Checked out time
+- Hours worked
+- Salary per day according to employees' working rate per hour.
+
+image::checkedOut.PNG[width="270"]
+====
 
 // tag::schedule[]
 === List schedule: `schedule`
@@ -639,6 +669,16 @@ Department names should start with a name, and ends with 'Management'.
 | N/A
 | a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
 
+| Mode
+| m/MODE
+| Mode should only contains "in" or "out" and it should not be blank.
+| m/in
+
+| WorkingRate
+| wr/WORKINGRATE
+| Working rate should only contains whole or decimal numbers and it should not be blank.
+| wr/7.5
+
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: - +
@@ -663,13 +703,14 @@ Department names should start with a name, and ends with 'Management'.
 |BASIC (3)
 |
 - Edit your own particulars +
-- Apply for leave
+- Apply for leave +
+- Check in/out to/from work for their own
 
 |MANAGER (2)
 |
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
-- Allow others to check in/out to/from work
+- Check in/out to/from work for others
 
 |ADMINISTRATOR (1)
 |
