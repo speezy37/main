@@ -29,6 +29,7 @@ endif::[]
 * Department management - set department for employees
 * Schedule management - set schedule for employees
 * Leave application system
+* Check in/out system
 * Working Rate System
 * Priority level for Human Resources(HR) use
 
