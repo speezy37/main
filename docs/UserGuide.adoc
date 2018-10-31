@@ -67,7 +67,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`login ic/S1234567E pwd/Password`* : Log in as Alex Yeoh, with a priority level of ADMINISTRATOR.
 * *`list`* : lists all contacts
 * `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
-a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
 * `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
@@ -98,7 +98,7 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS wr/WORKINGRATE [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
@@ -108,10 +108,10 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 wr/7.5 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Tower p/1234567 d/Senior Management
-t/Creditor ic/S1875858E pwd/Fed528F`
+t/Creditor ic/S1875858E pwd/Fed528F wr/10`
 
 === Listing all persons : `list`
 
@@ -334,15 +334,24 @@ Format: `leave date/DATE`
 * DATE must be in the format DD/MM/YYYY
 ====
 
-Example: `leave date/20/03/2019`
+Example: `leave date/20/11/2019`
 
-====
-Request leave application on 20/03/2019.
-====
+image:leave.png[width=""]
+
+Requested leave application on 20/11/2019.
+
+image:acceptedleave.png[width=""]
+
 
 === List leave application : `listleave`
 List out all leave application in the leave list. +
 Format: `listleave`
+
+image:listleave.png[width=""]
+
+Returns all the leave application in the system.
+
+image:listedleave.png[width=""]
 
 === Filter leave application : `filterleave`
 Filter leave applications based on NRIC. +
@@ -354,10 +363,13 @@ Alias: `fl`
 * Filter is case insensitive eg. `s1234567a` matches `S1234567A`
 ====
 Example:
-`fl S1213452A`
-====
-* List all leave application requested by the user with NRIC, 'S1213452A'.
-====
+`fliterleave T1213452E`
+
+image:filterleavecmd.png[width=""]
+
+List all leave application requested by the user with NRIC, 'T1213452E'.
+
+image:filterleave.png[width=""]
 
 === Delete leave application : `deleteleave`
 Delete the specified leave from leave list.
@@ -370,7 +382,9 @@ Delete the specified leave from leave list.
 Example, MANAGER can delete BASIC user's leave application.
 ====
 
-Format: `deleteleave INDEX`
+Format: `deleteleave INDEX` +
+Alias: `dl`
+
 ****
 * Deletes the leave at the specified `INDEX`.
 * The index refers to the index number shown in the displayed leave list.
@@ -378,11 +392,16 @@ Format: `deleteleave INDEX`
 ****
 
 Example:
-`deleteleave 2`
+`deleteleave 1`
 
-****
-* Deletes the leave application with INDEX 2 in the leave list.
-****
+image:deleteleavecmd.png[width=""]
+
+image:deletingleave.png[width=""]
+
+Deletes the leave application with INDEX 1 in the leave list.
+
+image:deletedleave.png[width=""]
+
 
 === Approve leave application  : `approve`
 Approve the specified leave from leave list.
@@ -404,9 +423,12 @@ Format: `approve INDEX`
 Example:
 `approve 2`
 
-****
-* Approve the leave application with INDEX 2 in the leave list.
-****
+image:approvecmd.png[width=""]
+
+Approve the leave application with INDEX 2 in the leave list.
+
+image:approved.png[width=""]
+
 
 === Reject leave application  : `reject`
 Reject the specified leave from leave list.
@@ -428,9 +450,12 @@ Format: `reject INDEX`
 Example:
 `reject 2`
 
-****
-* Reject the leave application with INDEX 2 in the leave list.
-****
+image:rejectcmd.png[width=""]
+
+Reject the leave application with INDEX 2 in the leave list.
+
+image:rejected.png[width=""]
+
 
 === Listing entered commands : `history`
 
@@ -462,14 +487,44 @@ Also prints the logged in NRIC if logged in.
 === Logout of the application: `logout`
 Logs out of the application, allowing for other users to log in again.
 
-
 === Check in/out working hours: `check`
-Updates check in/out timings for employees. +
+Updates check in/out status for employees. +
+
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
-* `check ic/s1234567h pwd/Hello12 m/in` +
-* `check ic/s7654327h pwd/Hello12 m/out`
+* `check ic/S1234567E pwd/Password m/in`
+====
+User checked in:
+
+image::inStatus.PNG[width="270"]
+
+Checked in shows: +
+
+- Checked in date
+- Checked in time
+
+image::checkedIn.PNG[width="270"]
+
+====
+
+* `check ic/S1234567E pwd/Password m/out`
+
+====
+
+User checked out:
+
+image::outStatus.PNG[width="270"]
+
+Checked out shows: +
+
+- Checked out date
+- Checked out time
+- Hours worked
+- Salary per day according to employees' working rate per hour.
+
+image::checkedOut.PNG[width="270"]
+====
 
 // tag::schedule[]
 === List schedule: `schedule`
@@ -646,6 +701,16 @@ Department names should start with a name, and ends with 'Management'.
 | N/A
 | a/Blk 25, Ang Mo Kio Street 23 #04-21, s(630025)
 
+| Mode
+| m/MODE
+| Mode should only contains "in" or "out" and it should not be blank.
+| m/in
+
+| WorkingRate
+| wr/WORKINGRATE
+| Working rate should only contains whole or decimal numbers and it should not be blank.
+| wr/7.5
+
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: - +
@@ -670,13 +735,14 @@ Department names should start with a name, and ends with 'Management'.
 |BASIC (3)
 |
 - Edit your own particulars +
-- Apply for leave
+- Apply for leave +
+- Check in/out to/from work for their own
 
 |MANAGER (2)
 |
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
-- Allow others to check in/out to/from work
+- Check in/out to/from work for others
 
 |ADMINISTRATOR (1)
 |
