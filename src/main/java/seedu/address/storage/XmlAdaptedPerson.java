@@ -56,7 +56,7 @@ public class XmlAdaptedPerson {
     private String checkedInTime;
 
     @XmlElement
-    private List<XmlAdaptedSchedule> schedule = new ArrayList<>();
+    private XmlAdaptedSchedule schedule;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(String name, String nric, String password, String phone, String email,
                             String department, String priorityLevel, String address, List<XmlAdaptedTag> tagged,
-                            List<XmlAdaptedSchedule> schedule) {
+                            XmlAdaptedSchedule schedule) {
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -83,9 +83,7 @@ public class XmlAdaptedPerson {
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
-        if (schedule != null) {
-            this.schedule = new ArrayList<>(schedule);
-        }
+        this.schedule = schedule;
     }
 
     /**
@@ -108,9 +106,7 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
-        schedule = source.getSchedule().stream()
-                .map(XmlAdaptedSchedule::new)
-                .collect(Collectors.toList());
+        schedule = new XmlAdaptedSchedule(source.getSchedule());
     }
 
     /**
@@ -122,10 +118,6 @@ public class XmlAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }
-        final List<Schedule> personSchedules = new ArrayList<>();
-        for (XmlAdaptedSchedule schedule : schedule) {
-            personSchedules.add(schedule.toModelType());
         }
 
         if (name == null) {
@@ -215,7 +207,16 @@ public class XmlAdaptedPerson {
         final CheckedInTime modelCheckedInTime = new CheckedInTime(checkedInTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Schedule> modelSchedule = new HashSet<>(personSchedules);
+
+        Schedule scheduleObject;
+        try {
+            scheduleObject = schedule.toModelType();
+
+        } catch (NullPointerException e) {
+            scheduleObject = null;
+        }
+        final Schedule modelSchedule = scheduleObject;
+
         return new Person(modelName, modelNric, modelPassword, modelPhone, modelEmail, modelDepartment,
             modelPriorityLevel, modelAddress, modelMode, modelWorkingRate,
             modelCheckedInTime, modelTags, modelSchedule);

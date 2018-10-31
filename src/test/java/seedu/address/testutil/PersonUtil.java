@@ -9,9 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKINGRATE;
 
 import java.util.Set;
@@ -19,7 +16,6 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,11 +48,6 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        person.getSchedule().stream().forEach(
-            s -> sb.append(PREFIX_TIME_START + s.getTimeStart().toString() + " ")
-            .append(PREFIX_TIME_END + s.getTimeEnd().toString() + " ")
-            .append(PREFIX_VENUE + s.getVenue().toString() + " ")
-        );
         return sb.toString();
     }
 
@@ -77,17 +68,6 @@ public class PersonUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
-        if (descriptor.getSchedule().isPresent()) {
-            Set<Schedule> schedule = descriptor.getSchedule().get();
-            if (schedule.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                schedule.forEach(s -> sb
-                        .append(PREFIX_TIME_START + s.getTimeStart().toString() + " ")
-                        .append(PREFIX_TIME_END + s.getTimeEnd().toString() + " ")
-                        .append(PREFIX_VENUE + s.getVenue().toString() + " "));
             }
         }
         return sb.toString();

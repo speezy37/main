@@ -47,9 +47,8 @@ public class XmlUtilTest {
     private static final String VALID_ADDRESS = "4th street";
     private static final List<XmlAdaptedTag> VALID_TAGS =
             Collections.singletonList(new XmlAdaptedTag("friends"));
-    private static final List<XmlAdaptedSchedule> VALID_SCHEDULE =
-            Collections.singletonList(new XmlAdaptedSchedule("1100",
-                    "1500", "Level2"));
+    private static final XmlAdaptedSchedule VALID_SCHEDULE = new XmlAdaptedSchedule("1100",
+            "1500", "Level2");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

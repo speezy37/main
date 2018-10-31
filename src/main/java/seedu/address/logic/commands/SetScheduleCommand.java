@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,16 +26,19 @@ public class SetScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "setschedule";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the schedule of the person identified"
+            + "\nParameters: INDEX "
+            + PREFIX_TIME_START + "START_TIME "
+            + PREFIX_TIME_END + "END_TIME "
+            + PREFIX_VENUE + "VENUE "
+            + "\nExample: "
             + COMMAND_WORD + " 1 "
             + PREFIX_TIME_START + "1000 "
             + PREFIX_TIME_END + "1600 "
-            + PREFIX_VENUE + "Toilet\n";
+            + PREFIX_VENUE + "Toilet";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Set Schedule Successful";
-    public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Failed.";
+    public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Command Failed.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -88,7 +90,7 @@ public class SetScheduleCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Set<Schedule> updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
+        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());
 
         return new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getPassword(),
                 personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getDepartment(),

@@ -20,7 +20,7 @@ public class AddLeaveCommand extends Command {
     public static final String COMMAND_WORD = "leave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Request leave. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_DATE + "DATE (DD/MM/YYYY) ";
 
 
