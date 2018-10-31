@@ -9,7 +9,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">4th street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -20,7 +22,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">81th street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -31,7 +35,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">wall street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -43,6 +49,8 @@
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">10th street</address>
         <mode isPrivate="false">in</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false">9:00:00</checkedInTime>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -53,7 +61,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">michegan ave</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -65,6 +75,8 @@
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">little tokyo</address>
         <mode isPrivate="false">in</mode>
+        <workingRate isPrivate="false">10</workingRate>
+        <checkedInTime isPrivate="false">10:00:00</checkedInTime>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -75,7 +87,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">4th street</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Stefan Meier</name>
@@ -86,7 +100,9 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">little india</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -97,6 +113,8 @@
         <department isPrivate="false">Junior Management</department>
 		<priorityLevel isPrivate="false">0</priorityLevel>
         <address isPrivate="false">chicago ave</address>
-        <mode isPrivate="false">in</mode>
+        <mode isPrivate="false">out</mode>
+        <workingRate isPrivate="false">7.5</workingRate>
+        <checkedInTime isPrivate="false"></checkedInTime>
     </persons>
 </addressbook>
