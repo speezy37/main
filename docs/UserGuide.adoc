@@ -195,12 +195,13 @@ Example:
 
 * `listdepartment`
 
-image::ListDepartmentBefore.png[width="300"]
-
+image::ListDepartmentBefore.png[width=""]
+====
 Returns a list of departments available in the addressbook currently.
 Listing of department names are in ascending order.
 
-image::ListDepartmentAfter.png[width="700"]
+image::ListDepartmentAfter.png[width=""]
+====
 
 === Filtering department : `filterdepartment`
 Filter departments and list out the employees who are in the department. +
@@ -219,12 +220,20 @@ Alias: `fd`
 Examples:
 
 * `filterdepartment junior`
+
+image::FilterDepartmentBefore1.png[width=""]
 ====
 Returns a list of employees who are in `Junior Management`.
+
+image::FilterDepartmentAfter1.png[width=""]
 ====
 * `filterdepartment junior senior`
+
+image::FilterDepartmentBefore2.png[width=""]
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
+
+image::FilterDepartmentAfter2.png[width=""]
 ====
 
 === Change the department of an employee : `setdepartment`
