@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKINGRATE;
 
 import java.util.Set;
 
@@ -47,6 +48,7 @@ public class PersonUtil {
         sb.append(PREFIX_DEPARTMENT + person.getDepartment().fullDepartment + " ");
         sb.append(PREFIX_PRIORITYLEVEL + Integer.toString(person.getPriorityLevel().priorityLevelCode) + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_WORKINGRATE + person.getWorkingRate().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

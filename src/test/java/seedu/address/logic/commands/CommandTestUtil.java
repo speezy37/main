@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKINGRATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +68,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MODE_AMY = "in";
     public static final String VALID_MODE_BOB = "out";
+    public static final double VALID_WORKINGRATE_AMY = 7.5;
+    public static final double VALID_WORKINGRATE_BOB = 10;
+
 
     public static final String VALID_TIME_DAWN = "1000";
     public static final String VALID_TIME_NOON = "1100";
@@ -93,6 +97,8 @@ public class CommandTestUtil {
     public static final String PRIORITYLEVEL_DESC_BOB = " " + PREFIX_PRIORITYLEVEL + VALID_PRIORITYLEVEL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String WORKINGRATE_DESC_AMY = " " + PREFIX_WORKINGRATE + VALID_WORKINGRATE_AMY;
+    public static final String WORKINGRATE_DESC_BOB = " " + PREFIX_WORKINGRATE + VALID_WORKINGRATE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -106,6 +112,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT + "Junior&"; // '&' not allowed
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_WORKINGRATE_DESC = " " + PREFIX_WORKINGRATE
+        + "9.5a"; // 'a' not allowed in working rates
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PASSWORD_DESC = " " + PREFIX_PASSWORD + "A1e"; // Too short
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "W1234567Q"; //Incorrect NRIC
