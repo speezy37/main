@@ -703,12 +703,12 @@ Department names should start with a name, and ends with 'Management'.
 
 | Mode
 | m/MODE
-| Mode should only contains "in" or "out" and it should not be blank.
+| Mode should only contains "in" or "out".
 | m/in
 
 | WorkingRate
 | wr/WORKINGRATE
-| Working rate should only contains whole or decimal numbers and it should not be blank.
+| Working rate should only contains whole or decimal numbers.
 | wr/7.5
 
 | Priority Level
