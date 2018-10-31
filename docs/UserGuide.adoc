@@ -597,7 +597,7 @@ There is no need to save manually.
 •	*Filter departments*: `filterdepartment junior`
 
 === Miscellaneous
-•	*Check in/out working hours*: `check n/NAME ic/NRIC mode/IN-OUT`
+•	*Check in/out working hours*: `check ic/NRIC pwd/PASSWORD mode/IN-OUT`
 •	*Help*: `help`
 •	*Reset the application*: `reset`
 •	*Exit application*: `exit`
@@ -680,7 +680,8 @@ Department names should start with a name, and ends with 'Management'.
 |MANAGER (2)
 |
 - All privileges of a BASIC Priority Level +
-- Approve/Reject/Delete leave of users with lower priority level
+- Approve/Reject/Delete leave of users with lower priority level +
+- Allow others to check in/out to/from work
 
 |ADMINISTRATOR (1)
 |
