@@ -71,7 +71,7 @@ a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `Joh
 * `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
-.  Refer to <<Features,Features>> for details of each command.
+.  Refer to <<Features, Features>> for details of each command.
 
 [[Features]]
 == Features
@@ -544,7 +544,7 @@ This operation requires user to be logged in with a priviledge level of `I.T. Un
 Resets the application into a default slate, by deleting data/AddressBook.xml. The application will also close upon
 deleting data/AddressBook.xml.
 
-Refer to the <<tableOfDefaultContacts,List of Default Contacts>> upon app reset on the contacts available.
+Refer to the <<tableOfDefaultContacts, List of Default Contacts>> upon app reset on the contacts available.
 
 Format: `reset`
 
