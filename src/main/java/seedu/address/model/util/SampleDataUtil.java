@@ -6,13 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.LeaveList;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyLeaveList;
-import seedu.address.model.leave.Approval;
-import seedu.address.model.leave.Date;
-import seedu.address.model.leave.EmployeeId;
-import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -83,25 +77,6 @@ public class SampleDataUtil {
                     new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("in"),
                     getTagSet("colleagues"), new HashSet<>())
         };
-    }
-
-    public static Leave[] getSampleLeaves() {
-        return new Leave[] {
-            new Leave(new EmployeeId("S1234567E"), new Date("10/05/2019"), new Approval("PENDING"),
-                    new PriorityLevel(1)),
-            new Leave(new EmployeeId("T1234567E"), new Date("11/05/2019"), new Approval("PENDING"),
-                    new PriorityLevel(2)),
-            new Leave(new EmployeeId("F1234567E"), new Date("12/05/2019"), new Approval("PENDING"),
-                    new PriorityLevel(3))
-        };
-    }
-
-    public static ReadOnlyLeaveList getSampleLeaveList() {
-        LeaveList sampleLl = new LeaveList();
-        for (Leave sampleLeave : getSampleLeaves()) {
-            sampleLl.addRequest(sampleLeave);
-        }
-        return sampleLl;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
