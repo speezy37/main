@@ -51,7 +51,7 @@ public class LoginCommand extends Command {
         sessionManager.loginToSession(loginNric, loginPassword);
 
         // Retrieves the user schedule once the user is logged in successfully
-        String scheduleString = "";
+        String scheduleString;
         try {
             Schedule schedule = sessionManager.getLoggedInPersonDetails().getSchedule();
             scheduleString = schedule.toString();

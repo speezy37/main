@@ -15,7 +15,7 @@ public class SessionChangedEvent extends BaseEvent {
     }
 
     public SessionChangedEvent(Person loggedInPerson) {
-        toFeedback = "Logged in as: " + loggedInPerson.getNric();
+        toFeedback = "Logged in as: " + loggedInPerson.getName();
     }
 
     @Override

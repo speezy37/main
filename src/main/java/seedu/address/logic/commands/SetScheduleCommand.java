@@ -26,16 +26,19 @@ public class SetScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "setschedule";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule of the person identified"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the schedule of the person identified"
+            + "\nParameters: INDEX (positive integer) "
+            + PREFIX_TIME_START + "START_TIME (HHMM 24-hour) "
+            + PREFIX_TIME_END + "END_TIME (HHMM 24-hour) "
+            + PREFIX_VENUE + "VENUE "
+            + "\nExample: "
             + COMMAND_WORD + " 1 "
             + PREFIX_TIME_START + "1000 "
             + PREFIX_TIME_END + "1600 "
-            + PREFIX_VENUE + "Toilet\n";
+            + PREFIX_VENUE + "Toilet";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Set Schedule Successful";
-    public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Failed.";
+    public static final String MESSAGE_SCHEDULE_FAIL = "Set Schedule Command Failed.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

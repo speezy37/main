@@ -59,11 +59,11 @@ public class Schedule {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("START: ")
+        builder.append("Start Time:\t")
                 .append(getTimeStart())
-                .append("\nEnd: ")
+                .append("\nEnd Time:\t\t")
                 .append(getTimeEnd())
-                .append("\nVenue: ")
+                .append("\nVenue:\t\t")
                 .append(getVenue());
         return builder.toString();
     }
