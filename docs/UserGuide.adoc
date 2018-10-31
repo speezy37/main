@@ -502,10 +502,6 @@ Also prints the logged in NRIC if logged in.
 Logs out of the application, allowing for other users to log in again.
 
 === Check in/out working hours: `check`
-[NOTE]
-====
-This operation requires a priority level of MANAGER to execute.
-====
 Updates check in/out status for employees. +
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
