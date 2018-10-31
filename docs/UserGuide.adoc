@@ -528,9 +528,6 @@ There is no need to save manually.
 •	*Help*: `help`
 •	*Reset the application*: `reset`
 •	*Exit application*: `exit`
-//•	*Restrict access to BankAB*: `restrict`
-
-
 
 
 == Appendix A: List of prefixes in the application
