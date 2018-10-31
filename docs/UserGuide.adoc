@@ -66,7 +66,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`login ic/S1234567E pwd/Password`* : Log in as Alex Yeoh, with a priority level of ADMINISTRATOR.
 * *`list`* : lists all contacts
 * `*add* n/John Doe ic/S9458861T pwd/Password p/98765432 e/johnd@example.com d/Junior Management
-a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
+a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact named `John Doe` to the Address Book.
 * `*schedule* n/John Doe ic/s1234567a` : list input user’s schedule
 * *`exit`* : exits the app
 
