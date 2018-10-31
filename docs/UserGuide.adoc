@@ -144,8 +144,10 @@ Format : `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 ====
 This command will NOT be able to edit the following:
 
-* `Schedule`
+* `Department`
 * `Leave`
+* `Priority Level`
+* `Schedule`
 ====
 
 Examples:
@@ -518,7 +520,7 @@ Example: `schedule 1`
 * Shows the schedule of person with ID 1 in the list.
 ****
 
-Sample output:
+Sample output: +
 image:schedule_cmd.png[]
 
 === Set schedule: `setschedule`
