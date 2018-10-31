@@ -134,6 +134,7 @@ Format : `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 ** Name: n/NAME
 ** Address: a/ADDRESS
 ** Phone: p/PHONE_NUMBER
+** Email: e/EMAIL
 ** Tag(s): t/TAG1 t/TAG2 ...
 ****
 
