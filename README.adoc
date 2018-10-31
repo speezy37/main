@@ -29,6 +29,8 @@ endif::[]
 * Department management - set department for employees
 * Schedule management - set schedule for employees
 * Leave application - approval of leave of employees
+* Attendance system
+* Payroll system
 * Priority level for Human Resources(HR) use
 
 More features are listed in our <<UserGuide#, User Guide>>.
