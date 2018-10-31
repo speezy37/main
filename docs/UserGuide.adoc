@@ -89,6 +89,9 @@ a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : adds a contact named `Joh
 
 Format: `help`
 
+User Guide will open in a separate window shown below:
+image:UserGuide.png[]
+
 === Adding a person: `add`
 
 [NOTE]
@@ -102,8 +105,9 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 
 [TIP]
 ====
-* A person can have any number of tags (including 0) +
-* Priority level will be set to BASIC if left empty.
+* A person can have any number of tags (including 0)
+* Priority level will be set to BASIC if left empty
+* A recently added person have no schedule allocated
 ====
 
 Examples:
@@ -135,6 +139,14 @@ Format : `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 ** Phone: p/PHONE_NUMBER
 ** Tag(s): t/TAG1 t/TAG2 ...
 ****
+
+[NOTE]
+====
+This command will NOT be able to edit the following:
+
+* `Schedule`
+* `Leave`
+====
 
 Examples:
 

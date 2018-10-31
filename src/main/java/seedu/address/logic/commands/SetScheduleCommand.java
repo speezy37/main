@@ -27,9 +27,9 @@ public class SetScheduleCommand extends Command {
     public static final String COMMAND_WORD = "setschedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the schedule of the person identified"
-            + "\nParameters: INDEX (positive integer) "
-            + PREFIX_TIME_START + "START_TIME (HHMM 24-hour) "
-            + PREFIX_TIME_END + "END_TIME (HHMM 24-hour) "
+            + "\nParameters: INDEX "
+            + PREFIX_TIME_START + "START_TIME "
+            + PREFIX_TIME_END + "END_TIME "
             + PREFIX_VENUE + "VENUE "
             + "\nExample: "
             + COMMAND_WORD + " 1 "
