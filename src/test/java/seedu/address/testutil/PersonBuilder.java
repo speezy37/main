@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mode;
@@ -11,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WorkingRate;
 import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.schedule.Schedule;
@@ -30,6 +32,8 @@ public class PersonBuilder {
     public static final String DEFAULT_NRIC = "S1458574G";
     public static final String DEFAULT_PASSWORD = "PQWOei23";
     public static final String DEFAULT_MODE = "out";
+    public static final String DEFAULT_WORKINGRATE = "7.5";
+    public static final String DEFAULT_CHECKEDINTIME = "";
     public static final int DEFAULT_PRIORITYLEVEL = 3;
 
 
@@ -42,6 +46,8 @@ public class PersonBuilder {
     private PriorityLevel priorityLevel;
     private Address address;
     private Mode mode;
+    private WorkingRate workingRate;
+    private CheckedInTime checkedInTime;
     private Set<Tag> tags;
     private Set<Schedule> schedules;
 
@@ -55,6 +61,8 @@ public class PersonBuilder {
         priorityLevel = new PriorityLevel(DEFAULT_PRIORITYLEVEL);
         address = new Address(DEFAULT_ADDRESS);
         mode = new Mode(DEFAULT_MODE);
+        workingRate = new WorkingRate(DEFAULT_WORKINGRATE);
+        checkedInTime = new CheckedInTime(DEFAULT_CHECKEDINTIME);
         tags = new HashSet<>();
         schedules = new HashSet<>();
     }
@@ -72,6 +80,8 @@ public class PersonBuilder {
         priorityLevel = personToCopy.getPriorityLevel();
         address = personToCopy.getAddress();
         mode = personToCopy.getMode();
+        workingRate = personToCopy.getWorkingRate();
+        checkedInTime = personToCopy.getCheckedInTime();
         tags = new HashSet<>(personToCopy.getTags());
         schedules = new HashSet<>(personToCopy.getSchedule());
     }
@@ -157,6 +167,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code WorkingRate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWorkingRate(String workingRate) {
+        this.workingRate = new WorkingRate(workingRate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code CheckedInTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCheckedInTime(String checkedInTime) {
+        this.checkedInTime = new CheckedInTime(checkedInTime);
+        return this;
+    }
+
+    /**
      * Sets the {@code Schedule} of the {@code Person} that we are building.
      */
     public PersonBuilder withSchedule(Schedule... scheduleInput) {
@@ -171,7 +197,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, nric, password, phone, email,
-            department, priorityLevel, address, mode, tags, schedules);
+            department, priorityLevel, address, mode, workingRate, checkedInTime, tags, schedules);
     }
 
 }

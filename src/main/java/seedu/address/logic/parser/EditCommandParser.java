@@ -52,7 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseSchedulesForEdit(argMultimap.getAllValues(PREFIX_SCHEDULE)).ifPresent(editPersonDescriptor::setSchedule);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED + "\n\n" + EditCommand.MESSAGE_USAGE);
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED + "\n" + EditCommand.MESSAGE_USAGE);
         }
 
         return new EditCommand(editPersonDescriptor);

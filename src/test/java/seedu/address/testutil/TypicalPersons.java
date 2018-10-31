@@ -54,11 +54,13 @@ public class TypicalPersons {
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withNric("T2457005E").withPassword("ASd654").withPriorityLevel(0)
             .withEmail("lydia@example.com").withDepartment("Junior Management")
-            .withAddress("little tokyo").build();
+            .withAddress("little tokyo").withMode("in")
+            .withWorkingRate("7.5").withCheckedInTime("10:00:00").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withNric("T2457775E").withPassword("ASd654").withPriorityLevel(0)
+            .withNric("T2457775E").withPassword("ASd654").withPriorityLevel(3)
             .withEmail("anna@example.com").withDepartment("Junior Management")
-            .withAddress("4th street").withMode("out").build();
+            .withAddress("4th street").withMode("out")
+            .withWorkingRate("7.5").withCheckedInTime("").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

@@ -79,27 +79,6 @@ public interface Model {
      */
     void updateFilteredLeaveList(Predicate<Leave> predicate);
 
-
-    /**
-     * Returns true if the model has previous address book states to restore.
-     */
-    boolean canUndoAddressBook();
-
-    /**
-     * Returns true if the model has undone address book states to restore.
-     */
-    boolean canRedoAddressBook();
-
-    /**
-     * Restores the model's address book to its previous state.
-     */
-    void undoAddressBook();
-
-    /**
-     * Restores the model's address book to its previously undone state.
-     */
-    void redoAddressBook();
-
     /**
      * Saves the current address book state for undo/redo.
      */
