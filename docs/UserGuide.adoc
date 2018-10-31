@@ -98,7 +98,7 @@ Format: `help`
 ====
 
 Adds an employee to the address book +
-Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS [plvl/PRIORITY_LEVEL] [t/TAG]...`
+Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS wr/WORKINGRATE [plvl/PRIORITY_LEVEL] [t/TAG]...`
 
 [TIP]
 ====
@@ -108,10 +108,10 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Junior Management ic/T0249855I
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 wr/7.5 d/Junior Management ic/T0249855I
 pwd/9EwciT plvl/1`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Tower p/1234567 d/Senior Management
-t/Creditor ic/S1875858E pwd/Fed528F`
+t/Creditor ic/S1875858E pwd/Fed528F wr/10`
 
 === Listing all persons : `list`
 
@@ -471,8 +471,8 @@ image::checkedOut.PNG[width="270"]
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
-* `check ic/s1234567h pwd/Hello12 m/in` +
-* `check ic/s7654327h pwd/Hello12 m/out`
+* `check ic/S1234567E pwd/Password m/in` +
+* `check ic/S1234567E pwd/Password m/out`
 
 // tag::schedule[]
 === List schedule: `schedule`
