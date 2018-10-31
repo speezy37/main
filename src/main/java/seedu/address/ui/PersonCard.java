@@ -56,9 +56,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         department.setText(person.getDepartment().fullDepartment);
-        mode.setText(person.getMode().value);
-        workingRate.setText(person.getWorkingRate().value);
-        checkedInTime.setText(person.getCheckedInTime().value);
+        mode.setText("Checked " + person.getMode().value);
+        workingRate.setText("$" + person.getWorkingRate().value + " per hour");
+        checkedInTime.setText("at " + person.getCheckedInTime().value + "\n\n");
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

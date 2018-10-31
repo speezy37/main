@@ -105,7 +105,7 @@ public class CheckCommand extends Command {
             } else {
                 hoursWorked = calculateHoursWorked(personToEdit.getCheckedInTime().toString());
                 salaryPerDay = hoursWorked * (Double.parseDouble(personToEdit.getWorkingRate().toString()));
-                checkedInTime = new CheckedInTime("");
+                checkedInTime = new CheckedInTime(currentTime);
                 messageSucess = MESSAGE_CHECKED_OUT;
             }
 

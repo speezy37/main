@@ -45,7 +45,7 @@ public class CheckCommandTest {
         .withNric("T2457005E").withPassword("ASd654").withPriorityLevel(0)
         .withEmail("lydia@example.com").withDepartment("Junior Management")
         .withAddress("little tokyo").withMode("out")
-        .withWorkingRate("7.5").withCheckedInTime("").build();
+        .withWorkingRate("7.5").withCheckedInTime("18:00:00").build();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
     private SessionManager sessionManager;
