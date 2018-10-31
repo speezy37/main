@@ -402,74 +402,6 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
-////
-// tag::undoredo[]
-=== Undoing previous command : `undo`
-
-Restores the address book to the state before the previous _undoable_ command was executed. +
-Format: `undo`
-
-[NOTE]
-====
-Undoable commands: those commands that modify the address book's content (`add`, `delete`, `edit` and `clear`).
-====
-
-Examples:
-
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command) +
-
-* `select 1` +
-`list` +
-`undo` +
-The `undo` command fails as there are no undoable commands executed previously.
-
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-
-
-=== Redoing the previously undone command : `redo`
-
-Reverses the most recent `undo` command. +
-Format: `redo`
-
-Examples:
-
-* `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-
-* `delete 1` +
-`redo` +
-The `redo` command fails as there are no `undo` commands executed previously.
-
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
-// end::undoredo[]
-////
-
-//Reason for block comment: Not implemented yet.
-////
-=== Setting password: `setpass`
-Set password for employee on the address book. +
-Format: `setpass n/NAME ic/s1234567h sp/PASSWORD` +
-
-* The password is case sensitive. +
-* Password length is limited to 15 characters. +
-* Password must include both upper-case and lower-case letters and inclusion of one or more numerical digits. +
-* Example: `setpass n/John Doe ic/s1234567h sp/PaS88od` +
-====
-Sets PaS88of as a password for John Doe.
-====
-////
-
 === Login to the application: `login`
 Logs in to the application using a registered NRIC and password. +
 Format: `login ic/NRIC pwd/PASSWORD` +
@@ -534,17 +466,6 @@ Example: `setschedule INDEX ts/1100 te/1600 v/Toilet` +
 Sets the priority level of an employee at the specified index. +
 Format: `setplvl INDEX plvl/PRIORITY_LEVEL` +
 Example: `setplvl 4 plvl/3`
-
-////
-=== Restrict access to BankAB : `restrict`  (To be implemented in v1.4 and beyond)
-[NOTE]
-====
-This operation requires those with privilege of `I.T. Unit` to perform.
-====
-Restrict access to BankAB for maintenance to all employees except superusers level 4 (Technicians).
-Anyone below superuser level 4 priority will not be able to log into the application. +
-Format: `restrict`
-////
 
 === Reset the application : `reset`
 [NOTE]
