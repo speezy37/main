@@ -479,33 +479,34 @@ Also prints the logged in NRIC if logged in.
 Logs out of the application, allowing for other users to log in again.
 
 === Check in/out working hours: `check`
+Updates check in/out status for employees. +
+
 Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
 Examples: +
 
-* `check ic/S1234567E pwd/Password m/in` +
-* `check ic/S1234567E pwd/Password m/out`
+* `check ic/S1234567E pwd/Password m/in`
 ====
-Updates check in/out status for employees. +
-
-- User checked in:
+User checked in:
 
 image::inStatus.PNG[width="270"]
 
-- User checked out:
-
-image::outStatus.PNG[width="270"]
-====
-
-====
 Checked in shows: +
 
 - Checked in date
 - Checked in time
 
 image::checkedIn.PNG[width="270"]
-====
 
 ====
+
+* `check ic/S1234567E pwd/Password m/out`
+
+====
+
+User checked out:
+
+image::outStatus.PNG[width="270"]
+
 Checked out shows: +
 
 - Checked out date
