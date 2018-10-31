@@ -510,7 +510,7 @@ Examples: +
 ====
 User checked in:
 
-image::inStatus.PNG[width="270"]
+image::checkedInStatus.png[width="270"]
 
 Checked in shows: +
 
@@ -527,7 +527,7 @@ image::checkedIn.PNG[width="270"]
 
 User checked out:
 
-image::outStatus.PNG[width="270"]
+image::checkedOutStatus.png[width="270"]
 
 Checked out shows: +
 
