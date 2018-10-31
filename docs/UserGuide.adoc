@@ -162,6 +162,7 @@ Returns `john` and `John Doe`
 Returns any person having names `Betsy`, `Tim`, or `John`
 ====
 
+// tag::sort[]
 === Sort address book contacts: `sort`
 Shows the sorted list of the employees or departments in the address book.
 The list can be sorted in ascending or descending order. +
@@ -194,7 +195,9 @@ Sorts the department names in the list in descending order
 
 image::SortAfter2.png[width=""]
 ====
+// end::sort[]
 
+// tag::listdepartment[]
 === List department : `listdepartment`
 Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
@@ -210,7 +213,9 @@ Listing of department names are in ascending order.
 
 image::ListDepartmentAfter.png[width=""]
 ====
+// end::listdepartment[]
 
+// tag::filterdepartment[]
 === Filtering department : `filterdepartment`
 Filter departments and list out the employees who are in the department. +
 Format: `filterdepartment KEYWORD [MORE KEYWORDS]` +
@@ -243,7 +248,9 @@ Returns a list of employees who are in `Junior Management` and `Senior Managemen
 
 image::FilterDepartmentAfter2.png[width=""]
 ====
+// end::filterdepartment[]
 
+// tag::setdepartment[]
 === Change the department of an employee : `setdepartment`
 [NOTE]
 ====
@@ -268,6 +275,7 @@ Changes the employee department with ID 2 in the address book to `Junior Managem
 
 image::SetDepartmentAfter.png[width=""]
 ====
+// end::setdepartment[]
 
 === Deleting a person : `delete`
 [NOTE]
