@@ -19,9 +19,9 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
@@ -33,14 +33,14 @@ import seedu.address.session.SessionManager;
 import systemtests.SessionHelper;
 
 public class ScheduleCommandTest {
+    private static final String DEFAULT_NRIC = "S1230000E";
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     private Model model;
     private Model expectedModel;
     private CommandHistory commandHistory = new CommandHistory();
-
-    private static final String DEFAULT_NRIC = "S1230000E";
 
     @Before
     public void setUp() {
