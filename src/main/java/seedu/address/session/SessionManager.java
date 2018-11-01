@@ -188,6 +188,19 @@ public class SessionManager extends ComponentManager implements Session {
         }
     }
 
+    //================================= SESSION MODIFIED EVENT CALLER ============================================
+
+    /**
+     * Raises a new sessionChangedEvent, for the purpose of updating the logged in details in the status footer.
+     */
+    public void raiseSessionModifiedEvent() throws CommandException {
+        if (isLoggedIn()) {
+            raise(new SessionChangedEvent(getLoggedInPersonDetails()));
+        } else {
+            raise(new SessionChangedEvent());
+        }
+    }
+
 
     //================================= FOR TEST USE ONLY =========================================================
     /**

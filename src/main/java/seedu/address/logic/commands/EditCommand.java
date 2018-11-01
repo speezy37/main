@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.SessionChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -79,6 +80,11 @@ public class EditCommand extends Command {
 
         model.updatePerson(personToEdit, editedPerson);
         model.commitAddressBook();
+
+        //Calling this method to update the changed name (if so), in the UI's status bar.
+        sessionManager.raiseSessionModifiedEvent();
+
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
