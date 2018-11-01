@@ -517,7 +517,7 @@ Checked in shows: +
 - Checked in date
 - Checked in time
 
-image::checkedIn.PNG[width="270"]
+image::checkedIn.PNG[width="700"]
 
 ====
 
@@ -536,7 +536,7 @@ Checked out shows: +
 - Hours worked
 - Salary per day according to employees' working rate per hour.
 
-image::checkedOut.PNG[width="270"]
+image::checkedOut.PNG[width="700"]
 ====
 
 // tag::schedule[]
