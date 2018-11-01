@@ -72,7 +72,7 @@ public class SetScheduleCommand extends Command {
          * and the login user is not the modified user.
          */
         if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
-                && !(personToEdit.getNric().toString().equals(sessionManager.getLoggedInSessionNric().toString()))) {
+                && !(personToEdit.getNric().equals(sessionManager.getLoggedInSessionNric()))) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
