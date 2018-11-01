@@ -41,8 +41,8 @@ public class MainWindow extends UiPart<Stage> {
     private UserPrefs prefs;
     private HelpWindow helpWindow;
 
-    //@FXML
-    //private StackPane browserPlaceholder;
+    @FXML
+    private StackPane imagePlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -208,4 +208,5 @@ public class MainWindow extends UiPart<Stage> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleHelp();
     }
+
 }
