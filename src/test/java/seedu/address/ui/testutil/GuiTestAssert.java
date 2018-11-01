@@ -35,9 +35,7 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getEmail().value, actualCard.getEmail());
         assertEquals(expectedPerson.getDepartment().fullDepartment, actualCard.getDepartment());
         assertEquals(expectedPerson.getAddress().value, actualCard.getAddress());
-        assertEquals("Checked " + expectedPerson.getMode().value, actualCard.getMode());
-        assertEquals("$" + expectedPerson.getWorkingRate().value + " per hour", actualCard.getWorkingRate());
-        assertEquals("at " + expectedPerson.getCheckedInTime().value + "\n\n", actualCard.getCheckedInTime());
+        assertEquals(expectedPerson.getMode().value, actualCard.getMode());
         assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
                 actualCard.getTags());
     }
