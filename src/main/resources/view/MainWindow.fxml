@@ -61,12 +61,6 @@
               </tabs>
             </TabPane>
           </VBox>
-
-          <StackPane fx:id="browserPlaceholder" prefWidth="340" >
-            <padding>
-              <Insets top="5" right="5" bottom="5" left="5" />
-            </padding>
-          </StackPane>
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
