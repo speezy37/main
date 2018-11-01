@@ -19,14 +19,17 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
+import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.session.SessionManager;
 import systemtests.SessionHelper;
 
 public class ScheduleCommandTest {
@@ -37,10 +40,20 @@ public class ScheduleCommandTest {
     private Model expectedModel;
     private CommandHistory commandHistory = new CommandHistory();
 
+    private static final String DEFAULT_NRIC = "S1230000E";
+
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(DEFAULT_NRIC,
+                PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
         expectedModel = model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_notLoggedIn_throwsCommandException() {
+        SessionHelper.logoutOfSession();
+        assertCommandFailure(new ScheduleCommand(INDEX_FIRST_PERSON), model,
+                commandHistory, SessionManager.NOT_LOGGED_IN);
     }
 
     @Test
@@ -66,13 +79,31 @@ public class ScheduleCommandTest {
     }
 
     @Test
-    public void execute_correctValues_success() {
+    public void execute_otherUserAsBasic_failure() {
+        SessionHelper.forceLoginWithPriorityLevelOf(DEFAULT_NRIC,
+                PriorityLevelEnum.BASIC.getPriorityLevelCode());
+        assertCommandFailure(new ScheduleCommand(INDEX_FIRST_PERSON), model,
+                commandHistory, String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                        PriorityLevelEnum.ADMINISTRATOR));
+    }
+
+    @Test
+    public void execute_otherUserAsAdmin_success() {
         List<Person> personList = model.getFilteredPersonList();
         Person expectedPerson = personList.get(INDEX_FIRST_PERSON.getZeroBased());
         Schedule expectedSchedule = expectedPerson.getSchedule();
         String expectedResponse = "Your allocated schedule:\n" + expectedSchedule.toString();
 
         assertCommandSuccess(new ScheduleCommand(INDEX_FIRST_PERSON), model,
+                commandHistory, expectedResponse, expectedModel);
+    }
+
+    @Test
+    public void execute_otherUserWithNoSchedule_success() {
+        Index index = Index.fromOneBased(6);
+        String expectedResponse = "Your allocated schedule:\nNo schedule allocated.";
+
+        assertCommandSuccess(new ScheduleCommand(index), model,
                 commandHistory, expectedResponse, expectedModel);
     }
 

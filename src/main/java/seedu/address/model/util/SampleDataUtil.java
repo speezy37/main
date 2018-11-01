@@ -37,7 +37,7 @@ public class SampleDataUtil {
                 new Address("AB Company Office, Singapore"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
                 getTagSet("HighestAdmin", "S1230000E", "Password"),
-                getSchedule("1300", "1400", "Level 5")),
+                getSchedule("1300", "1400", "IT Lab")),
 
             new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@abbank-sg.com"), new Department("Top Management"),

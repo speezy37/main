@@ -15,7 +15,6 @@ public class Schedule {
     public Schedule() {
     }
 
-
     public Schedule(TimeStart timeStart, TimeEnd timeEnd, Venue venue) {
         requireAllNonNull(timeStart, timeEnd, venue);
         this.timeStart = timeStart;
