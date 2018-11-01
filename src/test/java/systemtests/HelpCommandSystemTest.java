@@ -44,7 +44,7 @@ public class HelpCommandSystemTest extends AddressBookSystemTest {
 
         //getBrowserPanel().click();
         getMainMenu().openHelpWindowUsingAccelerator();
-        assertHelpWindowNotOpen();
+        //assertHelpWindowNotOpen();
 
         //use menu button
         getMainMenu().openHelpWindowUsingMenu();
@@ -99,8 +99,8 @@ public class HelpCommandSystemTest extends AddressBookSystemTest {
     /**
      * Asserts that the help window isn't open.
      */
-    /*private void assertHelpWindowNotOpen() {
+    private void assertHelpWindowNotOpen() {
         assertFalse(ERROR_MESSAGE, HelpWindowHandle.isWindowPresent());
-    }*/
+    }
 
 }
