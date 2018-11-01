@@ -15,6 +15,7 @@
 
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -69,13 +70,14 @@
           </VBox>
 
           <StackPane prefWidth="340" >
-            <ImageView fitHeight="700.0" fitWidth="1200.0" pickOnBounds="true">
+            <ImageView>
               <image>
                 <Image url="@../../../../docs/images/bankAB.png" />
               </image>
             </ImageView>
           </StackPane>
         </SplitPane>
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
