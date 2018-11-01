@@ -79,6 +79,11 @@ public class EditCommand extends Command {
 
         model.updatePerson(personToEdit, editedPerson);
         model.commitAddressBook();
+
+        //Calling this method to update the changed name (if so), in the UI's status bar.
+        sessionManager.raiseSessionModifiedEvent();
+
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
