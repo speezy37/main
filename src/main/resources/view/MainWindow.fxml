@@ -69,12 +69,9 @@
           </VBox>
 
           <StackPane prefWidth="340" >
-            <padding>
-              <Insets top="5" right="5" bottom="5" left="5" />
-            </padding>
-            <ImageView fitHeight="366.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="700.0" fitWidth="1200.0" pickOnBounds="true">
               <image>
-                <Image url="@../../../../docs/images/Architecture.png" />
+                <Image url="@../../../../docs/images/bankAB.png" />
               </image>
             </ImageView>
           </StackPane>
