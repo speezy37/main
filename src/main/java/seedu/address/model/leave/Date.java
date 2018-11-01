@@ -105,16 +105,16 @@ public class Date {
         if (("02".equals(month)) || ("2".equals(month))) {
             if ((isLeapYear) && ((
                     "30".equals(day)) || ("31".equals(day)))) {
-                return false; //29 Feb is a valid leap year. 30, 31 is invalid.
+                return false;
             } else if ((!isLeapYear) && (("29".equals(day)) || ("30".equals(day)) || ("31".equals(day)))) {
-                return false; //29,30,31 Feb is a invalid in non-leap year
+                return false;
             }
         }
 
         if (("31".equals(day)) && ((
                 "04".equals(month)) || ("4".equals(month)) || ("06".equals(month)) || ("6".equals(month))
                 || ("09".equals(month)) || ("9".equals(month)) || ("11".equals(month)))) {
-            return false; // april, june, sep, nov does not have 31 days
+            return false;
         }
         return true;
     }
