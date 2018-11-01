@@ -57,12 +57,17 @@
                 <Tab fx:id="addressBookTab" text="People">
                   <StackPane fx:id="personListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
                 </Tab>
-                <Tab fx:id="leaveBookTab" text="Leaves">
-                  <StackPane fx:id="leaveListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
-                </Tab>
               </tabs>
             </TabPane>
           </VBox>
+          <VBox fx:id="leaveList" minWidth="270" prefWidth="260" SplitPane.resizableWithParent="false">
+            <TabPane fx:id="tabPane2" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+              <Tab fx:id="leaveBookTab" text="Leaves">
+                <StackPane fx:id="leaveListPanelPlaceholder" minWidth="257" maxWidth="257" VBox.vgrow="ALWAYS"/>
+              </Tab>
+            </TabPane>
+          </VBox>
+
           <StackPane prefWidth="340" >
             <padding>
               <Insets top="5" right="5" bottom="5" left="5" />

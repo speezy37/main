@@ -46,7 +46,7 @@
 }
 
 .tab-pane {
-    -fx-tab-min-width:115px;
+    -fx-tab-min-width:230px;
 }
 .tab {
     -fx-background-insets: 0 1 0 1,0,0;
