@@ -99,7 +99,7 @@ A successful login will show the NRIC and name which you have used to login, fol
 
 image::loginTextBox.png[]
 
-image::login_success_screenShot.png[width="600"]
+image::login_success_screenShot.png[width=""]
 ====
 
 ==== Checks the login status of the application: `checkloginstatus`
