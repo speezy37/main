@@ -306,7 +306,7 @@ image:filterleavecmd.png[width=""]
 
 List all leave application requested by the user with NRIC, 'T1234567E'.
 
-image:filterleave.png[width=""]
+image:filteredleave.png[width=""]
 
 ==== Delete leave application : `deleteleave`
 Delete the specified leave from leave list.
@@ -387,7 +387,7 @@ image:rejectcmd.png[width=""]
 
 Reject the leave application with INDEX 2 in the leave list.
 
-image:rejected.png[width=""]
+image:reject.png[width=""]
 
 // tag::schedule[]
 === Scheduling
