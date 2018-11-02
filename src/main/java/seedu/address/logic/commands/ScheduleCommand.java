@@ -54,10 +54,11 @@ public class ScheduleCommand extends Command {
 
         Person targetPerson = lastShownList.get(index.getZeroBased());
         /**
-         * Throws exception if user does not have the required access level and is not the logged in person
+         * Throws exception if user does not have the required access level
+         * and is not the logged in user
          */
         if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
-                && targetPerson.getNric() != sessionManager.getLoggedInSessionNric()) {
+                && !(targetPerson.getNric().equals(sessionManager.getLoggedInSessionNric()))) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }
