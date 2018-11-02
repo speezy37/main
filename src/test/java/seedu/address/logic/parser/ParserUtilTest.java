@@ -36,6 +36,7 @@ public class ParserUtilTest {
     private static final String INVALID_TIME_START = "eleven";
     private static final String INVALID_TIME_END = "nine";
     private static final String INVALID_VENUE = " ";
+    private static final String INVALID_APPROVAL = "approve ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -269,5 +270,15 @@ public class ParserUtilTest {
         Schedule expectedSchedule = new Schedule(new TimeStart(VALID_TIME_START),
                 new TimeEnd(VALID_TIME_END), new Venue(VALID_VENUE));
         assertEquals(expectedSchedule, ParserUtil.parseSchedule(VALID_TIME_START, VALID_TIME_END, VALID_VENUE));
+    }
+
+    @Test
+    public void parseApproval_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseApproval(null));
+    }
+
+    @Test
+    public void parseApproval_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseApproval(INVALID_APPROVAL));
     }
 }
