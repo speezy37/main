@@ -92,14 +92,14 @@ a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact nam
 ==== Login to the application: `login`
 Logs in to the application using a registered NRIC and password. +
 Format: `login ic/NRIC pwd/PASSWORD` +
-Example: `login ic/T1234567E pwd/Password`
+Example: `login ic/S1234567E pwd/Password`
 
 ====
 A successful login will show the NRIC and name which you have used to login, followed by the schedule of the day (if any).
 
 image::loginTextBox.png[]
 
-image::login_success_screenShot.png[width="600"]
+image::login_success_screenShot.png[width=""]
 ====
 
 ==== Checks the login status of the application: `checkloginstatus`
@@ -209,7 +209,7 @@ Deletes the employee with ID 1 in the address book.
 ====
 Sets the priority level of an employee at the specified index. +
 Format: `setplvl INDEX plvl/PRIORITY_LEVEL` +
-Example: `setplvl 4 plvl/3`
+Example: `setplvl 1 plvl/0`
 
 ====
 - A successful change of priority level should show the following message:
@@ -243,11 +243,11 @@ Alias: `sd`
 * Refer to the *Department* section at <<Appendix A: List of prefixes in the application, Appendix A>> for the appropriate input for the department name.
 ****
 
-Example: `setdepartment 2 d/Junior Management`
+Example: `setdepartment 3 d/Junior Management`
 
 image::SetDepartmentBefore.png[width=""]
 ====
-Changes the employee department with ID 2 in the address book to `Junior Management`.
+Changes the employee department with ID 3 in the address book to `Junior Management`.
 
 image::SetDepartmentAfter.png[width=""]
 ====
