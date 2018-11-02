@@ -69,8 +69,12 @@ public class PersonBuilder {
         workingRate = new WorkingRate(DEFAULT_WORKINGRATE);
         checkedInTime = new CheckedInTime(DEFAULT_CHECKEDINTIME);
         tags = new HashSet<>();
-        schedule = new Schedule(new TimeStart(DEFAULT_TIME_START), new TimeEnd(DEFAULT_TIME_END),
-                new Venue(DEFAULT_VENUE));
+        try {
+            schedule = new Schedule(new TimeStart(DEFAULT_TIME_START), new TimeEnd(DEFAULT_TIME_END),
+                    new Venue(DEFAULT_VENUE));
+        } catch (Exception e) {
+            schedule = null;
+        }
     }
 
     /**

@@ -108,6 +108,12 @@ public class SampleDataUtil {
      * Returns a Schedule containing the given timeStart, timeEnd and venue.
      */
     public static Schedule getSchedule(String timeStart, String timeEnd, String venue) {
-        return new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
+        Schedule schedule;
+        try {
+            schedule = new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
+        } catch (Exception e) {
+            return null;
+        }
+        return schedule;
     }
 }
