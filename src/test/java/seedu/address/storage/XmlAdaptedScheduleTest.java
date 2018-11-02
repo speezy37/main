@@ -13,7 +13,7 @@ import seedu.address.testutil.Assert;
 
 public class XmlAdaptedScheduleTest {
     private static final String INVALID_TIME_START = "R@chel";
-    private static final String INVALID_TIME_END = "+651234";
+    private static final String INVALID_TIME_END = "651234";
     private static final String INVALID_VENUE = " ";
 
     private static final String VALID_TIME_START = CLEANING.getTimeStart().toString();

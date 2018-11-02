@@ -57,25 +57,25 @@ public class XmlAdaptedSchedule {
      *
      */
     public Schedule toModelType() throws IllegalValueException {
+        if (!TimeStart.isValidTimeStart(startTime)) {
+            throw new IllegalValueException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
+        }
+        final TimeStart timeStart = new TimeStart(this.startTime);
+
+        if (!TimeEnd.isValidTimeEnd(endTime)) {
+            throw new IllegalValueException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
+        }
+        final TimeEnd timeEnd = new TimeEnd(this.endTime);
+
+        if (!Venue.isValidVenue(venue)) {
+            throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);
+        }
+        final Venue venue = new Venue(this.venue);
+
         try {
-            if (!TimeStart.isValidTimeStart(startTime)) {
-                throw new IllegalValueException(TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
-            }
-            final TimeStart timeStart = new TimeStart(this.startTime);
-
-            if (!TimeEnd.isValidTimeEnd(endTime)) {
-                throw new IllegalValueException(TimeEnd.MESSAGE_TIME_END_CONSTRAINTS);
-            }
-            final TimeEnd timeEnd = new TimeEnd(this.endTime);
-
-            if (!Venue.isValidVenue(venue)) {
-                throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);
-            }
-            final Venue venue = new Venue(this.venue);
-
             return new Schedule(timeStart, timeEnd, venue);
-        } catch (NullPointerException e) {
-            return null;
+        } catch (Exception e) {
+            throw new IllegalValueException(Schedule.MESSAGE_TIME_CONSTRAINTS);
         }
     }
 

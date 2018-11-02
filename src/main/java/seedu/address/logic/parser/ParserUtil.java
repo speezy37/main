@@ -267,7 +267,14 @@ public class ParserUtil {
         }
         Venue place = new Venue(trimmedVenue);
 
-        return new Schedule(start, end, place);
+        Schedule schedule;
+        try {
+            schedule = new Schedule(start, end, place);
+        } catch (Exception e) {
+            throw new ParseException(Schedule.MESSAGE_TIME_CONSTRAINTS);
+        }
+
+        return schedule;
     }
 
     /**

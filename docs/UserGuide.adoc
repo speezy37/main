@@ -389,9 +389,9 @@ Reject the leave application with INDEX 2 in the leave list.
 
 image:rejected.png[width=""]
 
+// tag::schedule[]
 === Scheduling
 
-// tag::schedule[]
 ==== List schedule: `schedule`
 
 List schedule for the employee. +

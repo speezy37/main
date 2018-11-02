@@ -57,8 +57,16 @@ public class ScheduleBuilder {
         return this;
     }
 
-
+    /**
+     *
+     * Build a {@code Schedule} object.
+     * Returns null if Schedule is not appropriate.
+     */
     public Schedule build() {
-        return new Schedule(timeStart, timeEnd, venue);
+        try {
+            return new Schedule(timeStart, timeEnd, venue);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
