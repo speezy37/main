@@ -198,7 +198,6 @@ public abstract class AddressBookSystemTest {
         getPersonListPanel().navigateToCard(getPersonListPanel().getSelectedCardIndex());
 
         String selectedCardName = getPersonListPanel().getHandleToSelectedCard().getName();
-      
         /*URL expectedUrl;
         try {
             expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL);
