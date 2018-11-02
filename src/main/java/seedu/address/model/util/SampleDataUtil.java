@@ -37,7 +37,7 @@ public class SampleDataUtil {
                 new Address("AB Company Office, Singapore"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime("18:00:00"),
                 getTagSet("HighestAdmin", "S1230000E", "Password"),
-                getSchedule("1300", "1400", "Level 5")),
+                getSchedule("1300", "1400", "IT Lab")),
 
             new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@abbank-sg.com"), new Department("Top Management"),
@@ -108,6 +108,12 @@ public class SampleDataUtil {
      * Returns a Schedule containing the given timeStart, timeEnd and venue.
      */
     public static Schedule getSchedule(String timeStart, String timeEnd, String venue) {
-        return new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
+        Schedule schedule;
+        try {
+            schedule = new Schedule(new TimeStart(timeStart), new TimeEnd(timeEnd), new Venue(venue));
+        } catch (Exception e) {
+            return null;
+        }
+        return schedule;
     }
 }
