@@ -479,7 +479,7 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 ====
 * Does not require the user to log in before using the command.
 ====
-Shows the sorted list of the employees or departments in the address book.
+Sorts the employees or departments of the current list in sorted order.
 The list can be sorted in ascending or descending order. +
 Format: `sort FIELD ORDER`
 
