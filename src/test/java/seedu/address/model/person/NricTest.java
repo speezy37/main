@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -37,5 +39,28 @@ public class NricTest {
         assertTrue(Nric.isValidNric("F1234567I"));
         assertTrue(Nric.isValidNric("G1234567E"));
         assertTrue(Nric.isValidNric("T1234000E"));
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        Nric nric = new Nric("S1234567E");
+        int expectedHash = nric.hashCode();
+        assertEquals(nric.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentObject_equals() {
+        Nric nric = new Nric("S1234567E");
+        int expectedHash = nric.hashCode();
+        Nric sameNric = new Nric("S1234567E");
+        assertEquals(sameNric.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentValues_notEquals() {
+        Nric nric = new Nric("S1234567E");
+        int expectedHash = nric.hashCode();
+        Nric differentNric = new Nric("F1234567I");
+        assertNotEquals(differentNric.hashCode(), expectedHash);
     }
 }

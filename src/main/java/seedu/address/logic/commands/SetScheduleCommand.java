@@ -69,10 +69,10 @@ public class SetScheduleCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         /**
          * Throws exception if user does not have the required access level
-         * or the login user is not the modified user.
+         * and the login user is not the modified user.
          */
         if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.ADMINISTRATOR)
-                && personToEdit.getNric() != sessionManager.getLoggedInSessionNric()) {
+                && !(personToEdit.getNric().equals(sessionManager.getLoggedInSessionNric()))) {
             throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
                     PriorityLevelEnum.ADMINISTRATOR));
         }

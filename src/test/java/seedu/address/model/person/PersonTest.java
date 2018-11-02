@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -97,5 +99,28 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        Person person = new PersonBuilder().build();
+        int expectedHash = person.hashCode();
+        assertEquals(person.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentObject_notEquals() {
+        Person person = new PersonBuilder().build();
+        int expectedHash = person.hashCode();
+        Person samePerson = new PersonBuilder().build();
+        assertNotEquals(samePerson.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentValues_notEquals() {
+        Person person = new PersonBuilder().build();
+        int expectedHash = person.hashCode();
+        Person differentPerson = new PersonBuilder(ALICE).build();
+        assertNotEquals(differentPerson.hashCode(), expectedHash);
     }
 }

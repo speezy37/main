@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -37,5 +39,28 @@ public class DepartmentTest {
         assertTrue(Department.isValidDepartment("junior Management")); // alphabets only
         assertTrue(Department.isValidDepartment("Junior Management")); // with capital letters
         assertTrue(Department.isValidDepartment("First Junior Management")); // long names
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        Department department = new Department("Junior Management");
+        int expectedHash = department.hashCode();
+        assertEquals(department.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentObject_equals() {
+        Department department = new Department("Junior Management");
+        int expectedHash = department.hashCode();
+        Department sameDepartment = new Department("Junior Management");
+        assertEquals(sameDepartment.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentValues_notEquals() {
+        Department department = new Department("Junior Management");
+        int expectedHash = department.hashCode();
+        Department differentDepartment = new Department("Senior Management");
+        assertNotEquals(differentDepartment.hashCode(), expectedHash);
     }
 }

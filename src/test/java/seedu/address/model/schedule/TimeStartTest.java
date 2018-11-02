@@ -1,6 +1,8 @@
 package seedu.address.model.schedule;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -36,5 +38,28 @@ public class TimeStartTest {
 
         // valid start time
         assertTrue(TimeStart.isValidTimeStart("1500")); // long address
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        TimeStart timeStart = new TimeStart("0900");
+        int expectedHash = timeStart.hashCode();
+        assertEquals(timeStart.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentObject_equals() {
+        TimeStart timeStart = new TimeStart("0900");
+        int expectedHash = timeStart.hashCode();
+        TimeStart sameTimeStart = new TimeStart("0900");
+        assertEquals(sameTimeStart.hashCode(), expectedHash);
+    }
+
+    @Test
+    public void hashCode_differentValues_notEquals() {
+        TimeStart timeStart = new TimeStart("0900");
+        int expectedHash = timeStart.hashCode();
+        TimeStart differentTimeStart = new TimeStart("1200");
+        assertNotEquals(differentTimeStart.hashCode(), expectedHash);
     }
 }

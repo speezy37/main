@@ -13,7 +13,8 @@ import java.time.DateTimeException;
  */
 public class Date {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format (DD/MM/YYYY) or date has passed.";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format (DD/MM/YYYY) / date has passed / invalid "
+            + "calendar date.";
 
     public final String date;
 
@@ -54,6 +55,10 @@ public class Date {
             return false;
         }
 
+        if (!checkValidCalendarDate(date)) {
+            return false;
+        }
+
         try {
             if (new SimpleDateFormat("dd/MM/yyyy").parse(date).before(new java.util.Date())) {
                 return false;
@@ -81,6 +86,37 @@ public class Date {
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    /**
+     * Check if date is a valid date on the Calendar.
+     */
+    public static boolean checkValidCalendarDate (String inputDate) {
+
+        String[] date = inputDate.split("/");
+
+        String day = date[0];
+        String month = date[1];
+        String year = date[2];
+
+        boolean isLeapYear = ((Integer.valueOf(year) % 4 == 0)
+                && (Integer.valueOf(year) % 100 != 0) || (Integer.valueOf(year) % 400 == 0));
+
+        if (("02".equals(month)) || ("2".equals(month))) {
+            if ((isLeapYear) && ((
+                    "30".equals(day)) || ("31".equals(day)))) {
+                return false;
+            } else if ((!isLeapYear) && (("29".equals(day)) || ("30".equals(day)) || ("31".equals(day)))) {
+                return false;
+            }
+        }
+
+        if (("31".equals(day)) && ((
+                "04".equals(month)) || ("4".equals(month)) || ("06".equals(month)) || ("6".equals(month))
+                || ("09".equals(month)) || ("9".equals(month)) || ("11".equals(month)))) {
+            return false;
+        }
+        return true;
     }
 
 }

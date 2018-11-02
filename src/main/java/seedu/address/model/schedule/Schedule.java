@@ -4,20 +4,24 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents a Schedule of a Person in address book.
  */
 public class Schedule {
+    public static final String MESSAGE_TIME_CONSTRAINTS =
+            "Start Time and End Time should not be the same";
+
     private TimeStart timeStart;
     private TimeEnd timeEnd;
     private Venue venue;
 
-    public Schedule() {
-    }
-
-
-    public Schedule(TimeStart timeStart, TimeEnd timeEnd, Venue venue) {
+    public Schedule(TimeStart timeStart, TimeEnd timeEnd, Venue venue) throws CommandException {
         requireAllNonNull(timeStart, timeEnd, venue);
+        if (!isValidSchedule(timeStart, timeEnd)) {
+            throw new CommandException(MESSAGE_TIME_CONSTRAINTS);
+        }
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.venue = venue;
@@ -33,6 +37,10 @@ public class Schedule {
 
     public Venue getVenue() {
         return venue;
+    }
+
+    public static boolean isValidSchedule(TimeStart timeStart, TimeEnd timeEnd) {
+        return !timeStart.toString().equals(timeEnd.toString());
     }
 
     @Override
@@ -67,4 +75,5 @@ public class Schedule {
                 .append(getVenue());
         return builder.toString();
     }
+
 }
