@@ -122,7 +122,7 @@ public class UniquePersonList implements Iterable<Person> {
         Comparator<Person> nameComparator = new Comparator<Person>() {
             @Override
             public int compare(Person p1, Person p2) {
-                return p1.getName().fullName.compareTo(p2.getName().fullName);
+                return p1.getName().fullName.compareToIgnoreCase(p2.getName().fullName);
             }
         };
 
@@ -134,7 +134,7 @@ public class UniquePersonList implements Iterable<Person> {
             public int compare(Person p1, Person p2) {
                 String x1 = p1.getDepartment().fullDepartment;
                 String x2 = p2.getDepartment().fullDepartment;
-                int sComp = x1.compareTo(x2);
+                int sComp = x1.compareToIgnoreCase(x2);
 
                 if (sComp != 0) {
                     return sComp;
@@ -142,7 +142,7 @@ public class UniquePersonList implements Iterable<Person> {
 
                 String x3 = p1.getName().fullName;
                 String x4 = p2.getName().fullName;
-                return x3.compareTo(x4);
+                return x3.compareToIgnoreCase(x4);
             }
         };
 

@@ -17,7 +17,7 @@ public class Department {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String DEPARTMENT_VALIDATION_REGEX = "(\\p{Alpha}+ )+Management";
+    public static final String DEPARTMENT_VALIDATION_REGEX = "([a-zA-Z ]+)Management";
 
     public final String fullDepartment;
 
