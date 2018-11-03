@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -113,6 +114,13 @@ public class StorageManager extends ComponentManager implements Storage {
         leaveListStorage.saveLeaveList(leaveList, filePath);
     }
 
+    /**
+     * Deletes the AddressBook as specified in the UserPrefs
+     */
+    @Override
+    public void deleteAddressBook() {
+        addressBookStorage.deleteAddressBook();
+    }
 
     @Override
     @Subscribe

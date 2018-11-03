@@ -322,4 +322,12 @@ public class ParserUtil {
         }
         return new WorkingRate(trimmedWorkingRate);
     }
+
+
+    //=========================== CONDITION CHECKERS ================================================
+    public static boolean hasOnlyOnePrefixOfSpecifiedType(String userInput, Prefix... prefixes) {
+
+        //return argument.indexOf(prefix) == argument.lastIndexOf(prefix);
+        return false;
+    }
 }
