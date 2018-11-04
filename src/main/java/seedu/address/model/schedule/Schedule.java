@@ -43,6 +43,10 @@ public class Schedule {
         return !timeStart.toString().equals(timeEnd.toString());
     }
 
+    public boolean isNextDay() {
+        return (Integer.parseInt(this.timeStart.toString()) > Integer.parseInt(this.timeEnd.toString()));
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -70,8 +74,11 @@ public class Schedule {
         builder.append("Start Time:\t")
                 .append(getTimeStart())
                 .append("\nEnd Time:\t\t")
-                .append(getTimeEnd())
-                .append("\nVenue:\t\t")
+                .append(getTimeEnd());
+        if (isNextDay()) {
+            builder.append(" (next day)");
+        }
+        builder.append("\nVenue:\t\t")
                 .append(getVenue());
         return builder.toString();
     }
