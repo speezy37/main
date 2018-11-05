@@ -13,11 +13,21 @@ Bank Address Book (BankAB) is an employee management application. You can use Ba
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement 1*: implemented *user account and commands.*
+** What it does: This allows all users to have a unique account to login and perform functions that are essential for
+ work purpose.
+** Justification: This feature is a core component of the product as certain functions (such as leave application),
+require user authentication.
+** Highlights: This enhancement is challenging as we need to modify a major portion of existing source codes and test
+ codes, owing to the fact that the newly added NRIC parameter is unique and other existing fields, which are initially
+ unique, are now not.
+
+ * *Major enhancement 2*: implemented *priority level and commands.*
+ ** What it does: All user accounts will have a priority level, which will allow/restrict them to functions that
+ require an elevated user to do so.
+ ** Justification: This feature is also a core component and complements the implementation of user accounts, as some
+  features (e.g.: Approving of leaves), require someone of a senior rank to do so. This will prevent users from
+  potentially abusing company resources and product functions.
 
 * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
 
