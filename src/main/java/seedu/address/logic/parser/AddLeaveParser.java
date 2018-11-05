@@ -33,6 +33,10 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
+        if (!didPrefixAppearOnlyOnce(args, PREFIX_DATE.toString())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
+        }
+
         EmployeeId dummyNric = ParserUtil.parseEmployeeId("F9999999P");
         PriorityLevel dummypriorityLevel = ParserUtil.parsePriorityLevel("1");
 
@@ -50,6 +54,13 @@ public class AddLeaveParser implements Parser<AddLeaveCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks whether prefixes appeared more than once within the argument
+     */
+    public boolean didPrefixAppearOnlyOnce(String argument, String prefix) {
+        return argument.indexOf(prefix) == argument.lastIndexOf(prefix);
     }
 
 }
