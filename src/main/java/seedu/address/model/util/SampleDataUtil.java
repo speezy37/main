@@ -37,7 +37,7 @@ public class SampleDataUtil {
                 new Address("AB Company Office, Singapore"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
                 getTagSet("HighestAdmin", "S1230000E", "Password"),
-                getSchedule("1300", "1400", "IT Lab")),
+                getSchedule("2200", "0100", "Server Room")),
 
             new Person(new Name("Alex Yeoh"), new Nric("S1234567E"), new Password("Password"), new Phone("87438807"),
                 new Email("alexyeoh@abbank-sg.com"), new Department("Top Management"),
@@ -69,7 +69,7 @@ public class SampleDataUtil {
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
                 getTagSet("family"),
-                getSchedule("0900", "1800", "Toilet")),
+                getSchedule("2200", "0800", "Main Door")),
 
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
                 new Phone("92492021"), new Email("irfan@abbank-sg.com"), new Department("Junior Management"),

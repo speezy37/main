@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.Test;
 
 import seedu.address.logic.commands.SetScheduleCommand;
+import seedu.address.model.schedule.TimeStart;
 
 public class SetScheduleCommandParserTest {
 
@@ -51,9 +52,13 @@ public class SetScheduleCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+
+        // empty parameters, show error message on first parameter (TimeStart)
+        assertParseFailure(parser, "1 " + EMPTY_SCHEDULE, TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidValue_failure() {
+
     }
 }
