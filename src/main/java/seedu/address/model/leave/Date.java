@@ -13,8 +13,8 @@ import java.time.DateTimeException;
  */
 public class Date {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format (DD/MM/YYYY) / invalid date due " +
-            "to today's date or date has passed / invalid calendar date.";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Wrong date format (DD/MM/YYYY) / invalid date due "
+            + "to today's date or date has passed / invalid calendar date.";
 
     public final String date;
 
