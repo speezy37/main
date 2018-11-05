@@ -507,7 +507,7 @@ The result of `checkCommand` execution is encapsulated as a `CommandResult` obje
 The sequence diagram below demonstrates the interaction within the `Logic` component of `CheckCommand`:
 
 .Sequence diagram of CheckCommand
-image::checkCommandSequenceDiagram.png[width="800"]
+image::CheckCommandSequenceDiagram.png[width="800"]
 // end::checkinout[]
 
 // tag::schedule[]
