@@ -7,6 +7,7 @@ import seedu.address.model.person.password.Password;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 
+//@@author jylee-git
 /**
  * Public API for Session, which manages the user login into the application.
  */
@@ -46,4 +47,8 @@ public interface Session {
      * @throws CommandException if user's not logged in.
      */
     boolean hasSufficientPriorityLevelForThisSession(PriorityLevelEnum minimumPriorityLevel) throws CommandException;
+    /**
+     * Returns true if the logged in Priority Level matches any of the stated plvlEnums in the input parameter(s).
+     */
+    boolean containsAnyOfThesePriorityLevels(PriorityLevelEnum... plvlEnums);
 }

@@ -13,6 +13,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.session.SessionManager;
 
+//@@author jylee-git
 /**
  * Resets the application, deleting data/addressBook.xml,
  *  then exits the program.
