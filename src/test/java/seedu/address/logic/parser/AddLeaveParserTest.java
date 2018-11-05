@@ -35,7 +35,7 @@ public class AddLeaveParserTest {
 
     @Test
     public void parse_extraPrefix_failure() {
-        String addLeaveCommand = "1 " + CliSyntax.PREFIX_DATE + "20/03/2020 "
+        String addLeaveCommand = CliSyntax.PREFIX_DATE + "20/03/2020 "
                 + CliSyntax.PREFIX_DATE + "21/02/2020";
         assertParseFailure(parser, addLeaveCommand,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
