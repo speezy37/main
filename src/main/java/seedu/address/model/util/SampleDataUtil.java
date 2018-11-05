@@ -44,7 +44,7 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"),
+                getTagSet("ADMINISTRATOR", "S1234567E", "Password"),
                 getSchedule("1300", "1400", "Level 5")),
 
             new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
@@ -52,23 +52,22 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("colleagues", "friends", "MANAGER", "T1234567E", "Password"),
+                getTagSet("MANAGER", "T1234567E", "Password"),
                 getSchedule("1100", "1600", "Level 4")),
 
             new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
-                new Phone("93210283"), new Email("charlotte@abbank-sg.com"), new Department("Middle Management"),
+                new Phone("93210283"), new Email("charlotte@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
-                getTagSet("neighbours"),
-                getSchedule("1000", "1700", "Counter 1")),
+                getTagSet("Intern"), null),
 
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("family"),
+                getTagSet("Intern"),
                 getSchedule("2200", "0800", "Main Door")),
 
             new Person(new Name("Irfan Ibrahim"), new Nric("S8570520Q"), new Password("NeuEr2018"),
@@ -76,14 +75,14 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
-                getTagSet("classmates"), null),
+                getTagSet("Intern"), null),
 
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("colleagues"), null)
+                getTagSet("Intern"), null)
         };
     }
 
