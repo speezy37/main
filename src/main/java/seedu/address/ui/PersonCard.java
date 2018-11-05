@@ -55,8 +55,7 @@ public class PersonCard extends UiPart<Region> {
         mode.setText(person.getMode().value);
         if (person.getMode().value.equals("in")) {
             mode.setStyle("-fx-background-color: #0fc425");
-        }
-        else {
+        } else {
             mode.setStyle("-fx-background-color: #c40f0f");
         }
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
