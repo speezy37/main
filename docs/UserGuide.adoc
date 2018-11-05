@@ -511,7 +511,6 @@ Format: `sort FIELD ORDER`
 This operation only supports the following fields and orders
 
 * `FIELD`: `name` and `department`
-
 * `ORDER`: `asc` and `desc`
 ====
 
@@ -545,7 +544,10 @@ Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
 Alias: `ld` +
 Example:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0f451d81052849900681432f6134e9dd1a272099
 * `listdepartment`
 
 image::ListDepartmentBefore.png[width=""]
