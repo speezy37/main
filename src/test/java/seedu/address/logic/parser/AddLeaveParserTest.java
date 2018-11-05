@@ -31,8 +31,14 @@ public class AddLeaveParserTest {
         // invalid date
         assertParseFailure(parser, INVALID_DATE_DESC,
                 Date.MESSAGE_DATE_CONSTRAINTS);
+    }
 
-
+    @Test
+    public void parse_extraPrefix_failure() {
+        String setDepartmentCommand = "1 " + CliSyntax.PREFIX_DATE + "20/03/2020 "
+                + CliSyntax.PREFIX_DEPARTMENT + "21/02/2020";
+        assertParseFailure(parser, setDepartmentCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
     }
 
 }
