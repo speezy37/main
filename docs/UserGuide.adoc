@@ -544,10 +544,7 @@ Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
 Alias: `ld` +
 Example:
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f451d81052849900681432f6134e9dd1a272099
 * `listdepartment`
 
 image::ListDepartmentBefore.png[width=""]
@@ -651,10 +648,10 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 
 ==== Check in/out working hours: `check`
 Updates check in/out status for employees. +
-Format: `check ic/NRIC pwd/PASSWORD m/IN-OUT` +
+Format: `check m/IN-OUT` +
 Examples: +
 
-* `check ic/S1234567E pwd/Password m/in`
+* `check m/in`
 ====
 User checked in:
 
@@ -669,7 +666,7 @@ image::checkedIn.PNG[width="700"]
 
 ====
 
-* `check ic/S1234567E pwd/Password m/out`
+* `check m/out`
 
 ====
 
@@ -751,7 +748,7 @@ There is no need to save manually.
 •	*<<Viewing help : `help`, Help>>*: `help`
 •	*<<Selecting a person : `select`, Select the employee>>*: `select INDEX`
 •	*<<Listing entered commands : `history`, History of commands>>*: `history`
-•	*<<Check in/out working hours: `check`, Check in/out working hours>>*: `check ic/NRIC pwd/PASSWORD m/MODE`
+•	*<<Check in/out working hours: `check`, Check in/out working hours>>*: `check m/MODE`
 •	*<<Reset the application : `reset`, Reset the application>>*: `reset`
 •	*<<Exiting the program : `exit`, Exit application>>*: `exit`
 
@@ -880,7 +877,6 @@ Department names should start with a name, and ends with 'Management'.
 |
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
-- Check in/out to/from work for others
 
 |ADMINISTRATOR (1)
 |
