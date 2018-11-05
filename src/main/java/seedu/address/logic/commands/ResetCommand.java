@@ -29,8 +29,8 @@ public class ResetCommand extends Command {
         if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
-        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.IT_UNIT)) {
-            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+        if (!sessionManager.containsAnyOfThesePriorityLevels(PriorityLevelEnum.IT_UNIT)) {
+            throw new CommandException(String.format(PriorityLevel.NOTOF_CERTAIN_PRIORITYLEVEL,
                     PriorityLevelEnum.IT_UNIT));
         }
         Path addressBookPath = new UserPrefs().getAddressBookFilePath();

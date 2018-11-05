@@ -21,7 +21,7 @@ import seedu.address.session.SessionManager;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
-
+//@@author jylee-git
 /**
  * Contains integration tests and unit tests for SetPriorityLevelCommand.
  */
@@ -52,11 +52,12 @@ public class SetPriorityLevelCommandTest {
 
     @Test
     public void execute_notLoggedIn_throwsCommandException() {
-        Assertions.assertThrows(CommandException.class, () -> {
+        Throwable msg = Assertions.assertThrows(CommandException.class, () -> {
             SetPriorityLevelCommand spl = new SetPriorityLevelCommand(INDEX_FIRST_PERSON,
                     new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()));
             spl.execute(model, commandHistory);
-        }, SessionManager.NOT_LOGGED_IN);
+        });
+        Assertions.assertEquals(SessionManager.NOT_LOGGED_IN, msg.getMessage());
     }
 
     /**
@@ -97,9 +98,9 @@ public class SetPriorityLevelCommandTest {
         SetPriorityLevelCommand spl = new SetPriorityLevelCommand(INDEX_FIRST_PERSON,
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()));
 
-        Assertions.assertThrows(CommandException.class, () -> spl.execute(model, commandHistory),
-                String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL, PriorityLevelEnum.ADMINISTRATOR));
-
+        Throwable msg = Assertions.assertThrows(CommandException.class, () -> spl.execute(model, commandHistory));
+        Assertions.assertEquals(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+                PriorityLevelEnum.ADMINISTRATOR), msg.getMessage());
     }
 
     @Test
@@ -111,8 +112,8 @@ public class SetPriorityLevelCommandTest {
         SetPriorityLevelCommand spl = new SetPriorityLevelCommand(INDEX_FIRST_PERSON,
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()));
 
-        Assertions.assertThrows(CommandException.class, () -> spl.execute(model, commandHistory),
-                String.format(SetPriorityLevelCommand.MESSAGE_CANNOT_EDIT_OWN_PLVL));
+        Throwable msg = Assertions.assertThrows(CommandException.class, () -> spl.execute(model, commandHistory));
+        Assertions.assertEquals(SetPriorityLevelCommand.MESSAGE_CANNOT_EDIT_OWN_PLVL, msg.getMessage());
     }
 
     /**

@@ -3,11 +3,11 @@ package seedu.address.model.prioritylevel;
 //@@author jylee-git
 /**
  * Priority level by descending order.
- * I.T. Unit highest priority, followed by administrator, followed by manager...
+ * Administrator highest priority, followed by I.T. Unit, followed by manager...
  */
 public enum PriorityLevelEnum {
-    IT_UNIT(0),
-    ADMINISTRATOR(1),
+    ADMINISTRATOR(0),
+    IT_UNIT(1),
     MANAGER(2),
     BASIC(3);
 
@@ -25,7 +25,7 @@ public enum PriorityLevelEnum {
      * Returns true if the priorityLevel value is within the defined enum range as stated above.
      */
     public static boolean isValidPriorityLevel(int test) {
-        if (test >= IT_UNIT.getPriorityLevelCode() && test <= BASIC.getPriorityLevelCode()) {
+        if (test >= ADMINISTRATOR.getPriorityLevelCode() && test <= BASIC.getPriorityLevelCode()) {
             return true;
         }
         return false;
