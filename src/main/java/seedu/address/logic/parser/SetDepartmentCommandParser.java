@@ -57,6 +57,7 @@ public class SetDepartmentCommandParser implements Parser<SetDepartmentCommand> 
      * Checks whether prefixes appeared more than once within the argument
      */
     public boolean didPrefixAppearOnlyOnce(String argument, String prefix) {
-        return argument.indexOf(prefix) == argument.lastIndexOf(prefix);
+        String precedeWhitespacePrefix = " " + prefix;
+        return argument.indexOf(precedeWhitespacePrefix) == argument.lastIndexOf(precedeWhitespacePrefix);
     }
 }
