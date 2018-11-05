@@ -13,6 +13,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.session.SessionManager;
 
+//@@author jylee-git
 /**
  * Resets the application, deleting data/addressBook.xml,
  *  then exits the program.
@@ -29,8 +30,8 @@ public class ResetCommand extends Command {
         if (!sessionManager.isLoggedIn()) {
             throw new CommandException(SessionManager.NOT_LOGGED_IN);
         }
-        if (!sessionManager.hasSufficientPriorityLevelForThisSession(PriorityLevelEnum.IT_UNIT)) {
-            throw new CommandException(String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL,
+        if (!sessionManager.containsAnyOfThesePriorityLevels(PriorityLevelEnum.IT_UNIT)) {
+            throw new CommandException(String.format(PriorityLevel.NOTOF_CERTAIN_PRIORITYLEVEL,
                     PriorityLevelEnum.IT_UNIT));
         }
         Path addressBookPath = new UserPrefs().getAddressBookFilePath();

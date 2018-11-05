@@ -155,6 +155,19 @@ public class SessionManager extends ComponentManager implements Session {
         return PriorityLevel.isPriorityLevelAtLeastOf(loggedInPriorityLevel, minimumPriorityLevel);
     }
 
+    /**
+     * Returns true if the logged in Priority Level matches any of the stated plvlEnums in the input parameter(s).
+     */
+    @Override
+    public boolean containsAnyOfThesePriorityLevels(PriorityLevelEnum... plvlEnums) {
+        for (PriorityLevelEnum plvlEnum : plvlEnums) {
+            if (PriorityLevel.isPriorityLevelEqualTo(loggedInPriorityLevel, plvlEnum)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //================================= UPDATE/DELETE KEY IN HASHMAP ==============================================
 
     /**

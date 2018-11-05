@@ -21,7 +21,7 @@ image::woonhian.png[width="150", align="left"]
 
 === Chua Chong Yu
 image::speezy37.png[width="150", align="left"]
-{empty}[https://github.com/speezy37[github]] [<<chongyu#, portfolio>>]
+{empty}[https://github.com/speezy37[github]] [<<speezy37#, portfolio>>]
 
 *Role*: Developer +
 *Responsibilities*: Code quality
@@ -30,7 +30,7 @@ image::speezy37.png[width="150", align="left"]
 
 === Nur Hafizuddin Bin Kamaruddin
 image::hafizuddin-nus.png[width="150", align="left"]
-{empty}[https://github.com/Hafizuddin-NUS[github]] [<<hafizuddin#, portfolio>>]
+{empty}[https://github.com/Hafizuddin-NUS[github]] [<<hafizuddin-nus#, portfolio>>]
 
 *Role*: Developer +
 *Responsibilities*: Documentation
@@ -39,10 +39,18 @@ image::hafizuddin-nus.png[width="150", align="left"]
 
 === Lee Jin Yao
 image::jylee-git.png[width="150", align="left"]
-{empty}[https://github.com/jylee-git[github]] [<<jinyao#, portfolio>>]
+{empty}[https://github.com/jylee-git[github]] [<<jylee-git#, portfolio>>]
 
 *Role*: Developer +
 *Responsibilities*: Scheduling and tracking
+////
+*Feature Contribution:*
+
+* **Major enhancements: **
+** Modified `Person` class to contain `Nric` `Password` and `PriorityLevel` and corresponding commands: -
+*** `login`, `logout`, `checkloginstatus`, `setprioritylevel`
+////
+
 
 '''
 

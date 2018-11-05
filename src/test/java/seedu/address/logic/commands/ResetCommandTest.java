@@ -21,11 +21,13 @@ public class ResetCommandTest {
     private Model model = new ModelManager();
 
     @Test
-    void execute_insufficientPriorityLevel_throwsCommandException() {
+    void execute_notOfThisPriorityLevel_throwsCommandException() {
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
-        Assertions.assertThrows(CommandException.class, () -> {
+        final CommandException msg = Assertions.assertThrows(CommandException.class, () -> {
             new ResetCommand().execute(model, commandHistory);
-        }, String.format(PriorityLevel.INSUFFICIENT_PRIORITY_LEVEL, PriorityLevelEnum.IT_UNIT));
+        });
+        Assertions.assertEquals(String.format(PriorityLevel.NOTOF_CERTAIN_PRIORITYLEVEL, PriorityLevelEnum.IT_UNIT),
+            msg.getMessage());
     }
 
     @Test
