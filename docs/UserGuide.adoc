@@ -21,9 +21,9 @@ By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
 Bank AddressBook (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
 This platform supports the basic daily routine of each employee such as:
 
-.  checking working schedule
-.  applying for leave application
-.  checking in and out during working hours
+*  Checking working schedule
+*  Applying for leave application
+*  Checking in and out during working hours
 
 The managers and administrators will have higher priority access level of BankAB such as changing the
 priority level of the employee and approve or reject leave requests. +
@@ -38,8 +38,7 @@ This user guide will give you step by step instruction on how you can use the fe
 +
 image::Ui.png[width="790"]
 +
-.  If the app does not contain any sample data (refer to <<.List of user accounts at first launch or upon
-reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
+.  If the app does not contain any sample data (refer to <<List of user accounts at first launch or upon reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
 .  The following table contains a sample list of persons with the respective account details when the application
 runs for the first time or when ResetCommand was executed in the previous runtime:
 
@@ -867,7 +866,7 @@ Department names should start with a name, and ends with 'Management'.
 |
 - Intern +
 - Security Guard +
-- Counter Clerk
+- Receptionist
 |
 - Edit your own particulars +
 - Apply for leave +
