@@ -741,9 +741,9 @@ There is no need to save manually.
 === Filtering/Sorting
 •	*<<Listing all persons : `list`, List employee list>>*: `list`
 •	*<<Locating persons by name: `find`, Find employee>>*: `find KEYWORD [MORE_KEYWORDS]`
-•	*<<Sort address book contacts: `sort`, Sort address book contacts>>*: `sort name asc`
+•	*<<Sort address book contacts: `sort`, Sort address book contacts>>*: `sort FIELD ORDER`
 •	*<<List department : `listdepartment`, List available departments>>*: `listdepartment`
-•	*<<Filtering department : `filterdepartment`, Filter departments>>*: `filterdepartment junior`
+•	*<<Filtering department : `filterdepartment`, Filter departments>>*: `filterdepartment KEYWORD [MORE KEYWORDS]`
 
 === Miscellaneous
 •	*<<Viewing help : `help`, Help>>*: `help`

@@ -39,6 +39,11 @@ public class SetPriorityLevelCommandParser implements Parser<SetPriorityLevelCom
                     SetPriorityLevelCommand.MESSAGE_USAGE), pe);
         }
 
+        if (ParserUtil.hasOnlyOnePrefixOfSpecifiedType(userInput, PREFIX_PRIORITYLEVEL)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetPriorityLevelCommand.MESSAGE_USAGE));
+        }
+
         PriorityLevel priorityLevel = ParserUtil.parsePriorityLevel(argMultiMap.getValue(PREFIX_PRIORITYLEVEL).get());
         return new SetPriorityLevelCommand(index, priorityLevel);
     }
