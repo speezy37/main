@@ -94,7 +94,6 @@ public class CheckCommand extends Command {
                 throw new CommandException(MESSAGE_NOT_AUTHORISED);
             }
 
-
             if (personToEdit.getMode().equals(mode)) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE, mode));
             }

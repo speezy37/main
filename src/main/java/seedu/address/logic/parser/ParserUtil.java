@@ -267,7 +267,14 @@ public class ParserUtil {
         }
         Venue place = new Venue(trimmedVenue);
 
-        return new Schedule(start, end, place);
+        Schedule schedule;
+        try {
+            schedule = new Schedule(start, end, place);
+        } catch (Exception e) {
+            throw new ParseException(Schedule.MESSAGE_TIME_CONSTRAINTS);
+        }
+
+        return schedule;
     }
 
     /**
@@ -314,5 +321,27 @@ public class ParserUtil {
             throw new ParseException(WorkingRate.MESSAGE_WORKINGRATE_CONSTRAINTS);
         }
         return new WorkingRate(trimmedWorkingRate);
+    }
+
+
+    //=========================== CONDITION CHECKERS ================================================
+
+    /**
+     * Checks and returns true if there is only one prefix of each type.
+     *
+     * WARNING: This method WILL NOT WORK for AddCommand and DeleteCommand due to address parameters accepting
+     *  input which contains string prefix of other prefixes.
+     */
+    public static boolean hasOnlyOnePrefixOfSpecifiedType(String userInput, Prefix... prefixes) throws ParseException {
+        for (Prefix prefix : prefixes) {
+            if (prefix.equals(CliSyntax.PREFIX_ADDRESS)) {
+                throw new ParseException("Exception thrown because address prefix is entered.");
+            }
+            if (userInput.indexOf(prefix.getPrefix()) == userInput.lastIndexOf(prefix.getPrefix())) {
+                return false;
+            }
+        }
+        //return argument.indexOf(prefix) == argument.lastIndexOf(prefix);
+        return true;
     }
 }

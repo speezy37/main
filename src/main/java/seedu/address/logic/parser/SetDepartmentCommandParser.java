@@ -28,6 +28,9 @@ public class SetDepartmentCommandParser implements Parser<SetDepartmentCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SetDepartmentCommand.MESSAGE_USAGE));
         }
+        if (!didPrefixAppearOnlyOnce(userInput, PREFIX_DEPARTMENT.toString())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDepartmentCommand.MESSAGE_USAGE));
+        }
 
         Index index;
 
@@ -48,5 +51,13 @@ public class SetDepartmentCommandParser implements Parser<SetDepartmentCommand> 
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks whether prefixes appeared more than once within the argument
+     */
+    public boolean didPrefixAppearOnlyOnce(String argument, String prefix) {
+        String precedeWhitespacePrefix = " " + prefix;
+        return argument.indexOf(precedeWhitespacePrefix) == argument.lastIndexOf(precedeWhitespacePrefix);
     }
 }

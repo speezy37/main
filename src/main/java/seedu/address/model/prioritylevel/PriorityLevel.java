@@ -1,10 +1,8 @@
 package seedu.address.model.prioritylevel;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.prioritylevel.PriorityLevelEnum.ADMINISTRATOR;
 import static seedu.address.model.prioritylevel.PriorityLevelEnum.BASIC;
-import static seedu.address.model.prioritylevel.PriorityLevelEnum.IT_UNIT;
-
-import seedu.address.model.person.Person;
 
 //@@author jylee-git
 /**
@@ -14,13 +12,13 @@ import seedu.address.model.person.Person;
  */
 public class PriorityLevel {
     public static final String MESSAGE_PRIORITY_CONSTRAINTS = "Priority level should be between "
-            + IT_UNIT + " (" + IT_UNIT.getPriorityLevelCode() + " - highest) and "
+            + ADMINISTRATOR + " (" + ADMINISTRATOR.getPriorityLevelCode() + " - highest) and "
             + BASIC + " (" + BASIC.getPriorityLevelCode() + " - lowest).";
 
     public static final String INSUFFICIENT_PRIORITY_LEVEL = "You must have a priority level of at least %s to perform "
             + "this operation.";
 
-    public static final String NOTOF_CERTAIN_PRIORITYLEVEL = "You need to be holding a priority level of %s to perform"
+    public static final String NOTOF_CERTAIN_PRIORITYLEVEL = "You need to be holding a priority level of %s to perform "
             + "this operation.";
 
     public final int priorityLevelCode;
@@ -33,8 +31,8 @@ public class PriorityLevel {
     /**
      * Returns if and only if the priority level of the person is equal to the {@code requiredPriority}
      */
-    public static boolean isPriorityLevelEqualTo (Person personToCheck, PriorityLevelEnum requiredPriority) {
-        return (requiredPriority.getPriorityLevelCode() == personToCheck.getPriorityLevel().priorityLevelCode);
+    public static boolean isPriorityLevelEqualTo (PriorityLevel currPlvl, PriorityLevelEnum requiredPriority) {
+        return (requiredPriority.getPriorityLevelCode() == currPlvl.priorityLevelCode);
     }
 
     /**

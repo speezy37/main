@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_END_DESC_DUSK;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_START_DESC_DAWN;
+import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_TOILET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
@@ -11,6 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.Test;
 
 import seedu.address.logic.commands.SetScheduleCommand;
+import seedu.address.model.schedule.TimeStart;
 
 public class SetScheduleCommandParserTest {
 
@@ -38,16 +40,21 @@ public class SetScheduleCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + TIME_START_DESC_DAWN, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " -5 " + TIME_START_DESC_DAWN + TIME_END_DESC_DUSK + VENUE_DESC_TOILET,
+                MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + TIME_END_DESC_DUSK, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + TIME_START_DESC_DAWN + TIME_END_DESC_DUSK + VENUE_DESC_TOILET,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+
+        // empty parameters, show error message on first parameter (TimeStart)
+        assertParseFailure(parser, "1 " + EMPTY_SCHEDULE, TimeStart.MESSAGE_TIME_START_CONSTRAINTS);
     }
 
     @Test

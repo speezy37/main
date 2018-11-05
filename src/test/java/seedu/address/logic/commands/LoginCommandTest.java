@@ -56,16 +56,18 @@ public class LoginCommandTest {
 
     @Test
     public void execute_wrongNric_throwsCommandException() {
-        Assertions.assertThrows(CommandException.class, () -> {
+        Throwable msg = Assertions.assertThrows(CommandException.class, () -> {
             new LoginCommand(WRONG_NRIC, CORRECT_PASSWORD).execute(model, commandHistory);
-        }, LoginCommand.INVALID_LOGIN_CREDENTIALS);
+        });
+        Assertions.assertEquals(LoginCommand.INVALID_LOGIN_CREDENTIALS, msg.getMessage());
     }
 
     @Test
     public void execute_wrongPassword_throwsCommandException() {
-        Assertions.assertThrows(CommandException.class, () -> {
+        Throwable msg = Assertions.assertThrows(CommandException.class, () -> {
             new LoginCommand(CORRECT_NRIC, WRONG_PASSWORD).execute(model, commandHistory);
-        }, LoginCommand.INVALID_LOGIN_CREDENTIALS);
+        });
+        Assertions.assertEquals(LoginCommand.INVALID_LOGIN_CREDENTIALS, msg.getMessage());
     }
 
     @Test
@@ -99,9 +101,10 @@ public class LoginCommandTest {
     public void execute_loginWithoutLoggingOut_throwsCommandException() {
         SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.BASIC.getPriorityLevelCode());
         try {
-            Assertions.assertThrows(CommandException.class, () -> {
+            Throwable msg = Assertions.assertThrows(CommandException.class, () -> {
                 new LoginCommand(CORRECT_NRIC, CORRECT_PASSWORD).execute(model, commandHistory);
-            }, LoginCommand.ALREADY_LOGGED_IN);
+            });
+            Assertions.assertEquals(LoginCommand.ALREADY_LOGGED_IN, msg.getMessage());
         } finally {
             SessionHelper.logoutOfSession();
         }

@@ -18,17 +18,17 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details (except schedule) are present and not null, field values are validated, immutable.
  */
 public class Person {
-    // Identity fields
+    // Personal Information
     private final Name name;
     private final Nric nric;
     private final Phone phone;
     private final Email email;
-    private final Department department;
-    private final Password password;
-    private final PriorityLevel priorityLevel;
-
-    // Data fields
     private final Address address;
+    private final Password password;
+
+    // Work related data fields
+    private final Department department;
+    private final PriorityLevel priorityLevel;
     private final Mode mode;
     private final WorkingRate workingRate;
     private final CheckedInTime checkedInTime;
@@ -36,13 +36,13 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field (except schedule & checked in time) must be present and not null
      */
     public Person(Name name, Nric nric, Password password, Phone phone, Email email, Department department,
                   PriorityLevel priorityLevel, Address address, Mode mode, WorkingRate workingRate,
                   CheckedInTime checkedInTime, Set<Tag> tags, Schedule schedule) {
         requireAllNonNull(name, nric, password, phone, email, department, priorityLevel,
-            mode, address, tags);
+            address, mode, workingRate, tags);
         this.name = name;
         this.nric = nric;
         this.password = password;
@@ -113,6 +113,7 @@ public class Person {
     public Schedule getSchedule() {
         return schedule;
     }
+
     /**
      * Returns true if both persons have the same NRIC number, which is a unique identifier.
      * This defines a weaker notion of equality between two persons.
@@ -173,8 +174,8 @@ public class Person {
                 .append(getDepartment())
                 .append("\n Priority Level: ")
                 .append(getPriorityLevel())
-                .append("\n Working rate per hour: ")
-                .append("$" + getWorkingRate())
+                .append("\n Working rate per hour: $")
+                .append(getWorkingRate())
                 .append("\n Address: ")
                 .append(getAddress())
                 .append("\n Tags: ");

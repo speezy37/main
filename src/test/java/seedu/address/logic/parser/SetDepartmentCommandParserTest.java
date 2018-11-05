@@ -32,6 +32,14 @@ public class SetDepartmentCommandParserTest {
     }
 
     @Test
+    public void parse_extraPrefix_failure() {
+        String setDepartmentCommand = "1 " + CliSyntax.PREFIX_DEPARTMENT + "Junior Management "
+                + CliSyntax.PREFIX_DEPARTMENT + "Senior Management";
+        assertParseFailure(parser, setDepartmentCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDepartmentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidIndex_failure() {
         String setDepartmentCommand = "invalid " + CliSyntax.PREFIX_DEPARTMENT
                 + "Junior Management";
