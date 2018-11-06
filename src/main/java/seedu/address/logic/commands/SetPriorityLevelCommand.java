@@ -11,8 +11,8 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.leave.NricContainsKeywordsPredicate;
@@ -37,10 +37,10 @@ public class SetPriorityLevelCommand extends Command {
 
     public static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
     public static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
+    private static String nric;
 
     private final Index index;
     private final PriorityLevel priorityLevel;
-    private static String nric;
 
     public SetPriorityLevelCommand (Index index, PriorityLevel priorityLevel) {
         requireAllNonNull (index, priorityLevel);
