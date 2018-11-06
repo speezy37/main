@@ -132,9 +132,7 @@ public class DeleteLeaveCommandTest {
 
         SessionHelper.logoutOfSession();
         SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 3);
-        
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
-
         assertCommandFailure(deleteLeaveCommand, model, commandHistory,
                 DeleteLeaveCommand.MESSAGE_INVALID_LEAVE_DELETE);
     }
