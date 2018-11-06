@@ -40,7 +40,8 @@ public class EditLeaveCommand extends Command {
     public static final String MESSAGE_INVALID_LEAVE_APPROVAL =
             "Not authorized to approve/reject this leave application.";
     public static final String MESSAGE_INVALID_LEAVE_APPROVAL2 =
-            "Not authorized to approve/reject this leave application only another ADMIN can approve your leave.";
+            "Not authorized to approve/reject your leave application. " +
+                    "Only another Administrator can approve your leave.";
 
     private final Index index;
     private final EditLeaveDescriptor editLeaveDescriptor;

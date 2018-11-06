@@ -65,7 +65,7 @@ public class DeleteLeaveCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
 
