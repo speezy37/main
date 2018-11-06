@@ -15,8 +15,8 @@ import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.junit.jupiter.api.Assertions;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
