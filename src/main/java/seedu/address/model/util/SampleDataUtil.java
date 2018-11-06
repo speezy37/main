@@ -5,7 +5,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.LeaveList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLeaveList;
+import seedu.address.model.leave.Approval;
+import seedu.address.model.leave.Date;
+import seedu.address.model.leave.EmployeeId;
+import seedu.address.model.leave.Leave;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CheckedInTime;
 import seedu.address.model.person.Department;
@@ -86,6 +92,23 @@ public class SampleDataUtil {
                 getTagSet(), null)
         };
     }
+
+    public static Leave[] getSampleLeaves() {
+        return new Leave[]{
+                new Leave(new EmployeeId("S1230000E"), new Date("20/02/2021"),
+                        new Approval("PENDING"), new PriorityLevel(0))
+        };
+    }
+
+    public static ReadOnlyLeaveList getSampleLeaveList() {
+        LeaveList sample = new LeaveList();
+        for (Leave sampleLeave : getSampleLeaves()) {
+            sample.addRequest(sampleLeave);
+        }
+        return sample;
+    }
+
+
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
