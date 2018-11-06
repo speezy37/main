@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LEAVES;
-import static seedu.address.model.prioritylevel.PriorityLevelEnum.ADMINISTRATOR;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,13 +77,13 @@ public class EditLeaveCommand extends Command {
         Leave leaveToEdit = lastShownList.get(index.getZeroBased());
         Leave editedLeave = createEditedLeave(leaveToEdit, editLeaveDescriptor);
 
-        if(leaveToEdit.getPriorityLevel().priorityLevelCode == 0
+        if (leaveToEdit.getPriorityLevel().priorityLevelCode == 0
                 && leaveToEdit.getEmployeeId().nric == sessionManager.getLoggedInSessionNric().nric) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL2);
-        } else if (leaveToEdit.getPriorityLevel().priorityLevelCode!=0
+        } else if (leaveToEdit.getPriorityLevel().priorityLevelCode != 0
                 && sessionManager.getLoggedInPriorityLevel().priorityLevelCode
                 >= leaveToEdit.getPriorityLevel().priorityLevelCode) {
-                    throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
+            throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
 
         if (leaveToEdit.equals(editedLeave)) {
