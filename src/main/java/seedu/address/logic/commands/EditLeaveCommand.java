@@ -158,13 +158,6 @@ public class EditLeaveCommand extends Command {
             setPriorityLevel(priorityLevel);
         }
 
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isApprovalFieldEdited() {
-            return CollectionUtil.isAnyNonNull(approval);
-        }
-
         public void setNric(EmployeeId nric) {
             this.nric = nric;
         }
