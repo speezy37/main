@@ -140,8 +140,8 @@ public class ParserUtil {
         }
         return new Mode(trimmedMode);
     }
+    //@@author
 
-    //@@author Woonhian
     /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
