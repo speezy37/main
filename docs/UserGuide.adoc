@@ -712,6 +712,7 @@ There is no need to save manually.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
 
+//tag::Command_Summary[]
 == Command Summary
 
 === Personal User Account
@@ -752,8 +753,9 @@ There is no need to save manually.
 •	*<<Check in/out working hours: `check`, Check in/out working hours>>*: `check ic/NRIC pwd/PASSWORD m/MODE`
 •	*<<Reset the application : `reset`, Reset the application>>*: `reset`
 •	*<<Exiting the program : `exit`, Exit application>>*: `exit`
+//end::Command_Summary[]
 
-//tag::jylee-git[]
+//tag::jylee-git_appendixA[]
 == Appendix A: List of prefixes in the application
 .List of prefixes used for employee
 |===
@@ -823,6 +825,7 @@ Department names should start with a name, and ends with 'Management'.
 | Tag names should be alphanumeric
 | t/Admin t/Boss t/OweMeMoney
 |===
+//end::jylee-git_appendixA[]
 
 .List of prefixes used for schedule
 |===
@@ -856,7 +859,7 @@ Department names should start with a name, and ends with 'Management'.
 
 |===
 
-
+//tag::jylee-git_appendixB[]
 == Appendix B: Privileges in accordance to priority level
 .Priority level and its' privileges
 |===
@@ -880,7 +883,14 @@ Department names should start with a name, and ends with 'Management'.
 - Approve/Reject/Delete leave of users with lower priority level +
 - Check in/out to/from work for others
 
-|ADMINISTRATOR (1)
+|I.T. UNIT (1)
+|
+- I.T. Department
+|
+- All privileges of a MANAGER Priority level +
+- Reset the entire AddressBook into the default address book. (*exclusive to users holding this priority level*)
+
+|ADMINISTRATOR (0)
 |
 - Branch Manager +
 - Bank Executive +
@@ -889,12 +899,5 @@ Department names should start with a name, and ends with 'Management'.
 - Add and delete employees from the AddressBook +
 - Set the priority level of all employees +
 - Set Department of all employees
-
-|I.T. UNIT (0)
-|
-- IT Department
-|
-- All privileges of a ADMINISTRATOR Priority level +
-- Reset the entire AddressBook into the default address book.
 |===
-//end::jylee-git[]
+//end::jylee-git_appendixB[]

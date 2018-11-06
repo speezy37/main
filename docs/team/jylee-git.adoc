@@ -60,11 +60,11 @@ https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60], https://github.com/C
 |===
 
 //include whatever you did here
+include::../UserGuide.adoc[tag=Command_Summary]
 
-====
-include::../UserGuide.adoc[tag=jylee-git]
-====
+include::../UserGuide.adoc[tag=jylee-git_appendixA]
 
+include::../UserGuide.adoc[tag=jylee-git_appendixB]
 
 
 == Contributions to the Developer Guide
@@ -74,7 +74,4 @@ include::../UserGuide.adoc[tag=jylee-git]
 |===
 
 //include whatever you did here
-
-====
-include::../DeveloperGuide.adoc[tag=jylee-git]
-====
+include::../DeveloperGuide.adoc[tag=jylee-git_SessionDesign]
