@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showLeaveAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,6 +35,7 @@ import systemtests.SessionHelper;
 public class DeleteLeaveCommandTest {
 
     private Model model = new ModelManager(getTypicalLeaveList(), new UserPrefs());
+    private Model model2 = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Before
@@ -121,6 +124,19 @@ public class DeleteLeaveCommandTest {
         model.updateFilteredLeaveList(p -> false);
 
         assertTrue(model.getFilteredLeaveList().isEmpty());
+    }
+
+    @Test
+    public void execute_invalidInLeaveDelete_throwsCommandException() throws CommandException {
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+
+        SessionHelper.logoutOfSession();
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 3);
+
+        Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
+
+        assertCommandFailure(deleteLeaveCommand, model, commandHistory, DeleteLeaveCommand.MESSAGE_INVALID_LEAVE_DELETE);
     }
 
     /**
