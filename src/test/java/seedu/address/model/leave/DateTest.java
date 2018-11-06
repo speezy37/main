@@ -39,6 +39,12 @@ public class DateTest {
         Assert.assertThrows(NumberFormatException.class, () -> Date.isValidDate("31//2019")); // empty month
         Assert.assertThrows(ArrayIndexOutOfBoundsException.class, () -> Date.isValidDate("31/12/")); // empty year
 
+        //invalid date due to leap years
+        assertFalse(Date.isValidDate("30/02/2020"));
+
+        //invalid date in feb
+        assertFalse(Date.isValidDate("30/02/2019"));
+
         // invalid date with negative parameters
         assertFalse(Date.isValidDate("-1/12/2019")); // negative day
         assertFalse(Date.isValidDate("31/-1/2019")); // negative month
@@ -53,6 +59,9 @@ public class DateTest {
 
         // valid date
         assertTrue(Date.isValidDate("31/12/2020"));
+
+        //invalid 31st date
+        assertFalse(Date.isValidDate("31/04/2019"));
     }
 
     @Test
