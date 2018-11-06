@@ -17,8 +17,12 @@ public class TypicalLeave {
             .withApproval("PENDING").withPriorityLevel(1).build();
     public static final Leave REQUEST_2 = new LeaveBuilder().withNric("S1234597A").withDate("01/10/2020")
             .withApproval("PENDING").withPriorityLevel(2).build();
-    public static final Leave REQUEST_5 = new LeaveBuilder().withNric("S1234567A").withDate("01/02/2020")
-            .withApproval("PENDING").withPriorityLevel(0).build();
+    public static final Leave REQUEST_5 = new LeaveBuilder().withNric("S1234567A").withDate("02/02/2020")
+            .withApproval("APPROVED").withPriorityLevel(0).build();
+    public static final Leave REQUEST_6 = new LeaveBuilder().withNric("S1234567A").withDate("03/02/2020")
+            .withApproval("REJECTED").withPriorityLevel(0).build();
+    public static final Leave REQUEST_7 = new LeaveBuilder().withNric("T2457888E").withDate("03/02/2020")
+            .withApproval("REJECTED").withPriorityLevel(0).build();
 
     //Manually add
     public static final Leave REQUEST_3 = new LeaveBuilder().withNric("S1234591A").withDate("01/10/2020")
@@ -41,7 +45,7 @@ public class TypicalLeave {
     }
 
     public static List<Leave> getTypicalLeaves() {
-        return new ArrayList<>(Arrays.asList(REQUEST_1, REQUEST_2));
+        return new ArrayList<>(Arrays.asList(REQUEST_1, REQUEST_2, REQUEST_5, REQUEST_6, REQUEST_7));
     }
 
 }
