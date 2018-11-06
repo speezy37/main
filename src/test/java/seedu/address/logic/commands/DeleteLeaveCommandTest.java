@@ -127,17 +127,16 @@ public class DeleteLeaveCommandTest {
     }
 
     @Test
-    public void execute_invalidInLeaveDelete_throwsCommandException() throws CommandException {
+    public void execute_invalidInLeaveDelete_throwsCommandException() {
         showLeaveAtIndex(model, INDEX_FIRST_PERSON);
 
         SessionHelper.logoutOfSession();
         SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 3);
-
-        Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
+        
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
 
-        assertCommandFailure(deleteLeaveCommand, model, commandHistory
-                , DeleteLeaveCommand.MESSAGE_INVALID_LEAVE_DELETE);
+        assertCommandFailure(deleteLeaveCommand, model, commandHistory,
+                DeleteLeaveCommand.MESSAGE_INVALID_LEAVE_DELETE);
     }
 
     /**
