@@ -17,6 +17,7 @@ import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
 import seedu.address.session.SessionManager;
 
+//@@author Woonhian
 /**
  * This command sets the department of other users.
  */

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
+//@@author Woonhian
 public class DepartmentTest {
 
     @Test
