@@ -29,6 +29,7 @@ require user authentication.
   features (e.g.: Approving of leaves), require someone of a senior rank to do so. This will prevent users from
   potentially abusing company resources and product functions.
 
+* *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=jylee-git[Code Dashboard]
 * *Minor enhancement*: added a reset command to reset the Bank Address Book to the original state at first start
 
 * *Other contributions*:
@@ -38,7 +39,7 @@ require user authentication.
 
 ** Enhancements to existing features:
 *** Added a field that shows the user who is logged in at the status footer of the UI
-*** Made significant changes to priority level ranking following the feedback received from the practical exam 1: https://github.com/CS2113-AY1819S1-T16-3/main/pull/134[#134]
+*** Made significant changes to priority level ranking following the feedback received from the first practical exam: https://github.com/CS2113-AY1819S1-T16-3/main/pull/134[#134]
 
 ** Documentation:
 *** Re-arranged summary of commands in the user guide to make them more organized: https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89]
