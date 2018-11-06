@@ -232,6 +232,8 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in xml format and read it back.
 
+//tag::jylee-git[]
+
 [[Design-Session]]
 === Session component
 
@@ -242,6 +244,8 @@ The `Session` component,
 * stores the identity of the user who is logged in to the app during runtime.
 * allows other functions that require elevated user status, to inquire from `SessionManager` as to whether the user
 is logged in, and also to inquire if the user has sufficient level of access to execute that particular function.
+
+//end::jylee-git[]
 
 [[Design-Commons]]
 === Common classes

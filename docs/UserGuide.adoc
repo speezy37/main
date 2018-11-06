@@ -753,7 +753,7 @@ There is no need to save manually.
 •	*<<Reset the application : `reset`, Reset the application>>*: `reset`
 •	*<<Exiting the program : `exit`, Exit application>>*: `exit`
 
-
+//tag::jylee-git[]
 == Appendix A: List of prefixes in the application
 .List of prefixes used for employee
 |===
@@ -897,3 +897,4 @@ Department names should start with a name, and ends with 'Management'.
 - All privileges of a ADMINISTRATOR Priority level +
 - Reset the entire AddressBook into the default address book.
 |===
+//end::jylee-git[]

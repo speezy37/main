@@ -29,29 +29,28 @@ require user authentication.
   features (e.g.: Approving of leaves), require someone of a senior rank to do so. This will prevent users from
   potentially abusing company resources and product functions.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Minor enhancement*: added a reset command to reset the Bank Address Book to the original state at first start
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** Managed vetting through and approving individual pull requests
 
-_{you can add/remove categories in the list above}_
+** Enhancements to existing features:
+*** Added a field that shows the user who is logged in at the status footer of the UI
+*** Made significant changes to priority level ranking following the feedback received from the practical exam 1: https://github.com/CS2113-AY1819S1-T16-3/main/pull/134[#134]
+
+** Documentation:
+*** Re-arranged summary of commands in the user guide to make them more organized: https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89]
+*** Added appendices A and B in the user guide that summarizes the prefixes and corresponding data types, and also various priority levels and its corresponding privileges:
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60], https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89]
+
+** Community:
+*** PRs reviewed (with non-trivial review comments):
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/26[#26], https://github.com/CS2113-AY1819S1-T16-3/main/pull/92[#92]
+*** Reported bugs and suggestions for other teams in the class:
+    https://github.com/CS2113-AY1819S1-F09-2/main/issues/152[1], https://github.com/CS2113-AY1819S1-F09-2/main/issues/157[2],
+    https://github.com/CS2113-AY1819S1-F09-2/main/issues/167[3]
 
 == Contributions to the User Guide
 
@@ -62,6 +61,12 @@ _{you can add/remove categories in the list above}_
 
 //include whatever you did here
 
+====
+include::../UserGuide.adoc[tag=jylee-git]
+====
+
+
+
 == Contributions to the Developer Guide
 
 |===
@@ -69,3 +74,7 @@ _{you can add/remove categories in the list above}_
 |===
 
 //include whatever you did here
+
+====
+include::../DeveloperGuide.adoc[tag=jylee-git]
+====
