@@ -103,13 +103,14 @@ public class EditLeaveCommand extends Command {
      * Creates and returns a {@code Leave} with the details of {@code leaveToEdit}
      * edited with {@code editLeaveDescriptor}.
      */
-    private static Leave createEditedLeave(Leave leaveToEdit, EditLeaveDescriptor editLeaveDescriptor) {
+    public static Leave createEditedLeave(Leave leaveToEdit, EditLeaveDescriptor editLeaveDescriptor) {
         assert leaveToEdit != null;
 
         Approval updatedApproval = editLeaveDescriptor.getApproval().orElse(leaveToEdit.getApproval());
+        PriorityLevel updatedPriority = editLeaveDescriptor.getPriorityLevel().orElse(leaveToEdit.getPriorityLevel());
 
         return new Leave(leaveToEdit.getEmployeeId(), leaveToEdit.getDate(),
-                updatedApproval, leaveToEdit.getPriorityLevel());
+                updatedApproval, updatedPriority);
     }
 
     @Override
