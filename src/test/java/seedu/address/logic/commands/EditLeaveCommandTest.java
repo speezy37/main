@@ -16,16 +16,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.junit.jupiter.api.Assertions;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LeaveList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
 import seedu.address.testutil.LeaveBuilder;
 import systemtests.SessionHelper;
@@ -141,6 +144,17 @@ public class EditLeaveCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditLeaveCommand(INDEX_FIRST_PERSON, DESC_REQUEST2)));
+    }
+
+    @Test
+    public void execute_notLoggedIn_throwsCommandException() {
+        Assertions.assertThrows(CommandException.class, () -> {
+            SessionHelper.logoutOfSession();
+            Leave editedLeave = REQUEST1EDIT;
+            EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+            EditLeaveCommand sd = new EditLeaveCommand(INDEX_FIRST_PERSON, descriptor);
+            sd.execute(model, commandHistory);
+        }, SessionManager.NOT_LOGGED_IN);
     }
 
     @After

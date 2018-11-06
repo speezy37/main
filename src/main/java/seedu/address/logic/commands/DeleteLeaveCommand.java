@@ -48,9 +48,10 @@ public class DeleteLeaveCommand extends Command {
 
         Leave leaveToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        if (leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
+        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode != 0
+                && leaveToDelete.getEmployeeId().nric != sessionManager.getLoggedInSessionNric().toString()
                 && (sessionManager.getLoggedInPriorityLevel().priorityLevelCode
-                > leaveToDelete.getPriorityLevel().priorityLevelCode)) {
+                >= leaveToDelete.getPriorityLevel().priorityLevelCode)) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_DELETE);
         }
 
