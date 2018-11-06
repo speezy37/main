@@ -79,7 +79,7 @@ public class EditLeaveCommand extends Command {
         if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode == 0
                 && leaveToEdit.getEmployeeId().nric == sessionManager.getLoggedInSessionNric().nric) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL2);
-        } else if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode !=0
+        } else if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode != 0
                 && sessionManager.getLoggedInPriorityLevel().priorityLevelCode
                 >= leaveToEdit.getPriorityLevel().priorityLevelCode) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
@@ -92,7 +92,6 @@ public class EditLeaveCommand extends Command {
                 throw new CommandException(MESSAGE_ALREADY_REJECTED);
             }
         }
-
 
         model.updateLeave(leaveToEdit, editedLeave);
         model.updateFilteredLeaveList(PREDICATE_SHOW_ALL_LEAVES);
