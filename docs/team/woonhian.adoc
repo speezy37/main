@@ -44,7 +44,7 @@ priority level of the employee and approve or reject leave requests.
 *** Ensuring the User Guide is up to date and details are correct for the listed commands: https://github.com/CS2113-AY1819S1-T16-3/main/pull/104[#104]
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/CS2113-AY1819S1-T16-3/main/pull/24[#24], https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25], https://github.com/CS2113-AY1819S1-T16-3/main/pull/27[#27], https://github.com/CS2113-AY1819S1-T16-3/main/pull/68[#68], https://github.com/CS2113-AY1819S1-T16-3/main/pull/79[#79], https://github.com/CS2113-AY1819S1-T16-3/main/pull/81[#81], https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89], https://github.com/CS2113-AY1819S1-T16-3/main/pull/93[#93], https://github.com/CS2113-AY1819S1-T16-3/main/pull/94[#94], https://github.com/CS2113-AY1819S1-T16-3/main/pull/98[#98], https://github.com/CS2113-AY1819S1-T16-3/main/pull/135[#135]
-*** Reported bugs and suggestions for other teams in the class (Examples:  https://github.com/CS2113-AY1819S1-W12-4/main/issues/113[1], https://github.com/CS2113-AY1819S1-W12-4/main/issues/115[2], https://github.com/CS2113-AY1819S1-W12-4/main/issues/137[3])
+*** Reported bugs and suggestions for other teams in the class (Examples:  https://github.com/CS2113-AY1819S1-W12-4/main/issues/113[1], https://github.com/CS2113-AY1819S1-W12-4/main/issues/115[2], https://github.com/CS2113-AY1819S1-W12-4/main/issues/137[3], https://github.com/CS2113-AY1819S1-W12-4/main/issues/126[4], https://github.com/CS2113-AY1819S1-W12-4/main/issues/130[5])
 
 == Contributions to the User Guide
 
