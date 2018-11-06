@@ -7,11 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_REQUEST2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPROVAL_REQUEST3;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showLeaveAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SEVENTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -47,9 +47,9 @@ public class EditLeaveCommandTest {
             .withDate("01/02/2020").withApproval("PENDING").withPriorityLevel(0).build();
     private static final Leave REQUEST2EDIT = new LeaveBuilder().withNric("T2457888E")
             .withDate("01/02/2020").withApproval("APPROVED").withPriorityLevel(1).build();
-    private static final Leave REQUEST3EDIT = new LeaveBuilder().withNric("S1234567A")
+    private static final Leave REQUEST3EDIT = new LeaveBuilder().withNric("T2457846E")
             .withDate("02/02/2020").withApproval("APPROVED").withPriorityLevel(0).build();
-    private static final Leave REQUEST4EDIT = new LeaveBuilder().withNric("S1234567A")
+    private static final Leave REQUEST4EDIT = new LeaveBuilder().withNric("T2457846E")
             .withDate("03/02/2020").withApproval("REJECTED").withPriorityLevel(0).build();
     private static final Leave REQUEST5EDIT = new LeaveBuilder().withNric(ALICE.getNric().nric)
             .withDate("03/02/2020").withApproval("PENDING").withPriorityLevel(0).build();
@@ -94,7 +94,7 @@ public class EditLeaveCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
 
         Leave leaveInFilteredList = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         Leave editedLeave = new LeaveBuilder(leaveInFilteredList).withApproval(VALID_APPROVAL_REQUEST3).build();
@@ -125,10 +125,10 @@ public class EditLeaveCommandTest {
      */
     @Test
     public void execute_invalidLeaveIndexFilteredList_failure() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SEVENTH_PERSON;
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of leave list
-        //assertTrue(outOfBoundIndex.getZeroBased() < model.getLeaveList().getRequestList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getLeaveList().getRequestList().size());
 
         EditLeaveCommand editLeaveCommand = new EditLeaveCommand(outOfBoundIndex,
                 new EditLeaveDescriptorBuilder().withApproval(VALID_APPROVAL_REQUEST3).build());
@@ -171,18 +171,17 @@ public class EditLeaveCommandTest {
 
     @Test
     public void execute_invalidLeaveApproval_throwsCommandException() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
         SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 0);
         Leave editedLeave = REQUEST3EDIT;
         EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
         EditLeaveCommand editLeaveCommand = new EditLeaveCommand(INDEX_THIRD_PERSON, descriptor);
         assertCommandFailure(editLeaveCommand, model, commandHistory,
                 EditLeaveCommand.MESSAGE_ALREADY_APPROVE);
+        SessionHelper.logoutOfSession();
     }
 
     @Test
     public void execute_invalidLeaveReject_throwsCommandException() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
         SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 0);
         Leave editedLeave = REQUEST4EDIT;
         EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();

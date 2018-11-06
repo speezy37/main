@@ -4,9 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showLeaveAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SEVENTH_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -81,11 +81,11 @@ public class DeleteLeaveCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
 
-        Index outOfBoundIndex = INDEX_SEVENTH_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        //assertTrue(outOfBoundIndex.getZeroBased() < model.getLeaveList().getRequestList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getLeaveList().getRequestList().size());
 
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(outOfBoundIndex);
 
@@ -125,7 +125,7 @@ public class DeleteLeaveCommandTest {
 
     @Test
     public void execute_invalidInLeaveDelete_throwsCommandException() {
-        //showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
 
         SessionHelper.logoutOfSession();
         SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 3);
