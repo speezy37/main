@@ -23,7 +23,7 @@ priority level of the employee and approve or reject leave requests.
 == Summary of contributions
 
 * *Major enhancement* : added *leave application function* for employees.
-** What it does: Allows the user to request leave application. This leave application is subjected for approval from their boss. Only a higher level priority users can approve/ reject or delete a low priority user's leave application. Also, it allows the user to filter or list all existing leave applications in the system.
+** What it does: Allows the user to request leave application. This leave application is subjected for approval from their boss. Only a higher level priority user can approve/ reject or delete a low priority user's leave application. Also, it allows the user to filter or list all existing leave applications in the system.
 ** Justification: This feature is a core component to the product as it gives users the capability to request/ approve/ reject/ delete leave application in the system easily.
 ** Highlights:  The implementation requires new classes and commands to be created and also affects current existing `delete` and `setplvl` commands.
 The implementation was challenging due to the different privileges each priority level have which affects commands such as `approve`, `reject` and `deleteleave`.
@@ -38,7 +38,7 @@ The implementation was challenging due to the different privileges each priority
 *** Managed vetting through and approving individual pull requests
 ** Enhancements to existing features:
 *** Updated the GUI color scheme, removal of browser pane, added leave application tab and image pane : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25], https://github.com/CS2113-AY1819S1-T16-3/main/pull/108[#108]
-*** Added functionality for `delete` command that simultaneously deletes leave applications under the person being deleted : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25]
+*** Added functionality for `delete` command that simultaneously deletes leave applications under the person that is being deleted : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25]
 *** Made modifications to the existing implementation after the feedback received from the first practical exam: https://github.com/CS2113-AY1819S1-T16-3/main/pull/132[#132]
 ** Documentation:
 *** Update of Ui.png : https://github.com/CS2113-AY1819S1-T16-3/main/pull/109[#109]
