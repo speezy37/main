@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showLeaveAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,7 +38,7 @@ public class DeleteLeaveCommandTest {
 
     @Before
     public void setUp() {
-        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.IT_UNIT.getPriorityLevelCode());
+        SessionHelper.forceLoginWithPriorityLevelOf(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode());
     }
 
     @Test
@@ -65,7 +66,6 @@ public class DeleteLeaveCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showLeaveAtIndex(model, INDEX_FIRST_PERSON);
-
         Leave leaveToDelete = model.getFilteredLeaveList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
 
@@ -121,6 +121,17 @@ public class DeleteLeaveCommandTest {
         model.updateFilteredLeaveList(p -> false);
 
         assertTrue(model.getFilteredLeaveList().isEmpty());
+    }
+
+    @Test
+    public void execute_invalidInLeaveDelete_throwsCommandException() {
+        showLeaveAtIndex(model, INDEX_FIRST_PERSON);
+
+        SessionHelper.logoutOfSession();
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 3);
+        DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(INDEX_FIRST_PERSON);
+        assertCommandFailure(deleteLeaveCommand, model, commandHistory,
+                DeleteLeaveCommand.MESSAGE_INVALID_LEAVE_DELETE);
     }
 
     /**
