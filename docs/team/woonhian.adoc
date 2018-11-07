@@ -9,39 +9,44 @@
 
 == Overview
 
-Bank Address Book (BankAB) is an employee management application. You can use BankAB to check working schedule, apply off day, check working hours, access payroll and daily notification. The managers and boss will have more access of BankAB such as changing the priority level of the employee and approve or reject off day requests.
+Bank Address Book (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
+This platform supports the basic daily routine of each employee such as:
+
+*  Checking working schedule
+*  Applying for leave application
+*  Checking in and out during working hours
+
+The managers and administrators will have higher priority access level of BankAB such as changing the
+priority level of the employee and approve or reject leave requests.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: Added commands and enhancements related to `Department` and `Sort Command`.
+** What it does: It provides the end user to be able to perform *Department* related functions such as list and filter departments, changing an employee's department, and sorting the list based on employee's name or department.
+** Justification: This feature caters to users who wants to have their employee's list sorted, the ability to list out the available departments, filtering out the employee's list based on their departments and changing an employee's department.
+** Highlights: This enhancement enhances the user experience to use the commands that are related to `Department`. It required an understanding on the user profile in order to create the commands that will benefit the users. The implementation is challenging as it requires an understanding on the regular expressions in Java to allow the commands to work as how it is and to minimise bugs from happening due to incorrect regular expressions.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=woonhian[RepoSense Dashboard]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** Managed releases `v1.1` - `v1.4` (5 releases) on GitHub.
+**** Managed the release of .jar files and the descriptions of the release.
+*** Setting up of issue tracker, milestones and tags.
+*** Setting up of Travis-CI, AppVeyor, Coveralls and Codacy.
+*** Managed vetting through and approving of pull requests.
+*** Ensures the team are able to complete the requirements for every milestones.
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Added `Department` field to show the employee's department: https://github.com/CS2113-AY1819S1-T16-3/main/pull/12[#12]
+*** Made modifications to the existing implementation after the feedback received from the first practical exam: https://github.com/CS2113-AY1819S1-T16-3/main/pull/129[#129]
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Updated About Us page with team member's pictures, roles and responsibilities, GitHub and portfolio link: https://github.com/CS2113-AY1819S1-T16-3/main/pull/2[#2], https://github.com/CS2113-AY1819S1-T16-3/main/pull/3[#3]
+*** Updated Developer Guide on FilterDepartment feature. Updated use cases and user stories as we refined our product through the weeks: https://github.com/CS2113-AY1819S1-T16-3/main/pull/66[#66], https://github.com/CS2113-AY1819S1-T16-3/main/pull/86[#86]
+*** Ensuring the User Guide is up to date and details are correct for the listed commands as we refined our product through the weeks: https://github.com/CS2113-AY1819S1-T16-3/main/pull/62[#62], https://github.com/CS2113-AY1819S1-T16-3/main/pull/86[#86], https://github.com/CS2113-AY1819S1-T16-3/main/pull/95[#95], https://github.com/CS2113-AY1819S1-T16-3/main/pull/104[#104]
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
-
-_{you can add/remove categories in the list above}_
+*** PRs reviewed (with non-trivial review comments): https://github.com/CS2113-AY1819S1-T16-3/main/pull/24[#24], https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25], https://github.com/CS2113-AY1819S1-T16-3/main/pull/27[#27], https://github.com/CS2113-AY1819S1-T16-3/main/pull/68[#68], https://github.com/CS2113-AY1819S1-T16-3/main/pull/79[#79], https://github.com/CS2113-AY1819S1-T16-3/main/pull/81[#81], https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89], https://github.com/CS2113-AY1819S1-T16-3/main/pull/93[#93], https://github.com/CS2113-AY1819S1-T16-3/main/pull/94[#94], https://github.com/CS2113-AY1819S1-T16-3/main/pull/98[#98], https://github.com/CS2113-AY1819S1-T16-3/main/pull/135[#135], https://github.com/CS2113-AY1819S1-T16-3/main/pull/136[#136]
+*** Reported bugs and suggestions for other teams in the class (Examples:  https://github.com/CS2113-AY1819S1-W12-4/main/issues/113[1], https://github.com/CS2113-AY1819S1-W12-4/main/issues/115[2], https://github.com/CS2113-AY1819S1-W12-4/main/issues/137[3], https://github.com/CS2113-AY1819S1-W12-4/main/issues/126[4], https://github.com/CS2113-AY1819S1-W12-4/main/issues/130[5])
 
 == Contributions to the User Guide
 
@@ -50,7 +55,13 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include whatever you did here
+include::../UserGuide.adoc[tag=setdepartment]
+
+include::../UserGuide.adoc[tag=sort]
+
+include::../UserGuide.adoc[tag=listdepartment]
+
+include::../UserGuide.adoc[tag=filterdepartment]
 
 == Contributions to the Developer Guide
 
@@ -58,4 +69,4 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-//include whatever you did here
+include::../DeveloperGuide.adoc[tag=filterdepartment]

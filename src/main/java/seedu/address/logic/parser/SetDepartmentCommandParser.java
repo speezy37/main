@@ -12,6 +12,7 @@ import seedu.address.logic.commands.SetDepartmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
 
+//@@author Woonhian
 /**
  * Parses the given {@code String} of arguments in the context of the SetDepartmentCommand
  * and returns a SetDepartmentCommand object for execution.

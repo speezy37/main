@@ -11,6 +11,7 @@ import seedu.address.logic.commands.SetDepartmentCommand;
 import seedu.address.model.person.Department;
 import seedu.address.testutil.TypicalIndexes;
 
+//@@author Woonhian
 public class SetDepartmentCommandParserTest {
     private SetDepartmentCommandParser parser = new SetDepartmentCommandParser();
 

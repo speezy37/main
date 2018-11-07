@@ -28,6 +28,7 @@ import seedu.address.session.SessionManager;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
+//@@author Woonhian
 /**
  * Contains integration tests and unit tests for SetDepartmentCommand.
  */
