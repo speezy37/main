@@ -13,16 +13,17 @@ Bank Address Book (BankAB) is an employee management application. You can use Ba
 
 == Summary of contributions
 
-* *Major enhancement 1*: implemented *user account and commands.*
+* *Major enhancement 1*: implemented *user account with corresponding APIs and commands.*
 ** What it does: This allows all users to have a unique account to login and perform functions that are essential for
  work purpose.
 ** Justification: This feature is a core component of the product as certain functions (such as leave application),
 require user authentication.
 ** Highlights: This enhancement is challenging as we need to modify a major portion of existing source codes and test
  codes, owing to the fact that the newly added NRIC parameter is unique and other existing fields, which are initially
- unique, are now not.
+ unique, are now not. In addition, many functions that are developed by my team is dependent on this feature. This
+ results in the pressure on me to deliver this feature at the shortest time possible.
 
- * *Major enhancement 2*: implemented *priority level and commands.*
+ * *Major enhancement 2*: implemented *priority access level with corresponding APIs and commands.*
  ** What it does: All user accounts will have a priority level, which will allow/restrict them to functions that
  require an elevated user to do so.
  ** Justification: This feature is also a core component and complements the implementation of user accounts, as some
