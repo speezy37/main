@@ -22,7 +22,7 @@ priority level of the employee and approve or reject leave requests.
 
 == Summary of contributions
 
-* *Major enhancement *: added *leave application function* for employees.
+* *Major enhancement* : added *leave application function* for employees.
 ** What it does: Allows the user to request leave application. This leave application is subjected for approval from their boss. Only a higher level priority users can approve/ reject or delete a low priority user's leave application. Also, it allows the user to filter or list all existing leave applications in the system.
 ** Justification: This feature is a core component to the product as it gives users the capability to request/ approve/ reject/ delete leave application in the system easily.
 ** Highlights:  The implementation requires new classes and commands to be created and also affects current existing `delete` and `setplvl` commands.
