@@ -26,7 +26,7 @@ priority level of the employee and approve or reject leave requests.
 ** Justification: This feature caters to users who wants to have their employee's list sorted, the ability to list out the available departments, filtering out the employee's list based on their departments and changing an employee's department.
 ** Highlights: This enhancement enhances the user experience to use the commands that are related to `Department`. It required an understanding on the user profile in order to create the commands that will benefit the users. The implementation is challenging as it requires an understanding on the regular expressions in Java to allow the commands to work as how it is and to minimise bugs from happening due to incorrect regular expressions.
 
-* *Code contributed*: [https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=woonhian[Reposense Dashboard]]
+* *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=woonhian[RepoSense Dashboard]
 
 * *Other contributions*:
 
