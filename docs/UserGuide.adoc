@@ -96,6 +96,7 @@ a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact nam
 
 ====
 
+//tag::jylee-git_login[]
 === Personal User Account
 
 ==== Login to the application: `login`
@@ -117,6 +118,8 @@ Also prints the logged in NRIC if logged in.
 
 ==== Logout of the application: `logout`
 Logs out of the application, allowing for other users to log in again.
+
+//end::jylee-git_login[]
 
 ==== Editing a person : `edit`
 
@@ -208,6 +211,7 @@ Examples:
 Deletes the employee with ID 1 in the address book.
 ====
 
+//tag::jylee-git_login[]
 ==== Change priority level of employee: `setplvl`
 [NOTE]
 ====
@@ -234,6 +238,7 @@ image::setPlvl_failed_screenShot.png[]
 
 image::setOwnPlvl_failed_screenShot.png[]
 ====
+//end::jylee-git_login[]
 
 // tag::setdepartment[]
 ==== Change the department of an employee : `setdepartment`
