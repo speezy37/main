@@ -470,6 +470,16 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 
 .Sequence diagram of FilterDepartmentCommand
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+Aspect: Implementation of `FilterDepartment` command
+
+* **Alternative 1 (current choice):** A separate command for filter department.
+** Pros: Command works more accurately and efficiently as it focuses on the keywords related to `Department`.
+** Cons: The implementation of another command may be unnecessary as we can integrate `find` command to find for departments.
+* **Alternative 2:** Using `find` command to filter department name.
+** Pros: One command works for finding name and to filter department names.
+** Cons: The command may not work properly. For example, there is an employee whose name is `Junior` from `Senior Department`. But if we only want to filter employees who are in `Junior Management`, the command will output people who are in `Junior Management` and the employee `Junior`.
 // end::filterdepartment[]
 
 // tag::checkinout[]
