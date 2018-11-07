@@ -18,7 +18,7 @@ endif::[]
 By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
 
 == Introduction
-Bank AddressBook (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
+Bank Address Book (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
 This platform supports the basic daily routine of each employee such as:
 
 *  Checking working schedule
