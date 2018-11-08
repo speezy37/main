@@ -67,8 +67,7 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
-                getTagSet(),
-                getSchedule("1000", "1700", "Counter 1")),
+                getTagSet(), null),
 
             new Person(new Name("David Li"), new Nric("S5473621G"), new Password("NeuEr2018"), new Phone("91031282"),
                 new Email("lidavid@abbank-sg.com"), new Department("Junior Management"),
