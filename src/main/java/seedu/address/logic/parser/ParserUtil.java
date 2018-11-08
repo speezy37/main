@@ -337,7 +337,7 @@ public class ParserUtil {
             if (prefix.equals(CliSyntax.PREFIX_ADDRESS)) {
                 throw new ParseException("Exception thrown because address prefix is entered.");
             }
-            if (userInput.indexOf(prefix.getPrefix()) == userInput.lastIndexOf(prefix.getPrefix())) {
+            if (userInput.indexOf(prefix.getPrefix()) != userInput.lastIndexOf(prefix.getPrefix())) {
                 return false;
             }
         }
