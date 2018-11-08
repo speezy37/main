@@ -651,6 +651,7 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+// tag::check[]
 ==== Check in/out working hours: `check`
 Updates check in/out status for employees. +
 Format: `check m/IN-OUT` +
@@ -688,6 +689,7 @@ Checked out shows: +
 
 image::checkedOut.PNG[width="700"]
 ====
+// end::check[]
 
 ==== Reset the application : `reset`
 [NOTE]
