@@ -1063,8 +1063,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*`|User	|Deploy available cleaners	|Get the place cleaned up as soon as possible.
 |=======================================================================
 
-_{More to be added}_
-
 [appendix]
 == Use Cases
 
@@ -1098,6 +1096,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: Delete Person
 *MSS*
 
@@ -1119,7 +1118,8 @@ Use case ends.
 +
 Use case resumes to step 2.
 
-=== Use case: Apply Off days
+[discrete]
+=== Use case: Apply leave
 *MSS*
 
 .	User enters command to apply off day
@@ -1140,6 +1140,7 @@ Use case ends.
 +
 Use case resumes to step 2.
 
+[discrete]
 === Use case: Check in and out
 *MSS*
 
@@ -1150,46 +1151,7 @@ Use case resumes to step 2.
 +
 Use case ends.
 
-=== Use case: Temporary restrict access to address book
-*MSS*
-
-. User enters command to switch to superuser
-. AddressBook prompts for password.
-. User enters password
-. AddressBook prompts a superuser command
-. User enters restrict access command
-. AddressBook restrict access for all users.
-+
-Use case ends.
-
-*Extensions*
-
-* 4a. Incorrect password
-** 4a1. AddressBook shows an error message.
-+
-Use case resumes to step 2.
-
-* 6a. No such command
-** 6a1. AddressBook shows an error message.
-+
-Use case resumes to step 4.
-
-=== Use case: Access payroll
-*MSS*
-
-. User enters command to check payroll.
-. AddressBook shows the user payroll.
-+
-Use case ends.
-
-=== Use case: Check notification
-*MSS*
-
-. User enters command to check for notification.
-. AddressBook list out notifications.
-+
-Use case ends.
-
+[discrete]
 === Use case: Sort contact
 *MSS*
 
@@ -1212,6 +1174,7 @@ Use case resumes to step 2.
 +
 Use case resumes to step 2.
 
+[discrete]
 === Use case: List department
 *MSS*
 
@@ -1220,6 +1183,7 @@ Use case resumes to step 2.
 +
 Use case ends.
 
+[discrete]
 === Use case: Filter department
 *MSS*
 
@@ -1242,6 +1206,7 @@ Use case resumes to step 2.
 +
 Use case ends.
 
+[discrete]
 === Use case: Change department of user
 *MSS*
 
@@ -1279,6 +1244,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: Change priority level of user
 *MSS*
 
@@ -1309,6 +1275,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: Edit personal particulars
 *MSS*
 
@@ -1326,6 +1293,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: Find person
 *MSS*
 
@@ -1341,7 +1309,8 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case: Approve/reject off day request
+[discrete]
+=== Use case: Approve/reject leave request
 *MSS*
 
 . User enters command to switch to superuser
@@ -1379,6 +1348,7 @@ Use case ends.
 +
 Use case resumes to step 6.
 
+[discrete]
 === Use case: Check schedule
 *MSS*
 
@@ -1394,6 +1364,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: Set schedule
 *MSS*
 
@@ -1419,23 +1390,6 @@ Use case ends.
 
 * 10a. The date of schedule is already occupied.
 ** 10a1. AddressBook displays message “Employee is busy on the given date”.
-+
-Use case ends.
-
-=== Use case: Set password
-*MSS*
-
-. User enters password command.
-. AddressBook shows the password format to be keyed in.
-. User keys in password.
-. AddressBook stores the person’s new password.
-+
-Use case ends.
-
-*Extensions*
-
-* 4a. The password is keyed in the wrong format
-** 4a1. AddressBook shows an error message.
 +
 Use case ends.
 
