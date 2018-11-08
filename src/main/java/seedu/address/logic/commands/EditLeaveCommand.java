@@ -95,7 +95,6 @@ public class EditLeaveCommand extends Command {
         }
 
         model.updateLeave(leaveToEdit, editedLeave);
-        model.updateFilteredLeaveList(PREDICATE_SHOW_ALL_LEAVES);
         model.commitLeaveList();
         return new CommandResult(String.format(MESSAGE_EDIT_LEAVE_SUCCESS, editedLeave));
     }
