@@ -63,7 +63,7 @@ public class SampleDataUtil {
                 getSchedule("1100", "1600", "Level 4")),
 
             new Person(new Name("Charlotte Oliveiro"), new Nric("F1234567E"), new Password("Password"),
-                new Phone("93210283"), new Email("charlotte@abbank-sg.com"), new Department("Middle Management"),
+                new Phone("93210283"), new Email("charlotte@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
                 new WorkingRate("10"), new CheckedInTime(""),
