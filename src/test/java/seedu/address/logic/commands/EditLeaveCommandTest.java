@@ -8,24 +8,31 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPROVAL_REQUES
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showLeaveAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalLeave.getTypicalLeaveList;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LeaveList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.leave.Leave;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
+import seedu.address.session.SessionManager;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
 import seedu.address.testutil.LeaveBuilder;
 import systemtests.SessionHelper;
@@ -37,7 +44,15 @@ import systemtests.SessionHelper;
 public class EditLeaveCommandTest {
 
     private static final Leave REQUEST1EDIT = new LeaveBuilder().withNric("S1234567A")
+            .withDate("01/02/2020").withApproval("PENDING").withPriorityLevel(0).build();
+    private static final Leave REQUEST2EDIT = new LeaveBuilder().withNric("T2457888E")
             .withDate("01/02/2020").withApproval("APPROVED").withPriorityLevel(1).build();
+    private static final Leave REQUEST3EDIT = new LeaveBuilder().withNric("T2457846E")
+            .withDate("02/02/2020").withApproval("APPROVED").withPriorityLevel(0).build();
+    private static final Leave REQUEST4EDIT = new LeaveBuilder().withNric("T2457846E")
+            .withDate("03/02/2020").withApproval("REJECTED").withPriorityLevel(0).build();
+    private static final Leave REQUEST5EDIT = new LeaveBuilder().withNric(ALICE.getNric().nric)
+            .withDate("03/02/2020").withApproval("PENDING").withPriorityLevel(0).build();
 
     private Model model = new ModelManager(getTypicalLeaveList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
@@ -141,6 +156,61 @@ public class EditLeaveCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditLeaveCommand(INDEX_FIRST_PERSON, DESC_REQUEST2)));
+    }
+
+    @Test
+    public void execute_notLoggedIn_throwsCommandException() {
+        Assertions.assertThrows(CommandException.class, () -> {
+            SessionHelper.logoutOfSession();
+            Leave editedLeave = REQUEST1EDIT;
+            EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+            EditLeaveCommand sd = new EditLeaveCommand(INDEX_FIRST_PERSON, descriptor);
+            sd.execute(model, commandHistory);
+        }, SessionManager.NOT_LOGGED_IN);
+    }
+
+    @Test
+    public void execute_invalidLeaveApproval_throwsCommandException() {
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 0);
+        Leave editedLeave = REQUEST3EDIT;
+        EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+        EditLeaveCommand editLeaveCommand = new EditLeaveCommand(INDEX_THIRD_PERSON, descriptor);
+        assertCommandFailure(editLeaveCommand, model, commandHistory,
+                EditLeaveCommand.MESSAGE_ALREADY_APPROVE);
+        SessionHelper.logoutOfSession();
+    }
+
+    @Test
+    public void execute_invalidLeaveReject_throwsCommandException() {
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 0);
+        Leave editedLeave = REQUEST4EDIT;
+        EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+        EditLeaveCommand editLeaveCommand = new EditLeaveCommand(INDEX_FOURTH_PERSON, descriptor);
+        assertCommandFailure(editLeaveCommand, model, commandHistory,
+                EditLeaveCommand.MESSAGE_ALREADY_REJECTED);
+        SessionHelper.logoutOfSession();
+    }
+
+    @Test
+    public void execute_invalidLeaveApprovalAdmin_throwsCommandException() {
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 0);
+        Leave editedLeave = REQUEST5EDIT;
+        EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+        EditLeaveCommand editLeaveCommand = new EditLeaveCommand(INDEX_FIFTH_PERSON, descriptor);
+        assertCommandFailure(editLeaveCommand, model, commandHistory,
+                EditLeaveCommand.MESSAGE_INVALID_LEAVE_APPROVAL2);
+        SessionHelper.logoutOfSession();
+    }
+
+    @Test
+    public void execute_invalidLeaveApprovalOthers_throwsCommandException() {
+        SessionHelper.forceLoginWithPriorityLevelOf(ALICE.getNric().nric, 1);
+        Leave editedLeave = REQUEST5EDIT;
+        EditLeaveDescriptor descriptor = new EditLeaveDescriptorBuilder(editedLeave).build();
+        EditLeaveCommand editLeaveCommand = new EditLeaveCommand(INDEX_FIFTH_PERSON, descriptor);
+        assertCommandFailure(editLeaveCommand, model, commandHistory,
+                EditLeaveCommand.MESSAGE_INVALID_LEAVE_APPROVAL);
+        SessionHelper.logoutOfSession();
     }
 
     @After

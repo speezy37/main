@@ -2,15 +2,20 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.EditLeaveCommand.createEditedLeave;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYLEVEL;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.EditLeaveCommand.EditLeaveDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.leave.Leave;
+import seedu.address.model.leave.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.prioritylevel.PriorityLevel;
 import seedu.address.model.prioritylevel.PriorityLevelEnum;
@@ -32,6 +37,7 @@ public class SetPriorityLevelCommand extends Command {
 
     public static final String MESSAGE_CHANGE_PLVL_SUCCESS = "Successfully changed the priority level of %s to %s";
     public static final String MESSAGE_CANNOT_EDIT_OWN_PLVL = "You can't edit your own priority level.";
+    private static String nric;
 
     private final Index index;
     private final PriorityLevel priorityLevel;
@@ -86,6 +92,28 @@ public class SetPriorityLevelCommand extends Command {
 
         model.updatePerson(personToEdit, editedPerson);
         model.commitAddressBook();
+
+        List<Leave> lastShownLeaveList;
+        NricContainsKeywordsPredicate keyword;
+
+        Person personToUpdate = lastShownList.get(index.getZeroBased());
+        nric = personToUpdate.getNric().nric;
+        keyword = new NricContainsKeywordsPredicate(Arrays.asList(nric));
+
+        model.updateFilteredLeaveList(keyword);
+        lastShownLeaveList = model.getFilteredLeaveList();
+
+        EditLeaveDescriptor editLeaveDescriptor = new EditLeaveDescriptor();
+        editLeaveDescriptor.setPriorityLevel(priorityLevel);
+
+        for (int i = 0; i < lastShownLeaveList.size(); i++) {
+            Leave leaveToUpdate = lastShownLeaveList.get(i);
+            Leave editedLeave = createEditedLeave(leaveToUpdate, editLeaveDescriptor);
+            model.updateLeave(leaveToUpdate, editedLeave);
+        }
+        model.updateFilteredLeaveList(Model.PREDICATE_SHOW_ALL_LEAVES);
+        model.commitLeaveList();
+
 
         return new CommandResult(String.format(MESSAGE_CHANGE_PLVL_SUCCESS,
                 editedPerson.getName(), priorityLevel));
