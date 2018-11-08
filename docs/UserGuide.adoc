@@ -773,7 +773,7 @@ There is no need to save manually.
 | NRIC Number
 | ic/NRIC
 | NRIC should start with an upper-case character [S, T, F, G], followed by a seven-digit number, and ending with a upper-case
-alphabet.
+alphabet. NRIC for every single individuals must be unique.
 | ic/S9203948E
 
 | Password
