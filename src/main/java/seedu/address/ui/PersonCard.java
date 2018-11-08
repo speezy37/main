@@ -33,10 +33,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label mode;
     @FXML
-    private Label checkedInTime;
-    @FXML
-    private Label workingRate;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -57,8 +53,11 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         department.setText(person.getDepartment().fullDepartment);
         mode.setText(person.getMode().value);
-        workingRate.setText(person.getWorkingRate().value);
-        checkedInTime.setText(person.getCheckedInTime().value);
+        if (person.getMode().value.equals("in")) {
+            mode.setStyle("-fx-background-color: #0fc425");
+        } else {
+            mode.setStyle("-fx-background-color: #c40f0f");
+        }
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

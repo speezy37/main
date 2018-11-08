@@ -482,24 +482,26 @@ The `checkCommand` mechanism is facilitated by the `AddressBookParser`, which pa
 
 The `checkCommandParser`, which implements the `Parser` interface, parses the arguments inputted in to the CLI, and checks if the user input conforms the expected format.
 
-- Code snippet from `checkCommandParser.java` that shows the parsing of arguments， checking for invalid arguments and returning a checkCommand object:
+- Code snippet from `checkCommandParser.java` that shows the parsing of arguments，checking for invalid arguments and returning a checkCommand object:
 
 [source, java]
 ----
 public CheckCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_MODE);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_PASSWORD, PREFIX_MODE)
+            if (!arePrefixesPresent(argMultimap, PREFIX_MODE)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));
-        }
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));
+            }
 
-        String nric = argMultimap.getValue(PREFIX_NRIC).orElse("");
-        String password = argMultimap.getValue(PREFIX_PASSWORD).orElse("");
-        String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
+            if (!didPrefixAppearOnlyOnce(args, PREFIX_MODE.toString())) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));
+            }
 
-        return new CheckCommand(nric, password, new Mode(mode));
+            Mode mode = ParserUtil.parseMode(argMultimap.getValue(PREFIX_MODE).get());
+
+            return new CheckCommand(mode);
     }
 ----
 
