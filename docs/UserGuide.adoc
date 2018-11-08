@@ -18,7 +18,7 @@ endif::[]
 By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
 
 == Introduction
-Bank AddressBook (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
+Bank Address Book (BankAB) is a business process management and workflow application platform, whereby its users are all the employees in a banking environment.
 This platform supports the basic daily routine of each employee such as:
 
 *  Checking working schedule
@@ -96,6 +96,7 @@ a/311, Clementi Ave 2, #02-25 wr/7.5 t/friends t/owesMoney` : adds a contact nam
 
 ====
 
+//tag::jylee-git_login[]
 === Personal User Account
 
 ==== Login to the application: `login`
@@ -117,6 +118,8 @@ Also prints the logged in NRIC if logged in.
 
 ==== Logout of the application: `logout`
 Logs out of the application, allowing for other users to log in again.
+
+//end::jylee-git_login[]
 
 ==== Editing a person : `edit`
 
@@ -208,6 +211,7 @@ Examples:
 Deletes the employee with ID 1 in the address book.
 ====
 
+//tag::jylee-git_login[]
 ==== Change priority level of employee: `setplvl`
 [NOTE]
 ====
@@ -234,6 +238,7 @@ image::setPlvl_failed_screenShot.png[]
 
 image::setOwnPlvl_failed_screenShot.png[]
 ====
+//end::jylee-git_login[]
 
 // tag::setdepartment[]
 ==== Change the department of an employee : `setdepartment`
@@ -711,6 +716,7 @@ There is no need to save manually.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
 
+//tag::Command_Summary[]
 == Command Summary
 
 === Personal User Account
@@ -751,8 +757,9 @@ There is no need to save manually.
 •	*<<Check in/out working hours: `check`, Check in/out working hours>>*: `check m/MODE`
 •	*<<Reset the application : `reset`, Reset the application>>*: `reset`
 •	*<<Exiting the program : `exit`, Exit application>>*: `exit`
+//end::Command_Summary[]
 
-
+//tag::jylee-git_appendixA[]
 == Appendix A: List of prefixes in the application
 .List of prefixes used for employee
 |===
@@ -822,6 +829,7 @@ Department names should start with a name, and ends with 'Management'.
 | Tag names should be alphanumeric
 | t/Admin t/Boss t/OweMeMoney
 |===
+//end::jylee-git_appendixA[]
 
 .List of prefixes used for schedule
 |===
@@ -855,7 +863,7 @@ Department names should start with a name, and ends with 'Management'.
 
 |===
 
-
+//tag::jylee-git_appendixB[]
 == Appendix B: Privileges in accordance to priority level
 .Priority level and its' privileges
 |===
@@ -878,7 +886,14 @@ Department names should start with a name, and ends with 'Management'.
 - All privileges of a BASIC Priority Level +
 - Approve/Reject/Delete leave of users with lower priority level +
 
-|ADMINISTRATOR (1)
+|I.T. UNIT (1)
+|
+- I.T. Department
+|
+- All privileges of a MANAGER Priority level +
+- Reset the entire AddressBook into the default address book. (*exclusive to users holding this priority level*)
+
+|ADMINISTRATOR (0)
 |
 - Branch Manager +
 - Bank Executive +
@@ -887,11 +902,5 @@ Department names should start with a name, and ends with 'Management'.
 - Add and delete employees from the AddressBook +
 - Set the priority level of all employees +
 - Set Department of all employees
-
-|I.T. UNIT (0)
-|
-- IT Department
-|
-- All privileges of a ADMINISTRATOR Priority level +
-- Reset the entire AddressBook into the default address book.
 |===
+//end::jylee-git_appendixB[]

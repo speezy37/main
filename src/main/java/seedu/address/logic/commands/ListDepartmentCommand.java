@@ -13,6 +13,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+//@@author Woonhian
 /**
  * Lists all departments in the address book to the user.
  */

@@ -11,6 +11,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.FilterDepartmentCommand;
 import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 
+//@@author Woonhian
 public class FilterDepartmentCommandParserTest {
 
     private FilterDepartmentCommandParser parser = new FilterDepartmentCommandParser();

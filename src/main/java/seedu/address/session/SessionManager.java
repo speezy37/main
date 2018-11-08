@@ -37,7 +37,7 @@ public class SessionManager extends ComponentManager implements Session {
     // FOR TEST USE ONLY
     protected SessionManager() {
         logger.warning("Empty SessionManager constructor called. If this isn't a test, there is a bug in the"
-            + "source code.");
+                + "source code.");
     }
 
     private SessionManager(Model model) {

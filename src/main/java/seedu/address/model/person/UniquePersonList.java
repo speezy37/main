@@ -106,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     //Reused from https://github.com/CS2103JAN2018-F14-B1/main/pull/57/files with minor modifications
+    //@@author Woonhian
     /**
      * Sorts employees by name or department in ascending or descending order.
      */
@@ -173,6 +174,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    //@@author
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();

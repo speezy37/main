@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -39,7 +38,10 @@ public class EditLeaveCommand extends Command {
     public static final String MESSAGE_ALREADY_APPROVE = "This leave application is already approved.";
     public static final String MESSAGE_ALREADY_REJECTED = "This leave application is already rejected.";
     public static final String MESSAGE_INVALID_LEAVE_APPROVAL =
-            "Not authorized to approve leave application.";
+            "Not authorized to approve/reject this leave application.";
+    public static final String MESSAGE_INVALID_LEAVE_APPROVAL2 =
+            "Not authorized to approve/reject your leave application. "
+                    + "Only another Administrator can approve your leave.";
 
     private final Index index;
     private final EditLeaveDescriptor editLeaveDescriptor;
@@ -75,7 +77,11 @@ public class EditLeaveCommand extends Command {
         Leave leaveToEdit = lastShownList.get(index.getZeroBased());
         Leave editedLeave = createEditedLeave(leaveToEdit, editLeaveDescriptor);
 
-        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode
+        if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode == 0
+                && leaveToEdit.getEmployeeId().nric.equals(sessionManager.getLoggedInSessionNric().nric)) {
+            throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL2);
+        } else if (sessionManager.getLoggedInPriorityLevel().priorityLevelCode != 0
+                && sessionManager.getLoggedInPriorityLevel().priorityLevelCode
                 >= leaveToEdit.getPriorityLevel().priorityLevelCode) {
             throw new CommandException(MESSAGE_INVALID_LEAVE_APPROVAL);
         }
@@ -88,7 +94,6 @@ public class EditLeaveCommand extends Command {
             }
         }
 
-
         model.updateLeave(leaveToEdit, editedLeave);
         model.updateFilteredLeaveList(PREDICATE_SHOW_ALL_LEAVES);
         model.commitLeaveList();
@@ -99,13 +104,14 @@ public class EditLeaveCommand extends Command {
      * Creates and returns a {@code Leave} with the details of {@code leaveToEdit}
      * edited with {@code editLeaveDescriptor}.
      */
-    private static Leave createEditedLeave(Leave leaveToEdit, EditLeaveDescriptor editLeaveDescriptor) {
+    public static Leave createEditedLeave(Leave leaveToEdit, EditLeaveDescriptor editLeaveDescriptor) {
         assert leaveToEdit != null;
 
         Approval updatedApproval = editLeaveDescriptor.getApproval().orElse(leaveToEdit.getApproval());
+        PriorityLevel updatedPriority = editLeaveDescriptor.getPriorityLevel().orElse(leaveToEdit.getPriorityLevel());
 
         return new Leave(leaveToEdit.getEmployeeId(), leaveToEdit.getDate(),
-                updatedApproval, leaveToEdit.getPriorityLevel());
+                updatedApproval, updatedPriority);
     }
 
     @Override
@@ -150,13 +156,6 @@ public class EditLeaveCommand extends Command {
             setDate(toCopy.date);
             setApproval(toCopy.approval);
             setPriorityLevel(priorityLevel);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isApprovalFieldEdited() {
-            return CollectionUtil.isAnyNonNull(approval);
         }
 
         public void setNric(EmployeeId nric) {

@@ -140,8 +140,8 @@ public class ParserUtil {
         }
         return new Mode(trimmedMode);
     }
+    //@@author
 
-    //@@author Woonhian
     /**
      * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
@@ -323,14 +323,14 @@ public class ParserUtil {
         return new WorkingRate(trimmedWorkingRate);
     }
 
-
+    //@@author jylee-git
     //=========================== CONDITION CHECKERS ================================================
 
     /**
      * Checks and returns true if there is only one prefix of each type.
      *
-     * WARNING: This method WILL NOT WORK for AddCommand and DeleteCommand due to address parameters accepting
-     *  input which contains string prefix of other prefixes.
+     * WARNING: This method WILL NOT WORK for AddCommand and DeleteCommand due to address regex accepting
+     *  input which contains string prefix of other prefixes, which can crash the whole system.
      */
     public static boolean hasOnlyOnePrefixOfSpecifiedType(String userInput, Prefix... prefixes) throws ParseException {
         for (Prefix prefix : prefixes) {
