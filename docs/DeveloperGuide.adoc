@@ -1514,23 +1514,15 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Filtering/Sorting
 
-==== Listing all persons
-
 ==== Locating persons by name
 
 ==== Sort address book contacts
-
-==== List department
 
 ==== Filtering department
 
 === Miscellaneous
 
-==== Viewing help
-
 ==== Selecting a person
-
-==== Listing entered commands
 
 ==== Check in/out working hours
 
