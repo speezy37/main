@@ -384,7 +384,7 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
-Aspect: Implementation of `FilterDepartment` command
+===== Aspect: Implementation of `FilterDepartment` command
 
 * **Alternative 1 (current choice):** A separate command for filter department.
 ** Pros: Command works more accurately and efficiently as it focuses on the keywords related to `Department`.
@@ -1492,6 +1492,19 @@ These instructions only provide a starting point for testers to work on; testers
 
 ==== Change the department of an employee
 
+. Change the department of an employee from the given index.
+
+.. Prerequisites: Have to be logged in as an administrator and have multiple employees in the list.
+
+.. Test case: `setdepartment 1 d/Top Management` +
+Expected: The employee's department at index 1 will be changed to `Top Management`.
+Details of the employee name and the changed department name will be shown in the status message.
+If the employee at index 1 is the logged in employee himself/herself, the department will not be changed. Error details is shown in the status message.
+.. Test case: `setdepartment 1 d/Top Department` +
+Expected: Department name is of the wrong format. Error details is shown in the status message.
+.. Test case: `setdepartment 0 d/Top Management` +
+Expected: No employee at index 0. Error details is shown in the status message.
+
 === Leave Application
 
 ==== Leave application
@@ -1518,7 +1531,28 @@ These instructions only provide a starting point for testers to work on; testers
 
 ==== Sort address book contacts
 
+. Sorts the name list either in ascending or descending order.
+
+.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+.. Test case: `sort name asc` +
+Expected: The list will be sorted in ascending order by names. Details of the address book has been sorted is shown in the status message.
+.. Test case: `sort department desc` +
+Expected: The list will be sorted in descending order by department names. Details of the address book has been sorted is shown in the status message.
+.. Test case: `sort invalid asc` +
+Expected: Invalid command format. Error details is shown in the status message.
+.. Test case: `sort name invalid` +
+Expected: Invalid command format. Error details is shown in the status message.
+
 ==== Filtering department
+
+. Filters the list with employees who are in the department from the provided keywords.
+
+.. Test case: `filterdepartment KEYWORD` +
+Expected: Employees whose department matches with `KEYWORD` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `filterdepartment KEYWORD1 KEYWORD2` +
+Expected: Employees whose department matches with `KEYWORD1` or `KEYWORD2` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `filterdepartment` +
+Expected: Invalid command format. Error details is shown in the status message.
 
 === Miscellaneous
 
@@ -1527,5 +1561,3 @@ These instructions only provide a starting point for testers to work on; testers
 ==== Check in/out working hours
 
 ==== Reset the application
-
-==== Exiting the program
