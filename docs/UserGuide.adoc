@@ -257,9 +257,7 @@ Alias: `sd`
 * Refer to the *Department* section at <<Appendix A: List of prefixes in the application, Appendix A>> for the appropriate input for the department name.
 ****
 
-Example:
-
-* `setdepartment 3 d/Junior Management`
+Example: `setdepartment 3 d/Junior Management`
 
 ====
 Changes the employee department with ID 3 in the address book to `Junior Management`.
@@ -547,9 +545,7 @@ image::SortAfter2.png[width="250"]
 Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
 Alias: `ld` +
-Example:
-
-* `listdepartment`
+Example: `listdepartment`
 
 ====
 Returns a list of departments available in the addressbook currently.
