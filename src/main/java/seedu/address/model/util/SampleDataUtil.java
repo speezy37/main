@@ -31,6 +31,7 @@ import seedu.address.model.schedule.TimeStart;
 import seedu.address.model.schedule.Venue;
 import seedu.address.model.tag.Tag;
 
+//@@author
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
@@ -57,7 +58,7 @@ public class SampleDataUtil {
                 new Email("berniceyu@abbank-sg.com"), new Department("Senior Management"),
                 new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Mode("out"),
-                new WorkingRate("7.5"), new CheckedInTime("18:00:00"),
+                new WorkingRate("7.5"), new CheckedInTime(""),
                 getTagSet("MANAGER", "T1234567E", "Password"),
                 getSchedule("1100", "1600", "Level 4")),
 
@@ -65,7 +66,7 @@ public class SampleDataUtil {
                 new Phone("93210283"), new Email("charlotte@abbank-sg.com"), new Department("Middle Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Mode("out"),
-                new WorkingRate("10"), new CheckedInTime("18:00:00"),
+                new WorkingRate("10"), new CheckedInTime(""),
                 getTagSet(),
                 getSchedule("1000", "1700", "Counter 1")),
 
@@ -73,7 +74,7 @@ public class SampleDataUtil {
                 new Email("lidavid@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Mode("out"),
-                new WorkingRate("7.5"), new CheckedInTime("18:00:00"),
+                new WorkingRate("7.5"), new CheckedInTime(""),
                 getTagSet(),
                 getSchedule("2200", "0800", "Main Door")),
 
@@ -81,15 +82,108 @@ public class SampleDataUtil {
                 new Phone("92492021"), new Email("irfan@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Mode("out"),
-                new WorkingRate("10"), new CheckedInTime("18:00:00"),
+                new WorkingRate("10"), new CheckedInTime(""),
                 getTagSet(), null),
 
             new Person(new Name("Roy Balakrishnan"), new Nric("F5169584T"), new Password("NeuEr2018"),
                 new Phone("92624417"), new Email("royb@abbank-sg.com"), new Department("Junior Management"),
                 new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Mode("out"),
-                new WorkingRate("7.5"), new CheckedInTime("18:00:00"),
-                getTagSet(), null)
+                new WorkingRate("7.5"), new CheckedInTime(""),
+                getTagSet(), null),
+
+            new Person(
+                    new Name("Abbus Toh"),
+                    new Nric("S4586855E"),
+                    new Password("Password"),
+                    new Phone("90058500"),
+                    new Email("atoh@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
+                    new Address("Yishun, Singapore"), new Mode("out"), new WorkingRate("5"), new CheckedInTime(""),
+                    getTagSet(), null),
+
+            new Person(
+                    new Name("Bernard Chong"),
+                    new Nric("F9623975E"),
+                    new Password("Password"),
+                    new Phone("90123456"),
+                    new Email("bchong@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Charlie Ker"),
+                    new Nric("T8507516H"),
+                    new Password("Password"),
+                    new Phone("88540863"),
+                    new Email("cker@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
+                    new Address("Yishun, Singapore"), new Mode("out"), new WorkingRate("5"), new CheckedInTime(""),
+                    getTagSet(), null),
+
+            new Person(
+                    new Name("Dennis Pek"),
+                    new Nric("S9726800I"),
+                    new Password("Password"),
+                    new Phone("94280736"),
+                    new Email("dpek@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Eliott Lee"),
+                    new Nric("G1238500E"),
+                    new Password("Password"),
+                    new Phone("67589052"),
+                    new Email("elee@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Faris"),
+                    new Nric("S9576541J"),
+                    new Password("Password"),
+                    new Phone("91239888"),
+                    new Email("faris@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Gary Tan"),
+                    new Nric("S4988580K"),
+                    new Password("Password"),
+                    new Phone("86420844"),
+                    new Email("gtan@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Hattori Shiage"),
+                    new Nric("G9622222I"),
+                    new Password("Password"),
+                    new Phone("9627800"),
+                    new Email("hshiage@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
+                    new Address("Napier Road, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Ben Atkinson"),
+                    new Nric("F2058730E"),
+                    new Password("Password"),
+                    new Phone("67965240"),
+                    new Email("batkinson@abbank-sg.com"),
+                    new Department("Junior Management"),
+                    new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null)
         };
     }
 
