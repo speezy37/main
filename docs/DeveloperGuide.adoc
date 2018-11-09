@@ -237,7 +237,7 @@ The `Storage` component,
 [[Design-Session]]
 === Session component
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/SessionManager.java[`SessionManager.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/session/SessionManager.java[`SessionManager.java`]
 
 The `Session` component,
 
