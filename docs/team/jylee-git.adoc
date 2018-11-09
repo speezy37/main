@@ -46,6 +46,7 @@ require user authentication.
 
 ** Project management:
 *** Managed vetting through and approving individual pull requests
+*** Deployed website for our project: https://cs2113-t16-3.netlify.com/[Website]
 
 ** Enhancements to existing features:
 *** Added a field that shows the user who is logged in at the status footer of the UI

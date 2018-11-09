@@ -111,10 +111,9 @@ public class MainApp extends Application {
             leaveListOptional = storage.readLeaveList();
             if (!leaveListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
-                initialRequest = new LeaveList();
-            } else {
-                initialRequest = leaveListOptional.get();
+                //initialRequest = new LeaveList();
             }
+            initialRequest = leaveListOptional.orElseGet(SampleDataUtil::getSampleLeaveList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialRequest = new LeaveList();

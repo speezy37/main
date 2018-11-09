@@ -58,7 +58,7 @@ public class TypicalPersons {
             .withNric("T2457775E").withPassword("ASd654").withPriorityLevel(3)
             .withEmail("anna@example.com").withDepartment("Junior Management")
             .withAddress("4th street").withMode("out")
-            .withWorkingRate("7.5").withCheckedInTime("").withoutSchedule().build();
+            .withWorkingRate("7.5").withCheckedInTime("18:00:00").withoutSchedule().build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

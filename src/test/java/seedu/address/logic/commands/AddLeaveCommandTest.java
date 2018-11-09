@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.rules.ExpectedException;
 
 import javafx.collections.ObservableList;
@@ -35,6 +36,8 @@ public class AddLeaveCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
     private static Model dummyModel;
+    private static final Leave REQUEST1EDIT = new LeaveBuilder().withNric("S1234567A")
+            .withDate("01/02/2020").withApproval("PENDING").withPriorityLevel(0).build();
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -96,6 +99,16 @@ public class AddLeaveCommandTest {
 
         // different leave -> returns false
         assertFalse(addLeaveCommand1.equals(addLeaveCommand2));
+    }
+
+    @Test
+    public void execute_notLoggedIn_throwsCommandException() {
+        Assertions.assertThrows(CommandException.class, () -> {
+            SessionHelper.logoutOfSession();
+            Leave leave = REQUEST1EDIT;
+            AddLeaveCommand sd = new AddLeaveCommand(leave);
+            sd.execute(dummyModel, commandHistory);
+        }, SessionManager.NOT_LOGGED_IN);
     }
 
     @After

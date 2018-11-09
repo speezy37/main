@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLeaveCommand;
 import seedu.address.testutil.EditLeaveDescriptorBuilder;
 
+//@@author Hafizuddin-NUS
 public class RejectLeaveCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditLeaveCommand.MESSAGE_USAGE);
