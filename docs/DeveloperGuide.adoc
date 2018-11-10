@@ -237,13 +237,17 @@ The `Storage` component,
 [[Design-Session]]
 === Session component
 
+.Structure of the Session Component
+image::SessionComponentClassDiagram.png[width="800"]
+
 *API* : link:{repoURL}/src/main/java/seedu/address/model/SessionManager.java[`SessionManager.java`]
 
 The `Session` component,
 
 * stores the identity of the user who is logged in to the app during runtime.
-* allows other functions that require elevated user status, to inquire from `SessionManager` as to whether the user
-is logged in, and also to inquire if the user has sufficient level of access to execute that particular function.
+* provides the necessary APIs for functions that require elevated user status, to inquire from `SessionManager` as to
+ whether the user is logged in, and also to inquire if the user has sufficient level of access to execute that
+ particular function.
 
 //end::jylee-git_SessionDesign[]
 
@@ -887,6 +891,18 @@ Do take a look at <<Design-Storage>> before attempting to modify the `Storage` c
 ** See this https://github.com/se-edu/addressbook-level4/pull/594[PR] for the full solution.
 ****
 
+==== `Session` component
+
+*Scenario:* You are in charge of `session`, whereby it is used to manage users logging in/out. Currently, there is a
+ `allPersonsHashMap` variable that stores the data of all employees of the company in the app. This improves the efficiency of
+  logging into the application with a time complexity of O(1). One issue with this current implementation right now is that
+   whenever one's particulars are updated, `updatePersonHashMap` will be called as well, which *re-uploads every single enployee
+   into the variable*, which is not efficient in this case, with a time complexity of O(N).
+
+Hence, your task is to modify the `updatePersonHashMap` such that whenever one's particulars is edited, only the affected
+ person object will be re-uploaded to the `allPersonsHashMap` variable, hence improving the efficiency.
+
+
 [[GetStartedProgramming-RemarkCommand]]
 === Creating a new command: `remark`
 
@@ -1070,28 +1086,74 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [discrete]
 === Use case: Login to the application
-
-[discrete]
-=== Use case: Check login status
-
-[discrete]
-=== Use case: Logout of the application
-
-[discrete]
-=== Use case: Edit personal particulars
 *MSS*
 
-. User enters edit command.
-. AddressBook shows the format to edit the person details.
-. User edit his/her particulars.
-. AddressBook updates the new particulars.
+. User types the command `login ic/NRIC pwd/PASSWORD`.
+. AddressBook shows welcome message upon successul login.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. The edited format is wrong
-** 4a1. AddressBook shows an error message.
+* 2a. Format of login command is wrong.
+** 2a1. AddressBook shows an error message stating that command format is incorrect.
++
+Use case ends.
+
+* 2b. Format of login command is correct, but invalid NRIC and/or password.
+** 2b1. AddressBook shows error message: - +
+`Login failed. Incorrect NRIC and/or password.`
++
+Use case ends.
+
+* 2c. Attempts to login when someone (whether the user himself or someone else) is already logged in.
+** 2c1. AddressBook shows error message: - +
+`You are already logged in. Logout first before logging in again.`
++
+Use case ends.
+
+[discrete]
+=== Use case: Check login status
+*MSS*
+
+. User enters command `checkloginstatus`.
+. AddressBook shows whether the user is logged in or out.
++
+Use case ends.
+
+[discrete]
+=== Use case: Logout of the application
+*MSS*
+
+. User enters command `logout`.
+. AddressBook logs the user out of the application and shows a success message.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. User is not logged in when executing that command.
+** 2a1. AddressBook shows error message that the user is not logged in.
+
+[discrete]
+=== Use case: Edit personal particulars
+*MSS*
+
+. User enters command `edit` followed by editable fields.
+. AddressBook shows a success message followed by the logged in person's particulars.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The edited format is wrong
+** 2a1. AddressBook shows an error message, followed by command usage guide.
++
+Use case ends.
+
+* 2b. User is not logged in
+** 2b1. AddressBook shows an error message: - +
+`This operation requires the user to be logged in!`
 +
 Use case ends.
 
@@ -1099,27 +1161,37 @@ Use case ends.
 === Use case: Add Person
 *MSS*
 
-.	User enters add command.
-.	AddressBook prompts to add person.
-.	User enters the details of the new person.
-.	AddressBook adds the new person.
+.	User enters add command, followed by the details of the person to be added.
+.	AddressBook shows a success message followed by the details of the newly added person.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. Person already exists in the AddressBook.
-** 4a1. AddressBook shows person already exists message.
+* 2a. Person already exists (identical NRIC number) in the AddressBook.
+** 2a1. AddressBook shows person already exists message.
 +
 Use case ends.
 
-* 4b. The added person has missing details.
-** 4b1. AddressBook shows an error message.
+* 2b. The added person has missing details.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4c. The added person has wrong entry format.
-** 4c1. AddressBook shows an error message.
+* 2c. The added person has wrong entry format.
+** 2c1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2d. User is not logged in prior to executing this command.
+** 2d1. AddressBook shows error message: - +
+`This operation requires the user to be logged in!`
++
+Use case ends.
+
+* 2e. User does not have sufficient priority level prior to executing this command.
+** 2e1. AddressBook shows error message: - +
+`You must have a priority level of at least ADMINISTRATOR to perform this operation.`
 +
 Use case ends.
 
@@ -1127,23 +1199,42 @@ Use case ends.
 === Use case: Delete Person
 *MSS*
 
-.	User enters delete command
-.	AddressBook shows the list of employees
-.	User requests to delete a specific employee
-.	AddressBook deletes the employee
+. User enters delete command followed by the `INDEX` of the person in the AddressBook list to delete.
+. AddressBook shows success message followed by the details of the person that has been deleted.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. The list is empty.
+* 2a. User entered command in wrong format.
+** 2a1. AddressBook shows error message followed by the command usage guide.
 +
 Use case ends.
 
-* 4a. The given employee name is invalid
-** 4a1. AddressBook shows an error message.
+* 2b. User is not logged in prior to executing this command.
+** 2b1. AddressBook shows error message: - +
+`This operation requires the user to be logged in!`
 +
-Use case resumes to step 2.
+Use case ends.
+
+* 2c. User does not have sufficient priority level prior to executing this command.
+** 2c1. AddressBook shows error message: - +
+`You must have a priority level of at least ADMINISTRATOR to perform this operation.`
++
+Use case ends.
+
+* 2d. User attempts to delete him/herself
+** 2d1. AddressBook shows error message: - +
+`You can't delete yourself!`
++
+Use case ends.
+
+* 2e. User entered a value `INDEX` that is out of range of the list of persons that is currently shown on the
+ list of People tab.
+** 2e1. Address shows error message: - +
+`The person index provided is invalid`
++
+Use case ends.
 
 [discrete]
 === Use case: Change priority level of user
@@ -1413,6 +1504,12 @@ Use case ends.
 
 [discrete]
 === Use case: Reset application
+*MSS*
+
+. User enters command `reset`.
+. AddressBook deletes `data/AddressBook.xml` and exits the program.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
