@@ -322,6 +322,22 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 
 .Sequence diagram of AddLeaveCommand
 image::AddLeaveCommandSequenceDiagram.png[width="800"]
+
+
+==== Design Considerations
+
+===== Aspect: Storage for leave
+
+* **Alternative 1 (current choice):** Store in a different XML file.
+** Pros: Easy to implement by duplicating existing storage, parser and XML related classes to cater for new XML file.
+** Cons: Need to spend extra time on deleting of leaves when a particular person is deleted.
+* **Alternative 2:** Store in a existing XML file.
+** Pros: Easier to implement, as it only requires to add onto existing parser.
+** Cons: May require extra parameters to create a Person object.
+* **Alternative 3:** Store in a different file format.
+** Pros: Easier to understand.
+** Cons: Consumes extra time to implement different parser from scratch.
+
 // end::addleave[]
 
 // tag::filterdepartment[]
@@ -1225,23 +1241,23 @@ Use case ends.
 
 *Extensions*
 
-* 1a. User not logged in
-** 1a1. BankAB shows an error message.
+* 2a. User not logged in
+** 2a1. BankAB shows an error message.
 +
 User case ends.
 
-* 1b. The given date is an invalid calendar date.
-** 1b1. BankAB shows an error message.
+* 2b. The given date is an invalid calendar date.
+** 2b1. BankAB shows an error message.
 +
 Use case ends.
 
-* 1c. The given date has passed.
-** 1c1. BankAB shows an error message.
+* 2c. The given date has passed.
+** 2c1. BankAB shows an error message.
 +
 Use case ends.
 
-* 1d. The given date is an existing leave application.
-** 1d1. BankAB shows an error message.
+* 2d. The given date is an existing leave application.
+** 2d1. BankAB shows an error message.
 +
 Use case ends.
 
@@ -1250,8 +1266,8 @@ Use case ends.
 
 *MSS*
 
-.	User enters `listleave` command
-.	BankAB list all leave applications
+.	User enters `listleave` command.
+.	BankAB list all leave applications.
 +
 Use case ends.
 
@@ -1260,8 +1276,8 @@ Use case ends.
 
 *MSS*
 
-.	User enters `filterleave` command with the desired NRIC he wants to filter
-.	BankAB list all leave applications under that NRIC
+.	User enters `filterleave` command with the desired NRIC he wants to filter.
+.	BankAB list all leave applications under that NRIC.
 +
 Use case ends.
 
@@ -1276,16 +1292,16 @@ Use case ends.
 
 *Extensions*
 
-* 1a. User not logged in
-** 1a1. BankAB shows an error message. +
+* 2a. User not logged in
+** 2a1. BankAB shows an error message. +
 User case ends.
 
-* 1b. Invalid index given.
-** 1b1. BankAB shows an error message. +
+* 2b. Invalid index given.
+** 2b1. BankAB shows an error message. +
 Use case ends.
 
-* 1c. Not authorized to delete other user's leave application due to insufficient priority level.
-** 1c1. BankAB shows an error message.
+* 2c. Not authorized to delete other user's leave application due to insufficient priority level.
+** 2c1. BankAB shows an error message.
 +
 Use case ends.
 
@@ -1300,29 +1316,29 @@ Use case ends.
 
 *Extensions*
 
-* 1a. User not logged in
-** 1a1. BankAB shows an error message.
+* 2a. User not logged in
+** 2a1. BankAB shows an error message.
 +
 Use case ends.
 
-* 1b. Invalid index given.
-** 1b1. BankAB shows an error message. +
+* 2b. Invalid index given.
+** 2b1. BankAB shows an error message. +
 Use case ends.
 
-* 1c. Not authorized to approve/reject your own leave application.
-** 1c1. BankAB shows an error message.
+* 2c. Not authorized to approve/reject your own leave application.
+** 2c1. BankAB shows an error message.
 +
 Use case ends.
 
-* 1d. Not authorized to approve/reject other user's leave application due to insufficient priority level.
-** 1d1. BankAB shows an error message.
+* 2d. Not authorized to approve/reject other user's leave application due to insufficient priority level.
+** 2d1. BankAB shows an error message.
 +
 Use case ends.
 
-* 1e. The leave application was already been approved/rejected.
-** 1e1. BankAB shows an error message.
+* 2e. The leave application was already been approved/rejected.
+** 2e1. BankAB shows an error message.
 +
-Use case resumes to step 6.
+Use case ends.
 
 [discrete]
 === Use case: Check schedule
@@ -1553,7 +1569,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: List all leave application under the user with NRIC,S8570520Q.
 .. Test case: `fl S1212121A` , `fl S1313131A` +
    Expected: 0 leaves listed. This is due to no such leave application under S1212121A and S1313131A.
-.. If NRIC is not a valid such as: 'fl S8570520', 'fl 8570520Q', 'fl 8570520' +
+.. If NRIC is not valid such as: 'fl S8570520', 'fl 8570520Q', 'fl 8570520' +
    Expected: 0 leaves listed. This is due to invalid NRIC.
 
 ==== Delete leave application
@@ -1561,11 +1577,11 @@ These instructions only provide a starting point for testers to work on; testers
 . Delete leave application
 
 .. Prerequisites: User must be logged in as Administrator.
-.. Test case: `deleteleave 1` where the leave application under index 1 is not requested by the logged in user. +
+.. Test case: `deleteleave 1` where 1 is the index of the leave application under the list +
    Expected: First leave application is deleted from the list. Details of the deleted leave application shown in the status message.
 .. Test case: `delete 0` +
    Expected: No leave is deleted. Error details shown in the status message.
-.. Other incorrect deleteleave commands to try: `deleteleave`, `deleteleave x` (where x is larger than the list leave size) _{give more}_ +
+.. Other incorrect deleteleave commands to try: `deleteleave`, `deleteleave x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
 
 ==== Approve leave application
@@ -1577,7 +1593,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: Leave application approved. Details of the approved leave application shown in the status message.
 .. Test case: `approve 0` +
    Expected: No leave application is approved. Error details shown in the status message.
-.. Other incorrect approve commands to try: `approve`, `approve x` (where x is larger than the list leave size) _{give more}_ +
+.. Other incorrect approve commands to try: `approve`, `approve x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
 
 ==== Reject leave application
