@@ -28,7 +28,7 @@ priority level of the employee and approve or reject leave requests.
 ** Highlights:  The implementation requires new classes and commands to be created and also affects current existing `delete` and `setplvl` commands.
 The implementation was challenging due to the different privileges each priority level have which affects commands such as `approve`, `reject` and `deleteleave`.
 
-* *Minor enhancement*: UI changes such as color theme changes, removal of browser pane, addition of leave application tab and image pane.
+* *Minor enhancement*: UI changes such as color theme changes, removal of browser panel, addition of leave application tab and image view.
 
 * *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=hafizuddin-nus[RepoSense Dashboard]
 
@@ -37,7 +37,7 @@ The implementation was challenging due to the different privileges each priority
 ** Project management:
 *** Managed vetting through and approving individual pull requests
 ** Enhancements to existing features:
-*** Updated the GUI color scheme, removal of browser pane, added leave application tab and image pane : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25], https://github.com/CS2113-AY1819S1-T16-3/main/pull/108[#108]
+*** Updated the GUI color scheme, removal of browser panel, added leave application tab and image view : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25], https://github.com/CS2113-AY1819S1-T16-3/main/pull/108[#108]
 *** Added functionality for `delete` command that simultaneously deletes leave applications under the person that is being deleted : https://github.com/CS2113-AY1819S1-T16-3/main/pull/25[#25]
 *** Made modifications to the existing implementation after the feedback received from the first practical exam: https://github.com/CS2113-AY1819S1-T16-3/main/pull/132[#132]
 ** Documentation:
@@ -55,6 +55,19 @@ The implementation was challenging due to the different privileges each priority
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
+include::../UserGuide.adoc[tag=leavecommand]
+
+include::../UserGuide.adoc[tag=listleave]
+
+include::../UserGuide.adoc[tag=filterleave]
+
+include::../UserGuide.adoc[tag=deleteleave]
+
+include::../UserGuide.adoc[tag=approveleave]
+
+include::../UserGuide.adoc[tag=rejectleave]
+
+
 
 
 
@@ -63,3 +76,5 @@ The implementation was challenging due to the different privileges each priority
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+
+include::../DeveloperGuide.adoc[tag=addleave]
