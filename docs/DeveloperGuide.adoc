@@ -1058,7 +1058,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |Elevated user	|Add/Delete/Edit employees into the database	|Ensure that the company manpower list is updated
 |`* * *` |Elevated user	|Set schedule for employee 	|Deploy employees to their designated location.
 |`* * *` |User	|Edit my personal particulars	|Update them as required (Edit function)
-|`* * *` |Elevated user	|Access employee off-day requests	|Approve/Reject off for employees
+|`* * *` |Elevated user	|Access employees leave applications	|Approve/Reject leaves for employees
 |`* * *` |User	|Search for a specific contact	|Obtain the particulars of the contact easily
 |`* * *` |User	|List the manpower for the day	|Allocate my manpower accordingly
 |`* * *` |User	|Sort my address book by name and department	|Look for contacts that I want easily
@@ -1066,7 +1066,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |User	|Filter out and view my relevant colleague’s department	|Spend less time searching for their contact details and contact them
 |`* * *` |Elevated User	|Change the department of the employees	|They are allocated at the correct department
 |`* * *` |User	|Set password to my address book	|Prevent unauthorized access to my address book
-|`* * *` |User	|Access my remaining off days	|Apply for my off
+|`* * *` |User	|Apply for leave application	|I can go on leave
+|`* * *` |User	|Filter out leave application by NRIC	|I can list out leave applications under me
+|`* * *` |User	|I have access to my leave applications	|I can delete them
+|`* * *` |User	|I can list out all leave applications	|I can gauge which day for me to apply leave without the company lacking of manpower
+|`* * *` |Elevated User	|I have access to all employee's leave applications	|I can delete them
 |`* * *` |User	|Check in and out during my work days	|I will be able to view the number of hours I have worked for
 |`* * *` |Elevated user	|Check my employees’ working hours	|Pay them accordingly
 |`* * *` |Administrator	|Restrict employee access to the address book application	|Perform maintenance or upgrades
