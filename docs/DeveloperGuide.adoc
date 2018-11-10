@@ -169,7 +169,7 @@ image::UiClassDiagram.png[width="800"]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ImageView` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -1235,7 +1235,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Apply leave
+=== Use case: Apply leave application
 *MSS*
 
 .	User enters `leave` command with the desired leave application date.
@@ -1260,13 +1260,18 @@ Use case ends.
 +
 Use case ends.
 
-* 2d. The given date is an existing leave application.
+* 2d. Today's date is given.
 ** 2d1. BankAB shows an error message.
 +
 Use case ends.
 
+* 2e. The given date is an existing leave application.
+** 2e1. BankAB shows an error message.
++
+Use case ends.
+
 [discrete]
-=== Use case: List leave
+=== Use case: List leave application
 
 *MSS*
 
@@ -1276,7 +1281,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Filter leave
+=== Use case: Filter leave application
 
 *MSS*
 
@@ -1286,7 +1291,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Delete leave
+=== Use case: Delete leave application
 *MSS*
 
 .	User enters `deleteleave` command with the index of the leave application he wants to delete.
@@ -1310,7 +1315,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Approve/reject leave request
+=== Use case: Approve/reject leave application
 *MSS*
 
 .	User enters `approve` / `reject` command with the index of the leave application he wants to approve.
@@ -1569,11 +1574,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Filter leave application
 
-.. Test case: `fl S8570520Q` +
+.. Test case: `filterleave S8570520Q` +
    Expected: List all leave application under the user with NRIC,S8570520Q.
-.. Test case: `fl S1212121A` , `fl S1313131A` +
+.. Test case: `filterleave S1212121A` , `filterleave S1313131A` +
    Expected: 0 leaves listed. This is due to no such leave application under S1212121A and S1313131A.
-.. If NRIC is not valid such as: 'fl S8570520', 'fl 8570520Q', 'fl 8570520' +
+.. If NRIC is not valid such as: 'filterleave S8570520', 'filterleave 8570520Q', 'filterleave 8570520' +
    Expected: 0 leaves listed. This is due to invalid NRIC.
 
 ==== Delete leave application
@@ -1583,7 +1588,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Prerequisites: User must be logged in as Administrator.
 .. Test case: `deleteleave 1` where 1 is the index of the leave application under the list +
    Expected: First leave application is deleted from the list. Details of the deleted leave application shown in the status message.
-.. Test case: `delete 0` +
+.. Test case: `deleteleave 0` +
    Expected: No leave is deleted. Error details shown in the status message.
 .. Other incorrect deleteleave commands to try: `deleteleave`, `deleteleave x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
@@ -1607,7 +1612,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Prerequisites: User must be logged in as Administrator.
 .. Test case: `reject 1` where the leave application under index 1 is not requested by the logged in user. +
    Expected: Leave application rejected. Details of the rejected leave application shown in the status message.
-.. Test case: `approve 0` +
+.. Test case: `reject 0` +
    Expected: No leave application is rejected. Error details shown in the status message.
 .. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) _{give more}_ +
    Expected: Similar to previous.
