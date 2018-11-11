@@ -25,9 +25,11 @@ string format or the `nullPointerException` will return `'No schedule is allocat
 
 * *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=speezy37[Code Dashboard]
 
+* Other contributions:
+** Code quality:
+*** Ensure Coverage is above 90 percent: https://github.com/CS2113-AY1819S1-T16-3/main/pull/106[#106]
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
@@ -42,3 +44,5 @@ include::../UserGuide.adoc[tag=schedule]
 |===
 
 include::../DeveloperGuide.adoc[tag=schedule]
+
+include::../DeveloperGuide.adoc[tag=schedule_test]
