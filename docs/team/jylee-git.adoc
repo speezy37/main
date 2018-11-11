@@ -74,9 +74,9 @@ https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60], https://github.com/C
 //include whatever you did here
 include::../UserGuide.adoc[tag=jylee-git_login]
 
-include::../UserGuide.adoc[tag=Command_Summary]
+//include::../UserGuide.adoc[tag=Command_Summary]
 
-include::../UserGuide.adoc[tag=jylee-git_appendixA]
+//include::../UserGuide.adoc[tag=jylee-git_appendixA]
 
 include::../UserGuide.adoc[tag=jylee-git_appendixB]
 

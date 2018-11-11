@@ -249,6 +249,9 @@ The `Session` component,
  whether the user is logged in, and also to inquire if the user has sufficient level of access to execute that
  particular function.
 
+`AllPersonsHashMap` is a hash map that stores all the persons from the AddressBook into the varialbe. This improves the efficiency
+ of logging in, and also for functions that require the details of the logged in person.
+
 //end::jylee-git_SessionDesign[]
 
 [[Design-Commons]]
