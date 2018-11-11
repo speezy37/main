@@ -1549,7 +1549,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample employees and leave applications. The window size may not be optimum.
 
 . Saving window preferences
 
@@ -1560,12 +1560,50 @@ These instructions only provide a starting point for testers to work on; testers
 === Personal User Account
 
 ==== Login to the application
+. Logs in to the application using a registered NRIC and associating password when *not logged in prior to executing the command*.
+..  Pre-requisites: -
+...     Login NRIC has to be registered in the application, either through the sample data or added manually by an administrator.
+...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the accounts*.
+...     You are *not logged in* prior to testing this function.
+..  Test case: `login ic/S1234567E pwd/Password` +
+    Expected: Status message box states that you are logged in successfully, with your name, and your shcedule (if any).
+                Status bar will now show that you are logged in with the corresponding name of the user who logged in.
+..  Test case: `login ic/S12345678 pwd/Password` +
+    Expected: Not logged in. Format of NRIC is incorrect and Status message box shows the NRIC constraints. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E pwd/high-five` +
+    Expected: Not logged in. Password format is incorrect and Status message box shows password constraints. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E` +
+    Expected: Not logged in. Command format is invalid and Status message box shows the command usage. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E pwd/SomeRandomPwd` +
+    Expected: Not logged in. Password does not match the one that's registered with the app; Status message box shows error.
+                Status bar remains unchanged.
+. Logs in to the application using a registered NRIC and associating password when *already logged in prior to executing the command*.
+..  Pre-requisites: You are *already logged in* prior to testing this function.
+..  Test case: `login ic/T1234567E pwd/Password` +
+    Expected: Status message box shows the message: - +
+                `You are already logged in. Logout first before logging in again`. +
+                Login status remain unchanged; status bar remain unchanged.
+
 
 ==== Checks the login status of the application
+. Checks the login status of this app. For this case, someone is logged in to the app.
+..  Pre-requisites: Someone is logged in to the app.
+..  Test case: `checkloginstatus` +
+    Expected: Status message box shows the NRIC of the user who is logged in to the app.
+. Checks the login status of this app. For this case, user is not logged in prior to executing this command.
+..  Pre-requisites: User is not logged in prior to executing this command.
+..  Test case: `checkloginstatus` +
+    Expected: Status message box shows that you are not logged in.
+
 
 ==== Logout of the application
+. Logs out of the application.
+..  Pre-requisites: User is logged into the app prior to executing this command.
+..  Test case: `logout` +
+    Expected: Status message box shows that you have successfully logged out. Status bar footer now shows: `Not logged in`.
 
-==== Editing a person
+==== Editing personal particulars of the person who is logged in
+. Edits your own particulars
 
 === Employee Management Database
 
