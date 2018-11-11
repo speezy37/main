@@ -1290,6 +1290,12 @@ Use case ends.
 +
 Use case ends.
 
+*Extensions*
+
+* 2a. Leave application under the NRIC given does not exist
+** 2a1. "0 leaves listed." Shown by BankAB. +
+User case ends.
+
 [discrete]
 === Use case: Delete leave application
 *MSS*
