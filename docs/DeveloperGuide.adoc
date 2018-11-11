@@ -546,6 +546,23 @@ The following sequence diagram below shows the flow of how the feature works:
 .Sequence diagram of priority level restriction feature
 image::ImplementPlvlRestrictionSequenceDiagram.png[width=900]
 
+==== Design Considerations
+
+===== Aspect: Implementation of elevated user rights
+As this is a CLI-driven application, we prioritized on the speed and efficiency of getting things done over security,
+    which will result in users having to execute multiple commands just to get an administrative command executed.
+
+* *Alternative 1 (current choice)*: Able to perform administrative rights the moment a user with elevated priority level is logged in.
+    ** Pros: Able to immediately perform administrative functions the moment user is logged in, such as adding or deleting employees.
+    ** Cons: Potential security issue; user with admin rights may accidentally forget to logout, resulting in other people
+                with ill intentions to execute administrative functions without the permission of the actual user.
+* *Alternative 2*: Users with elevated priority level will need to type in a command to enable "super user" status prior to executing
+                       any administrative functions.
+   ** Pros: Better security; company resources will be less-prone to abuse by employees with ill intentions.
+   ** Cons: Less efficient in getting things done. Reason being, this is a CLI-driven application. Hence, implementing
+                this alternative means that users will need to key in multiple commands just to get administrative functions done
+                as a trade-off to beefing up security.
+
 // end:priorityLevel[]
 
 === Logging
