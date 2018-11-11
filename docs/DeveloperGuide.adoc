@@ -1672,6 +1672,7 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy 
    Expected: Similar to previous.
 
 //tag::jylee-git_dg_setplvl[]
+
 ==== Change priority level of employee
 [NOTE]
 ====
