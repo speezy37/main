@@ -319,7 +319,7 @@ Alias: `fl`
 * Filter is case insensitive eg. `s1234567a` matches `S1234567A`
 ====
 Example:
-`filterleave T1213452E`
+`filterleave F2058730E`
 
 image:filterleavecmd.png[width=""]
 
