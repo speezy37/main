@@ -51,7 +51,7 @@ public class SampleDataUtil {
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Mode("out"),
                 new WorkingRate("7.5"), new CheckedInTime(""),
-                getTagSet("friends", "ADMINISTRATOR", "S1234567E", "Password"),
+                getTagSet("ADMINISTRATOR", "S1234567E", "Password"),
                 getSchedule("1300", "1400", "Level 5")),
 
             new Person(new Name("Bernice Yu"), new Nric("T1234567E"), new Password("Password"), new Phone("99272758"),
