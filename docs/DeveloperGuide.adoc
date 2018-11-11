@@ -1606,7 +1606,7 @@ These instructions only provide a starting point for testers to work on; testers
 . Edits the editable particulars of the person who is logged in.
 [NOTE]
 ====
-Refer to <<UserGuide.adoc#314-editing-a-person--edit,EditCommand User Guide>> for the list of editable parameters.
+Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand User Guide>> for the list of editable parameters.
 ====
 
 === Employee Management Database
