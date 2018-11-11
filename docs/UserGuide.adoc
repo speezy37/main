@@ -259,11 +259,10 @@ Alias: `sd`
 
 Example: `setdepartment 3 d/Junior Management`
 
-image::SetDepartmentBefore.png[width=""]
 ====
 Changes the employee department with ID 3 in the address book to `Junior Management`.
 
-image::SetDepartmentAfter.png[width=""]
+image::SetDepartmentAfter.png[width="500"]
 ====
 // end::setdepartment[]
 
@@ -535,19 +534,17 @@ Examples:
 
 * `sort name asc`
 
-image::SortBefore1.png[width=""]
 ====
 Sorts the employee names in the list in ascending order
 
-image::SortAfter1.png[width="250"]
+image::SortAfter1.png[width="200"]
 ====
 * `sort department desc`
 
-image::SortBefore2.png[width=""]
 ====
 Sorts the department names in the list in descending order
 
-image::SortAfter2.png[width="250"]
+image::SortAfter2.png[width="200"]
 ====
 // end::sort[]
 
@@ -560,16 +557,13 @@ image::SortAfter2.png[width="250"]
 Shows a list of departments available in the addressbook. +
 Format: `listdepartment` +
 Alias: `ld` +
-Example:
+Example: `listdepartment`
 
-* `listdepartment`
-
-image::ListDepartmentBefore.png[width=""]
 ====
 Returns a list of departments available in the addressbook currently.
 Listing of department names are in ascending order.
 
-image::ListDepartmentAfter.png[width=""]
+image::ListDepartmentAfter.png[width="500"]
 ====
 // end::listdepartment[]
 
@@ -596,19 +590,17 @@ Examples:
 
 * `filterdepartment junior`
 
-image::FilterDepartmentBefore1.png[width=""]
 ====
 Returns a list of employees who are in `Junior Management`.
 
-image::FilterDepartmentAfter1.png[width="250"]
+image::FilterDepartmentAfter1.png[width="200"]
 ====
 * `filterdepartment junior senior`
 
-image::FilterDepartmentBefore2.png[width=""]
 ====
 Returns a list of employees who are in `Junior Management` and `Senior Management`.
 
-image::FilterDepartmentAfter2.png[width="250"]
+image::FilterDepartmentAfter2.png[width="200"]
 ====
 // end::filterdepartment[]
 
@@ -663,6 +655,7 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+// tag::check[]
 ==== Check in/out working hours: `check`
 Updates check in/out status for employees. +
 Format: `check m/IN-OUT` +
@@ -700,6 +693,7 @@ Checked out shows: +
 
 image::checkedOut.PNG[width="700"]
 ====
+// end::check[]
 
 ==== Reset the application : `reset`
 [NOTE]

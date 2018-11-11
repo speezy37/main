@@ -35,8 +35,11 @@ public class ResetCommand extends Command {
                     PriorityLevelEnum.IT_UNIT));
         }
         Path addressBookPath = new UserPrefs().getAddressBookFilePath();
+        Path leaveListPath = new UserPrefs().getLeaveListFilePathFilePath();
         File addressBookFile = new File(addressBookPath.toUri());
+        File leaveListFile = new File(leaveListPath.toUri());
         addressBookFile.deleteOnExit();
+        leaveListFile.deleteOnExit();
 
         Logger logger = LogsCenter.getLogger(ResetCommand.class);
         logger.info("AddressBook has been reset. Exiting application now.");
