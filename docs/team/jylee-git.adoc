@@ -89,3 +89,4 @@ include::../UserGuide.adoc[tag=jylee-git_appendixB]
 
 //include whatever you did here
 include::../DeveloperGuide.adoc[tag=jylee-git_SessionDesign]
+include::../DeveloperGuide.adoc[tag=jylee-git_dg_setplvl]

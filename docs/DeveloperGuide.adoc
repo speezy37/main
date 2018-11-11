@@ -1666,6 +1666,7 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy 
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
+//tag::jylee-git_dg_setplvl[]
 ==== Change priority level of employee
 [NOTE]
 ====
@@ -1694,7 +1695,7 @@ Refer to <<UserGuide.adoc#Appendix B: Privileges in accordance to priority level
 ..  Test case: `setplvl 2 plvl/3` +
     Expected: Priority level of the employee at index 2 is not updated. The user who is attempting to change the priority level
                 does not have the rights to do so. Status message box shows an error message.
-
+//end::jylee-git_dg_setplvl[]
 
 
 ==== Change the department of an employee
@@ -1799,3 +1800,12 @@ Expected: Invalid command format. Error details is shown in the status message.
    Expected: Similar to previous.
 
 ==== Reset the application
+. Resets the application, by deleting `data/AddressBook.xml` and `data/leave.xml`, provided that any of the files exist.
+
+..  Pre-requisites: - +
+    ... User must be logged in with a priority level of `I.T. UNIT`.
+    ... In order for the test to be efficient, you may ensure that the files `data/AddressBook.xml` and `data/leave.xml`
+        exist in the folder `data`.
+..  Test case: type command `reset` +
+    Expected: Application will exit. The two files will be deleted upon application exit.
+                When you *manually* re-open the app, a sample list of employee and leave will be shown.
