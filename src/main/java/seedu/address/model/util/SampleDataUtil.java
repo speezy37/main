@@ -50,7 +50,7 @@ public class SampleDataUtil {
                 new Email("alexyeoh@abbank-sg.com"), new Department("Top Management"),
                 new PriorityLevel(PriorityLevelEnum.ADMINISTRATOR.getPriorityLevelCode()),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Mode("out"),
-                new WorkingRate("7.5"), new CheckedInTime("18:00:00"),
+                new WorkingRate("7.5"), new CheckedInTime(""),
                 getTagSet("ADMINISTRATOR", "S1234567E", "Password"),
                 getSchedule("1300", "1400", "Level 5")),
 
