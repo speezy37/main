@@ -1596,7 +1596,7 @@ Expected: No employee at index 0. Error details is shown in the status message.
 . Filter leave application
 
 .. Test case: `filterleave S8570520Q` +
-   Expected: List all leave application under the user with NRIC,S8570520Q.
+   Expected: List all leave application under the user with NRIC, S8570520Q.
 .. Test case: `filterleave S1212121A` , `filterleave S1313131A` +
    Expected: 0 leaves listed. This is due to no such leave application under S1212121A and S1313131A.
 .. If NRIC is not valid such as: 'filterleave S8570520', 'filterleave 8570520Q', 'filterleave 8570520' +
@@ -1635,7 +1635,7 @@ Expected: No employee at index 0. Error details is shown in the status message.
    Expected: Leave application rejected. Details of the rejected leave application shown in the status message.
 .. Test case: `reject 0` +
    Expected: No leave application is rejected. Error details shown in the status message.
-.. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) _{give more}_ +
+.. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
 
 === Scheduling

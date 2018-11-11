@@ -357,7 +357,7 @@ image:deletingleave.png[width=""]
 
 Deletes the leave application with INDEX 1 in the leave list.
 
-image:deletedleave.png[width=""]
+image:deleteresult.png[width=""]
 // end::deleteleave[]
 
 // tag::approveleave[]
