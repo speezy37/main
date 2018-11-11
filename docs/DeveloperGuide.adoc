@@ -240,7 +240,7 @@ The `Storage` component,
 .Structure of the Session Component
 image::SessionComponentClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/SessionManager.java[`SessionManager.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/session/SessionManager.java[`SessionManager.java`]
 
 The `Session` component,
 
@@ -386,6 +386,16 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 
 .Sequence diagram of FilterDepartmentCommand
 image::FilterDepartmentCommandSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+===== Aspect: Implementation of `FilterDepartment` command
+
+* **Alternative 1 (current choice):** A separate command for filter department.
+** Pros: Command works more accurately and efficiently as it focuses on the keywords related to `Department`.
+** Cons: The implementation of another command may be unnecessary as we can integrate `find` command to find for departments.
+* **Alternative 2:** Using `find` command to filter department name.
+** Pros: One command works for finding name and to filter department names.
+** Cons: The command may not work properly. For example, there is an employee whose name is `Junior` from `Senior Management`. But if we only want to filter employees who are in `Junior Management`, the command will output people who are in `Junior Management` and the employee `Junior`.
 // end::filterdepartment[]
 
 // tag::checkinout[]
@@ -1271,9 +1281,7 @@ Use case ends.
 === Use case: Change department of user
 *MSS*
 
-. User enters setdepartment command.
-. AddressBook prompts to enter the INDEX and department name to change.
-. User enters the index and the department name.
+. User enters setdepartment command, followed by the index and the department name.
 . AddressBook updates the department of the user at the stated index.
 +
 Use case ends.
@@ -1561,23 +1569,45 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Employee Management Database
 
-==== Adding a person
+==== Adding an employee
 
-==== Deleting a person
+. Adding an employee in to the address book.
 
-. Deleting a person while all persons are listed
+.. Prerequisites: Logged in as an administrator and add an employee who does not exist in the address book with the `add` command. +
+`add n/Betsy Crowe ic/S1875858E pwd/Password p/98758585 e/betsy@abbank-sg.com d/Junior Management a/Block 123 Kaki Bukit Street 123, #12-345 wr/7.5`
+.. Test case: `add n/Carol Crowe ic/S1947829E pwd/Password p/94724372 e/carol@abbank-sg.com d/Junior Management a/Block 123 Jurong Street 123, #12-345 wr/7.5` +
+Expected: `Carol Crowe` is added in to the list. Details of the added contact is shown in the status message.
+.. Test case: `add n/Carol Crowe ic/S1875858E pwd/Password p/94724372 e/carol@abbank-sg.com d/Junior Management a/Block 123 Jurong Street 123, #12-345 wr/7.5` +
+Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy Crowe`. Error detail shown in the status message.
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+==== Deleting an employee
+
+. Deleting an employee while all employees are listed.
+
+.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 .. Test case: `delete 1` +
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+   Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
 ==== Change priority level of employee
 
 ==== Change the department of an employee
+
+. Change the department of an employee from the given index.
+
+.. Prerequisites: Have to be logged in as an administrator and have multiple employees in the list.
+
+.. Test case: `setdepartment 1 d/Top Management` +
+Expected: The employee's department at index 1 will be changed to `Top Management`.
+Details of the employee name and the changed department name will be shown in the status message.
+If the employee at index 1 is the logged in employee himself/herself, the department will not be changed. Error details is shown in the status message.
+.. Test case: `setdepartment 1 d/Top Department` +
+Expected: Department name is of the wrong format. Error details is shown in the status message.
+.. Test case: `setdepartment 0 d/Top Management` +
+Expected: No employee at index 0. Error details is shown in the status message.
 
 === Leave Application
 
@@ -1601,26 +1631,54 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Filtering/Sorting
 
-==== Listing all persons
+==== Locating employees by name
 
-==== Locating persons by name
+. Finds the employees whose name contains any of the given keywords.
+
+.. Test case: `find KEYWORD` +
+Expected: Employees whose name matches with `KEYWORD` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `find KEYWORD1 KEYWORD2` +
+Expected: Employees whose name matches with `KEYWORD1` or `KEYWORD2` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `find` +
+Expected: Invalid command format. Error details is shown in the status message.
 
 ==== Sort address book contacts
 
-==== List department
+. Sorts the name list either in ascending or descending order.
+
+.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+.. Test case: `sort name asc` +
+Expected: The list will be sorted in ascending order by names. Details of the address book has been sorted is shown in the status message.
+.. Test case: `sort department desc` +
+Expected: The list will be sorted in descending order by department names. Details of the address book has been sorted is shown in the status message.
+.. Test case: `sort invalid asc` +
+Expected: Invalid command format. Error details is shown in the status message.
+.. Test case: `sort name invalid` +
+Expected: Invalid command format. Error details is shown in the status message.
 
 ==== Filtering department
 
+. Filters the list with employees who are in the department from the provided keywords.
+
+.. Test case: `filterdepartment KEYWORD` +
+Expected: Employees whose department matches with `KEYWORD` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `filterdepartment KEYWORD1 KEYWORD2` +
+Expected: Employees whose department matches with `KEYWORD1` or `KEYWORD2` is listed. Details of the number of employees listed is shown in the status message.
+.. Test case: `filterdepartment` +
+Expected: Invalid command format. Error details is shown in the status message.
+
 === Miscellaneous
 
-==== Viewing help
+==== Selecting an employee
 
-==== Selecting a person
+. Selects an employee while all employee are listed.
 
-==== Listing entered commands
+.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+.. Test case: `select 1` +
+   Expected: First contact is selected from the list. Details of the index of the selected employee is shown in the status message.
+.. Test case: `select 0` +
+   Expected: No employee is selected. Error details shown in the status message.
+.. Other incorrect select commands to try: `select`, `select x` (where x is larger than the list size) +
+   Expected: Similar to previous.
 
 ==== Check in/out working hours
-
-==== Reset the application
-
-==== Exiting the program
