@@ -1292,28 +1292,28 @@ Use case ends.
 
 *Extensions*
 
-* 4a. User is not logged in.
-** 4a1. AddressBook shows an error message.
+* 2a. User is not logged in.
+** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4b. User does not have the correct priority level.
-** 4b1. AddressBook shows an error message.
+* 2b. User does not have the correct priority level.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4c. User keys in an invalid INDEX.
-** 4c1. AddressBook shows an error message.
+* 2c. User keys in an invalid INDEX.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4d. User keys in an invalid department name.
-** 4d1. AddressBook shows an error message.
+* 2d. User keys in an invalid department name.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4e. User tries to edit his/her own department.
-** 4e1. AddressBook shows an error message.
+* 2e. User tries to edit his/her own department.
+** 2e1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1452,24 +1452,22 @@ Use case ends.
 === Use case: Sort contact
 *MSS*
 
-. User enters sort command.
-. AddressBook prompts user to enter the field and order of sort.
-. User enters the field and order to sort.
+. User enters sort command, followed by the field and order of sort.
 . AddressBook shows a sorted list by the field and order.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. The given field is invalid.
-** 4a1. AddressBook shows an error message.
+* 2a. The given field is invalid.
+** 2a1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case resumes to step 1.
 
-* 4b. The given order is invalid.
-** 4b1. AddressBook shows an error message.
+* 2b. The given order is invalid.
+** 2b1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case resumes to step 1.
 
 [discrete]
 === Use case: List department
@@ -1484,19 +1482,17 @@ Use case ends.
 === Use case: Filter department
 *MSS*
 
-. User enters filterdepartment command.
-. AddressBook prompts to enter the departments to filter.
-. User enters the department name to filter.
+. User enters filterdepartment command, followed by the department names to filter.
 . AddressBook shows the list of filtered department.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. The keyword `management` is entered.
-** 4a1. AddressBook shows an error message.
+* 2a. The keyword `management` is entered.
+** 2a1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case resumes to step 1.
 
 * 4b. The keyword entered is not found.
 ** 4b1. AddressBook shows an empty list.
@@ -1510,7 +1506,7 @@ Use case ends.
 . User enters command to check in.
 . AddressBook starts to time the user working hours.
 . User enters command to check out.
-. AddressBook stops timer, and records the user working hours.
+. AddressBook stops timer, and records and displays the user working hours and salary for the day.
 +
 Use case ends.
 
@@ -1772,3 +1768,17 @@ Expected: Invalid command format. Error details is shown in the status message.
    Expected: Similar to previous.
 
 ==== Check in/out working hours
+
+. Checking in or out for a person.
+
+.. Prerequisites: Log in for the person using the `login` command.
+.. Test case: `check m/in` +
+   Expected: The person has checked in to work. Details of the checked in person shown in the status message. The checked in/out status is updated.
+.. Test case: `check m/IN` +
+   Expected: No person checked in. Error details shown in the status message. Checked in/out status remains the same.
+.. Test case: `check m/10` +
+   Expected: No person checked in. Error details shown in the status message. Checked in/out status remains the same.
+.. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
+   Expected: Similar to previous.
+
+==== Reset the application
