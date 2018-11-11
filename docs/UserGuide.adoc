@@ -266,6 +266,7 @@ image::SetDepartmentAfter.png[width="500"]
 ====
 // end::setdepartment[]
 
+// tag::leavecommand[]
 === Leave Application
 
 ==== Leave application : `leave`
@@ -274,6 +275,8 @@ Format: `leave date/DATE`
 [NOTE]
 ====
 * DATE must be in the format DD/MM/YYYY
+* DATE must not be today's date or past dates
+* DATE must be a valid calendar date
 ====
 
 Example: `leave date/20/11/2019`
@@ -283,8 +286,9 @@ image:leave.png[width=""]
 Requested leave application on 20/11/2019.
 
 image:acceptedleave.png[width=""]
+// end::leavecommand[]
 
-
+// tag::listleave[]
 ==== List leave application : `listleave`
 [NOTE]
 ====
@@ -298,7 +302,9 @@ image:listleave.png[width=""]
 Returns all the leave application in the system.
 
 image:listedleave.png[width=""]
+// end::listleave[]
 
+// tag::filterleave[]
 ==== Filter leave application : `filterleave`
 [NOTE]
 ====
@@ -313,14 +319,16 @@ Alias: `fl`
 * Filter is case insensitive eg. `s1234567a` matches `S1234567A`
 ====
 Example:
-`filterleave T1213452E`
+`filterleave F2058730E`
 
 image:filterleavecmd.png[width=""]
 
 List all leave application requested by the user with NRIC, 'T1234567E'.
 
 image:filteredleave.png[width=""]
+// end::filterleave[]
 
+// tag::deleteleave[]
 ==== Delete leave application : `deleteleave`
 Delete the specified leave from leave list.
 
@@ -349,9 +357,10 @@ image:deletingleave.png[width=""]
 
 Deletes the leave application with INDEX 1 in the leave list.
 
-image:deletedleave.png[width=""]
+image:deleteresult.png[width=""]
+// end::deleteleave[]
 
-
+// tag::approveleave[]
 ==== Approve leave application  : `approve`
 Approve the specified leave application from leave list.
 
@@ -376,7 +385,9 @@ image:approvecmd.png[width=""]
 Approve the leave application with INDEX 2 in the leave list.
 
 image:approved.png[width=""]
+// end::approveleave[]
 
+// tag::rejectleave[]
 ==== Reject leave application  : `reject`
 Reject the specified leave application from leave list.
 
@@ -401,6 +412,7 @@ image:rejectcmd.png[width=""]
 Reject the leave application with INDEX 2 in the leave list.
 
 image:reject.png[width=""]
+// end::rejectleave[]
 
 // tag::schedule[]
 === Scheduling

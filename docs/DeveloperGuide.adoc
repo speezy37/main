@@ -169,7 +169,7 @@ image::UiClassDiagram.png[width="800"]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ImageView` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -322,6 +322,22 @@ The sequence diagram below demonstrates the interaction within the `Logic` compo
 
 .Sequence diagram of AddLeaveCommand
 image::AddLeaveCommandSequenceDiagram.png[width="800"]
+
+
+==== Design Considerations
+
+===== Aspect: Storage for leave
+
+* **Alternative 1 (current choice):** Store in a different XML file.
+** Pros: Easy to implement by duplicating existing storage, parser and XML related classes to cater for new XML file.
+** Cons: Need to spend extra time on deleting of leaves when a particular person is deleted.
+* **Alternative 2:** Store in a existing XML file.
+** Pros: Easier to implement, as it only requires to add onto existing parser.
+** Cons: May require extra parameters to create a Person object.
+* **Alternative 3:** Store in a different file format.
+** Pros: Easier to understand.
+** Cons: Consumes extra time to implement different parser from scratch.
+
 // end::addleave[]
 
 // tag::filterdepartment[]
@@ -1052,7 +1068,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |Elevated user	|Add/Delete/Edit employees into the database	|Ensure that the company manpower list is updated
 |`* * *` |Elevated user	|Set schedule for employee 	|Deploy employees to their designated location.
 |`* * *` |User	|Edit my personal particulars	|Update them as required (Edit function)
-|`* * *` |Elevated user	|Access employee off-day requests	|Approve/Reject off for employees
+|`* * *` |Elevated user	|Access employees leave applications	|Approve/Reject leaves for employees
 |`* * *` |User	|Search for a specific contact	|Obtain the particulars of the contact easily
 |`* * *` |User	|List the manpower for the day	|Allocate my manpower accordingly
 |`* * *` |User	|Sort my address book by name and department	|Look for contacts that I want easily
@@ -1060,7 +1076,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |User	|Filter out and view my relevant colleague’s department	|Spend less time searching for their contact details and contact them
 |`* * *` |Elevated User	|Change the department of the employees	|They are allocated at the correct department
 |`* * *` |User	|Set password to my address book	|Prevent unauthorized access to my address book
-|`* * *` |User	|Access my remaining off days	|Apply for my off
+|`* * *` |User	|Apply for leave application	|I can go on leave
+|`* * *` |User	|Filter out leave application by NRIC	|I can list out leave applications under me
+|`* * *` |User	|I have access to my leave applications	|I can delete them
+|`* * *` |User	|I can list out all leave applications	|I can gauge which day for me to apply leave without the company lacking of manpower
+|`* * *` |Elevated User	|I have access to all employee's leave applications	|I can delete them
 |`* * *` |User	|Check in and out during my work days	|I will be able to view the number of hours I have worked for
 |`* * *` |Elevated user	|Check my employees’ working hours	|Pay them accordingly
 |`* * *` |Administrator	|Restrict employee access to the address book application	|Perform maintenance or upgrades
@@ -1223,74 +1243,125 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Apply leave
+=== Use case: Apply leave application
 *MSS*
 
-.	User enters command to apply off day
-.	AddressBook list the remaining off days left and prompts the date the user wants to apply on
-.	User enters date
-.	AddressBook add the request to the database for approval
+.	User enters `leave` command with the desired leave application date.
+.	AddressBook adds the leave application to the database for approval.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. No remaining days left
+* 2a. User not logged in
+** 2a1. AddressBook shows an error message.
++
+User case ends.
+
+* 2b. The given date is an invalid calendar date.
+** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2c. The given date has passed.
+** 2c1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2d. Today's date is given.
+** 2d1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2e. The given date is an existing leave application.
+** 2e1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+[discrete]
+=== Use case: List leave application
+
+*MSS*
+
+.	User enters `listleave` command.
+.	AddressBook list all leave applications.
 +
 Use case ends.
 
-* 4a. The given date is not available for application
-*  4a1. AddressBook shows an error message.
-+
-Use case resumes to step 2.
-
 [discrete]
-=== Use case: List leave
+=== Use case: Filter leave application
 
-[discrete]
-=== Use case: Filter leave
-
-[discrete]
-=== Use case: Delete leave
-
-[discrete]
-=== Use case: Approve/reject leave request
 *MSS*
 
-. User enters command to switch to superuser
-. AddressBook prompts for password
-. User enters password
-. AddressBook prompts for superuser command
-. User enters command to view requests
-. AddressBook list out all requests
-. User enters employee name
-. AddressBook prompts user to approve or reject request
-. User enters approve/reject
-. AddressBook update database
+.	User enters `filterleave` command with the desired NRIC he wants to filter.
+.	AddressBook list all leave applications under that NRIC.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. Incorrect password
-** 4a1. AddressBook shows an error message.
-+
-Use case resumes to step 2.
+* 2a. Leave application under the NRIC given does not exist
+** 2a1. "0 leaves listed." Error shown by AddressBook. +
+User case ends.
 
-* 6a. No such command
-** 6a1. AddressBook shows an error message.
-+
-Use case resumes to step 4.
+[discrete]
+=== Use case: Delete leave application
+*MSS*
 
-* 6b. No request found
-** 6b1. AddressBook shows an error message.
+.	User enters `deleteleave` command with the index of the leave application he wants to delete.
+.	AddressBook deletes the leave application from the database.
 +
 Use case ends.
 
-* 8a. No such employee with existing request found
-** 8a1. AddressBook shows an error message.
+*Extensions*
+
+* 2a. User not logged in
+** 2a1. AddressBook shows an error message. +
+User case ends.
+
+* 2b. Invalid index given.
+** 2b1. AddressBook shows an error message. +
+Use case resumes at step 1.
+
+* 2c. Not authorized to delete other user's leave application due to insufficient priority level.
+** 2c1. AddressBook shows an error message.
 +
-Use case resumes to step 6.
+Use case ends.
+
+[discrete]
+=== Use case: Approve/reject leave application
+*MSS*
+
+.	User enters `approve` / `reject` command with the index of the leave application he wants to approve.
+.	AddressBook approves the leave application.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. User not logged in
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2b. Invalid index given.
+** 2b1. AddressBook shows an error message. +
+Use case resumes to step 1.
+
+* 2c. Not authorized to approve/reject your own leave application.
+** 2c1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2d. Not authorized to approve/reject other user's leave application due to insufficient priority level.
+** 2d1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2e. The leave application was already been approved/rejected.
+** 2e1. AddressBook shows an error message.
++
+Use case ends.
 
 [discrete]
 === Use case: Check schedule
@@ -1512,15 +1583,60 @@ Expected: No employee at index 0. Error details is shown in the status message.
 
 ==== Leave application
 
-==== List leave application
+. Requesting leave application
+
+.. Prerequisites: User must be logged in.
+.. Test case: `leave date/01/01/2019` +
+   Expected: Leave application requested. Details of the leave application will be reflected in the leave panel.
+.. Test case: `leave date/01/02/2018` +
+   Expected: No leave application created. Error details shown in the status message.
 
 ==== Filter leave application
 
+. Filter leave application
+
+.. Test case: `filterleave S8570520Q` +
+   Expected: List all leave application under the user with NRIC, S8570520Q.
+.. Test case: `filterleave S1212121A` , `filterleave S1313131A` +
+   Expected: 0 leaves listed. This is due to no such leave application under S1212121A and S1313131A.
+.. If NRIC is not valid such as: 'filterleave S8570520', 'filterleave 8570520Q', 'filterleave 8570520' +
+   Expected: 0 leaves listed. This is due to invalid NRIC.
+
 ==== Delete leave application
+
+. Delete leave application
+
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list.
+.. Test case: `deleteleave 1` where 1 is the index of the leave application under the list +
+   Expected: First leave application is deleted from the list. Details of the deleted leave application shown in the status message.
+.. Test case: `deleteleave 0` +
+   Expected: No leave is deleted. Error details shown in the status message.
+.. Other incorrect deleteleave commands to try: `deleteleave`, `deleteleave x` (where x is larger than the list leave size) +
+   Expected: Similar to previous.
 
 ==== Approve leave application
 
+. Approve leave application
+
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list. Leave application under index 1 is not requested by the logged in user.
+.. Test case: `approve 1` where 1 is the index of the leave application under the list. +
+   Expected: Leave application approved. Details of the approved leave application shown in the status message.
+.. Test case: `approve 0` +
+   Expected: No leave application is approved. Error details shown in the status message.
+.. Other incorrect approve commands to try: `approve`, `approve x` (where x is larger than the list leave size) +
+   Expected: Similar to previous.
+
 ==== Reject leave application
+
+. Reject leave application
+
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list. Leave application under index 1 is not requested by the logged in user.
+.. Test case: `reject 1` where 1 is the index of the leave application under the list. +
+   Expected: Leave application rejected. Details of the rejected leave application shown in the status message.
+.. Test case: `reject 0` +
+   Expected: No leave application is rejected. Error details shown in the status message.
+.. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) +
+   Expected: Similar to previous.
 
 === Scheduling
 
@@ -1594,4 +1710,3 @@ Expected: Invalid command format. Error details is shown in the status message.
 .. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
    Expected: Similar to previous.
 
-==== Reset the application
