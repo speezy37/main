@@ -1603,7 +1603,11 @@ These instructions only provide a starting point for testers to work on; testers
     Expected: Status message box shows that you have successfully logged out. Status bar footer now shows: `Not logged in`.
 
 ==== Editing personal particulars of the person who is logged in
-. Edits your own particulars
+. Edits the editable particulars of the person who is logged in.
+[NOTE]
+====
+Refer to <<UserGuide.adoc#314-editing-a-person--edit,EditCommand User Guide>> for the list of editable parameters.
+====
 
 === Employee Management Database
 
