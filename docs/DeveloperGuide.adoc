@@ -1805,6 +1805,7 @@ Expected: Invalid command format. Error details is shown in the status message.
 .. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
    Expected: Similar to previous.
 
+//tag::jylee-git_dg_reset[]
 ==== Reset the application
 . Resets the application, by deleting `data/AddressBook.xml` and `data/leave.xml`, provided that any of the files exist.
 
@@ -1815,3 +1816,4 @@ Expected: Invalid command format. Error details is shown in the status message.
 ..  Test case: type command `reset` +
     Expected: Application will exit. The two files will be deleted upon application exit.
                 When you *manually* re-open the app, a sample list of employee and leave will be shown.
+//end::jylee-git_dg_reset[]
