@@ -506,7 +506,7 @@ image::SetScheduleCommandSequenceDiagram.png[width="800"]
 
 // end::schedule[]
 
-// tag::priorityLevel[]
+//tag::jylee-git_dg_plvlDesign[]
 === Priority level restriction feature
 All employee accounts contain a priority level field. Depending on the priority level that they are given, administrative
 operations may be executed if they have sufficient priority level required to do so.
@@ -547,7 +547,7 @@ In the above code, adding a person requires the user that is logged in to the ap
 The following sequence diagram below shows the flow of how the feature works:
 
 .Sequence diagram of priority level restriction feature
-image::ImplementPlvlRestrictionSequenceDiagram.png[width=900]
+image::ImplementPlvlRestrictionSequenceDiagram.png[width=750]
 
 ==== Design Considerations
 
@@ -566,7 +566,7 @@ As this is a CLI-driven application, we prioritized on the speed and efficiency 
                 this alternative means that users will need to key in multiple commands just to get administrative functions done
                 as a trade-off to beefing up security.
 
-// end:priorityLevel[]
+//end::jylee-git_dg_plvlDesign[]
 
 === Logging
 
