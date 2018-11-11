@@ -1518,23 +1518,45 @@ Expected: No employee at index 0. Error details is shown in the status message.
 === Scheduling
 
 ==== List schedule
-. Lists the schedule of an employee in address book.
+. Lists the schedule of an employee in address book as a non-administrator.
 
-.. Prerequisites: Logged in as an any user with basic priority level with index 4. +
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
 .. Test case: `schedule 4` +
-Expected: `displays schedule of employee at index 4`.
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: User has invalid priority level. Error details shown in status message.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
+
+. Lists the schedule of an employee in address book as an administrator.
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `schedule 1` +
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: Displays schedule of employee at index 3. Details of schedule shown in status message.
 .. Test case: `schedule 0` +
 Expected: Index 0 is invalid. Error details shown in status message.
 
 ==== Set schedule
-. Sets the schedule of an employee in address book.
+. Sets the schedule of an employee in address book as a non-administrator.
 
-.. Prerequisites: Logged in as an any user with basic priority level with index 4. +
-
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
 .. Test case: `setschedule 4 ts/0900 te/1700 v/Level 5` +
-Expected: Schedule set for employee at index 4. Command success is shown in the status message.
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: User has invalid priority level. Error detail shown in the status message.
 .. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
-Expected: Schedule not set. Time start and time end are the same. Error detail shown in the status message.
+Expected: Time start and time end are the same. Error detail shown in the status message.
+
+. Sets the schedule of an employee in address book as an administrator.
+
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `setschedule 1 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set schedule for employee at index 3. Message is shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Time start and time end are the same. Error detail shown in the status message.
 // end::schedule_test[]
 
 === Filtering/Sorting
