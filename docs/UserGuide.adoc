@@ -38,11 +38,11 @@ This user guide will give you step by step instruction on how you can use the fe
 +
 image::Ui.png[width="790"]
 +
-.  If the app does not contain any sample data (refer to <<List of user accounts at first launch or upon reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
+.  If the app does not contain any sample data (refer to <<List of sample user accounts at first launch or upon reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
 .  The following table contains a sample list of persons with the respective account details when the application
 runs for the first time or when ResetCommand was executed in the previous runtime:
 
-.List of user accounts at first launch or upon reset
+.List of sample user accounts at first launch or upon reset
 [[defaultcontacts]]
 |===
 |*Name* |*NRIC* |*Password* |*Priority Level*

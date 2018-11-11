@@ -537,6 +537,10 @@ public CommandResult execute(Model model, CommandHistory history) throws Command
     }
 ----
 
+In the above code, adding a person requires the user that is logged in to the application to have priority level of ADMINISTRATOR.
+    Hence, a method in SessionManager will be called to ascertain if the logged in user does indeed have sufficient priority level
+    of an ADMINISTRATOR.
+
 The following sequence diagram below shows the flow of how the feature works:
 
 .Sequence diagram of priority level restriction feature
@@ -1603,11 +1607,26 @@ These instructions only provide a starting point for testers to work on; testers
     Expected: Status message box shows that you have successfully logged out. Status bar footer now shows: `Not logged in`.
 
 ==== Editing personal particulars of the person who is logged in
-. Edits the editable particulars of the person who is logged in.
 [NOTE]
 ====
 Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand User Guide>> for the list of editable parameters.
 ====
+. Edits the editable particulars of the person who is logged in.
+..  Pre-Condition: User must be logged in to the application.
+..  Test case: `edit n/Stacy Mak e/stacym@banksy.com` +
+    Expected: Particular of the logged in person gets updated with name of `Stacy Mak` and email of `stacym@banksy.com`.
+                Status message box shows the details of the updated person. Status bar footer now shows that the new name of the person who is logged in.
+..  Test case: `edit a/Yishun, Singapore p/91234567` +
+    Expected: Particular of the logged in person gets updated with address now at `Yishun, Singapore`, and phone number of `91234567`.
+                    Status message box shows the details of the updated person. Status bar footer remains unchanged.
+..  Test case: `edit p/string p/96289700` +
+    Expected: Particular of the logged in person gets updated with phone number of `96289700`. The previous invalid phone input of
+                `string` gets ignored as it is superseded with the valid phone input of `96289700`.
+                Status message box shows the details of the updated person. Status bar footer remains unchanged.
+..  Test case: `edit p/96289700 p/string` +
+    Expected: Details of the person not edited. Status message box shows error message with the constraints of a phone number.
+    The phone input of `96289700` gets ignored as it is superseded by the phone input of `string`, and hence led to the error message.
+
 
 === Employee Management Database
 
@@ -1635,6 +1654,35 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy 
    Expected: Similar to previous.
 
 ==== Change priority level of employee
+[NOTE]
+====
+Refer to <<UserGuide.adoc#Appendix B: Privileges in accordance to priority level, Appendix B of User Guide>> for the list of priority level.
+====
+. Change the priority level of an employee with one logged in as ADMINISTRATOR.
+..  Pre-requisites: -
+...     You must be logged in as an administrator.
+...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the employees list*.
+            Modify your test case according to whatever changes that were made prior to executing the following test cases.
+...     The following test cases assume that you are logged in as Alex Yeoh, an administrator with NRIC of `S1234567E` and
+            password of `Password`. Modify the test cases accordingly if you have made any modifications to the employee list
+            prior to executing the following test cases.
+..  Test case: `setplvl 1 plvl/3` +
+    Expected: Priority level of the employee at index 1 gets updated to a priority level of BASIC.
+                Status message box shows that the priority level of the name of employee at index 1 has been changed to BASIC.
+..  Test case: Attempting to change your own priority level `setplvl 2 plvl/3` +
+    Expected: Priority level of the logged in user does not get changed. Status message box shows error that you are not allowed
+                to update your own priority level.
+..  Test case: `setplvl 1 plvl/999` +
+    Expected: Priority level of the employee at index 1 is not updated. Input priority level is out of the range of valid
+                priority level values. Status message bar shows error message.
+
+. Attempt to change the priority level of an employee with one logged in without admin rights.
+..  Pre-requisites: You must be logged in with an account that is not of ADMINISTRATOR priority level.
+..  Test case: `setplvl 2 plvl/3` +
+    Expected: Priority level of the employee at index 2 is not updated. The user who is attempting to change the priority level
+                does not have the rights to do so. Status message box shows an error message.
+
+
 
 ==== Change the department of an employee
 
