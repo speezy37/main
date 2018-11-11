@@ -1304,7 +1304,7 @@ Use case ends.
 *Extensions*
 
 * 2a. No user schedule found.
-** 2a1. Address book displays message “No tasks scheduled for the day”.
+** 2a1. Address book displays message “No schedule allocated”.
 +
 Use case ends.
 
@@ -1312,30 +1312,22 @@ Use case ends.
 === Use case: Set schedule
 *MSS*
 
-. User enters command to switch to superuser
-. AddressBook prompts for password
-. User enters password
-. AddressBook prompts for superuser command
-. User enters command to set schedule
-. AddressBook prompts for the employee name
-. User enters employee name
-. AddressBook prompts for the date of schedule and location
-. User enters the date and location
-. AddressBook updates the schedule
+. User enters setschedule command.
+. AddressBook prompts to add schedule.
+. User enters the details of the schedule.
+. AddressBook adds the schedule.
+
 +
 Use case ends.
 
 *Extensions*
 
-* 8a. Employee name not found.
-** 8a1. AddressBook displays message “Employee not found”.
+* 4a. Target is not user and user is not ADMINISTRATOR priority level.
+** 4a1. AddressBook displays message "You must have a priority level of at least ADMINISTRATOR to perform this
+operation.".
 +
 Use case ends.
 
-* 10a. The date of schedule is already occupied.
-** 10a1. AddressBook displays message “Employee is busy on the given date”.
-+
-Use case ends.
 
 [discrete]
 === Use case: Find person
@@ -1525,8 +1517,23 @@ Expected: No employee at index 0. Error details is shown in the status message.
 === Scheduling
 
 ==== List schedule
+. Lists the schedule of an employee in address book.
+
+.. Prerequisites: Logged in as an any user with basic priority level with index 4. +
+.. Test case: `schedule 4` +
+Expected: `displays schedule of employee at index 4`.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
 
 ==== Set schedule
+. Sets the schedule of an employee in address book.
+
+.. Prerequisites: Logged in as an any user with basic priority level with index 4. +
+
+.. Test case: `setschedule 4 ts/0900 te/1700 v/Level 5` +
+Expected: Schedule set for employee at index 4. Command success is shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Schedule not set. Time start and time end are the same. Error detail shown in the status message.
 
 === Filtering/Sorting
 
