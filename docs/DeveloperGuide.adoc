@@ -1576,6 +1576,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Personal User Account
 
+//tag::jylee-git_dg_login[]
 ==== Login to the application
 . Logs in to the application using a registered NRIC and associating password when *not logged in prior to executing the command*.
 ..  Pre-requisites: -
@@ -1618,6 +1619,7 @@ These instructions only provide a starting point for testers to work on; testers
 ..  Pre-requisites: User is logged into the app prior to executing this command.
 ..  Test case: `logout` +
     Expected: Status message box shows that you have successfully logged out. Status bar footer now shows: `Not logged in`.
+//end::jylee-git_dg_login[]
 
 ==== Editing personal particulars of the person who is logged in
 [NOTE]
