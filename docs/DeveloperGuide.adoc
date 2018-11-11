@@ -1247,36 +1247,36 @@ Use case ends.
 *MSS*
 
 .	User enters `leave` command with the desired leave application date.
-.	BankAB adds the leave application to the database for approval.
+.	AddressBook adds the leave application to the database for approval.
 +
 Use case ends.
 
 *Extensions*
 
 * 2a. User not logged in
-** 2a1. BankAB shows an error message.
+** 2a1. AddressBook shows an error message.
 +
 User case ends.
 
 * 2b. The given date is an invalid calendar date.
-** 2b1. BankAB shows an error message.
+** 2b1. AddressBook shows an error message.
 +
-Use case ends.
+Use case resumes to step 1.
 
 * 2c. The given date has passed.
-** 2c1. BankAB shows an error message.
+** 2c1. AddressBook shows an error message.
 +
-Use case ends.
+Use case resumes to step 1.
 
 * 2d. Today's date is given.
-** 2d1. BankAB shows an error message.
+** 2d1. AddressBook shows an error message.
 +
-Use case ends.
+Use case resumes to step 1.
 
 * 2e. The given date is an existing leave application.
-** 2e1. BankAB shows an error message.
+** 2e1. AddressBook shows an error message.
 +
-Use case ends.
+Use case resumes to step 1.
 
 [discrete]
 === Use case: List leave application
@@ -1284,7 +1284,7 @@ Use case ends.
 *MSS*
 
 .	User enters `listleave` command.
-.	BankAB list all leave applications.
+.	AddressBook list all leave applications.
 +
 Use case ends.
 
@@ -1294,14 +1294,14 @@ Use case ends.
 *MSS*
 
 .	User enters `filterleave` command with the desired NRIC he wants to filter.
-.	BankAB list all leave applications under that NRIC.
+.	AddressBook list all leave applications under that NRIC.
 +
 Use case ends.
 
 *Extensions*
 
 * 2a. Leave application under the NRIC given does not exist
-** 2a1. "0 leaves listed." Shown by BankAB. +
+** 2a1. "0 leaves listed." Error shown by AddressBook. +
 User case ends.
 
 [discrete]
@@ -1309,22 +1309,22 @@ User case ends.
 *MSS*
 
 .	User enters `deleteleave` command with the index of the leave application he wants to delete.
-.	BankAB deletes the leave application from the database.
+.	AddressBook deletes the leave application from the database.
 +
 Use case ends.
 
 *Extensions*
 
 * 2a. User not logged in
-** 2a1. BankAB shows an error message. +
+** 2a1. AddressBook shows an error message. +
 User case ends.
 
 * 2b. Invalid index given.
-** 2b1. BankAB shows an error message. +
-Use case ends.
+** 2b1. AddressBook shows an error message. +
+Use case resumes at step 1.
 
 * 2c. Not authorized to delete other user's leave application due to insufficient priority level.
-** 2c1. BankAB shows an error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1333,33 +1333,33 @@ Use case ends.
 *MSS*
 
 .	User enters `approve` / `reject` command with the index of the leave application he wants to approve.
-.	BankAB approves the leave application.
+.	AddressBook approves the leave application.
 +
 Use case ends.
 
 *Extensions*
 
 * 2a. User not logged in
-** 2a1. BankAB shows an error message.
+** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2b. Invalid index given.
-** 2b1. BankAB shows an error message. +
-Use case ends.
+** 2b1. AddressBook shows an error message. +
+Use case resumes to step 1.
 
 * 2c. Not authorized to approve/reject your own leave application.
-** 2c1. BankAB shows an error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2d. Not authorized to approve/reject other user's leave application due to insufficient priority level.
-** 2d1. BankAB shows an error message.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2e. The leave application was already been approved/rejected.
-** 2e1. BankAB shows an error message.
+** 2e1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1710,4 +1710,3 @@ Expected: Invalid command format. Error details is shown in the status message.
 .. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
    Expected: Similar to previous.
 
-==== Reset the application
