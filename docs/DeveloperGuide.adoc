@@ -1565,17 +1565,6 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: `leave date/01/02/2018` +
    Expected: No leave application created. Error details shown in the status message.
 
-==== List leave application
-
-. Listing leave applications
-
-.. Test case: `listleave` +
-   Expected: All leave applications will be listed.
-.. Test case: 'listleave 1` +
-   Expected: All leave applications will be listed.
-.. Other extra characters after 'listleave' such as: `listleave 2 2`, `listleave **` +
-   Expected: All leave applications will be listed.
-
 ==== Filter leave application
 
 . Filter leave application
