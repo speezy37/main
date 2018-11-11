@@ -118,7 +118,7 @@ public class SampleDataUtil {
                     new Password("Password"),
                     new Phone("88540863"),
                     new Email("cker@abbank-sg.com"),
-                    new Department("Junior Management"),
+                    new Department("Middle Management"),
                     new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()),
                     new Address("Yishun, Singapore"), new Mode("out"), new WorkingRate("5"), new CheckedInTime(""),
                     getTagSet(), null),
@@ -129,7 +129,7 @@ public class SampleDataUtil {
                     new Password("Password"),
                     new Phone("94280736"),
                     new Email("dpek@abbank-sg.com"),
-                    new Department("Junior Management"),
+                    new Department("Middle Management"),
                     new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
                     new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
 
@@ -182,7 +182,17 @@ public class SampleDataUtil {
                     new Email("batkinson@abbank-sg.com"),
                     new Department("Junior Management"),
                     new PriorityLevel(PriorityLevelEnum.BASIC.getPriorityLevelCode()), new Address("Yishun, Singapore"),
-                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null)
+                    new Mode("out"), new WorkingRate("5"), new CheckedInTime(""), getTagSet(), null),
+
+            new Person(
+                    new Name("Stacy Mak"),
+                    new Nric("S0002334T"),
+                    new Password("Password"),
+                    new Phone("64665240"),
+                    new Email("stacym@abbank-sg.com"),
+                    new Department("Middle Management"),
+                    new PriorityLevel(PriorityLevelEnum.MANAGER.getPriorityLevelCode()), new Address("NUS, Singapore"),
+                    new Mode("out"), new WorkingRate("50"), new CheckedInTime(""), getTagSet(), null)
         };
     }
 
