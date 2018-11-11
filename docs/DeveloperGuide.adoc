@@ -1585,7 +1585,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Delete leave application
 
-.. Prerequisites: User must be logged in as Administrator.
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list.
 .. Test case: `deleteleave 1` where 1 is the index of the leave application under the list +
    Expected: First leave application is deleted from the list. Details of the deleted leave application shown in the status message.
 .. Test case: `deleteleave 0` +
@@ -1597,8 +1597,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Approve leave application
 
-.. Prerequisites: User must be logged in as Administrator.
-.. Test case: `approve 1` where the leave application under index 1 is not requested by the logged in user. +
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list. Leave application under index 1 is not requested by the logged in user.
+.. Test case: `approve 1` where 1 is the index of the leave application under the list. +
    Expected: Leave application approved. Details of the approved leave application shown in the status message.
 .. Test case: `approve 0` +
    Expected: No leave application is approved. Error details shown in the status message.
@@ -1609,8 +1609,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Reject leave application
 
-.. Prerequisites: User must be logged in as Administrator.
-.. Test case: `reject 1` where the leave application under index 1 is not requested by the logged in user. +
+.. Prerequisites: User must be logged in as Administrator. List all leave applications using the `listleave` command. Multiple leave applications in the list. Leave application under index 1 is not requested by the logged in user.
+.. Test case: `reject 1` where 1 is the index of the leave application under the list. +
    Expected: Leave application rejected. Details of the rejected leave application shown in the status message.
 .. Test case: `reject 0` +
    Expected: No leave application is rejected. Error details shown in the status message.
