@@ -227,16 +227,16 @@ Example: `setplvl 1 plvl/0`
 ====
 - A successful change of priority level should show the following message:
 
-image::setPlvl_success_screenShot.png[width=650]
+image::setPlvl_success_screenShot.png[width=800]
 
 - Users of insufficient priority level (below administrator priority level) will get the following
 error message when attempting to execute this command:
 
-image::setPlvl_failed_screenShot.png[width=650]
+image::setPlvl_failed_screenShot.png[width=800]
 
 - Users (with sufficient priority level), that attempts to change their own priority level will not be allowed to do so:
 
-image::setOwnPlvl_failed_screenShot.png[width=650]
+image::setOwnPlvl_failed_screenShot.png[width=800]
 ====
 //end::jylee-git_login[]
 

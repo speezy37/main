@@ -238,7 +238,7 @@ The `Storage` component,
 === Session component
 
 .Structure of the Session Component
-image::SessionComponentClassDiagram.png[width="800"]
+image::SessionComponentClassDiagram.png[width="600"]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/session/SessionManager.java[`SessionManager.java`]
 
