@@ -1415,7 +1415,7 @@ Use case ends.
 . User enters command to check in.
 . AddressBook starts to time the user working hours.
 . User enters command to check out.
-. AddressBook stops timer, and records the user working hours.
+. AddressBook stops timer, and records and displays the user working hours and salary for the day.
 +
 Use case ends.
 
@@ -1585,3 +1585,17 @@ Expected: Invalid command format. Error details is shown in the status message.
    Expected: Similar to previous.
 
 ==== Check in/out working hours
+
+. Checking in or out for a person.
+
+.. Prerequisites: Log in for the person using the `login` command.
+.. Test case: `check m/in` +
+   Expected: The person has checked in to work. Details of the checked in person shown in the status message. The checked in/out status is updated.
+.. Test case: `check m/IN` +
+   Expected: No person checked in. Error details shown in the status message. Checked in/out status remains the same.
+.. Test case: `check m/10` +
+   Expected: No person checked in. Error details shown in the status message. Checked in/out status remains the same.
+.. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
+   Expected: Similar to previous.
+
+==== Reset the application

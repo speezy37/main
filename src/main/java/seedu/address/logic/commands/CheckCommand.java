@@ -89,7 +89,7 @@ public class CheckCommand extends Command {
                 personLoggedIn.getSchedule());
 
             model.updatePerson(personLoggedIn, editedPerson);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            //model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             model.commitAddressBook();
 
             return new CommandResult(String.format(messageSucess, currentDate(), currentTime,
