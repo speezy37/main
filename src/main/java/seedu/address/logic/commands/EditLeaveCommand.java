@@ -32,7 +32,7 @@ public class EditLeaveCommand extends Command {
             + "\n" + COMMAND_REJECT + ": Reject of the leave identified "
             + "by the index number used in the displayed leave list.\n"
             + "\nParameters: INDEX (must be a positive integer) "
-            + "[" + COMMAND_APPROVE + " INDEX] " +"or [" + COMMAND_REJECT + " INDEX]"
+            + "[" + COMMAND_APPROVE + " INDEX] " + "or [" + COMMAND_REJECT + " INDEX]"
             + "\nExample: " + COMMAND_APPROVE + " 1 , " + COMMAND_REJECT + " 1";
 
     public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Approve/Reject Leave: %1$s";
