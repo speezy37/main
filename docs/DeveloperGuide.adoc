@@ -941,6 +941,7 @@ Do take a look at <<Design-Storage>> before attempting to modify the `Storage` c
 ** See this https://github.com/se-edu/addressbook-level4/pull/594[PR] for the full solution.
 ****
 
+[discrete]
 ==== `Session` component
 
 *Scenario:* You are in charge of `session`, whereby it is used to manage users logging in/out. Currently, there is a
@@ -1155,12 +1156,12 @@ Use case ends.
 Use case ends.
 
 * 2b. Format of login command is correct, but invalid NRIC and/or password.
-** 2b1. AddressBook shows error message.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2c. Attempts to login when someone (whether the user himself or someone else) is already logged in.
-** 2c1. AddressBook shows error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1185,7 +1186,7 @@ Use case ends.
 *Extensions*
 
 * 2a. User is not logged in when executing that command.
-** 2a1. AddressBook shows error message that the user is not logged in.
+** 2a1. AddressBook shows an error message that the user is not logged in.
 
 [discrete]
 === Use case: Edit personal particulars
@@ -1235,12 +1236,12 @@ Use case ends.
 Use case ends.
 
 * 2d. User is not logged in prior to executing this command.
-** 2d1. AddressBook shows error message.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2e. User does not have sufficient priority level prior to executing this command.
-** 2e1. AddressBook shows error message.
+** 2e1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1256,28 +1257,28 @@ Use case ends.
 *Extensions*
 
 * 2a. User entered command in wrong format.
-** 2a1. AddressBook shows error message followed by the command usage guide.
+** 2a1. AddressBook shows an error message followed by the command usage guide.
 +
 Use case ends.
 
 * 2b. User is not logged in prior to executing this command.
-** 2b1. AddressBook shows error message.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2c. User does not have sufficient priority level prior to executing this command.
-** 2c1. AddressBook shows error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2d. User attempts to delete him/herself
-** 2d1. AddressBook shows error message.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2e. User entered a value `INDEX` that is out of range of the list of persons that is currently shown on the
  list of People tab.
-** 2e1. Address shows error message.
+** 2e1. Address shows an error message.
 +
 Use case ends.
 
@@ -1639,7 +1640,18 @@ Use case resumes to step 1.
 *MSS*
 
 . User enters command `reset`.
-. AddressBook deletes `data/AddressBook.xml` and exits the program.
+. AddressBook deletes `data/AddressBook.xml` and `data/leave.xml` and exits the program.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. User logged in but is not holding a priority level of "I.T. UNIT".
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+* 2b. User is not logged in
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1672,7 +1684,7 @@ These instructions only provide a starting point for testers to work on; testers
 ====
 The following prerequisites apply to *ALL* test cases: - +
 
-. The following test cases assume a *default slate* when the app is first launched or reset, *without any prior
+. The following test cases assume a *default state* when the app is first launched or reset, *without any prior
     modifications to the employees list and its' corresponding accounts*. Modify your test case according to whatever
     changes that were made prior to executing each individual test cases.
 . The following test cases assume that the employee list is *neither sorted nor filtered* prior to executing the
@@ -1702,7 +1714,7 @@ The following prerequisites apply to *ALL* test cases: - +
 ...     Login NRIC has to be registered in the application, either through the sample data or added manually by an administrator.
 ...     You are *not logged in* prior to testing this function.
 ..  Test case: `login ic/S1234567E pwd/Password` +
-    Expected: Status message box states that you are logged in successfully, with your name, and your shcedule (if any).
+    Expected: Status message box states that you are logged in successfully, with your name, and your schedule (if any).
                 Status bar will now show that you are logged in with the corresponding name of the user who logged in.
 ..  Test case: `login ic/S12345678 pwd/Password` +
     Expected: Not logged in. Format of NRIC is incorrect and Status message box shows the NRIC constraints. Status bar remains unchanged.
@@ -1742,8 +1754,8 @@ The following prerequisites apply to *ALL* test cases: - +
 ==== Editing personal particulars of the person who is logged in
 [NOTE]
 ====
-Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand section of the User Guide>> for the list of
-editable parameters.
+Refer to <<UserGuide.adoc#editing-personal-particulars-code-edit-code,EditCommand section of the User Guide>> for the
+list of editable parameters.
 ====
 . Edits the editable particulars of the person who is logged in.
 ..  Prerequisites: User must be logged in to the application.
@@ -1778,7 +1790,9 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Charlo
 
 . Deleting an employee while all employees are listed.
 
-.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+.. Prerequisites: - +
+...     List all employees using the `list` command. Multiple employees in the list.
+...     User must be logged in as an administrator.
 .. Test case: `delete 1` +
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
@@ -1843,7 +1857,9 @@ Expected: No employee at index 0. Error details is shown in the status message.
 .. Test case: `leave date/01/01/2019` +
    Expected: Leave application requested. Details of the leave application will be reflected in the leave panel.
 .. Test case: `leave date/01/02/2018` +
-   Expected: No leave application created. Error details shown in the status message.
+   Expected: No leave application created as the given date has passed. Error details shown in the status message.
+.. Test case: `leave date/29/02/2019` +
+   Expected: No leave application created as invalid calendar date is given. Error details shown in the status message.
 
 ==== Filter leave application
 
