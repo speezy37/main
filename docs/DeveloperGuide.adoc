@@ -1748,7 +1748,7 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy 
 ==== Change priority level of employee
 [NOTE]
 ====
-Refer to <<UserGuide.adoc#Appendix B: Privileges in accordance to priority level, Appendix B of User Guide>> for the list of priority level.
+Refer to <<UserGuide.adoc#appendix-b-privileges-in-accordance-to-priority-level, Appendix B of User Guide>> for the list of priority level.
 ====
 . Change the priority level of an employee with one logged in as ADMINISTRATOR.
 ..  Pre-requisites: -
