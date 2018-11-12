@@ -1402,7 +1402,8 @@ Use case ends.
 *Extensions*
 
 * 2a. Leave application under the NRIC given does not exist
-** 2a1. "0 leaves listed." Error shown by AddressBook. +
+** 2a1. AddressBook shows an error message.
++
 User case ends.
 
 [discrete]
@@ -1417,11 +1418,13 @@ Use case ends.
 *Extensions*
 
 * 2a. User not logged in
-** 2a1. AddressBook shows an error message. +
+** 2a1. AddressBook shows an error message.
++
 User case ends.
 
 * 2b. Invalid index given.
-** 2b1. AddressBook shows an error message. +
+** 2b1. AddressBook shows an error message.
++
 Use case resumes at step 1.
 
 * 2c. Not authorized to delete other user's leave application due to insufficient priority level.
@@ -1446,7 +1449,8 @@ Use case ends.
 Use case ends.
 
 * 2b. Invalid index given.
-** 2b1. AddressBook shows an error message. +
+** 2b1. AddressBook shows an error message.
++
 Use case resumes to step 1.
 
 * 2c. Not authorized to approve/reject your own leave application.
@@ -1845,7 +1849,7 @@ Expected: No employee at index 0. Error details is shown in the status message.
    Expected: List all leave application under the user with NRIC, S8570520Q.
 .. Test case: `filterleave S1212121A` , `filterleave S1313131A` +
    Expected: 0 leaves listed. This is due to no such leave application under S1212121A and S1313131A.
-.. If NRIC is not valid such as: 'filterleave S8570520', 'filterleave 8570520Q', 'filterleave 8570520' +
+.. If NRIC is not valid such as: `filterleave S8570520`, `filterleave 8570520Q`, `filterleave 8570520` +
    Expected: 0 leaves listed. This is due to invalid NRIC.
 
 ==== Delete leave application
