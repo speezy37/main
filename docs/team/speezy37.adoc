@@ -30,6 +30,12 @@ string format or the `nullPointerException` will return `'No schedule is allocat
 *** Ensure Coverage is above 90 percent: https://github.com/CS2113-AY1819S1-T16-3/main/pull/106[#106]
 ** Community: +
 *** Setup Reposense config file: https://github.com/CS2113-AY1819S1-T16-3/main/pull/76[#76]
+*** PRs reviewed: https://github.com/CS2113-AY1819S1-T16-3/main/pull/716[#71],
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/77[#77],
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/84[#84],
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/102[#102],
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/104[#104],
+https://github.com/CS2113-AY1819S1-T16-3/main/pull/105[#105]
 
 == Contributions to the User Guide
 
