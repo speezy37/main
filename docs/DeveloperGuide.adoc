@@ -1665,7 +1665,8 @@ A contact detail that is not meant to be shared with others
 [appendix]
 == Instructions for Manual Testing
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. *Read the following note and caution messages before
+proceeding to conduct the tests*.
 
 [NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
