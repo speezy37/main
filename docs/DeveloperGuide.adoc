@@ -1584,8 +1584,8 @@ Use case ends.
 +
 Use case resumes to step 1.
 
-* 4b. The keyword entered is not found.
-** 4b1. AddressBook shows an empty list.
+* 2b. The keyword entered is not found.
+** 2b1. AddressBook shows an empty list.
 +
 Use case ends.
 
@@ -1665,7 +1665,7 @@ A contact detail that is not meant to be shared with others
 [appendix]
 == Instructions for Manual Testing
 
-Given below are instructions to test the app manually. *Read the following note and caution messages before
+Given below are instructions to test the app manually. *Read the following note and warning messages before
 proceeding to conduct the tests*.
 
 [NOTE]
@@ -1673,6 +1673,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 [WARNING]
 ====
+The following prerequisites apply to *ALL* test cases: - +
+
 . The following test cases assume a *default slate* when the app is first launched or reset, *without any prior
     modifications to the employees list and its' corresponding accounts*. Modify your test case according to whatever
     changes that were made prior to executing each individual test cases.
