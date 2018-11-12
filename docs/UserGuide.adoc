@@ -121,7 +121,7 @@ Logs out of the application, allowing for other users to log in again.
 
 //end::jylee-git_login[]
 
-==== Editing an employee : `edit`
+==== Editing personal particulars : `edit`
 
 Edits the existing particulars of the logged in user. +
 Format : `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
@@ -157,7 +157,7 @@ This command will NOT be able to edit the following:
 Examples:
 
 * `edit p/91234567 e/johndoe@example.com` +
-Sets the logged in employee's details to the aforementioned email and phone number, and also clears tags if any. +
+Sets the logged in employee's details to the aforementioned email and phone number. +
 * `edit t/friend t/lecturer n/John Doe` +
 Sets the logged in employee's details to the name of John Doe; clears all tag and sets the two aforementioned tags. +
 
@@ -179,7 +179,7 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 ====
 * An employee can have any number of tags (including 0)
 * Priority level will be set to BASIC if left empty
-* A recently added employee have no schedule allocated
+* A recently added employee will have no schedule allocated
 ====
 
 Examples:
@@ -704,7 +704,8 @@ image::checkedOut.PNG[width="700"]
 ====
 This operation requires user to be logged in with a privilege level of `I.T. Unit` to perform.
 ====
-Resets the application into a default slate, by deleting data/AddressBook.xml and data/leave.xml. The application will also close upon
+Resets the application into a default state, by deleting data/AddressBook.xml and data/leave.xml. The application will
+also close upon
 deleting the two files.
 
 Refer to the <<defaultcontacts, List of Default Contacts>> upon app reset on the contacts available.
@@ -733,10 +734,12 @@ There is no need to save manually.
 •	*<<Login to the application: `login`, Login>>*: `login ic/NRIC pwd/PASSWORD`
 •	*<<Checks the login status of the application: `checkloginstatus`, Check login status>>*: `checkloginstatus`
 •	*<<Logout of the application: `logout`, Logout>>*: `logout`
-•	*<<Editing an employee : `edit`, Edit particulars>>*: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+•	*<<Editing personal particulars : `edit`, Edit personal particulars>>*: `edit [n/NAME] [p/PHONE] [e/EMAIL]
+        [a/ADDRESS] [t/TAG]...`
 
 === Employee Management Database
-•	*<<Adding an employee: `add`, Add employee>>*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE NUMBER e/EMAIL d/DEPARTMENT a/ADDRESS wr/WORKING_RATE [plvl/PRIORITY_LEVEL] [t/TAGS]...`
+•	*<<Adding an employee: `add`, Add employee>>*: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT
+        a/ADDRESS wr/WORKING_RATE [plvl/PRIORITY_LEVEL] [t/TAG]...`
 •	*<<Deleting an employee : `delete`, Deleting employee>>*: `delete INDEX`
 •	*<<Change priority level of employee: `setplvl`, Set priority level of an employee>>*: `setplvl INDEX plvl/PRIORITY_LEVEL`
 •	*<<Change the department of an employee : `setdepartment`, Change department of an employee>>*: `setdepartment INDEX d/DEPARTMENT`
@@ -887,7 +890,8 @@ Department names should start with a name, and ends with 'Management'.
 |
 - Edit your own particulars +
 - Apply for leave +
-- Check in/out to/from work for their own
+- Check in/out to/from work for their own +
+- Set and view your own schedule
 
 |MANAGER (2)
 |
@@ -911,6 +915,7 @@ Department names should start with a name, and ends with 'Management'.
 - All privileges of a MANAGER Priority level +
 - Add and delete employees from the AddressBook +
 - Set the priority level of all employees +
-- Set Department of all employees
+- Set Department of all employees +
+- Set and view other employee's schedules
 |===
 //end::jylee-git_appendixB[]
