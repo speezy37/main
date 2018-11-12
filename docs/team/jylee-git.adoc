@@ -45,6 +45,7 @@ require user authentication.
 * *Other contributions*:
 
 ** Project management:
+*** Set up the organization and project repo on Github
 *** Managed vetting through and approving individual pull requests
 *** Deployed website for our project: https://cs2113-t16-3.netlify.com/[Website]
 
