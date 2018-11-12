@@ -26,8 +26,10 @@ string format or the `nullPointerException` will return `'No schedule is allocat
 * *Code contributed*: https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=speezy37[Code Dashboard]
 
 * Other contributions:
-** Code quality:
+** Code quality: +
 *** Ensure Coverage is above 90 percent: https://github.com/CS2113-AY1819S1-T16-3/main/pull/106[#106]
+** Community: +
+*** Setup Reposense config file: https://github.com/CS2113-AY1819S1-T16-3/main/pull/76[#76]
 
 == Contributions to the User Guide
 
