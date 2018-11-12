@@ -46,15 +46,15 @@ runs for the first time or when ResetCommand was executed in the previous runtim
 [[defaultcontacts]]
 |===
 |*Name* |*NRIC* |*Password* |*Priority Level*
-|Highest Admin Account
-|S1230000E
-|Password
-|I.T. Unit (Highest Priority Level)
-
 |Alex Yeoh
 |S1234567E
 |Password
-|ADMINISTRATOR
+|ADMINISTRATOR (Highest Priority level)
+
+|Leonard Tan
+|S1230000E
+|Password
+|I.T. UNIT
 
 |Bernice Yu
 |T1234567E

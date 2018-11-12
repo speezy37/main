@@ -1754,6 +1754,9 @@ Refer to <<UserGuide.adoc#Appendix B: Privileges in accordance to priority level
 ...     You must be logged in as an administrator.
 ...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the employees list*.
             Modify your test case according to whatever changes that were made prior to executing the following test cases.
+...     The following test cases assume that the employee list is *neither sorted nor filtered* prior to executing the
+            test cases.
+Modify your test cases accordingly if you have sorted the list
 ...     The following test cases assume that you are logged in as Alex Yeoh, an administrator with NRIC of `S1234567E` and
             password of `Password`. Modify the test cases accordingly if you have made any modifications to the employee list
             prior to executing the following test cases.
