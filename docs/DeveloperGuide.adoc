@@ -1367,15 +1367,25 @@ Use case ends.
 === Use case: Check schedule
 *MSS*
 
-. User enters command to check schedule
-. AddressBook display user’s schedule
+. User enters `schedule` command followed by appropriate parameters.
+. AddressBook display user’s schedule.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. No user schedule found.
-** 2a1. Address book displays message “No tasks scheduled for the day”.
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
+Use case ends.
+
+* 2b. No user schedule found.
+** 2b1. Address book displays message `No schedule allocated`.
+Use case ends.
+
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+Use case ends.
+
 +
 Use case ends.
 
@@ -1383,28 +1393,26 @@ Use case ends.
 === Use case: Set schedule
 *MSS*
 
-. User enters command to switch to superuser
-. AddressBook prompts for password
-. User enters password
-. AddressBook prompts for superuser command
-. User enters command to set schedule
-. AddressBook prompts for the employee name
-. User enters employee name
-. AddressBook prompts for the date of schedule and location
-. User enters the date and location
-. AddressBook updates the schedule
+. User enters `setschedule` command followed by appropriate parameters.
+. AddressBook sets the schedule of the target employee.
+
 +
 Use case ends.
 
 *Extensions*
 
-* 8a. Employee name not found.
-** 8a1. AddressBook displays message “Employee not found”.
-+
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
 Use case ends.
 
-* 10a. The date of schedule is already occupied.
-** 10a1. AddressBook displays message “Employee is busy on the given date”.
+* 2b. Target is not user and user is not ADMINISTRATOR priority level.
+** 2b1. AddressBook shows an error message.
+Use case ends.
+
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+Use case ends.
+
 +
 Use case ends.
 
@@ -1638,11 +1646,50 @@ Expected: No employee at index 0. Error details is shown in the status message.
 .. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
 
+// tag::schedule_test[]
 === Scheduling
 
 ==== List schedule
+. Lists the schedule of an employee in address book as a non-administrator.
+
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
+.. Test case: `schedule 4` +
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: User has invalid priority level. Error details shown in status message.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
+
+. Lists the schedule of an employee in address book as an administrator.
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `schedule 1` +
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: Displays schedule of employee at index 3. Details of schedule shown in status message.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
 
 ==== Set schedule
+. Sets the schedule of an employee in address book as a non-administrator.
+
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
+.. Test case: `setschedule 4 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: User has invalid priority level. Error detail shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Time start and time end are the same. Error detail shown in the status message.
+
+. Sets the schedule of an employee in address book as an administrator.
+
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `setschedule 1 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set schedule for employee at index 3. Message is shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Time start and time end are the same. Error detail shown in the status message.
+// end::schedule_test[]
 
 === Filtering/Sorting
 
