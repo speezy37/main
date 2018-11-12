@@ -48,7 +48,7 @@ public class XmlFileStorage {
     }
 
     /**
-     * Returns address book in the file or an empty address book
+     * Returns leave list in the file or an empty leave list
      */
     public static XmlSerializableLeaveList loadDataFromSaveFile2(Path file) throws DataConversionException,
             FileNotFoundException {

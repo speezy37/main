@@ -201,7 +201,21 @@ public class SampleDataUtil {
             new Leave(new EmployeeId("F5169584T"), new Date("01/12/2018"),
                 new Approval("PENDING"), new PriorityLevel(3)),
             new Leave(new EmployeeId("S8570520Q"), new Date("20/01/2019"),
-                new Approval("PENDING"), new PriorityLevel(3))
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("F2058730E"), new Date("21/01/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("G9622222I"), new Date("21/10/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("S4988580K"), new Date("28/01/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("S9576541J"), new Date("25/01/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("G1238500E"), new Date("25/02/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+            new Leave(new EmployeeId("S9726800I"), new Date("25/02/2019"),
+                new Approval("PENDING"), new PriorityLevel(3)),
+
+
         };
     }
 
