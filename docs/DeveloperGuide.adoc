@@ -1529,12 +1529,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Adding an employee in to the address book.
 
-.. Prerequisites: Logged in as an administrator and add an employee who does not exist in the address book with the `add` command. +
-`add n/Betsy Crowe ic/S1875858E pwd/Password p/98758585 e/betsy@abbank-sg.com d/Junior Management a/Block 123 Kaki Bukit Street 123, #12-345 wr/7.5`
+.. Prerequisites: User must be logged in as an administrator.
 .. Test case: `add n/Carol Crowe ic/S1947829E pwd/Password p/94724372 e/carol@abbank-sg.com d/Junior Management a/Block 123 Jurong Street 123, #12-345 wr/7.5` +
 Expected: `Carol Crowe` is added in to the list. Details of the added contact is shown in the status message.
-.. Test case: `add n/Carol Crowe ic/S1875858E pwd/Password p/94724372 e/carol@abbank-sg.com d/Junior Management a/Block 123 Jurong Street 123, #12-345 wr/7.5` +
-Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy Crowe`. Error detail shown in the status message.
+.. Test case: `add n/Carol Crowe ic/F1234567E pwd/Password p/94724372 e/carol@abbank-sg.com d/Junior Management a/Block 123 Jurong Street 123, #12-345 wr/7.5` +
+Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Charlotte Oliveiro`. Error detail shown in the status message.
 
 ==== Deleting an employee
 
