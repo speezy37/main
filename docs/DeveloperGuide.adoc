@@ -1367,15 +1367,20 @@ Use case ends.
 === Use case: Check schedule
 *MSS*
 
-. User enters command to check schedule
-. AddressBook display user’s schedule
+. User enters `schedule` command followed by appropriate parameters.
+. AddressBook display user’s schedule.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. No user schedule found.
-** 2a1. Address book displays message “No schedule allocated”.
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
+* 2b. No user schedule found.
+** 2b1. Address book displays message `No schedule allocated`.
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+
 +
 Use case ends.
 
@@ -1383,22 +1388,23 @@ Use case ends.
 === Use case: Set schedule
 *MSS*
 
-. User enters setschedule command.
-. AddressBook prompts to add schedule.
-. User enters the details of the schedule.
-. AddressBook adds the schedule.
+. User enters `setschedule` command followed by appropriate parameters.
+. AddressBook sets the schedule of the target employee.
 
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. Target is not user and user is not ADMINISTRATOR priority level.
-** 4a1. AddressBook displays message "You must have a priority level of at least ADMINISTRATOR to perform this
-operation.".
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
+* 2b. Target is not user and user is not ADMINISTRATOR priority level.
+** 2b1. AddressBook shows an error message.
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+
 +
 Use case ends.
-
 
 [discrete]
 === Use case: Find person
