@@ -1476,15 +1476,42 @@ Use case resumes to step 1.
 Use case ends.
 
 [discrete]
-=== Use case: Check in and out
+=== Use case: Check in to work
 *MSS*
 
-. User enters command to check in.
-. AddressBook starts to time the user working hours.
-. User enters command to check out.
-. AddressBook stops timer, and records and displays the user working hours and salary for the day.
+. User enters `check` command followed by `in` mode to check in.
+. AddressBook shows checked in message and updates checked in/out status of the employee.
+
+*Extension*
+
+* 2a. User not logged in
+** 2a1. AddressBook shows an error message.
 +
 Use case ends.
+
+* 2b. The given field is invalid.
+** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+[discrete]
+=== Use case: Check out from work
+*MSS*
+
+. User enters `check` command followed by `out` mode to check out.
+. AddressBook shows checked out message and updates checked in/out status of the employee.
+
+*Extension*
+
+* 2a. User not logged in
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2b. The given field is invalid.
+** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
 
 [discrete]
 === Use case: Reset application
