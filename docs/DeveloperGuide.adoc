@@ -1142,27 +1142,25 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 === Use case: Login to the application
 *MSS*
 
-. User types the command `login ic/NRIC pwd/PASSWORD`.
-. AddressBook shows welcome message upon successul login.
+. User types `login` command, followed by the appropriate parameters.
+. AddressBook shows welcome message upon successful login.
 +
 Use case ends.
 
 *Extensions*
 
 * 2a. Format of login command is wrong.
-** 2a1. AddressBook shows an error message stating that command format is incorrect.
+** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2b. Format of login command is correct, but invalid NRIC and/or password.
-** 2b1. AddressBook shows error message: - +
-`Login failed. Incorrect NRIC and/or password.`
+** 2b1. AddressBook shows error message.
 +
 Use case ends.
 
 * 2c. Attempts to login when someone (whether the user himself or someone else) is already logged in.
-** 2c1. AddressBook shows error message: - +
-`You are already logged in. Logout first before logging in again.`
+** 2c1. AddressBook shows error message.
 +
 Use case ends.
 
@@ -1193,7 +1191,7 @@ Use case ends.
 === Use case: Edit personal particulars
 *MSS*
 
-. User enters command `edit` followed by editable fields.
+. User enters `edit` command, followed by appropriate parameters.
 . AddressBook shows a success message followed by the logged in person's particulars.
 +
 Use case ends.
@@ -1206,8 +1204,7 @@ Use case ends.
 Use case ends.
 
 * 2b. User is not logged in
-** 2b1. AddressBook shows an error message: - +
-`This operation requires the user to be logged in!`
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1238,14 +1235,12 @@ Use case ends.
 Use case ends.
 
 * 2d. User is not logged in prior to executing this command.
-** 2d1. AddressBook shows error message: - +
-`This operation requires the user to be logged in!`
+** 2d1. AddressBook shows error message.
 +
 Use case ends.
 
 * 2e. User does not have sufficient priority level prior to executing this command.
-** 2e1. AddressBook shows error message: - +
-`You must have a priority level of at least ADMINISTRATOR to perform this operation.`
+** 2e1. AddressBook shows error message.
 +
 Use case ends.
 
@@ -1266,27 +1261,23 @@ Use case ends.
 Use case ends.
 
 * 2b. User is not logged in prior to executing this command.
-** 2b1. AddressBook shows error message: - +
-`This operation requires the user to be logged in!`
+** 2b1. AddressBook shows error message.
 +
 Use case ends.
 
 * 2c. User does not have sufficient priority level prior to executing this command.
-** 2c1. AddressBook shows error message: - +
-`You must have a priority level of at least ADMINISTRATOR to perform this operation.`
+** 2c1. AddressBook shows error message.
 +
 Use case ends.
 
 * 2d. User attempts to delete him/herself
-** 2d1. AddressBook shows error message: - +
-`You can't delete yourself!`
+** 2d1. AddressBook shows error message.
 +
 Use case ends.
 
 * 2e. User entered a value `INDEX` that is out of range of the list of persons that is currently shown on the
  list of People tab.
-** 2e1. Address shows error message: - +
-`The person index provided is invalid`
+** 2e1. Address shows error message.
 +
 Use case ends.
 
@@ -1294,7 +1285,7 @@ Use case ends.
 === Use case: Change priority level of user
 *MSS*
 
-. User enters `setplvl INDEX plvl/PRIORITY_LEVEL`
+. User enters `setplvl` command, followed by the appropriate parameters.
 . AddressBook updates the priority level of the person at stated index.
 +
 Use case ends.
@@ -1306,8 +1297,8 @@ Use case ends.
 +
 Use case ends.
 
-* 2b. Invalid priority level
-** 2b1. AddressBook shows an error message.
+* 2b. User entered inappropriate parameters.
+** 2b1. AddressBook shows an error message with the details of the error.
 +
 Use case ends.
 
@@ -1756,8 +1747,7 @@ Refer to <<UserGuide.adoc#appendix-b-privileges-in-accordance-to-priority-level,
 ...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the employees list*.
             Modify your test case according to whatever changes that were made prior to executing the following test cases.
 ...     The following test cases assume that the employee list is *neither sorted nor filtered* prior to executing the
-            test cases.
-Modify your test cases accordingly if you have sorted the list
+            test cases. Modify your test cases accordingly if you have sorted the list.
 ...     The following test cases assume that you are logged in as Alex Yeoh, an administrator with NRIC of `S1234567E` and
             password of `Password`. Modify the test cases accordingly if you have made any modifications to the employee list
             prior to executing the following test cases.
