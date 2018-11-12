@@ -1494,6 +1494,11 @@ Use case ends.
 +
 Use case resumes to step 1.
 
+* 2c. User already checked in.
+** 2c1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
 [discrete]
 === Use case: Check out from work
 *MSS*
@@ -1510,6 +1515,11 @@ Use case ends.
 
 * 2b. The given field is invalid.
 ** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2c. User already checked out.
+** 2c1. AddressBook shows an error message.
 +
 Use case resumes to step 1.
 
