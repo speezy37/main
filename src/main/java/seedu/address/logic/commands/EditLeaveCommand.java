@@ -26,12 +26,14 @@ public class EditLeaveCommand extends Command {
     public static final String COMMAND_APPROVE = "approve";
     public static final String COMMAND_REJECT = "reject";
 
-    public static final String MESSAGE_USAGE = COMMAND_APPROVE + "/" + COMMAND_REJECT
-            + ": Approve/Reject of the leave identified "
+    public static final String MESSAGE_USAGE = COMMAND_APPROVE
+            + ": Approve of the leave identified "
             + "by the index number used in the displayed leave list."
+            + "\n" + COMMAND_REJECT + ": Reject of the leave identified "
+            + "by the index number used in the displayed leave list.\n"
             + "\nParameters: INDEX (must be a positive integer) "
-            + "[" + COMMAND_APPROVE + " INDEX] "
-            + "\nExample: " + COMMAND_APPROVE + " 1 ";
+            + "[" + COMMAND_APPROVE + " INDEX] " +"or [" + COMMAND_REJECT + " INDEX]"
+            + "\nExample: " + COMMAND_APPROVE + " 1 , " + COMMAND_REJECT + " 1";
 
     public static final String MESSAGE_EDIT_LEAVE_SUCCESS = "Approve/Reject Leave: %1$s";
     public static final String MESSAGE_ALREADY_APPROVE = "This leave application is already approved.";

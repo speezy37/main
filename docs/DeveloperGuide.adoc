@@ -1155,12 +1155,12 @@ Use case ends.
 Use case ends.
 
 * 2b. Format of login command is correct, but invalid NRIC and/or password.
-** 2b1. AddressBook shows error message.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2c. Attempts to login when someone (whether the user himself or someone else) is already logged in.
-** 2c1. AddressBook shows error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1185,7 +1185,7 @@ Use case ends.
 *Extensions*
 
 * 2a. User is not logged in when executing that command.
-** 2a1. AddressBook shows error message that the user is not logged in.
+** 2a1. AddressBook shows an error message that the user is not logged in.
 
 [discrete]
 === Use case: Edit personal particulars
@@ -1235,12 +1235,12 @@ Use case ends.
 Use case ends.
 
 * 2d. User is not logged in prior to executing this command.
-** 2d1. AddressBook shows error message.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2e. User does not have sufficient priority level prior to executing this command.
-** 2e1. AddressBook shows error message.
+** 2e1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1256,28 +1256,28 @@ Use case ends.
 *Extensions*
 
 * 2a. User entered command in wrong format.
-** 2a1. AddressBook shows error message followed by the command usage guide.
+** 2a1. AddressBook shows an error message followed by the command usage guide.
 +
 Use case ends.
 
 * 2b. User is not logged in prior to executing this command.
-** 2b1. AddressBook shows error message.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2c. User does not have sufficient priority level prior to executing this command.
-** 2c1. AddressBook shows error message.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2d. User attempts to delete him/herself
-** 2d1. AddressBook shows error message.
+** 2d1. AddressBook shows an error message.
 +
 Use case ends.
 
 * 2e. User entered a value `INDEX` that is out of range of the list of persons that is currently shown on the
  list of People tab.
-** 2e1. Address shows error message.
+** 2e1. Address shows an error message.
 +
 Use case ends.
 
@@ -1636,7 +1636,7 @@ Use case resumes to step 1.
 *MSS*
 
 . User enters command `reset`.
-. AddressBook deletes `data/AddressBook.xml` and exits the program.
+. AddressBook deletes `data/AddressBook.xml` and `data/leave.xml` and exits the program.
 +
 Use case ends.
 
@@ -1839,7 +1839,9 @@ Expected: No employee at index 0. Error details is shown in the status message.
 .. Test case: `leave date/01/01/2019` +
    Expected: Leave application requested. Details of the leave application will be reflected in the leave panel.
 .. Test case: `leave date/01/02/2018` +
-   Expected: No leave application created. Error details shown in the status message.
+   Expected: No leave application created as the given date has passed. Error details shown in the status message.
+.. Test case: `leave date/29/02/2019` +
+   Expected: No leave application created as invalid calendar date is given. Error details shown in the status message.
 
 ==== Filter leave application
 
