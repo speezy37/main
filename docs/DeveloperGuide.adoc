@@ -1376,10 +1376,15 @@ Use case ends.
 
 * 2a. User is not logged in
 ** 2a1. AddressBook shows an error message.
+Use case ends.
+
 * 2b. No user schedule found.
 ** 2b1. Address book displays message `No schedule allocated`.
+Use case ends.
+
 * 2c. Inappropriate parameters.
 ** 2c1. AddressBook shows an error message.
+Use case ends.
 
 +
 Use case ends.
@@ -1398,10 +1403,15 @@ Use case ends.
 
 * 2a. User is not logged in
 ** 2a1. AddressBook shows an error message.
+Use case ends.
+
 * 2b. Target is not user and user is not ADMINISTRATOR priority level.
 ** 2b1. AddressBook shows an error message.
+Use case ends.
+
 * 2c. Inappropriate parameters.
 ** 2c1. AddressBook shows an error message.
+Use case ends.
 
 +
 Use case ends.
