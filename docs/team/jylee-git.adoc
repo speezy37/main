@@ -45,6 +45,7 @@ require user authentication.
 * *Other contributions*:
 
 ** Project management:
+*** Set up the organization and project repo on Github
 *** Managed vetting through and approving individual pull requests
 *** Deployed website for our project: https://cs2113-t16-3.netlify.com/[Website]
 
@@ -56,6 +57,13 @@ require user authentication.
 *** Re-arranged summary of commands in the user guide to make them more organized: https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89]
 *** Added appendices A and B in the user guide that summarizes the prefixes and corresponding data types, and also various priority levels and its corresponding privileges:
 https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60], https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89]
+*** Updated documentations as the project progresses:
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60],
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/68[#68],
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/89[#89],
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/96[#96],
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/136[#136],
+    https://github.com/CS2113-AY1819S1-T16-3/main/pull/144[#144]
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments):
@@ -74,10 +82,6 @@ https://github.com/CS2113-AY1819S1-T16-3/main/pull/60[#60], https://github.com/C
 //include whatever you did here
 include::../UserGuide.adoc[tag=jylee-git_login]
 
-include::../UserGuide.adoc[tag=Command_Summary]
-
-include::../UserGuide.adoc[tag=jylee-git_appendixA]
-
 include::../UserGuide.adoc[tag=jylee-git_appendixB]
 
 
@@ -89,3 +93,11 @@ include::../UserGuide.adoc[tag=jylee-git_appendixB]
 
 //include whatever you did here
 include::../DeveloperGuide.adoc[tag=jylee-git_SessionDesign]
+
+include::../DeveloperGuide.adoc[tag=jylee-git_dg_plvlDesign]
+
+include::../DeveloperGuide.adoc[tag=jylee-git_dg_login]
+
+include::../DeveloperGuide.adoc[tag=jylee-git_dg_setplvl]
+
+include::../DeveloperGuide.adoc[tag=jylee-git_dg_reset]

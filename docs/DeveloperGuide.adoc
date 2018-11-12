@@ -237,13 +237,20 @@ The `Storage` component,
 [[Design-Session]]
 === Session component
 
+.Structure of the Session Component
+image::SessionComponentClassDiagram.png[width="600"]
+
 *API* : link:{repoURL}/src/main/java/seedu/address/session/SessionManager.java[`SessionManager.java`]
 
 The `Session` component,
 
 * stores the identity of the user who is logged in to the app during runtime.
-* allows other functions that require elevated user status, to inquire from `SessionManager` as to whether the user
-is logged in, and also to inquire if the user has sufficient level of access to execute that particular function.
+* provides the necessary APIs for functions that require elevated user status, to inquire from `SessionManager` as to
+ whether the user is logged in, and also to inquire if the user has sufficient level of access to execute that
+ particular function.
+
+`AllPersonsHashMap` is a hash map that stores all the persons from the AddressBook into the varialbe. This improves the efficiency
+ of logging in, and also for functions that require the details of the logged in person.
 
 //end::jylee-git_SessionDesign[]
 
@@ -515,7 +522,7 @@ image::SetScheduleCommandSequenceDiagram.png[width="800"]
 
 // end::schedule[]
 
-// tag::priorityLevel[]
+//tag::jylee-git_dg_plvlDesign[]
 === Priority level restriction feature
 All employee accounts contain a priority level field. Depending on the priority level that they are given, administrative
 operations may be executed if they have sufficient priority level required to do so.
@@ -549,12 +556,33 @@ public CommandResult execute(Model model, CommandHistory history) throws Command
     }
 ----
 
+In the above code, adding a person requires the user that is logged in to the application to have priority level of ADMINISTRATOR.
+    Hence, a method in SessionManager will be called to ascertain if the logged in user does indeed have sufficient priority level
+    of an ADMINISTRATOR.
+
 The following sequence diagram below shows the flow of how the feature works:
 
 .Sequence diagram of priority level restriction feature
-image::ImplementPlvlRestrictionSequenceDiagram.png[width=900]
+image::ImplementPlvlRestrictionSequenceDiagram.png[width=750]
 
-// end:priorityLevel[]
+==== Design Considerations
+
+===== Aspect: Implementation of elevated user rights
+As this is a CLI-driven application, we prioritized on the speed and efficiency of getting things done over security,
+    which will result in users having to execute multiple commands just to get an administrative command executed.
+
+* *Alternative 1 (current choice)*: Able to perform administrative rights the moment a user with elevated priority level is logged in.
+    ** Pros: Able to immediately perform administrative functions the moment user is logged in, such as adding or deleting employees.
+    ** Cons: Potential security issue; user with admin rights may accidentally forget to logout, resulting in other people
+                with ill intentions to execute administrative functions without the permission of the actual user.
+* *Alternative 2*: Users with elevated priority level will need to type in a command to enable "super user" status prior to executing
+                       any administrative functions.
+   ** Pros: Better security; company resources will be less-prone to abuse by employees with ill intentions.
+   ** Cons: Less efficient in getting things done. Reason being, this is a CLI-driven application. Hence, implementing
+                this alternative means that users will need to key in multiple commands just to get administrative functions done
+                as a trade-off to beefing up security.
+
+//end::jylee-git_dg_plvlDesign[]
 
 === Logging
 
@@ -913,6 +941,18 @@ Do take a look at <<Design-Storage>> before attempting to modify the `Storage` c
 ** See this https://github.com/se-edu/addressbook-level4/pull/594[PR] for the full solution.
 ****
 
+==== `Session` component
+
+*Scenario:* You are in charge of `session`, whereby it is used to manage users logging in/out. Currently, there is a
+ `allPersonsHashMap` variable that stores the data of all employees of the company in the app. This improves the efficiency of
+  logging into the application with a time complexity of O(1). One issue with this current implementation right now is that
+   whenever one's particulars are updated, `updatePersonHashMap` will be called as well, which *re-uploads every single enployee
+   into the variable*, which is not efficient in this case, with a time complexity of O(N).
+
+Hence, your task is to modify the `updatePersonHashMap` such that whenever one's particulars is edited, only the affected
+ person object will be re-uploaded to the `allPersonsHashMap` variable, hence improving the efficiency.
+
+
 [[GetStartedProgramming-RemarkCommand]]
 === Creating a new command: `remark`
 
@@ -1100,28 +1140,71 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [discrete]
 === Use case: Login to the application
-
-[discrete]
-=== Use case: Check login status
-
-[discrete]
-=== Use case: Logout of the application
-
-[discrete]
-=== Use case: Edit personal particulars
 *MSS*
 
-. User enters edit command.
-. AddressBook shows the format to edit the person details.
-. User edit his/her particulars.
-. AddressBook updates the new particulars.
+. User types `login` command, followed by the appropriate parameters.
+. AddressBook shows welcome message upon successful login.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. The edited format is wrong
-** 4a1. AddressBook shows an error message.
+* 2a. Format of login command is wrong.
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2b. Format of login command is correct, but invalid NRIC and/or password.
+** 2b1. AddressBook shows error message.
++
+Use case ends.
+
+* 2c. Attempts to login when someone (whether the user himself or someone else) is already logged in.
+** 2c1. AddressBook shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: Check login status
+*MSS*
+
+. User enters command `checkloginstatus`.
+. AddressBook shows whether the user is logged in or out.
++
+Use case ends.
+
+[discrete]
+=== Use case: Logout of the application
+*MSS*
+
+. User enters command `logout`.
+. AddressBook logs the user out of the application and shows a success message.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. User is not logged in when executing that command.
+** 2a1. AddressBook shows error message that the user is not logged in.
+
+[discrete]
+=== Use case: Edit personal particulars
+*MSS*
+
+. User enters `edit` command, followed by appropriate parameters.
+. AddressBook shows a success message followed by the logged in person's particulars.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The edited format is wrong
+** 2a1. AddressBook shows an error message, followed by command usage guide.
++
+Use case ends.
+
+* 2b. User is not logged in
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1129,25 +1212,35 @@ Use case ends.
 === Use case: Add Employee
 *MSS*
 
-.	User enters add command, followed by the details of the new employee.
-.	AddressBook adds the new employee.
+.	User enters add command, followed by the details of the person to be added.
+.	AddressBook shows a success message followed by the details of the newly added person.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. Employee already exists in the AddressBook.
-** 2a1. AddressBook shows employee already exists message.
+* 2a. Person already exists (identical NRIC number) in the AddressBook.
+** 2a1. AddressBook shows person already exists message.
 +
 Use case ends.
 
-* 2b. The added employee has missing details.
+* 2b. The added person has missing details.
 ** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 2c. The added employee has wrong entry format.
+* 2c. The added person has wrong entry format.
 ** 2c1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2d. User is not logged in prior to executing this command.
+** 2d1. AddressBook shows error message.
++
+Use case ends.
+
+* 2e. User does not have sufficient priority level prior to executing this command.
+** 2e1. AddressBook shows error message.
 +
 Use case ends.
 
@@ -1155,27 +1248,44 @@ Use case ends.
 === Use case: Delete Employee
 *MSS*
 
-.	User enters delete command, followed by the index of the specific employee
-.	AddressBook deletes the employee
+. User enters delete command followed by the `INDEX` of the person in the AddressBook list to delete.
+. AddressBook shows success message followed by the details of the person that has been deleted.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. The list is empty.
+* 2a. User entered command in wrong format.
+** 2a1. AddressBook shows error message followed by the command usage guide.
 +
 Use case ends.
 
-* 2a. The given employee name is invalid
-** 2a1. AddressBook shows an error message.
+* 2b. User is not logged in prior to executing this command.
+** 2b1. AddressBook shows error message.
 +
-Use case resumes to step 1.
+Use case ends.
+
+* 2c. User does not have sufficient priority level prior to executing this command.
+** 2c1. AddressBook shows error message.
++
+Use case ends.
+
+* 2d. User attempts to delete him/herself
+** 2d1. AddressBook shows error message.
++
+Use case ends.
+
+* 2e. User entered a value `INDEX` that is out of range of the list of persons that is currently shown on the
+ list of People tab.
+** 2e1. Address shows error message.
++
+Use case ends.
 
 [discrete]
 === Use case: Change priority level of user
 *MSS*
 
-. User enters `setplvl INDEX plvl/PRIORITY_LEVEL`
+. User enters `setplvl` command, followed by the appropriate parameters.
 . AddressBook updates the priority level of the person at stated index.
 +
 Use case ends.
@@ -1187,8 +1297,8 @@ Use case ends.
 +
 Use case ends.
 
-* 2b. Invalid priority level
-** 2b1. AddressBook shows an error message.
+* 2b. User entered inappropriate parameters.
+** 2b1. AddressBook shows an error message with the details of the error.
 +
 Use case ends.
 
@@ -1358,15 +1468,25 @@ Use case ends.
 === Use case: Check schedule
 *MSS*
 
-. User enters command to check schedule
-. AddressBook display user’s schedule
+. User enters `schedule` command followed by appropriate parameters.
+. AddressBook display user’s schedule.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. No user schedule found.
-** 2a1. Address book displays message “No tasks scheduled for the day”.
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
+Use case ends.
+
+* 2b. No user schedule found.
+** 2b1. Address book displays message `No schedule allocated`.
+Use case ends.
+
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+Use case ends.
+
 +
 Use case ends.
 
@@ -1374,28 +1494,26 @@ Use case ends.
 === Use case: Set schedule
 *MSS*
 
-. User enters command to switch to superuser
-. AddressBook prompts for password
-. User enters password
-. AddressBook prompts for superuser command
-. User enters command to set schedule
-. AddressBook prompts for the employee name
-. User enters employee name
-. AddressBook prompts for the date of schedule and location
-. User enters the date and location
-. AddressBook updates the schedule
+. User enters `setschedule` command followed by appropriate parameters.
+. AddressBook sets the schedule of the target employee.
+
 +
 Use case ends.
 
 *Extensions*
 
-* 8a. Employee name not found.
-** 8a1. AddressBook displays message “Employee not found”.
-+
+* 2a. User is not logged in
+** 2a1. AddressBook shows an error message.
 Use case ends.
 
-* 10a. The date of schedule is already occupied.
-** 10a1. AddressBook displays message “Employee is busy on the given date”.
+* 2b. Target is not user and user is not ADMINISTRATOR priority level.
+** 2b1. AddressBook shows an error message.
+Use case ends.
+
+* 2c. Inappropriate parameters.
+** 2c1. AddressBook shows an error message.
+Use case ends.
+
 +
 Use case ends.
 
@@ -1462,18 +1580,61 @@ Use case resumes to step 1.
 Use case ends.
 
 [discrete]
-=== Use case: Check in and out
+=== Use case: Check in to work
 *MSS*
 
-. User enters command to check in.
-. AddressBook starts to time the user working hours.
-. User enters command to check out.
-. AddressBook stops timer, and records and displays the user working hours and salary for the day.
+. User enters `check` command followed by `in` mode to check in.
+. AddressBook shows checked in message and updates checked in/out status of the employee.
+
+*Extension*
+
+* 2a. User not logged in.
+** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
+* 2b. User enters invalid parameter.
+** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2c. User already checked in.
+** 2c1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+[discrete]
+=== Use case: Check out from work
+*MSS*
+
+. User enters `check` command followed by `out` mode to check out.
+. AddressBook shows checked out message and updates checked in/out status of the employee.
+
+*Extension*
+
+* 2a. User not logged in.
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2b. User enters invalid parameter.
+** 2b1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
+* 2c. User already checked out.
+** 2c1. AddressBook shows an error message.
++
+Use case resumes to step 1.
+
 [discrete]
 === Use case: Reset application
+*MSS*
+
+. User enters command `reset`.
+. AddressBook deletes `data/AddressBook.xml` and exits the program.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
@@ -1505,7 +1666,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample employees and leave applications. The window size may not be optimum.
 
 . Saving window preferences
 
@@ -1515,13 +1676,73 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Personal User Account
 
+//tag::jylee-git_dg_login[]
 ==== Login to the application
+. Logs in to the application using a registered NRIC and associating password when *not logged in prior to executing the command*.
+..  Pre-requisites: -
+...     Login NRIC has to be registered in the application, either through the sample data or added manually by an administrator.
+...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the accounts*.
+...     You are *not logged in* prior to testing this function.
+..  Test case: `login ic/S1234567E pwd/Password` +
+    Expected: Status message box states that you are logged in successfully, with your name, and your shcedule (if any).
+                Status bar will now show that you are logged in with the corresponding name of the user who logged in.
+..  Test case: `login ic/S12345678 pwd/Password` +
+    Expected: Not logged in. Format of NRIC is incorrect and Status message box shows the NRIC constraints. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E pwd/high-five` +
+    Expected: Not logged in. Password format is incorrect and Status message box shows password constraints. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E` +
+    Expected: Not logged in. Command format is invalid and Status message box shows the command usage. Status bar remains unchanged.
+..  Test case: `login ic/S1234567E pwd/SomeRandomPwd` +
+    Expected: Not logged in. Password does not match the one that's registered with the app; Status message box shows error.
+                Status bar remains unchanged.
+. Logs in to the application using a registered NRIC and associating password when *already logged in prior to executing the command*.
+..  Pre-requisites: You are *already logged in* prior to testing this function.
+..  Test case: `login ic/T1234567E pwd/Password` +
+    Expected: Status message box shows the message: - +
+                `You are already logged in. Logout first before logging in again`. +
+                Login status remain unchanged; status bar remain unchanged.
+
 
 ==== Checks the login status of the application
+. Checks the login status of this app. For this case, someone is logged in to the app.
+..  Pre-requisites: Someone is logged in to the app.
+..  Test case: `checkloginstatus` +
+    Expected: Status message box shows the NRIC of the user who is logged in to the app.
+. Checks the login status of this app. For this case, user is not logged in prior to executing this command.
+..  Pre-requisites: User is not logged in prior to executing this command.
+..  Test case: `checkloginstatus` +
+    Expected: Status message box shows that you are not logged in.
+
 
 ==== Logout of the application
+. Logs out of the application.
+..  Pre-requisites: User is logged into the app prior to executing this command.
+..  Test case: `logout` +
+    Expected: Status message box shows that you have successfully logged out. Status bar footer now shows: `Not logged in`.
+//end::jylee-git_dg_login[]
 
-==== Editing a person
+==== Editing personal particulars of the person who is logged in
+[NOTE]
+====
+Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand section of the User Guide>> for the list of
+editable parameters.
+====
+. Edits the editable particulars of the person who is logged in.
+..  Pre-Condition: User must be logged in to the application.
+..  Test case: `edit n/Stacy Mak e/stacym@banksy.com` +
+    Expected: Particular of the logged in person gets updated with name of `Stacy Mak` and email of `stacym@banksy.com`.
+                Status message box shows the details of the updated person. Status bar footer now shows that the new name of the person who is logged in.
+..  Test case: `edit a/Yishun, Singapore p/91234567` +
+    Expected: Particular of the logged in person gets updated with address now at `Yishun, Singapore`, and phone number of `91234567`.
+                    Status message box shows the details of the updated person. Status bar footer remains unchanged.
+..  Test case: `edit p/string p/96289700` +
+    Expected: Particular of the logged in person gets updated with phone number of `96289700`. The previous invalid phone input of
+                `string` gets ignored as it is superseded with the valid phone input of `96289700`.
+                Status message box shows the details of the updated person. Status bar footer remains unchanged.
+..  Test case: `edit p/96289700 p/string` +
+    Expected: Details of the person not edited. Status message box shows error message with the constraints of a phone number.
+    The phone input of `96289700` gets ignored as it is superseded by the phone input of `string`, and hence led to the error message.
+
 
 === Employee Management Database
 
@@ -1548,7 +1769,40 @@ Expected: No employee is added. The NRIC of `Carol Crowe` is the same as `Betsy 
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
+//tag::jylee-git_dg_setplvl[]
+
 ==== Change priority level of employee
+[NOTE]
+====
+Refer to <<UserGuide.adoc#appendix-b-privileges-in-accordance-to-priority-level, Appendix B of User Guide>> for the list of priority level.
+====
+. Change the priority level of an employee with one logged in as ADMINISTRATOR.
+..  Pre-requisites: -
+...     You must be logged in as an administrator.
+...     The following test cases assume a *default slate* when the app is first launched, *without any prior modifications to the employees list*.
+            Modify your test case according to whatever changes that were made prior to executing the following test cases.
+...     The following test cases assume that the employee list is *neither sorted nor filtered* prior to executing the
+            test cases. Modify your test cases accordingly if you have sorted the list.
+...     The following test cases assume that you are logged in as Alex Yeoh, an administrator with NRIC of `S1234567E` and
+            password of `Password`. Modify the test cases accordingly if you have made any modifications to the employee list
+            prior to executing the following test cases.
+..  Test case: `setplvl 1 plvl/3` +
+    Expected: Priority level of the employee at index 1 gets updated to a priority level of BASIC.
+                Status message box shows that the priority level of the name of employee at index 1 has been changed to BASIC.
+..  Test case: Attempting to change your own priority level `setplvl 2 plvl/3` +
+    Expected: Priority level of the logged in user does not get changed. Status message box shows error that you are not allowed
+                to update your own priority level.
+..  Test case: `setplvl 1 plvl/999` +
+    Expected: Priority level of the employee at index 1 is not updated. Input priority level is out of the range of valid
+                priority level values. Status message bar shows error message.
+
+. Attempt to change the priority level of an employee with one logged in without admin rights.
+..  Pre-requisites: You must be logged in with an account that is not of ADMINISTRATOR priority level.
+..  Test case: `setplvl 2 plvl/3` +
+    Expected: Priority level of the employee at index 2 is not updated. The user who is attempting to change the priority level
+                does not have the rights to do so. Status message box shows an error message.
+//end::jylee-git_dg_setplvl[]
+
 
 ==== Change the department of an employee
 
@@ -1624,11 +1878,50 @@ Expected: No employee at index 0. Error details is shown in the status message.
 .. Other incorrect reject commands to try: `reject`, `reject x` (where x is larger than the list leave size) +
    Expected: Similar to previous.
 
+// tag::schedule_test[]
 === Scheduling
 
 ==== List schedule
+. Lists the schedule of an employee in address book as a non-administrator.
+
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
+.. Test case: `schedule 4` +
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: User has invalid priority level. Error details shown in status message.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
+
+. Lists the schedule of an employee in address book as an administrator.
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `schedule 1` +
+Expected: Displays own schedule. Details of schedule shown in status message.
+.. Test case: `schedule 3` +
+Expected: Displays schedule of employee at index 3. Details of schedule shown in status message.
+.. Test case: `schedule 0` +
+Expected: Index 0 is invalid. Error details shown in status message.
 
 ==== Set schedule
+. Sets the schedule of an employee in address book as a non-administrator.
+
+.. Prerequisites: Logged in as an any non-administrator user and is listed at index 4. +
+.. Test case: `setschedule 4 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: User has invalid priority level. Error detail shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Time start and time end are the same. Error detail shown in the status message.
+
+. Sets the schedule of an employee in address book as an administrator.
+
+.. Prerequisites: Logged in as an any administrator and is listed at index 1. +
+.. Test case: `setschedule 1 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set own schedule. Message is shown in the status message.
+.. Test case: `setschedule 3 ts/0900 te/1700 v/Level 5` +
+Expected: Successfully set schedule for employee at index 3. Message is shown in the status message.
+.. Test case: `setschedule 4 ts/0900 te/0900 v/Level 5` +
+Expected: Time start and time end are the same. Error detail shown in the status message.
+// end::schedule_test[]
 
 === Filtering/Sorting
 
@@ -1696,3 +1989,15 @@ Expected: Invalid command format. Error details is shown in the status message.
 .. Other incorrect check commands to try: `check`, `check in`, `check mode/in` +
    Expected: Similar to previous.
 
+//tag::jylee-git_dg_reset[]
+==== Reset the application
+. Resets the application, by deleting `data/AddressBook.xml` and `data/leave.xml`, provided that any of the files exist.
+
+..  Pre-requisites: - +
+    ... User must be logged in with a priority level of `I.T. UNIT`.
+    ... In order for the test to be efficient, you may ensure that the files `data/AddressBook.xml` and `data/leave.xml`
+        exist in the folder `data`.
+..  Test case: type command `reset` +
+    Expected: Application will exit. The two files will be deleted upon application exit.
+                When you *manually* re-open the app, a sample list of employee and leave will be shown.
+//end::jylee-git_dg_reset[]
