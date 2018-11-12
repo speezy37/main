@@ -179,7 +179,7 @@ Format: `add n/NAME ic/NRIC pwd/PASSWORD p/PHONE_NUMBER e/EMAIL d/DEPARTMENT a/A
 ====
 * An employee can have any number of tags (including 0)
 * Priority level will be set to BASIC if left empty
-* A recently added person has no schedule allocated
+* A recently added employee has no schedule allocated
 ====
 
 Examples:
