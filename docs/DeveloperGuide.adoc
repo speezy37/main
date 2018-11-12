@@ -1126,40 +1126,36 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add Person
+=== Use case: Add Employee
 *MSS*
 
-.	User enters add command.
-.	AddressBook prompts to add person.
-.	User enters the details of the new person.
-.	AddressBook adds the new person.
+.	User enters add command, followed by the details of the new employee.
+.	AddressBook adds the new employee.
 +
 Use case ends.
 
 *Extensions*
 
-* 4a. Person already exists in the AddressBook.
-** 4a1. AddressBook shows person already exists message.
+* 2a. Employee already exists in the AddressBook.
+** 2a1. AddressBook shows employee already exists message.
 +
 Use case ends.
 
-* 4b. The added person has missing details.
-** 4b1. AddressBook shows an error message.
+* 2b. The added employee has missing details.
+** 2b1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 4c. The added person has wrong entry format.
-** 4c1. AddressBook shows an error message.
+* 2c. The added employee has wrong entry format.
+** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case: Delete Person
+=== Use case: Delete Employee
 *MSS*
 
-.	User enters delete command
-.	AddressBook shows the list of employees
-.	User requests to delete a specific employee
+.	User enters delete command, followed by the index of the specific employee
 .	AddressBook deletes the employee
 +
 Use case ends.
@@ -1170,10 +1166,10 @@ Use case ends.
 +
 Use case ends.
 
-* 4a. The given employee name is invalid
-** 4a1. AddressBook shows an error message.
+* 2a. The given employee name is invalid
+** 2a1. AddressBook shows an error message.
 +
-Use case resumes to step 2.
+Use case resumes to step 1.
 
 [discrete]
 === Use case: Change priority level of user
@@ -1470,8 +1466,8 @@ Use case ends.
 +
 Use case resumes to step 1.
 
-* 4b. The keyword entered is not found.
-** 4b1. AddressBook shows an empty list.
+* 2b. The keyword entered is not found.
+** 2b1. AddressBook shows an empty list.
 +
 Use case ends.
 
