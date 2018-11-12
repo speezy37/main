@@ -1671,7 +1671,7 @@ proceeding to conduct the tests*.
 [NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 
-[CAUTION]
+[WARNING]
 ====
 . The following test cases assume a *default slate* when the app is first launched or reset, *without any prior
     modifications to the employees list and its' corresponding accounts*. Modify your test case according to whatever
