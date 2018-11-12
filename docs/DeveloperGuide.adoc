@@ -1484,12 +1484,12 @@ Use case ends.
 
 *Extension*
 
-* 2a. User not logged in
+* 2a. User not logged in.
 ** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 2b. The given field is invalid.
+* 2b. User enters invalid parameter.
 ** 2b1. AddressBook shows an error message.
 +
 Use case resumes to step 1.
@@ -1508,12 +1508,12 @@ Use case resumes to step 1.
 
 *Extension*
 
-* 2a. User not logged in
+* 2a. User not logged in.
 ** 2a1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 2b. The given field is invalid.
+* 2b. User enters invalid parameter.
 ** 2b1. AddressBook shows an error message.
 +
 Use case resumes to step 1.
