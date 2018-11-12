@@ -1206,7 +1206,7 @@ Use case ends.
 === Use case: Change department of user
 *MSS*
 
-. User enters `setdepartment` command, followed by the index and the department name.
+. User enters `setdepartment` command, followed by the appropriate parameters.
 . AddressBook updates the department of the user at the stated index.
 +
 Use case ends.
@@ -1223,18 +1223,13 @@ Use case ends.
 +
 Use case ends.
 
-* 2c. User keys in an invalid INDEX.
+* 2c. User enters invalid parameters.
 ** 2c1. AddressBook shows an error message.
 +
 Use case ends.
 
-* 2d. User keys in an invalid department name.
+* 2d. User tries to edit his/her own department.
 ** 2d1. AddressBook shows an error message.
-+
-Use case ends.
-
-* 2e. User tries to edit his/her own department.
-** 2e1. AddressBook shows an error message.
 +
 Use case ends.
 
@@ -1424,20 +1419,15 @@ Use case ends.
 === Use case: Sort contact
 *MSS*
 
-. User enters `sort` command, followed by the field and order of sort.
+. User enters `sort` command, followed by the appropriate parameters.
 . AddressBook shows a sorted list by the field and order.
 +
 Use case ends.
 
 *Extensions*
 
-* 2a. The given field is invalid.
+* 2a. The given parameter is invalid.
 ** 2a1. AddressBook shows an error message.
-+
-Use case resumes to step 1.
-
-* 2b. The given order is invalid.
-** 2b1. AddressBook shows an error message.
 +
 Use case resumes to step 1.
 
