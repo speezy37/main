@@ -1206,7 +1206,7 @@ Use case ends.
 === Use case: Change department of user
 *MSS*
 
-. User enters setdepartment command, followed by the index and the department name.
+. User enters `setdepartment` command, followed by the index and the department name.
 . AddressBook updates the department of the user at the stated index.
 +
 Use case ends.
@@ -1424,7 +1424,7 @@ Use case ends.
 === Use case: Sort contact
 *MSS*
 
-. User enters sort command, followed by the field and order of sort.
+. User enters `sort` command, followed by the field and order of sort.
 . AddressBook shows a sorted list by the field and order.
 +
 Use case ends.
@@ -1445,7 +1445,7 @@ Use case resumes to step 1.
 === Use case: List department
 *MSS*
 
-. User enters listdepartment command.
+. User enters `listdepartment` command.
 . AddressBook shows a list of available departments.
 +
 Use case ends.
@@ -1454,7 +1454,7 @@ Use case ends.
 === Use case: Filter department
 *MSS*
 
-. User enters filterdepartment command, followed by the department names to filter.
+. User enters `filterdepartment` command, followed by the department names to filter.
 . AddressBook shows the list of filtered department.
 +
 Use case ends.
