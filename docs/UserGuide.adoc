@@ -323,7 +323,7 @@ Example:
 
 image:filterleavecmd.png[width=""]
 
-List all leave application requested by the user with NRIC, 'T1234567E'.
+List all leave application requested by the user with NRIC, 'F2058730E'.
 
 image:filteredleave.png[width=""]
 // end::filterleave[]
