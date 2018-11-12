@@ -26,7 +26,7 @@ public class ScheduleCommand extends Command {
             + "\nExample: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SCHEDULE_SUCCESS = "Your allocated schedule:\n%s";
+    public static final String MESSAGE_SCHEDULE_SUCCESS = "%s's schedule:\n%s";
     public static final String MESSAGE_SCHEDULE_FAIL = "Schedule Command Failed.";
     public static final String MESSAGE_NO_SCHEDULE = "No schedule allocated.";
 
@@ -70,6 +70,6 @@ public class ScheduleCommand extends Command {
             schedule = MESSAGE_NO_SCHEDULE;
         }
 
-        return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS, schedule));
+        return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS, targetPerson.getName().toString(), schedule));
     }
 }

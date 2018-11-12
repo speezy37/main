@@ -92,7 +92,7 @@ public class ScheduleCommandTest {
         List<Person> personList = model.getFilteredPersonList();
         Person expectedPerson = personList.get(INDEX_FIRST_PERSON.getZeroBased());
         Schedule expectedSchedule = expectedPerson.getSchedule();
-        String expectedResponse = "Your allocated schedule:\n" + expectedSchedule.toString();
+        String expectedResponse = expectedPerson.getName().toString() + "'s schedule:\n" + expectedSchedule.toString();
 
         assertCommandSuccess(new ScheduleCommand(INDEX_FIRST_PERSON), model,
                 commandHistory, expectedResponse, expectedModel);
@@ -101,7 +101,7 @@ public class ScheduleCommandTest {
     @Test
     public void execute_otherUserWithNoSchedule_success() {
         Index index = Index.fromOneBased(6);
-        String expectedResponse = "Your allocated schedule:\nNo schedule allocated.";
+        String expectedResponse = "Fiona Kunz's schedule:\nNo schedule allocated.";
 
         assertCommandSuccess(new ScheduleCommand(index), model,
                 commandHistory, expectedResponse, expectedModel);
