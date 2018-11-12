@@ -824,8 +824,8 @@ Department names should start with a name, and ends with 'Management'.
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: +
-[0] I.T. Unit (HIGHEST) +
-[1] Administrator +
+[0] Administrator (HIGHEST) +
+[1] I.T. Unit +
 [2] Manager +
 [3] Basic (LOWEST)
 | plvl/2

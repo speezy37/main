@@ -1698,7 +1698,8 @@ These instructions only provide a starting point for testers to work on; testers
 ==== Editing personal particulars of the person who is logged in
 [NOTE]
 ====
-Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand User Guide>> for the list of editable parameters.
+Refer to <<UserGuide.adoc#editing-a-person-code-edit-code,EditCommand section of the User Guide>> for the list of
+editable parameters.
 ====
 . Edits the editable particulars of the person who is logged in.
 ..  Pre-Condition: User must be logged in to the application.
