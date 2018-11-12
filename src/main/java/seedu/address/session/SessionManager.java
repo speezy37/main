@@ -173,6 +173,7 @@ public class SessionManager extends ComponentManager implements Session {
     /**
      * Update a single key with the new values
      */
+    @Override
     public void updatePersonsHashMap(Person toAmend) {
         requireNonNull(toAmend);
         allPersonsHashMap.replace(toAmend.getNric(), toAmend);

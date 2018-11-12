@@ -38,23 +38,23 @@ This user guide will give you step by step instruction on how you can use the fe
 +
 image::Ui.png[width="790"]
 +
-.  If the app does not contain any sample data (refer to <<List of user accounts at first launch or upon reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
+.  If the app does not contain any sample data (refer to <<List of sample user accounts at first launch or upon reset, Table 1>>), something went wrong during the download process. Delete the folder `BankAB` and repeat step 1 to 4.
 .  The following table contains a sample list of persons with the respective account details when the application
 runs for the first time or when ResetCommand was executed in the previous runtime:
 
-.List of user accounts at first launch or upon reset
+.List of sample user accounts at first launch or upon reset
 [[defaultcontacts]]
 |===
 |*Name* |*NRIC* |*Password* |*Priority Level*
-|Highest Admin Account
-|S1230000E
-|Password
-|I.T. Unit (Highest Priority Level)
-
 |Alex Yeoh
 |S1234567E
 |Password
-|ADMINISTRATOR
+|ADMINISTRATOR (Highest Priority level)
+
+|Leonard Tan
+|S1230000E
+|Password
+|I.T. UNIT
 
 |Bernice Yu
 |T1234567E
@@ -227,16 +227,16 @@ Example: `setplvl 1 plvl/0`
 ====
 - A successful change of priority level should show the following message:
 
-image::setPlvl_success_screenShot.png[]
+image::setPlvl_success_screenShot.png[width=800]
 
 - Users of insufficient priority level (below administrator priority level) will get the following
 error message when attempting to execute this command:
 
-image::setPlvl_failed_screenShot.png[]
+image::setPlvl_failed_screenShot.png[width=800]
 
 - Users (with sufficient priority level), that attempts to change their own priority level will not be allowed to do so:
 
-image::setOwnPlvl_failed_screenShot.png[]
+image::setOwnPlvl_failed_screenShot.png[width=800]
 ====
 //end::jylee-git_login[]
 
@@ -779,7 +779,7 @@ There is no need to save manually.
 | NRIC Number
 | ic/NRIC
 | NRIC should start with an upper-case character [S, T, F, G], followed by a seven-digit number, and ending with a upper-case
-alphabet.
+alphabet. NRIC for every single individuals must be unique.
 | ic/S9203948E
 
 | Password
@@ -824,8 +824,8 @@ Department names should start with a name, and ends with 'Management'.
 | Priority Level
 | plvl/PRIORITY_LEVEL
 | Priority Level should be a number respective to the following classification: +
-[0] I.T. Unit (HIGHEST) +
-[1] Administrator +
+[0] Administrator (HIGHEST) +
+[1] I.T. Unit +
 [2] Manager +
 [3] Basic (LOWEST)
 | plvl/2
